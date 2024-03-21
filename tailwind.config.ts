@@ -23,9 +23,10 @@ const config: Config = {
       'pink': '#ff49db',
       'orange': '#ff7849',
       'green': '#13ce66',
-      "white":"#ffffff",
-      'yellow': '#ffc82c'
-   
+      "white":"#ECF4FF",
+      'yellow': '#ffc82c',
+   "text_grey":"#D5D5D5",
+   "text_grey_one":"#B4B4B4"
     },
     fontFamily: {
       poppins: ['var(--font-poppins)'],

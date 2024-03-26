@@ -1,0 +1,122 @@
+import React, { Fragment, useState } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { ChevronRightIcon } from '@heroicons/react/24/outline'
+import Image from "next/image";
+import TextTransition, { presets } from 'react-text-transition';
+import MainHeading from '../helpers/heading/main_heading';
+
+import { CalendarIcon } from '@heroicons/react/24/outline'
+import CourseCard from '../helpers/card/course_card_component';
+import classNames from '@/helpers/add_class';
+import DurationDropdown from './duration_dropdown_component';
+import PartnerDropdown from './partner_dropdown_component';
+import TechnologyDropdown from './technology_dropdown_component';
+
+export default function CourseContainer() {
+  const [index, setIndex] = useState(0);
+  return (
+    <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
+
+      <div className="flex flex-row gap-1 items-center">
+        <p className="text-blue text-base font-medium">Home</p>
+        <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
+        <p className="text-text_grey_one text-base font-medium">Course</p>
+      </div>
+      <div className={classNames("w-full cursor-pointer text-2xl  flex flex-row mt-12 mb-12 justify-center items-center  gap-7")}>
+        <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>
+          Courses Library
+        </div>
+        <div className='h-6 w-[1px] rounded-lg bg-grey'></div>
+        <div className={index != 1 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(1)}>
+          Combo
+        </div>
+
+      </div>
+      <div className='box-border border w-full p-8 border-blue border-1 bg-dark_blue rounded-2xl'>
+        <h2 className="text-white text-lg font-medium">Fliter by</h2>
+        <section className='mt-10 flex flex-row gap-6'>
+          <DurationDropdown />
+          <PartnerDropdown />
+          <TechnologyDropdown />
+        </section>
+        <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10'></div>
+        <section className='mt-10 flex flex-row items-center gap-10'>
+          <div className='flex flex-row items-center gap-2'>
+            <input
+              id={"ssdfds"}
+              name={"ssdfds"}
+              defaultValue={"ssdfds"}
+              value={"ssdfds"}
+              type="checkbox"
+              checked={true}
+              onChange={(e) => {
+
+
+              }}
+              defaultChecked={false}
+              className={"h-4 w-4 rounded border-blue text-blue focus:ring-custom_grey"}
+            />
+            <h2 className="text-white text-sm font-medium">Classroom</h2>
+          </div>
+
+
+          <div className='flex flex-row items-center gap-2'>
+            <input
+              id={"ssdfds"}
+              name={"ssdfds"}
+              defaultValue={"ssdfds"}
+              value={"ssdfds"}
+              type="checkbox"
+              checked={true}
+              onChange={(e) => {
+
+
+              }}
+              defaultChecked={false}
+              className={"h-4 w-4 rounded border-blue text-blue focus:ring-custom_grey"}
+            />
+            <h2 className="text-white text-sm font-medium">Instructor-Led Online (ILO)</h2>
+          </div>
+
+          <div className='flex flex-row items-center gap-2'>
+            <input
+              id={"ssdfds"}
+              name={"ssdfds"}
+              defaultValue={"ssdfds"}
+              value={"ssdfds"}
+              type="checkbox"
+              checked={true}
+              onChange={(e) => {
+
+
+              }}
+              defaultChecked={false}
+              className={"h-4 w-4 rounded border-blue text-blue focus:ring-custom_grey"}
+            />
+            <h2 className="text-white text-sm font-medium">Web-based training (WBT)</h2>
+          </div>
+        </section>
+        <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10'></div>
+        <section className='flex flex-row items-center justify-center'>
+        <div className="mx-auto box-border border flex flex-row gap-3 mt-7 items-center py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
+
+<h3 className="text-blue text-lg font-medium">Filter</h3>
+</div>
+        </section>
+      </div>
+
+      <div className="w-full grid grid-cols-3 gap-6 mt-8">
+
+        {
+          [1, 2, 3, 4, 5, 6].map((e: any) => {
+            return <CourseCard />
+          })
+        }
+
+
+
+
+      </div>
+    </main>
+  )
+}

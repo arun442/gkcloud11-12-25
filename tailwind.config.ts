@@ -26,7 +26,9 @@ const config: Config = {
       "white":"#ECF4FF",
       'yellow': '#ffc82c',
    "text_grey":"#D5D5D5",
-   "text_grey_one":"#B4B4B4"
+   "text_grey_one":"#B4B4B4",
+   "table_border":"#DCDCDC",
+   "table_font":"#E3E3E3"
     },
     fontFamily: {
       poppins: ['var(--font-poppins)'],

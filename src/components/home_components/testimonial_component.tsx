@@ -68,7 +68,7 @@ export default function TestimonialComponent() {
 
                 <p className='flex-1 text-[16px] text-white'>  <>
                           &quot;
-                         {e.content.length>500? `${e.content.substring(0,500)}...`:e.content}&quot;
+                         {e.content.length>500? `${e.content.substring(0,450)}...`:e.content}&quot;
                         </></p>
                 <div className='flex flex-col items-end'>
             <h3 className='font-medium text-blue text-lg'>-{e.authorName}</h3>

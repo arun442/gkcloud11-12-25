@@ -9,7 +9,10 @@ export default function CertificateCard({data}:{data:any}) {
       <p className="text-text_grey text-[12px] font-medium">{data.certificateName}</p>
       <h2 className="text-white text-xl font-medium">{data.title}</h2>
       <div className="flex flex-row gap-1 mt-2 items-center">
-        <MagnifyingGlassIcon className="text-text_grey_one h-4 w-4" />
+      <img
+                                   
+                                   className="text-text_grey_one h-4 w-4"
+                                   src="/Icon_clock.svg"/>
         <p className="text-text_grey_one text-base font-normal">{data.CertificateCourseCostPlans[0].CourseDuration.courseDuration} days</p>
       </div>
   

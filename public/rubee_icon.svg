@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38">
+  <g id="Group_203" data-name="Group 203" transform="translate(-1119 -457)">
+    <path id="Icon_material-currency-rupee" data-name="Icon material-currency-rupee" d="M16.5,8.523a3.417,3.417,0,0,0-3.095-2.012H9V4.5H20.753V6.512H17.56a5.569,5.569,0,0,1,1.028,2.012h2.164v2.012H18.774a5.448,5.448,0,0,1-5.367,5.029h-.715l6.591,7.04H16.571l-6.591-7.04V13.552h3.428A3.452,3.452,0,0,0,16.8,10.535H9V8.523Z" transform="translate(1123.083 462.77)" fill="#129dd6"/>
+    <g id="Ellipse_11" data-name="Ellipse 11" transform="translate(1119 457)" fill="none" stroke="#129dd6" stroke-width="3">
+      <circle cx="19" cy="19" r="19" stroke="none"/>
+      <circle cx="19" cy="19" r="17.5" fill="none"/>
+    </g>
+  </g>
+</svg>

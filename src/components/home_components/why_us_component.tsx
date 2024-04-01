@@ -9,22 +9,22 @@ export default function WhyUsComponent() {
 
     const items = [
         {
-            image: "url",
+            image: "/Image_8.png",
             title: "50+",
             desc: "Online Courses"
 
         }, {
-            image: "url",
+            image:  "/Image_13.png",
             title: "1000+",
             desc: "Active Students"
 
         }, {
-            image: "url",
+            image:  "/Image_14.png",
             title: "15+",
             desc: "Instructors"
 
         }, {
-            image: "url",
+            image:  "/Image_15.png",
             title: "50+",
             desc: "Certifications"
 
@@ -38,7 +38,13 @@ export default function WhyUsComponent() {
 {
     items.map((e)=>{
         return <div key={e.title} className='flex flex-col justify-center items-center'>
-            <div className='w-32 h-32 mb-3 rounded-full bg-blue'></div>
+            <div className='w-32 h-32 mb-3 rounded-full bg-blue flex items-center justify-center'>
+            <img
+                                   
+                                        className="h-14 w-auto"
+                                        src={e.image}/>
+                                        
+            </div>
             <h3 className='text-4xl font-bold text-center text-blue'>{e.title}</h3>
             <p className='text-lg text-white font-medium text-center mb-10'>{e.desc}</p>
         </div>

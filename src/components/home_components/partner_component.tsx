@@ -39,7 +39,7 @@ const PartnerComponent: React.FC = () => {
 
               className="cursor-pointer object-cover max-w-full h-full w-full"
 
-              src={imageHelper(e.imageUrl)}
+              src={imageHelper(e.Image.imageUrl)}
               alt="link"
             />
 

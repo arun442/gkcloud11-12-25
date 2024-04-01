@@ -37,13 +37,13 @@ export default function OurClientComponent() {
             {
       data.map((e: any,index) => {
           return <div key={index} className="w-ful h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-xl">
-            {/* <img
+            <img
 
               className="cursor-pointer object-fill max-w-full h-full w-full"
 
               src={imageHelper(e.Image.imageUrl)}
               alt="link"
-            /> */}
+            />
 
           </div>
         })

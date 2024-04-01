@@ -72,15 +72,24 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                     <p className="text-white text-xl font-normal">Gen002</p>
                 </div> */}
                 <div className="flex flex-row gap-3 items-center">
-                    <MagnifyingGlassIcon className="text-blue h-8 w-8" />
+                <img
+                                   
+                                   className="text-blue h-8 w-8"
+                                   src="/learning_mode.svg"/>
                     <p className="text-white text-xl font-normal">ILO</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
-                    <MagnifyingGlassIcon className="text-blue h-8 w-8" />
+                <img
+                                   
+                                   className="text-blue h-8 w-8"
+                                   src="/Icon_clock.svg"/>
                     <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CourseDuration.courseDuration} days</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
-                    <MagnifyingGlassIcon className="text-blue h-8 w-8" />
+                <img
+                                   
+                                   className="text-blue h-8 w-8"
+                                   src="/rubee_icon.svg"/>
 
                     {
                         data.CertificateCourseCostPlans.length != 0 && data.CertificateCourseCostPlans[0].offerId != null ? <div className='flex flex-row'>
@@ -92,7 +101,10 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
             </section>
             <section className='flex flex-row items-start mt-20'>
                 <div className=" mx-auto box-border border flex flex-row gap-3  items-center p-3  border-blue border-1 bg-dark_blue rounded-2xl">
-                    <MagnifyingGlassIcon className="text-blue h-6 w-6" />
+                <img
+                                   
+                                   className="text-blue h-6 w-6"
+                                   src="/pdf_icon.svg"/>
                     <p className="text-white text-sm font-normal">Download Course Content</p>
                 </div>
             </section>

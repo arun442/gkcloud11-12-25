@@ -66,19 +66,33 @@ try {
             <h1 className='font-semibold text-4xl mt-5 text-white'>{data.title}</h1>
             <section className='flex mt-10 flex-row gap-10'>
                 <div className="flex flex-row gap-3 items-center">
-                    <MagnifyingGlassIcon className="text-blue h-8 w-8" />
+                <img
+                                   
+                                   className="text-blue h-8 w-8"
+                                   src="/category_icon.svg"/>
+                  
                     <p className="text-white text-xl font-normal">{data.courseCode}</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
-                    <MagnifyingGlassIcon className="text-blue h-8 w-8" />
+                <img
+                                   
+                                   className="text-blue h-8 w-8"
+                                   src="/learning_mode.svg"/>
+                    
                     <p className="text-white text-xl font-normal">ILO</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
-                    <MagnifyingGlassIcon className="text-blue h-8 w-8" />
+                <img
+                                   
+                                   className="text-blue h-8 w-8"
+                                   src="/Icon_clock.svg"/>
                     <p className="text-white text-xl font-normal">{data.CourseDurations[0].courseDuration} days</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
-                    <MagnifyingGlassIcon className="text-blue h-8 w-8" />
+                <img
+                                   
+                                   className="text-blue h-8 w-8"
+                                   src="/rubee_icon.svg"/>
                     {
                    data.CourseCostPlans.length!=0&& data.CourseCostPlans[0].offerId!=null?      <div className='flex flex-row'>
                      <p className="text-white text-xl font-normal">₹ {data.CourseCostPlans[0].planPrice}/-</p>
@@ -89,7 +103,10 @@ try {
             </section>
             <section className='flex flex-row items-start mt-20'>
                 <div className=" mx-auto box-border border flex flex-row gap-3  items-center p-3  border-blue border-1 bg-dark_blue rounded-2xl">
-                    <MagnifyingGlassIcon className="text-blue h-6 w-6" />
+                <img
+                                   
+                                   className="text-blue h-6 w-6"
+                                   src="/pdf_icon.svg"/>
                     <p className="text-white text-sm font-normal">Download Course Content</p>
                 </div>
             </section>

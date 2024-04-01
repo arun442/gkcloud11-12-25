@@ -13,11 +13,12 @@ import PartnerDropdown from './partner_dropdown_component';
 import TechnologyDropdown from './technology_dropdown_component';
 import FormComponent from '../course_detail_components/detail_form_component';
 import useUserData from '@/hooks/userData';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { axiosPrivate } from '@/common/axiosPrivate';
 
 
 export default function CertificateDetailContainer({ data }: { data: any }) {
+    const router = useRouter();
     const [index, setIndex] = useState(0);
     const { userData, } = useUserData();
     const [isLoading, setLoading] = useState(false);
@@ -57,9 +58,15 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
         <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
             <div className="flex flex-row gap-1 items-center">
-                <p className="text-blue text-base font-medium">Home</p>
+                <p className="text-blue text-base font-medium" onClick={(e) => {
+                    router.back();
+                    router.back();
+                }}>Home</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-                <p className="text-blue text-base font-medium">Course</p>
+                <p className="text-blue text-base font-medium" onClick={(e) => {
+
+                    router.back();
+                }}>Course</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
                 <p className="text-text_grey_one text-base font-medium">{data.title}</p>
             </div>
@@ -72,24 +79,24 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                     <p className="text-white text-xl font-normal">Gen002</p>
                 </div> */}
                 <div className="flex flex-row gap-3 items-center">
-                <img
-                                   
-                                   className="text-blue h-8 w-8"
-                                   src="/learning_mode.svg"/>
+                    <img
+
+                        className="text-blue h-8 w-8"
+                        src="/learning_mode.svg" />
                     <p className="text-white text-xl font-normal">ILO</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
-                <img
-                                   
-                                   className="text-blue h-8 w-8"
-                                   src="/Icon_clock.svg"/>
+                    <img
+
+                        className="text-blue h-8 w-8"
+                        src="/Icon_clock.svg" />
                     <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CourseDuration.courseDuration} days</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
-                <img
-                                   
-                                   className="text-blue h-8 w-8"
-                                   src="/rubee_icon.svg"/>
+                    <img
+
+                        className="text-blue h-8 w-8"
+                        src="/rubee_icon.svg" />
 
                     {
                         data.CertificateCourseCostPlans.length != 0 && data.CertificateCourseCostPlans[0].offerId != null ? <div className='flex flex-row'>
@@ -101,10 +108,10 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
             </section>
             <section className='flex flex-row items-start mt-20'>
                 <div className=" mx-auto box-border border flex flex-row gap-3  items-center p-3  border-blue border-1 bg-dark_blue rounded-2xl">
-                <img
-                                   
-                                   className="text-blue h-6 w-6"
-                                   src="/pdf_icon.svg"/>
+                    <img
+
+                        className="text-blue h-6 w-6"
+                        src="/pdf_icon.svg" />
                     <p className="text-white text-sm font-normal">Download Course Content</p>
                 </div>
             </section>

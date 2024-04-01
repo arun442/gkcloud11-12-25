@@ -11,10 +11,12 @@ import NormalBtn from '../helpers/buttons/normal_btn_component';
 import classNames from '@/helpers/add_class';
 import { axiosPublic } from '@/common/axiosPublic';
 import ScheduleCard from '../helpers/card/schedule_card_component';
+import { useRouter } from 'next/navigation';
 
 export default function ScheduleContainer() {
   const [index, setIndex] = useState(0);
   const [data, setData] = useState<any[]>([]);
+  const router=useRouter();
   useEffect(() => {
 
     fetchData();
@@ -35,7 +37,10 @@ export default function ScheduleContainer() {
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
       <MainHeading text='Schedules' />
       <div className="flex flex-row gap-1 items-center mt-14">
-        <p className="text-blue text-base font-medium">Home</p>
+        <p className="text-blue text-base font-medium" onClick={(e)=>{
+                
+                    router.back();
+                }}>Home</p>
         <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
         <p className="text-text_grey_one text-base font-medium">Schedules</p>
       </div>

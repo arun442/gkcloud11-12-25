@@ -14,12 +14,13 @@ import TechnologyDropdown from './technology_dropdown_component';
 import FormComponent from './detail_form_component';
 import useUserData from '@/hooks/userData';
 import { axiosPrivate } from '@/common/axiosPrivate';
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
 export default function CourseDetailContainer({data}:{data:any}) {
     const { userData,} = useUserData();
     const [isLoading, setLoading] = useState(false);
     const params = useParams();
+    const router=useRouter();
     const entroll=async()=>{
 if(userData==null){
     return alert("Before entrollment Please login");
@@ -56,9 +57,14 @@ try {
         <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
             <div className="flex flex-row gap-1 items-center">
-                <p className="text-blue text-base font-medium">Home</p>
+                <p className="text-blue text-base font-medium" onClick={(e)=>{
+                    router.back();
+                    router.back();
+                }}>Home</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-                <p className="text-blue text-base font-medium">Course</p>
+                <p className="text-blue text-base font-medium" onClick={(e)=>{
+                    router.back();
+                }}>Course</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
                 <p className="text-text_grey_one text-base font-medium">{data.courseCode}</p>
             </div>

@@ -47,14 +47,6 @@ export default function Header() {
             "menuSequencePriority": 4
         },
         {
-            "menuId": 5,
-            "menuName": "Offers",
-            "menuUrl": "/offer",
-            "imageId": null,
-          
-            "menuSequencePriority": 5
-        },
-        {
             "menuId": 6,
             "menuName": "Contact",
             "menuUrl": "/contactUs",

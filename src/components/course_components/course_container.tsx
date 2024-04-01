@@ -13,11 +13,13 @@ import PartnerDropdown from './partner_dropdown_component';
 import TechnologyDropdown from './technology_dropdown_component';
 import { axiosPublic } from '@/common/axiosPublic';
 import CertificateCard from '../helpers/card/certificate_card_component';
+import { useRouter } from 'next/navigation';
 
 export default function CourseContainer() {
   const [index, setIndex] = useState(0);
   const [course, setCourse] = useState<any[]>([]);
   const [certificate, setCertificate] = useState<any[]>([]);
+  const router=useRouter();
   useEffect(() => {
 
     fetchCourse();
@@ -49,7 +51,10 @@ export default function CourseContainer() {
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
       <div className="flex flex-row gap-1 items-center">
-        <p className="text-blue text-base font-medium">Home</p>
+        <p className="text-blue text-base font-medium" onClick={(e)=>{
+                
+                    router.back();
+                }}>Home</p>
         <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
         <p className="text-text_grey_one text-base font-medium">Course</p>
       </div>

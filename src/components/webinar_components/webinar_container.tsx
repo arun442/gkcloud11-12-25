@@ -8,8 +8,10 @@ import WebinarFilter from './filter_component';
 import {CalendarIcon } from '@heroicons/react/24/outline'
 import { axiosPublic } from '@/common/axiosPublic';
 import WebinarCard from '../helpers/card/webinar_card_component';
+import { useRouter } from 'next/navigation';
 
 export default function WebinarContainer() {
+const router=  useRouter();
   const [data, setData] = useState<any[]>([]);
   useEffect(() => {
 
@@ -31,7 +33,10 @@ export default function WebinarContainer() {
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
     <MainHeading text='Webniars'/>
     <div className="flex flex-row gap-1 items-center mt-14">
-    <p className="text-blue text-base font-medium">Home</p>
+    <p className="text-blue text-base font-medium" onClick={(e)=>{
+                  
+                    router.back();
+                }}>Home</p>
         <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
         <p className="text-text_grey_one text-base font-medium">Webinar</p>
       </div>

@@ -1,8 +1,9 @@
 
 
 
-import imageHelper from "@/helpers/image_helper";
-import api from "@/helpers/intercepter";
+import { axiosPublic } from "@/common/axiosPublic";
+import imageHelper from "@/common/image_helper";
+
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
@@ -22,12 +23,12 @@ useEffect(() => {
 
 const fetchData=async()=>{
   try {
-    const result = await api.get('/course-trending');
+    const result = await axiosPublic.get('/lms/technology');
    console.log("what is the result");
   
 
 
-   setItems(result.data.trendingCourses);
+   setItems(result.data);
   } catch (error) {
  
   }
@@ -46,12 +47,12 @@ return  <div className="box-border border flex flex-col p-6 justify-start items-
 height={150}
 width={150}
 className="h-full w-full cursor-pointer"
-src={imageHelper(e.trending_image)}
+src={imageHelper(e.Image.imageUrl)}
 alt="link"
 />
 </div>
 
-<p className="ml-6 text-center text-sm text-white font-normal">{e.trending_title}</p>
+<p className="ml-6 text-center text-sm text-white font-normal">{e.technologyName}</p>
 </div>
 })
   }

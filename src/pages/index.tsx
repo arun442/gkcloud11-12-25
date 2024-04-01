@@ -27,8 +27,8 @@ export default function Home() {
    <UnqueOfferComponent/>
    <OurClientComponent/>
 
-{/* 
-   <TestimonialComponent/> */}
+
+  <TestimonialComponent/>  
    <NewsLetterComponent/>
   <Footer/>
     </main>

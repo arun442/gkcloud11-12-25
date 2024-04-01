@@ -8,14 +8,13 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
        
       },
-    ],
-    remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'api.amudhu.tech',
+        hostname: 'gate.amudhu.tech',
        
       },
     ],
+   
 },
   reactStrictMode: true,
 };

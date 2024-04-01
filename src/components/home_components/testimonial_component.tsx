@@ -1,107 +1,114 @@
-import React, { Fragment, useState,useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import MainHeading from '../helpers/heading/main_heading'
 
-import Carousel from "react-multi-carousel";
 
-import api from '@/helpers/intercepter';
+import { axiosPublic } from '@/common/axiosPublic';
+
+
+
+import { PagerIndicator } from '../helpers/PagerIndicator';
+import { Slider } from '../helpers/Slider';
 
 
 
 export default function TestimonialComponent() {
-    const [items,setItems]=useState([]);
- 
-    useEffect(() => {
-     
-      fetchData();
-      
-    }, [])
-    const fetchData=async()=>{
-        try {
-          const result = await api.get('/testimonial');
-         console.log("what is the result");
-         console.log(result.data.testimonials);
-      
-      
-         setItems(result.data.testimonials);
-        } catch (error) {
-       
-        }
-      }
-      const responsive = {
-        desktop: {
-          breakpoint: { max: 3000, min: 1024 },
-          items: 3,
-          slidesToSlide: 3 // optional, default to 1.
-        },
-        tablet: {
-          breakpoint: { max: 1024, min: 464 },
-          items: 2,
-          slidesToSlide: 2 // optional, default to 1.
-        },
-        mobile: {
-          breakpoint: { max: 464, min: 0 },
-          items: 1,
-          slidesToSlide: 1 // optional, default to 1.
-        }
-      };
-    const classItems = [
-        {
-            image: "url",
-            title: "1-on-1 Training",
-            desc: "Schedule personalized sessions based upon your availability."
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3
+  };
+  const [items, setItems] = useState([]);
 
-        }, {
-            image: "url",
-            title: "Customized Training",
-            desc: "Tailor your learning experience. Dive deeper in topics of greater interest to you."
+  useEffect(() => {
 
-        }, {
-            image: "url",
-            title: "4-Hour Sessions",
-            desc: "Optimize learning with GKCS 4-hour sessions, balancing knowledge retention and time constraints."
+    fetchData();
 
-        }, {
-            image: "url",
-            title: "Free Demo Class",
-            desc: "Join our training with confidence. Attend a free demo class to experience our expert trainers and get all your queries answered."
+  }, [])
+  const fetchData = async () => {
+    try {
+      const result = await axiosPublic.get('/lms/testimonial');
+      console.log("what is the result");
+      console.log(result.data.testimonials);
 
-        }
-    ];
 
-    return (
-        <main className='flex flex-col justify-center items-center gap-14'>
-            <MainHeading text='What They Say About Courses'/>
-            <Carousel
-  swipeable={false}
-  draggable={false}
-  showDots={true}
-  responsive={responsive}
-  ssr={true} // means to render carousel on server-side.
-  infinite={true}
-  autoPlay={ true}
-  autoPlaySpeed={1000}
-  keyBoardControl={true}
-  customTransition="all .5"
-  transitionDuration={500}
+      setItems(result.data.testimonials);
+    } catch (error) {
 
-  removeArrowOnDeviceType={["tablet", "mobile"]}
-  
-  dotListClass="custom-dot-list-style"
- 
->
-{
-   
-   classItems.map((e)=>{
-       return <div key={e.title} className='p-6 bg-dark_blue border-2  border-blue rounded-md  h-[200px] flex flex-col justify-center gap-10'>
-           <h3 className='text-3xl font-medium text-center text-blue'>{e.title}</h3>
-           <p className='text-lg text-white'>{e.desc}</p>
-       </div>
-   })
+    }
+  }
 
-}
-</Carousel>
-          
-        </main>
-       
-    )
+  const sliderRef = React.useRef(null);
+  const [sliderState, setsliderState] = React.useState(0);
+
+  return (
+    <main className='w-full flex flex-col justify-center items-center gap-14'>
+      <MainHeading text='What They Say About Courses' />
+      <div className="w-full">
+           
+           <Slider
+             autoPlay
+             autoPlayInterval={2000}
+             activeIndex={sliderState}
+             
+             responsive={{
+               0: { items: 1 },
+               550: { items: 1 },
+               1050: { items: 3 },
+             }}
+             onSlideChanged={(e) => {
+               setsliderState(e?.item);
+             }}
+             ref={sliderRef}
+           
+             className="w-full "
+             items={ items.map((e: any) => {
+              return <div key={e.content} className='mx-3 h-[400px] p-6 bg-dark_blue border-2  border-blue rounded-md  flex flex-col justify-between gap-10'>
+
+                <p className='flex-1 text-[16px] text-white'>  <>
+                          &quot;
+                         {e.content.length>500? `${e.content.substring(0,500)}...`:e.content}&quot;
+                        </></p>
+                <div className='flex flex-col items-end'>
+            <h3 className='font-medium text-blue text-lg'>-{e.authorName}</h3>
+            <p className='text-[16px] text-white'>{e.companyName}</p>
+                </div>
+              </div>
+            })}
+             renderDotsItem={({ isActive }) => {
+               if (isActive) {
+                 return (
+                   <div className="inline-block cursor-pointer rounded-[50%] h-4 bg-custom_blue" />
+                 );
+               }
+               return (
+                 <div
+                   className="inline-block cursor-pointer rounded-[50%] h-4 bg-custom-yellow w-4"
+                   role="button"
+                   tabIndex={0}
+                 />
+               );
+             }}
+           />
+         </div>
+
+         <div className="flex flex-row justify-center">
+
+           <PagerIndicator
+             className="flex h-4 "
+             count={items.length}
+             activeCss="inline-block cursor-pointer rounded-[50%] h-4 bg-blue w-4"
+             activeIndex={sliderState}
+             inactiveCss="inline-block cursor-pointer rounded-[50%] box-border border-2 h-4 border-blue w-4"
+             sliderRef={sliderRef}
+             selectedWrapperCss="inline-block mx-[6.50px]"
+             unselectedWrapperCss="inline-block mx-[6.50px]"
+           />
+         </div>
+    
+
+    </main>
+
+  )
 }

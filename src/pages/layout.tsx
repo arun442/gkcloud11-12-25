@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`bg-primary_color ${roboto_mono.variable}`}>
+    <html lang="en" className={`bg-primary_color  ${roboto_mono.variable}`}>
       <body>{children}</body>
     </html>
   )

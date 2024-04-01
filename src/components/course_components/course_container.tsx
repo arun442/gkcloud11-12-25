@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState,useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import Image from "next/image";
@@ -11,9 +11,40 @@ import classNames from '@/helpers/add_class';
 import DurationDropdown from './duration_dropdown_component';
 import PartnerDropdown from './partner_dropdown_component';
 import TechnologyDropdown from './technology_dropdown_component';
+import { axiosPublic } from '@/common/axiosPublic';
+import CertificateCard from '../helpers/card/certificate_card_component';
 
 export default function CourseContainer() {
   const [index, setIndex] = useState(0);
+  const [course, setCourse] = useState<any[]>([]);
+  const [certificate, setCertificate] = useState<any[]>([]);
+  useEffect(() => {
+
+    fetchCourse();
+    fetchCertificate();
+
+  }, [])
+
+  const fetchCourse = async () => {
+    try {
+      const result = await axiosPublic.get('/lms/course');
+      console.log("what is the result");
+      console.log(result.data);
+      setCourse(result.data.courses);
+    } catch (error) {
+
+    }
+  }
+  const fetchCertificate = async () => {
+    try {
+      const result = await axiosPublic.get('/lms/certificate-course');
+      console.log("what is the result");
+      console.log(result.data);
+      setCertificate(result.data.certificateCourses);
+    } catch (error) {
+
+    }
+  }
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
@@ -98,25 +129,38 @@ export default function CourseContainer() {
         </section>
         <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10'></div>
         <section className='flex flex-row items-center justify-center'>
-        <div className="mx-auto box-border border flex flex-row gap-3 mt-7 items-center py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
+          <div className="mx-auto box-border border flex flex-row gap-3 mt-7 items-center py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
 
-<h3 className="text-blue text-lg font-medium">Filter</h3>
-</div>
+            <h3 className="text-blue text-lg font-medium">Filter</h3>
+          </div>
         </section>
       </div>
 
-      <div className="w-full grid grid-cols-3 gap-6 mt-8">
+      {
+        index == 0 ? <div className="w-full grid grid-cols-3 gap-6 mt-8">
 
-        {
-          [1, 2, 3, 4, 5, 6].map((e: any) => {
-            return <CourseCard />
-          })
-        }
+          {
+          course.map((e: any) => {
+              return <CourseCard data={e}/>
+            })
+          }
 
 
 
 
-      </div>
+        </div> : <div className="w-full grid grid-cols-3 gap-6 mt-8">
+
+          {
+          certificate.map((e: any) => {
+              return <CertificateCard data={e}/>
+            })
+          }
+
+
+
+
+        </div>
+      }
     </main>
   )
 }

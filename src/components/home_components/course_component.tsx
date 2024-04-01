@@ -1,6 +1,7 @@
-import api from "@/helpers/intercepter";
+
 import { useState, useEffect } from 'react'
 import CourseCard from "../helpers/card/course_card_component";
+import { axiosPublic } from '@/common/axiosPublic';
 
 
 
@@ -20,7 +21,7 @@ const CourseComponent: React.FC = () => {
 
   const fetchData = async () => {
     try {
-      const result = await api.get('/course-landing');
+      const result = await axiosPublic.get('/course-landing');
       console.log("what is the result");
       console.log(result.data.courses);
 

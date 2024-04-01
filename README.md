@@ -38,3 +38,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+testimonial
+payment integeration
+
+offers
+.filters and icons changes correct data binding need to fix every individual page
+route validation
+images need to update
+
+homepage image need to change 
+
+webinar registration
+social auth
+remember mee functionality
+user account UI fix and profile update
+need to check every navigation
+responsive UI
+
+
+Issues
+1.toast message need to show after singup for the otp is send those one
+2.same for otp also
+3.user Data need to encript

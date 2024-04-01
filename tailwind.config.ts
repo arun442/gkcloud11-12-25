@@ -24,6 +24,7 @@ const config: Config = {
       'orange': '#ff7849',
       'green': '#13ce66',
       "white":"#ECF4FF",
+      "normal_white":"#ffffff",
       'yellow': '#ffc82c',
    "text_grey":"#D5D5D5",
    "text_grey_one":"#B4B4B4",

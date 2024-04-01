@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const RenderHtml = (html) =>{
+const RenderHtml = (html:any) =>{
     const theObj = {__html:html};
     return <div dangerouslySetInnerHTML={theObj} />
 }

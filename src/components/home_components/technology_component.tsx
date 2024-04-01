@@ -37,22 +37,21 @@ const fetchData=async()=>{
     return (
 
        
-  <div className="w-full grid grid-cols-4 gap-2">
+  <div className="w-full grid grid-cols-4 gap-4">
 
   {
 items.map((e:any,index)=>{
-return  <div key={index} className="box-border border flex flex-col p-6 justify-start items-center border-blue border-1 bg-dark_blue rounded-lg">
-<div className="border-blue-100 rounded-full h-14 w-14 p-3  bg-white-A700">
-<Image
-height={150}
-width={150}
-className="h-full w-full cursor-pointer"
+return  <div key={index} className="box-border  border h-32 flex flex-col p-4 justify-start items-center border-blue border-1 bg-dark_blue rounded-lg">
+<div className="flex-1">
+<img
+
+className="cursor-pointer object-contain max-w-full h-full w-full"
 src={imageHelper(e.Image.imageUrl)}
 alt="link"
 />
 </div>
 
-<p className="ml-6 text-center text-sm text-white font-normal">{e.technologyName}</p>
+<p className="mt-2 text-center text-sm text-white font-normal">{e.technologyName}</p>
 </div>
 })
   }

@@ -37,7 +37,7 @@ const PartnerAboutComponent: React.FC = () => {
           return <div key={index} className="w-60 h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
             <img
 
-              className="cursor-pointer object-cover max-w-full h-full w-full"
+              className="cursor-pointer object-contain max-w-full h-full w-full"
 
               src={imageHelper(e.Image.imageUrl)}
               alt="link"

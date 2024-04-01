@@ -61,10 +61,10 @@ export default function CourseContainer() {
 const filter=()=>{
   console.log(trainingList);
   let courseCopyData=courseList;
-  if(trainingList.length==0){
-    setCourse(courseCopyData);
-    return;
-  }
+  // if(trainingList.length==0){
+  //   setCourse(courseCopyData);
+  //   return;
+  // }
   setCourse(courseCopyData.filter((e) => {
    
     return trainingList.some((tran) => e.CourseCostPlans.map((coursePlan: any) => coursePlan.trainingModeId).includes(tran))||  e.partnerId ==partner?.partnerId

@@ -35,9 +35,9 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                 "userId": userData.userId,
                 "certificateCourseId": parseInt(params.courseId[0]),
 
-                "courseCostPlanId": data.CourseCostPlans[0].courseCostPlanId,
+                "courseCostPlanId": data.CertificateCourseCostPlans[0].certificateCourseCostPlanId,
                 "enrollmentReference": "This is Test Enrollment",
-                "amount": data.CourseCostPlans[0].planPrice
+                "amount": data.CertificateCourseCostPlans[0].planPrice
             });
 
 

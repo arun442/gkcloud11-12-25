@@ -66,8 +66,8 @@ export default function ScheduleContainer() {
       <div className="w-full grid grid-cols-2 gap-6 mt-8">
 
         {
-        data.map((e: any) => {
-            return <ScheduleCard data={e} type={e}/> 
+        data.map((e: any,index) => {
+            return <ScheduleCard data={e} key={index} type={e}/> 
           })
         }
 

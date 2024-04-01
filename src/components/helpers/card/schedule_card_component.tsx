@@ -77,7 +77,7 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
             value={option.scheduleId}
             type="checkbox"
             checked={selectedCat == option.scheduleId ? true : false}
-            onChange={(e) => {
+            onChange={(e:any) => {
               setSelectedCat(e.target.value);
 
             }}

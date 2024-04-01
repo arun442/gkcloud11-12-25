@@ -24,15 +24,15 @@ const Slider = React.forwardRef<AliceCarousel, SliderComponentProps>(
     ref,
   ) => {
     const isSmall = (index:any) => {
-      if (props?.activeIndex + magnifiedIndex >= items?.length) {
-        return index !== props?.activeIndex + magnifiedIndex - items?.length;
+      if (props?.activeIndex! + magnifiedIndex >= items?.length!) {
+        return index !== props?.activeIndex! + magnifiedIndex - items?.length!;
       } else {
-        return index !== props.activeIndex + magnifiedIndex;
+        return index !== props.activeIndex! + magnifiedIndex;
       }
     };
 
     const slideItems = centerMode
-      ? items.map((child, index) => {
+      ? items!.map((child, index) => {
           if (isSmall(index)) {
             return React.cloneElement(child, {
               ...child.props,
@@ -62,4 +62,5 @@ const Slider = React.forwardRef<AliceCarousel, SliderComponentProps>(
     );
   },
 );
+Slider.displayName = 'Slider Component';
 export { Slider };

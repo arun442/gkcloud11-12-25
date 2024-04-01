@@ -38,8 +38,8 @@ const PagerIndicator = ({
         .fill(0)
         .map((_, i) => {
           const isActive =
-            activeIndex >= i * slidesToShow &&
-            activeIndex < (i + 1) * slidesToShow;
+            activeIndex! >= i * slidesToShow &&
+            activeIndex! < (i + 1) * slidesToShow;
           return (
             <div
               key={"indicator" + i}

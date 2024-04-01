@@ -41,8 +41,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 
-testimonial
-payment integeration
+
 
 offers
 .filters and icons changes correct data binding need to fix every individual page
@@ -50,8 +49,9 @@ route validation
 images need to update
 
 homepage image need to change 
-
-webinar registration
+shedule in course details 
+home page course statics
+footer need update
 social auth
 remember mee functionality
 user account UI fix and profile update

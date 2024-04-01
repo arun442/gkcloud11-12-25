@@ -33,8 +33,8 @@ const PartnerAboutComponent: React.FC = () => {
     <div className=" w-full grid  grid-cols-4 gap-5">
 
       {
-        partners.map((e: any) => {
-          return <div className="w-60 h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
+        partners.map((e: any,index) => {
+          return <div key={index} className="w-60 h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
             <img
 
               className="cursor-pointer object-cover max-w-full h-full w-full"

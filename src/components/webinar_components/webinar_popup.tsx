@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react'
 import WebinarFormComponent from './webinar_form_component'
 
 
-export default function WebinarModel({ isOpen, closeModal,data }) {
+export default function WebinarModel({ isOpen, closeModal,data }:{ isOpen:any, closeModal:any,data:any }) {
 
 
     return (

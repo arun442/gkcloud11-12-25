@@ -43,8 +43,8 @@ export default function WebinarContainer() {
       <div className="w-full grid grid-cols-3 gap-6 mt-8">
 
 {
-data.map((e: any) => {
-    return <WebinarCard data={e}/>
+data.map((e: any,index) => {
+    return <WebinarCard key={index} data={e}/>
   })
 }
 

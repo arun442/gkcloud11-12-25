@@ -73,7 +73,7 @@ export default function AboutContainer() {
       </section>
       <section className="mt-14 mx-auto box-border border grid grid-cols-5  w-full items-center   border-blue border-1  rounded-full">
         {
-          items.map((e) => <div className={classNames("py-4 w-full box-border border flex flex-row items-center justify-center text-white text-lg font-semibold border-blue border-1 bg-primary_color", index == e.index ? "rounded-full" : "border-none rounded-none ")} onClick={(event) => {
+          items.map((e,index) => <div key={index} className={classNames("py-4 w-full box-border border flex flex-row items-center justify-center text-white text-lg font-semibold border-blue border-1 bg-primary_color", index == e.index ? "rounded-full" : "border-none rounded-none ")} onClick={(event) => {
             event.preventDefault();
             setIndex(e.index)
           }}>{e.name}</div>)

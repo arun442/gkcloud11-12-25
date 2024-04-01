@@ -38,8 +38,8 @@ const CourseComponent: React.FC = () => {
     <div className="w-full grid grid-cols-3 gap-6">
 
       {
-        items.map((e: any) => {
-          return <CourseCard />
+        items.map((e: any,index) => {
+          return <CourseCard data={e} key={index} />
         })
       }
 

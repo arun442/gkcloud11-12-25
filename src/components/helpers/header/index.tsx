@@ -120,6 +120,9 @@ export default function Header() {
                             <div className="flex flex-1 items-center justify-center sm:items-center sm:justify-between">
                                 <div className="flex flex-shrink-0 items-center">
                                     <img
+                                    onClick={(e)=>{
+                                        router.push("/")
+                                    }}
                                         className="h-14 w-auto"
                                         src="/logo.png"
                                         alt="Your Company"

@@ -140,8 +140,8 @@ export default function CourseContainer() {
         index == 0 ? <div className="w-full grid grid-cols-3 gap-6 mt-8">
 
           {
-          course.map((e: any) => {
-              return <CourseCard data={e}/>
+          course.map((e: any,index) => {
+              return <CourseCard key={index} data={e}/>
             })
           }
 
@@ -151,8 +151,8 @@ export default function CourseContainer() {
         </div> : <div className="w-full grid grid-cols-3 gap-6 mt-8">
 
           {
-          certificate.map((e: any) => {
-              return <CertificateCard data={e}/>
+          certificate.map((e: any,index) => {
+              return <CertificateCard key={index} data={e}/>
             })
           }
 

@@ -1,18 +1,20 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowDownCircleIcon } from '@heroicons/react/20/solid'
+import usePartnerMode from '@/hooks/partner_mode_hook'
 
 export default function PartnerDropdown() {
+  const { partnerData, isLoading } = usePartnerMode();
   return (
     <div className="px-1 py-1 bg-dark_blue  box-border border-blue border-2 rounded-full">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-6 py-2 text-sm font-normal text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
-          Partner
+            Partner
             <img
-                                   
-                                   className="ml-8 h-5 w-5"
-                                   src="/Icon_arrow.svg"/>
+
+              className="ml-8 h-5 w-5"
+              src="/Icon_arrow.svg" />
           </Menu.Button>
         </div>
         <Transition
@@ -25,122 +27,21 @@ export default function PartnerDropdown() {
           leaveTo="transform opacity-0 scale-95"
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-            <div className="px-1 py-1 ">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  >
-                    {active ? (
-                      <EditActiveIcon
-                        className="mr-2 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <EditInactiveIcon
-                        className="mr-2 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    )}
-                    Edit
-                  </button>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  >
-                    {active ? (
-                      <DuplicateActiveIcon
-                        className="mr-2 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <DuplicateInactiveIcon
-                        className="mr-2 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    )}
-                    Duplicate
-                  </button>
-                )}
-              </Menu.Item>
-            </div>
-            <div className="px-1 py-1">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  >
-                    {active ? (
-                      <ArchiveActiveIcon
-                        className="mr-2 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <ArchiveInactiveIcon
-                        className="mr-2 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    )}
-                    Archive
-                  </button>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  >
-                    {active ? (
-                      <MoveActiveIcon
-                        className="mr-2 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <MoveInactiveIcon
-                        className="mr-2 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    )}
-                    Move
-                  </button>
-                )}
-              </Menu.Item>
-            </div>
-            <div className="px-1 py-1">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  >
-                    {active ? (
-                      <DeleteActiveIcon
-                        className="mr-2 h-5 w-5 text-violet-400"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <DeleteInactiveIcon
-                        className="mr-2 h-5 w-5 text-violet-400"
-                        aria-hidden="true"
-                      />
-                    )}
-                    Delete
-                  </button>
-                )}
-              </Menu.Item>
-            </div>
+            {
+              partnerData.map((e, index) => <div className="px-1 py-1">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${active ? 'bg-violet-500 text-blue' : 'text-gray-900'
+                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                    >
+                     
+                     {e.partnerName}
+                    </button>
+                  )}
+                </Menu.Item>
+              </div>)
+            }
           </Menu.Items>
         </Transition>
       </Menu>
@@ -148,7 +49,7 @@ export default function PartnerDropdown() {
   )
 }
 
-function EditInactiveIcon(props:any) {
+function EditInactiveIcon(props: any) {
   return (
     <svg
       {...props}
@@ -166,7 +67,7 @@ function EditInactiveIcon(props:any) {
   )
 }
 
-function EditActiveIcon(props:any) {
+function EditActiveIcon(props: any) {
   return (
     <svg
       {...props}
@@ -184,7 +85,7 @@ function EditActiveIcon(props:any) {
   )
 }
 
-function DuplicateInactiveIcon(props:any) {
+function DuplicateInactiveIcon(props: any) {
   return (
     <svg
       {...props}
@@ -208,7 +109,7 @@ function DuplicateInactiveIcon(props:any) {
   )
 }
 
-function DuplicateActiveIcon(props:any) {
+function DuplicateActiveIcon(props: any) {
   return (
     <svg
       {...props}
@@ -232,7 +133,7 @@ function DuplicateActiveIcon(props:any) {
   )
 }
 
-function ArchiveInactiveIcon(props:any) {
+function ArchiveInactiveIcon(props: any) {
   return (
     <svg
       {...props}
@@ -263,7 +164,7 @@ function ArchiveInactiveIcon(props:any) {
   )
 }
 
-function ArchiveActiveIcon(props:any) {
+function ArchiveActiveIcon(props: any) {
   return (
     <svg
       {...props}
@@ -294,7 +195,7 @@ function ArchiveActiveIcon(props:any) {
   )
 }
 
-function MoveInactiveIcon(props:any) {
+function MoveInactiveIcon(props: any) {
   return (
     <svg
       {...props}
@@ -309,7 +210,7 @@ function MoveInactiveIcon(props:any) {
   )
 }
 
-function MoveActiveIcon(props:any) {
+function MoveActiveIcon(props: any) {
   return (
     <svg
       {...props}
@@ -324,7 +225,7 @@ function MoveActiveIcon(props:any) {
   )
 }
 
-function DeleteInactiveIcon(props:any) {
+function DeleteInactiveIcon(props: any) {
   return (
     <svg
       {...props}
@@ -347,7 +248,7 @@ function DeleteInactiveIcon(props:any) {
   )
 }
 
-function DeleteActiveIcon(props:any) {
+function DeleteActiveIcon(props: any) {
   return (
     <svg
       {...props}

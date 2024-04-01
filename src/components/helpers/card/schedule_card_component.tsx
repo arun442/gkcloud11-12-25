@@ -43,7 +43,7 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
     
     }
         }
-  return <div className="cursor-pointer box-border  p-6  border flex flex-col justify-start items-start border-grey border-1 bg-dark_blue rounded-2xl">
+  return <div className=" cursor-pointer box-border  p-6  border flex flex-col justify-start items-start border-grey border-1 bg-dark_blue rounded-2xl">
 
 
     <h2 className="text-white text-lg font-medium">{data.title}</h2>
@@ -51,7 +51,7 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
       <p className="text-text_grey_one text-[12px] font-normal">{data.courseCode}</p>
       <div className='flex-1 flex flex-row items-center justify-end gap-2'>
         <CalendarIcon className="text-text_grey_one h-4 w-4" />
-        <p className="text-text_grey_one text-[12px] font-normal">${data.CourseDurations[0].courseDuration} Days</p>
+        <p className="text-text_grey_one text-[12px] font-normal"> {data.CourseDurations[0].courseDuration} Days</p>
       </div>
 
     </div>

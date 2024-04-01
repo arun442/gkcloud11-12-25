@@ -15,6 +15,8 @@ import FormComponent from './detail_form_component';
 import useUserData from '@/hooks/userData';
 import { axiosPrivate } from '@/common/axiosPrivate';
 import { useParams, useRouter } from 'next/navigation'
+import CourseScheduleComponent from './course_schedule_component';
+
 
 export default function CourseDetailContainer({data}:{data:any}) {
     const { userData,} = useUserData();
@@ -149,15 +151,17 @@ entroll();
                 </div>
 
             </section>
-            <main className='mt-14'>
+            <main className='mt-14 w-full'>
                {index==0? <section>
                     <h2 className='font-semibold text-2xl text-white'>Course Description</h2>
                     <p className='mt-6 leading-6 font-normal text-sm text-white'>{data.description}</p>
-                </section>: <section>
+                </section>: index==2? < CourseScheduleComponent courseId={params.courseId[0]}/>: <section>
                   
                     <p className='mt-6 leading-6 font-normal text-sm text-white'>{data?.Audience?.description??""}</p>
                 </section>}
             </main>
+
+           
 
       <FormComponent type='Course'/> 
 

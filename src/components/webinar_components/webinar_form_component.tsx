@@ -1,0 +1,167 @@
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { axiosPublic } from '@/common/axiosPublic';
+import { useState } from 'react';
+import classNames from '@/helpers/add_class';
+import useUserData from '@/hooks/userData';
+
+export default function WebinarFormComponent({
+    data,closeModel
+}: { data: any,closeModel:any }) {
+    const [isLoading, setLoading] = useState(false);
+    const { userData, } = useUserData();
+   
+
+    const formik = useFormik({
+        initialValues: {
+            firstName: '',
+
+            email: '',
+            phone: '',
+
+            company: '',
+        },
+        validationSchema: Yup.object({
+            firstName: Yup.string()
+
+                .required('Required'),
+
+
+            email: Yup.string()
+
+            ,
+            phone: Yup.string()
+
+
+            ,
+            company: Yup.string()
+
+            ,
+
+        }),
+        onSubmit: async (values, { resetForm }) => {
+
+
+            try {
+                if (isLoading) {
+                    return;
+                }
+                setLoading(true);
+                let payload:any= {
+                  
+                    "webinarId": data.webinarId,
+                    "webinarScheduleId": data.WebinarSchedules.length == 0 ? "" : data.WebinarSchedules[0].webinarScheduleId,
+                    "name": values.firstName,
+                    "email": values.email,
+                    "companyName": values.company,
+                    "mobile": values.phone,
+                };
+                if(userData!=null){
+                    payload.userId= userData?.userId
+                }
+                const result = await axiosPublic.post('/lms/add-webinar-registeration',payload);
+
+
+                setLoading(false);
+                alert("Form submitted successfully")
+                closeModel();
+                console.log(result.data);
+                resetForm();
+
+            } catch (error: any) {
+                setLoading(false);
+                console.log(error);
+                alert(error!.message);
+                closeModel();
+
+            }
+        },
+    });
+    return <form onSubmit={formik.handleSubmit} className='  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
+
+      
+        <h3 className='text-lg mt-4 text-white font-medium text-center'>Webinar Registration</h3>
+
+        <section>
+            <div className='mt-4 flex flex-row gap-8'>
+                <div className='flex-1'>
+                    <input
+                        {...formik.getFieldProps('firstName')}
+                        type="text"
+
+
+                        autoComplete="text"
+                        placeholder='Name'
+                        required
+                        className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                    {formik.errors.firstName ? (
+                        <div className="text-sm text-white mt-2 ml-2">{formik.errors.firstName}</div>
+                    ) : null}
+                </div>
+
+            </div>
+            <div className='mt-4 flex flex-row gap-8'>
+                <div className='flex-1'>
+                    <input
+                        {...formik.getFieldProps('email')}
+                        type="text"
+
+
+                        autoComplete="text"
+                        placeholder='Email'
+                        required
+                        className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                    {formik.errors.email ? (
+                        <div className="text-sm text-white mt-2 ml-2">{formik.errors.email}</div>
+                    ) : null}
+                </div>
+
+            </div>
+            <div className='mt-4 flex flex-row gap-8'>
+                <div className='flex-1'>
+                    <input
+                        {...formik.getFieldProps('phone')}
+                        type="text"
+
+
+                        autoComplete="text"
+                        placeholder='Phone Number'
+                        required
+                        className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                    {formik.errors.phone ? (
+                        <div className="text-sm text-white mt-2 ml-2">{formik.errors.phone}</div>
+                    ) : null}
+                </div>
+            </div>
+            <div className='mt-4 flex flex-row gap-8'>
+                <div className='flex-1'>
+                    <input
+                        {...formik.getFieldProps('company')}
+                        type="text"
+
+
+                        autoComplete="text"
+                        placeholder='Company Name'
+                        required
+                        className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    />
+                    {formik.errors.company ? (
+                        <div className="text-sm text-white mt-2 ml-2">{formik.errors.company}</div>
+                    ) : null}
+                </div>
+
+            </div>
+
+
+            <button type='submit' className="mt-4 flex w-full justify-center rounded bg-blue p-3 font-medium text-white ">
+                {
+                    isLoading ? "Loading.." : "Submit"
+                }
+            </button>
+        </section>
+
+    </form>
+}

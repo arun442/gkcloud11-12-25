@@ -67,7 +67,10 @@ export default function AboutContainer() {
       <h1 className='font-semibold text-2xl mt-6 text-white'>We help you earn Money, Respect and Peace of Mind.</h1>
       <section className='flex flex-row items-start mt-20'>
         <div className=" mx-auto box-border border flex flex-row gap-3  items-center py-3  px-6 border-blue border-1 bg-dark_blue rounded-2xl">
-          <MagnifyingGlassIcon className="text-blue h-6 w-6" />
+        <img
+                                   
+                                   className="text-blue h-6 w-6"
+                                   src="/pdf_icon.svg"/>
           <p className="text-white text-lg font-normal">Download Course Content</p>
         </div>
       </section>

@@ -3,14 +3,14 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowDownCircleIcon } from '@heroicons/react/20/solid'
 import usePartnerMode from '@/hooks/partner_mode_hook'
 
-export default function PartnerDropdown() {
+export default function PartnerDropdown({data,setData}:{data:any,setData:any}) {
   const { partnerData, isLoading } = usePartnerMode();
   return (
     <div className="px-1 py-1 bg-dark_blue  box-border border-blue border-2 rounded-full">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-6 py-2 text-sm font-normal text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
-            Partner
+         {data==null?"Partner":data.partnerName}
             <img
 
               className="ml-8 h-5 w-5"
@@ -28,10 +28,13 @@ export default function PartnerDropdown() {
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
             {
-              partnerData.map((e, index) => <div className="px-1 py-1">
+              partnerData.map((e, index) => <div key={index} className="px-1 py-1">
                 <Menu.Item>
                   {({ active }) => (
                     <button
+                    onClick={data=>{
+                      setData(e);
+                    }}
                       className={`${active ? 'bg-violet-500 text-blue' : 'text-gray-900'
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                     >

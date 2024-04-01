@@ -1,4 +1,4 @@
-import React, { Fragment, useState,useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import Image from "next/image";
@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation';
 export default function ScheduleContainer() {
   const [index, setIndex] = useState(0);
   const [data, setData] = useState<any[]>([]);
-  const router=useRouter();
+  const router = useRouter();
   useEffect(() => {
 
     fetchData();
@@ -28,7 +28,7 @@ export default function ScheduleContainer() {
       const result = await axiosPublic.get('/lms/course-schedule');
       console.log("what is the result");
       console.log(result.data);
-      setData(result.data.courses);
+      setData(result.data.courses.filter((e: any) => e.CourseSchedules.length != 0));
     } catch (error) {
 
     }
@@ -37,10 +37,10 @@ export default function ScheduleContainer() {
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
       <MainHeading text='Schedules' />
       <div className="flex flex-row gap-1 items-center mt-14">
-        <p className="text-blue text-base font-medium" onClick={(e)=>{
-                
-                    router.back();
-                }}>Home</p>
+        <p className="text-blue text-base font-medium" onClick={(e) => {
+
+          router.back();
+        }}>Home</p>
         <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
         <p className="text-text_grey_one text-base font-medium">Schedules</p>
       </div>
@@ -71,8 +71,8 @@ export default function ScheduleContainer() {
       <div className="w-full grid grid-cols-2 gap-6 mt-8">
 
         {
-        data.map((e: any,index) => {
-            return <ScheduleCard data={e} key={index} type={e}/> 
+          data.map((e: any, index) => {
+            return <ScheduleCard data={e} key={index} type={e} />
           })
         }
 

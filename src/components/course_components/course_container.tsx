@@ -97,7 +97,7 @@ const filter=()=>{
         <section className='mt-10 flex flex-row gap-6'>
           <DurationDropdown />
           <PartnerDropdown data={partner} setData={setPartner} />
-          <TechnologyDropdown data={technology} setData={setTechnology}  />
+          {/* <TechnologyDropdown data={technology} setData={setTechnology}  /> */}
         </section>
         <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10'></div>
         <section className='mt-10 flex flex-row items-center gap-10'>

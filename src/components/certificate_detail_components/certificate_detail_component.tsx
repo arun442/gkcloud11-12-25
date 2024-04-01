@@ -123,7 +123,21 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                     Entroll Now
                 </button>
             </section>
+<section className='mt-10'>
+<h3 className='text-xl font-medium text-white'>Courses</h3>
+<div className="w-full grid grid-cols-3 gap-6 mt-6">
 
+{
+data.CertificateCourseItems.map((e: any, index:any) => {
+    return <CourseCard key={index} data={e.Courses[0]} />
+  })
+}
+
+
+
+
+</div>
+</section>
             <FormComponent type='Certificate' />
 
         </main>

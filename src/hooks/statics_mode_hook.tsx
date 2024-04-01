@@ -1,11 +1,11 @@
-// hooks/useStatics.js
+// hooks/usePopular.js
 
 import { axiosPrivate } from '@/common/axiosPrivate';
 import { axiosPublic } from '@/common/axiosPublic';
 import { useEffect, useState } from 'react';
 
 
-const useStatics = () => {
+const usePopular = () => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -13,8 +13,8 @@ const useStatics = () => {
     const fetchData = async () => {
       try {
         // Check if user data exists in local storage
-        const response = await axiosPublic.get('/lms/course-statistics'); // Assuming you have an API route for user data
-        setData(response.data.courseStatistics);
+        const response = await axiosPublic.get('/lms/course-popular'); // Assuming you have an API route for user data
+        setData(response.data.popularCourses);
       } catch (error) {
         console.error('Error fetching user data:', error);
         setIsLoading(false);
@@ -28,4 +28,4 @@ const useStatics = () => {
   return { data, isLoading };
 };
 
-export default useStatics;
+export default usePopular;

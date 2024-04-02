@@ -51,7 +51,7 @@ export default function HomePageMainContainer() {
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-center items-center">
       <section>
-        <div className='text-5xl font-bold text-white text-start leading-[70px]'>Level Up Your Skills Level Up Your Skills <TextTransition className='text-blue' springConfig={presets.stiff}>{TEXTS[index % TEXTS.length]}</TextTransition></div>
+        <div className='text-5xl font-bold text-white text-start leading-[70px]'>Level Up Your Skills <TextTransition className='text-blue' springConfig={presets.stiff}>{TEXTS[index % TEXTS.length]}</TextTransition></div>
     
       </section>
       <section >

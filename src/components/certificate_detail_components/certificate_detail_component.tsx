@@ -15,9 +15,11 @@ import FormComponent from '../course_detail_components/detail_form_component';
 import useUserData from '@/hooks/userData';
 import { useParams, useRouter } from 'next/navigation';
 import { axiosPrivate } from '@/common/axiosPrivate';
+import useTrainingMode from '@/hooks/training_mode_hook';
 
 
 export default function CertificateDetailContainer({ data }: { data: any }) {
+    const {trainingData}=useTrainingMode();
     const router = useRouter();
     const [index, setIndex] = useState(0);
     const { userData, } = useUserData();
@@ -90,6 +92,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
 
                         className="text-blue h-8 w-8"
                         src="/Icon_clock.svg" />
+  <p className="text-white text-xl font-normal">{trainingData.filter((e)=>e.trainingModeId==data.CertificateCourseCostPlans[0].CourseDuration.trainingModeId).length==0?"":trainingData.filter((e)=>e.trainingModeId==data.CertificateCourseCostPlans[0].CourseDuration.trainingModeId)[0].trainingModeShortName}</p>                        
                     <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CourseDuration.courseDuration} days</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
@@ -129,7 +132,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
 
 {
 data.CertificateCourseItems.map((e: any, index:any) => {
-    return <CourseCard key={index} data={e.Courses[0]} />
+    return <CourseCard  showPrice={false} key={index} data={e.Courses[0]} />
   })
 }
 

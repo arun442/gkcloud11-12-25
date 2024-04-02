@@ -16,10 +16,12 @@ import useUserData from '@/hooks/userData';
 import { axiosPrivate } from '@/common/axiosPrivate';
 import { useParams, useRouter } from 'next/navigation'
 import CourseScheduleComponent from './course_schedule_component';
+import useTrainingMode from '@/hooks/training_mode_hook';
 
 
 export default function CourseDetailContainer({data}:{data:any}) {
     const { userData,} = useUserData();
+    const {trainingData}=useTrainingMode();
     const [isLoading, setLoading] = useState(false);
     const params = useParams();
     const router=useRouter();
@@ -87,7 +89,7 @@ try {
                                    className="text-blue h-8 w-8"
                                    src="/learning_mode.svg"/>
                     
-                    <p className="text-white text-xl font-normal">ILO</p>
+                    <p className="text-white text-xl font-normal">{trainingData.filter((e)=>e.trainingModeId==data.CourseDurations[0].trainingModeId).length==0?"":trainingData.filter((e)=>e.trainingModeId==data.CourseDurations[0].trainingModeId)[0].trainingModeShortName}</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                 <img

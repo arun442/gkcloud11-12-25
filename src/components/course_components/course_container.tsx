@@ -149,7 +149,7 @@ filter();
 
           {
             course.map((e: any, index) => {
-              return <CourseCard key={index} data={e} />
+              return <CourseCard showPrice={true} key={index} data={e} />
             })
           }
 

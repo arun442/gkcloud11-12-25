@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react'
+import React, { Fragment ,useState,useEffect} from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import Image from "next/image";
 import TextTransition, { presets } from 'react-text-transition';
+import { axiosPublic } from '@/common/axiosPublic';
 
 
 const TEXTS = ['Artificial Intelligence', 'Mobile Application', 'Web Application', 'Cloud Architecture'];
@@ -17,6 +18,34 @@ export default function HomePageMainContainer() {
     );
     return () => clearTimeout(intervalId);
   }, []);
+  const [query, setQuery] = useState('')
+
+  const [items,setItems]=useState([]);
+ 
+ 
+ 
+       const fetch = async () => {
+         try {
+            if(query.length==0){
+             return setItems([]);
+            }
+             const result = await axiosPublic.get('/search',{
+                 params:{
+                   "courseName":query,
+                 }
+             });
+          
+             setItems(result.data.courses);
+         } catch (error) {
+ 
+         }
+     }
+ 
+     useEffect(() => {
+    fetch()
+     
+    
+     }, [query])
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-center items-center">
       <section>

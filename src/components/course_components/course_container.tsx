@@ -144,7 +144,7 @@ export default function CourseContainer() {
 
   useEffect(() => {
     if (index == 0) {
-      if(query==''){
+      if (query == '') {
         setCourse(courseList);
         return;
       }
@@ -153,7 +153,7 @@ export default function CourseContainer() {
         return e.title.toLowerCase().startsWith(query.toLowerCase());
       }))
     } else {
-      if(query==''){
+      if (query == '') {
         setCertificate(certificateList);
         return;
       }
@@ -176,13 +176,26 @@ export default function CourseContainer() {
         <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
         <p className="text-text_grey_one text-base font-medium">Course</p>
       </div>
+
+      {
+        name != null && name == "AI" ? <section className='mt-10 flex flex-col justify-start items-start gap-6'>
+          <h2 className='text-3xl text-blue font-semibold'>Artificial Intelligence</h2>
+          <div className='flex flex-row items-center justify-center w-full'>
+            <img
+
+              className="mx-auto"
+
+              src="https://gate.amudhu.tech/images/technology/ai-technology-radar.png" />
+          </div>
+        </section> : <></>
+      }
       <div className={classNames("w-full cursor-pointer text-2xl  flex flex-row mt-12 mb-12 justify-center items-center  gap-7")}>
         <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>
           Courses Library
         </div>
         <div className='h-6 w-[1px] rounded-lg bg-grey'></div>
         <div className={index != 1 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(1)}>
-        Certifications
+          Certifications
         </div>
 
       </div>
@@ -248,22 +261,22 @@ export default function CourseContainer() {
           </section>
         </div> : <></>
       }
-        <section className='flex flex-col items-start justify-start'>
+      <section className='flex flex-col items-start justify-start'>
         <div className="text-white mt-10 font-medium">
-        Courses / Certifications
+          Courses / Certifications
         </div>
-      <div className="mt-4 w-96 mx-auto flex flex-row  items-center justify-center relative">
-        <span className="absolute h-5 w-5 left-0 top-4  inset-0 pl-3">  <MagnifyingGlassIcon className="h-5 w-5 text-blue items-center" /></span>
-        <input
-        value={query}
-          className="block w-full border-1 pl-10 rounded-full bg-dark_blue py-[15px] text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-          placeholder='Search'
+        <div className="mt-4 w-96 mx-auto flex flex-row  items-center justify-center relative">
+          <span className="absolute h-5 w-5 left-0 top-4  inset-0 pl-3">  <MagnifyingGlassIcon className="h-5 w-5 text-blue items-center" /></span>
+          <input
+            value={query}
+            className="block w-full border-1 pl-10 rounded-full bg-dark_blue py-[15px] text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
+            placeholder='Search'
 
-          onChange={(event) => setQuery(event.target.value)}
-        />
+            onChange={(event) => setQuery(event.target.value)}
+          />
 
-      </div>
-        </section>
+        </div>
+      </section>
       {
         index == 0 ? <div className="w-full grid grid-cols-3 gap-6 mt-8">
 

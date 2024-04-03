@@ -18,10 +18,7 @@ export default function AboutContainer() {
       index: 0,
       name: "Overview"
     },
-    {
-      index: 1,
-      name: "Our Story"
-    },
+   
     {
       index: 2,
       name: "Leadership"
@@ -57,6 +54,34 @@ export default function AboutContainer() {
       console.log(error)
     }
   }
+  const handleDownload = async () => {
+    try {
+        // Make a GET request to the API endpoint that serves the file
+        const response = await axiosPublic.get('/lms/about-download', {
+
+             responseType: 'blob' // This tells Axios to expect a binary response
+        });
+
+        // Create a blob object from the response data
+        const blob = new Blob([response.data], { type: 'application/pdf' });
+
+        // Create a URL for the blob object
+        const url = window.URL.createObjectURL(blob);
+
+        // Create a link element and click it to trigger the download
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `GK_Profile.pdf`; // Specify the filename here
+        document.body.appendChild(link);
+        link.click();
+
+        // Clean up: remove the link and revoke the URL
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error('Error downloading file:', error);
+    }
+};
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
@@ -66,15 +91,17 @@ export default function AboutContainer() {
 
       <h1 className='font-semibold text-2xl mt-6 text-white'>We help you earn Money, Respect and Peace of Mind.</h1>
       <section className='flex flex-row items-start mt-20'>
-        <div className=" mx-auto box-border border flex flex-row gap-3  items-center py-3  px-6 border-blue border-1 bg-dark_blue rounded-2xl">
+        <div onClick={(e)=>{
+           handleDownload();
+        }} className=" mx-auto box-border border flex flex-row gap-3  items-center py-3  px-6 border-blue border-1 bg-dark_blue rounded-2xl">
         <img
                                    
                                    className="text-blue h-6 w-6"
                                    src="/pdf_icon.svg"/>
-          <p className="text-white text-lg font-normal">Download Course Content</p>
+          <p className="text-white text-lg font-normal">Download Company Profile</p>
         </div>
       </section>
-      <section className="mt-14 mx-auto box-border border grid grid-cols-5  w-full items-center   border-blue border-1  rounded-full">
+      <section className="box-border w-full  mt-14   border grid grid-cols-4   items-center   border-blue border-1  rounded-full">
         {
           items.map((e,indexx) => <div key={indexx} className={classNames("py-4 w-full box-border border flex flex-row items-center justify-center text-white text-lg font-semibold border-blue border-1 bg-primary_color", index == e.index ? "rounded-full" : "border-none rounded-none ")} onClick={(event) => {
             event.preventDefault();
@@ -88,8 +115,6 @@ export default function AboutContainer() {
         {
           data.length == 0 ? <></> : index == 0 ? <section>
             <p className='leading-6 font-normal text-[16px] text-white'>{data.filter((e)=>e.generalId==2)[0].description}</p>
-          </section> : index == 1 ? <section>
-            <p className='leading-6 font-normal text-[16px] text-white'>{data.filter((e)=>e.generalId==11)[0].description}</p>
           </section> :index == 2 ? <section>
             <p className='leading-6 font-normal text-[16px] text-white'>{data.filter((e)=>e.generalId==12)[0].description}</p>
           </section> :index == 3 ?<OurClientAboutComponent

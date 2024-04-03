@@ -45,8 +45,8 @@ export default function ScheduleContainer() {
         <p className="text-text_grey_one text-base font-medium">Schedules</p>
       </div>
       <div className='w-full flex flex-row  items-center justify-between mt-3'>
-        <h3 className='text-xl font-normal text-white'>All Courses</h3>
-        <div className='flex-1 flex flex-row gap-5 justify-end'>
+        {/* <h3 className='text-xl font-normal text-white'>All Courses</h3> */}
+        {/* <div className='flex-1 flex flex-row gap-5 justify-end'>
           <SelectPartnerDropdown />
           <SelectCourseDropdown />
           <NormalBtn text={"Search"} onClick={(e: any) => {
@@ -55,9 +55,9 @@ export default function ScheduleContainer() {
           <NormalBtn text={"Clear"} onClick={(e: any) => {
 
           }} />
-        </div>
+        </div> */}
       </div>
-      <div className={classNames("w-full cursor-pointer text-xl  flex flex-row mt-12 mb-12 justify-center items-center  gap-7")}>
+      {/* <div className={classNames("w-full cursor-pointer text-xl  flex flex-row mt-12 mb-12 justify-center items-center  gap-7")}>
         <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>
           Week Days
         </div>
@@ -66,7 +66,7 @@ export default function ScheduleContainer() {
           Weekend
         </div>
 
-      </div>
+      </div> */}
 
       <div className="w-full grid grid-cols-2 gap-6 mt-8">
 

@@ -41,7 +41,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 
-1.course details changes
 
 2.filters,home page links
 3.about us button navigaiton

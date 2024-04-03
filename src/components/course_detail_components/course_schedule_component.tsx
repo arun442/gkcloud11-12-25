@@ -32,6 +32,9 @@ export default function CourseScheduleComponent({ courseId }: { courseId: any })
         <main className="w-full flex flex-row items-center justify-center">
   {
         data.map((e: any,index) => {
+            if(e.CourseSchedules.length==0){
+                return <></>
+            }
             return <ScheduleCard data={e} key={index} type={e}/> 
           })
         }

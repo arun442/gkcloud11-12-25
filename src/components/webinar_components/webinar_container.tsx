@@ -42,7 +42,7 @@ const router=  useRouter();
       </div>
       <div className='w-full flex flex-row  items-center justify-between mt-3'>
 <h3 className='text-xl font-normal text-white'>Upcoming Webniars</h3>
-<WebinarFilter/>
+{/* <WebinarFilter/> */}
       </div>
 
       <div className="w-full grid grid-cols-3 gap-6 mt-8">

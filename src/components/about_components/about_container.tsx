@@ -11,6 +11,9 @@ import classNames from '@/helpers/add_class';
 import { axiosPublic } from '@/common/axiosPublic';
 import PartnerAboutComponent from './partner_component';
 import OurClientAboutComponent from './our_client_component';
+import imageHelper from '@/common/image_helper';
+import { useRouter } from 'next/router';
+import { Link } from 'react-alice-carousel';
 
 export default function AboutContainer() {
   const items = [
@@ -91,19 +94,17 @@ export default function AboutContainer() {
 
       <h1 className='font-semibold text-2xl mt-6 text-white'>We help you earn Money, Respect and Peace of Mind.</h1>
       <section className='flex flex-row items-start mt-20'>
-        <div onClick={(e)=>{
-           handleDownload();
-        }} className=" mx-auto box-border border flex flex-row gap-3  items-center py-3  px-6 border-blue border-1 bg-dark_blue rounded-2xl">
+        <Link href={data.filter((e)=>e.generalId==1).length==0?"":imageHelper("/"+data.filter((e)=>e.generalId==1)[0].documentURL)} className=" mx-auto box-border border flex flex-row gap-3  items-center py-3  px-6 border-blue border-1 bg-dark_blue rounded-2xl">
         <img
                                    
                                    className="text-blue h-6 w-6"
                                    src="/pdf_icon.svg"/>
           <p className="text-white text-lg font-normal">Download Company Profile</p>
-        </div>
+        </Link>
       </section>
-      <section className="box-border w-full  mt-14   border grid grid-cols-4   items-center   border-blue border-1  rounded-full">
+      <section className="mx-auto box-border w-full  mt-14  border border-blue grid grid-cols-4   items-center rounded-full p-3">
         {
-          items.map((e,indexx) => <div key={indexx} className={classNames("py-4 w-full box-border border flex flex-row items-center justify-center text-white text-lg font-semibold border-blue border-1 bg-primary_color", index == e.index ? "rounded-full" : "border-none rounded-none ")} onClick={(event) => {
+          items.map((e,indexx) => <div key={indexx} className={classNames("py-4  w-full box-border border flex flex-row items-center justify-center text-white text-lg font-semibold border-blue border-1 bg-primary_color", index == e.index ? "rounded-full" : "border-none rounded-none ")} onClick={(event) => {
             event.preventDefault();
             setIndex(e.index)
           }}>{e.name}</div>)

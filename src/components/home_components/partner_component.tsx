@@ -32,13 +32,13 @@ const PartnerComponent: React.FC = () => {
   return (
 
 
-    <div className=" w-full grid gap-4 grid-flow-col auto-cols-max">
+    <div className="px-20 w-full grid gap-4 grid-cols-4">
 
       {
         partners.map((e: any,index) => {
           return <div onClick={()=>{
             router.push(`/course?type=partner&id=${e.partnerId}&name=${e.partnerName}`)
-          }} key={index} className="w-60 h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
+          }} key={index} className=" h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
             <img
 
               className="cursor-pointer object-contain max-w-full h-full w-full"

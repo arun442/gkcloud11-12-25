@@ -33,14 +33,14 @@ export default function UnqueOfferComponent() {
 
     return (
         <main className='flex flex-col justify-center items-center gap-14'>
-            <MainHeading text='Why Us'/>
+            <MainHeading text='GKCS Unique Offerings'/>
             <section className=" w-full px-40  grid grid-cols-2 gap-2">
 {
    
     classItems.map((e)=>{
-        return <div key={e.title} className='p-6 bg-dark_blue border-2  border-blue rounded-md h-[200px] flex flex-col justify-center gap-10'>
-            <h3 className='text-3xl font-medium text-center text-blue'>{e.title}</h3>
-            <p className='text-lg text-white'>{e.desc}</p>
+        return <div key={e.title} className='p-6 bg-dark_blue border-2  border-blue rounded-md h-[200px] flex flex-col justify-center gap-8'>
+            <h3 className='text-xl font-medium text-center text-white'>{e.title}</h3>
+            <p className='text-sm text-white'>{e.desc}</p>
         </div>
     })
 

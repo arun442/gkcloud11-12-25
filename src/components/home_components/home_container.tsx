@@ -52,7 +52,7 @@ export default function HomePageMainContainer() {
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-center items-center">
       <section className='flex flex-row justify-end items-center gap-3'>
         <div className='text-5xl font-bold text-white text-start leading-[70px]'>Level Up<br/>Your Skills </div>
-        <TextTransition className='text-5xl mt-6 font-bold text-start leading-[70px] text-blue' springConfig={presets.stiff}>{TEXTS[index % TEXTS.length]}</TextTransition>
+        <TextTransition className='text-5xl mt-16 font-bold text-start leading-[70px] text-blue' springConfig={presets.stiff}>{TEXTS[index % TEXTS.length]}</TextTransition>
       </section>
       <section >
       <Combobox >

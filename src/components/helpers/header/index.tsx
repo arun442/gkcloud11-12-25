@@ -115,7 +115,7 @@ export default function Header() {
                                     onClick={(e)=>{
                                         router.push("/")
                                     }}
-                                        className="h-14 w-auto"
+                                        className="h-14 w-auto cursor-pointer"
                                         src="/logo.png"
                                         alt="Your Company"
                                     />

@@ -60,12 +60,12 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
         <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
             <div className="flex flex-row gap-1 items-center">
-                <p className="text-blue text-base font-medium" onClick={(e) => {
+                <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
                     router.back();
                     router.back();
                 }}>Home</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-                <p className="text-blue text-base font-medium" onClick={(e) => {
+                <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
 
                     router.back();
                 }}>Course</p>
@@ -109,7 +109,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                     }
                 </div>
             </section>
-            <section className='flex flex-row items-start mt-20'>
+            {/* <section className='flex flex-row items-start mt-20'>
                 <div className=" mx-auto box-border border flex flex-row gap-3  items-center p-3  border-blue border-1 bg-dark_blue rounded-2xl">
                     <img
 
@@ -117,9 +117,9 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                         src="/pdf_icon.svg" />
                     <p className="text-white text-sm font-normal">Download Course Content</p>
                 </div>
-            </section>
+            </section> */}
 
-            <section className='flex flex-row items-start mt-10'>
+            <section className='flex flex-row items-start mt-12'>
                 <button onClick={(e) => {
                     entroll();
                 }} className="flex w-full justify-center rounded bg-blue py-3 px-10 font-medium text-white ">

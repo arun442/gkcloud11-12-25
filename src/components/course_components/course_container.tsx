@@ -169,12 +169,12 @@ export default function CourseContainer() {
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
       <div className="flex flex-row gap-1 items-center">
-        <p className="text-blue text-base font-medium" onClick={(e) => {
+        <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
 
           router.back();
         }}>Home</p>
         <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-        <p className="text-text_grey_one text-base font-medium">Course</p>
+        <p className="cursor-pointer text-text_grey_one text-base font-medium">Course</p>
       </div>
 
       {

@@ -33,7 +33,7 @@ const router=  useRouter();
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
     <MainHeading text='Webniars'/>
     <div className="flex flex-row gap-1 items-center mt-14">
-    <p className="text-blue text-base font-medium" onClick={(e)=>{
+    <p className="cursor-pointer text-blue text-base font-medium" onClick={(e)=>{
                   
                     router.back();
                 }}>Home</p>

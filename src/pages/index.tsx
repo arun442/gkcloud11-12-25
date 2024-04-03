@@ -14,7 +14,7 @@ import Footer from "@/components/helpers/Footer";
 export default function Home() {
   return (
     <main
-      className={`relative max-w-7xl mx-auto bg-primary_color sm:px-20 flex flex-col gap-24`}
+      className={`relative max-w-7xl mx-auto bg-primary_color sm:px-20 xl:px-0 flex flex-col gap-24`}
     >
        <div className="absolute inset-0 bg-cover bg-center  h-screen" style={{backgroundImage: 'url("/bg_dot.png")', opacity: '0.2' }}></div>
    <div className=" w-full bg-cover bg-center flex flex-col h-screen" >

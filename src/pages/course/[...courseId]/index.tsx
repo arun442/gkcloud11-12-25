@@ -39,7 +39,7 @@ export async function getServerSideProps(context:any) {
 export default function CourseDetails({data}:{data:any}) {
   return (
     <main
-      className={`max-w-7xl mx-auto bg-primary_color sm:px-20 flex flex-col gap-10`}
+      className={`max-w-7xl mx-auto bg-primary_color xl:px-0 sm:px-20 flex flex-col gap-10`}
     >
    <Header/>
   <CourseDetailContainer data={data}/>

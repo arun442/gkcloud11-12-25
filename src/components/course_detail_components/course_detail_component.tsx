@@ -18,6 +18,7 @@ import { useParams, useRouter } from 'next/navigation'
 import CourseScheduleComponent from './course_schedule_component';
 import useTrainingMode from '@/hooks/training_mode_hook';
 import { axiosPublic } from '@/common/axiosPublic';
+import ErrorBoundary from '@/helpers/error_boundary';
 
 
 export default function CourseDetailContainer({ data }: { data: any }) {
@@ -187,7 +188,8 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                 </div>
 
             </section>
-            <main className='mt-14 w-full'>
+      <ErrorBoundary>
+      <main className='mt-14 w-full'>
                 {index == 0 ? <main>
                     <section>
                         <h2 className='font-semibold text-2xl text-white'>Course Description</h2>
@@ -261,20 +263,21 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                             </main>
                             : <main>
-                               
+
                                 {
-                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((main:any,mainIndex:any)=><section key={mainIndex}  className='mb-10'>
-                                    <h2 className='font-semibold text-2xl text-white mb-3'>{mainIndex+1}. {main?.name ?? ""}</h2>
-                                                                           {
-                                                                               main.moduleItems.map((e: any, index: any) => <div className='w-full flex flex-row gap-2 '>
-                                                                                   <p key={index} className='leading-6 font-normal text-sm text-white'>{mainIndex+1}.{index + 1}.</p>
-                                                                                   <p key={index} className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
-                                                                               </div>)
-                                                                           }
-                                                                       </section> )
+                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((main: any, mainIndex: any) => <section key={mainIndex} className='mb-10'>
+                                        <h2 className='font-semibold text-2xl text-white mb-3'>{mainIndex + 1}. {main?.name ?? ""}</h2>
+                                        {
+                                            main.moduleItems.map((e: any, index: any) => <div key={e} className='w-full flex flex-row gap-2 '>
+                                                <p className='leading-6 font-normal text-sm text-white'>{mainIndex + 1}.{index + 1}.</p>
+                                                <p className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
+                                            </div>)
+                                        }
+                                    </section>)
                                 }</main>}
             </main>
 
+      </ErrorBoundary>
 
 
             <FormComponent type='Course' />

@@ -7,7 +7,9 @@ export default function CourseCard({data,showPrice}:{data:any,showPrice:boolean}
     return <div onClick={(e)=>{
       router.push(`/course/${data.courseId}`)
     }} className="cursor-pointer box-border border flex flex-col p-6 justify-start items-start border-blue border-1 bg-dark_blue rounded-2xl">
-     <div className='w-full flex flex-row justify-between items-center'>
+  
+  <section className='flex-1 flex-col'>
+  <div className='w-full flex flex-row justify-between items-center'>
      <p className="text-text_grey text-[12px] font-medium">{data.courseCode}</p>
      {/* <div className="flex flex-row gap-1 mt-2 items-center">
       <img
@@ -27,7 +29,7 @@ export default function CourseCard({data,showPrice}:{data:any,showPrice:boolean}
      
         <p className="text-text_grey_one text-base font-normal">{data.CourseDurations[0].courseDuration} days</p>
       </div>
-  
+  </section>
  {
   showPrice==true?  <>
   {

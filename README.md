@@ -41,25 +41,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 
+1.course details changes
 
-
-offers
-.filters and icons changes correct data binding need to fix every individual page
-route validation
-images need to update
-
-homepage image need to change 
-shedule in course details 
-home page course statics
-footer need update
-social auth
-remember mee functionality
-user account UI fix and profile update
-need to check every navigation
-responsive UI
-
-
-Issues
-1.toast message need to show after singup for the otp is send those one
-2.same for otp also
-3.user Data need to encript
+2.filters,home page links
+3.about us button navigaiton

@@ -17,6 +17,7 @@ import { axiosPrivate } from '@/common/axiosPrivate';
 import { useParams, useRouter } from 'next/navigation'
 import CourseScheduleComponent from './course_schedule_component';
 import useTrainingMode from '@/hooks/training_mode_hook';
+import { axiosPublic } from '@/common/axiosPublic';
 
 
 export default function CourseDetailContainer({data}:{data:any}) {
@@ -56,6 +57,37 @@ try {
 
 }
     }
+
+    const handleDownload = async (courseId:any,courseName:any) => {
+        try {
+          // Make a GET request to the API endpoint that serves the file
+          const response = await axiosPublic.get('/lms/course-download', {
+
+params:{
+courseId:courseId
+},            responseType: 'blob' // This tells Axios to expect a binary response
+          });
+    
+          // Create a blob object from the response data
+          const blob = new Blob([response.data], { type: 'application/pdf' });
+
+          // Create a URL for the blob object
+          const url = window.URL.createObjectURL(blob);
+    
+          // Create a link element and click it to trigger the download
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `${courseName}.pdf`; // Specify the filename here
+          document.body.appendChild(link);
+          link.click();
+    
+          // Clean up: remove the link and revoke the URL
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        } catch (error) {
+          console.error('Error downloading file:', error);
+        }
+      };
     const [index, setIndex] = useState(0);
     return (
         <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
@@ -112,7 +144,9 @@ try {
                 </div>
             </section>
             <section className='flex flex-row items-start mt-20'>
-                <div className=" mx-auto box-border border flex flex-row gap-3  items-center p-3  border-blue border-1 bg-dark_blue rounded-2xl">
+                <div onClick={(e)=>{
+                    handleDownload(data.courseId,data.title) 
+                }} className="cursor-pointer mx-auto box-border border flex flex-row gap-3  items-center p-3  border-blue border-1 bg-dark_blue rounded-2xl">
                 <img
                                    
                                    className="text-blue h-6 w-6"

@@ -10,6 +10,6 @@ export default function MainHeading({
     text:string
 }) {
     return (
-       <h2 className='text-blue text-4xl font-bold'>{text}</h2>
+       <h2 className='w-full text-center text-white text-4xl font-semibold'>{text}</h2>
     )
 }

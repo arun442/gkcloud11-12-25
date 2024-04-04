@@ -128,9 +128,9 @@ const leaderShip=[
           <p className="text-white text-lg font-normal">Download Company Profile</p>
         </Link>
       </section>
-      <section className="mx-auto box-border w-full  mt-14  border border-blue grid grid-cols-4   items-center rounded-full p-3">
+<section className="mx-auto box-border w-full  mt-14  border-none border-blue grid grid-cols-4   items-center rounded-full">
         {
-          items.map((e,indexx) => <div key={indexx} className={classNames("py-4  w-full box-border border flex flex-row items-center justify-center text-white text-lg font-semibold border-blue border-1 bg-primary_color", index == e.index ? "rounded-full" : "border-none rounded-none ")} onClick={(event) => {
+          items.map((e,indexx) => <div key={indexx} className={classNames("cursor-pointer py-4  w-full box-border border flex flex-row items-center justify-center text-white text-lg font-semibold border-blue border-1 ", index == e.index ? "rounded-full bg-dark_blue" : "border-none rounded-none ")} onClick={(event) => {
             event.preventDefault();
             setIndex(e.index)
           }}>{e.name}</div>)

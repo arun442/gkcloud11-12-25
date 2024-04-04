@@ -14,7 +14,7 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
       return alert("Please select the schedule");
     }
     if(userData==null){
-        return alert("Before entrollment Please login");
+        return alert("Before enrollment Please login");
     }
     try {
         if (isLoading) {

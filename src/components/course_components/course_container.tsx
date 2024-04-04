@@ -180,13 +180,33 @@ export default function CourseContainer() {
       {
         name != null && name == "AI" ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
           <h2 className='text-3xl text-blue font-semibold'>Artificial Intelligence</h2>
-          
+
           <div className=' object-cover w-full flex flex-row items-center justify-center'>
             <img
 
               className="mx-auto h-128"
 
               src="https://gate.amudhu.tech/images/technology/ai-technology-radar.png" />
+          </div>
+        </section> : type != null && type == "partner" && name != null && name == "Google Cloud" ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
+          <h2 className='text-3xl text-blue font-semibold'>{name}</h2>
+
+          <div className=' object-cover w-full flex flex-row items-center justify-center'>
+            <img
+
+              className="mx-auto h-128"
+
+              src="/gcp.jpg" />
+          </div>
+        </section> : name != null && name == "Microsoft Azure" ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
+          <h2 className='text-3xl text-blue font-semibold'>{name}</h2>
+
+          <div className=' object-cover w-full flex flex-row items-center justify-center'>
+            <img
+
+              className="mx-auto h-96"
+
+              src="/azure.jpg" />
           </div>
         </section> : <></>
       }
@@ -245,7 +265,7 @@ export default function CourseContainer() {
             <div onClick={(e: any) => {
               e.preventDefault();
               filter();
-            }} className="cursor-default  box-border border mt-7  py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
+            }} className="cursor-pointer  box-border border mt-7  py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
 
               <h3 className="text-blue text-lg font-medium">Filter</h3>
             </div>
@@ -253,7 +273,7 @@ export default function CourseContainer() {
               course.length != courseList.length ? <div onClick={(e: any) => {
                 e.preventDefault();
                 clearFilter();
-              }} className="cursor-default  box-border border  mt-7  py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
+              }} className="cursor-pointer  box-border border  mt-7  py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
 
                 <h3 className="text-blue text-lg font-medium">Clear</h3>
               </div> : null

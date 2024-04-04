@@ -31,7 +31,7 @@ const router=  useRouter();
   }
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
-    <MainHeading text='Webniars'/>
+    <MainHeading text='Webinars'/>
     <div className="flex flex-row gap-1 items-center mt-14">
     <p className="cursor-pointer text-blue text-base font-medium" onClick={(e)=>{
                   
@@ -41,7 +41,7 @@ const router=  useRouter();
         <p className="text-text_grey_one text-base font-medium">Webinar</p>
       </div>
       <div className='w-full flex flex-row  items-center justify-between mt-3'>
-<h3 className='text-xl font-normal text-white'>Upcoming Webniars</h3>
+<h3 className='text-xl font-normal text-white'>Upcoming Webinars</h3>
 {/* <WebinarFilter/> */}
       </div>
 

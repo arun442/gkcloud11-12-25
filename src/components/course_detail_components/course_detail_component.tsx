@@ -29,7 +29,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
     const router = useRouter();
     const entroll = async () => {
         if (userData == null) {
-            return alert("Before entrollment Please login");
+            return alert("Before enrollment Please login");
         }
         try {
             if (isLoading) {
@@ -159,7 +159,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                 <button onClick={(e) => {
                     entroll();
                 }} className="flex w-full justify-center rounded bg-blue py-3 px-10 font-medium text-white ">
-                    Entroll Now
+                    Enroll Now
                 </button>
             </section>
             <section className={classNames("w-full cursor-pointer text-sm  flex flex-row mt-12 justify-center items-center  gap-7")}>

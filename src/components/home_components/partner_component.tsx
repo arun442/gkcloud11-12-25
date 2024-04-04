@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 const PartnerComponent: React.FC = () => {
 
   const [partners, setPartners] = useState([]);
-  const router=useRouter();
+  const router = useRouter();
   useEffect(() => {
 
     fetchData();
@@ -35,16 +35,16 @@ const PartnerComponent: React.FC = () => {
     <div className="w-full grid gap-4 grid-cols-5">
 
       {
-        partners.map((e: any,index) => {
-          return <div onClick={()=>{
-            if(e.isEnabled==false){
+        partners.map((e: any, index) => {
+          return <div onClick={() => {
+            if (e.isEnabled == false) {
               return;
             }
             router.push(`/course?type=partner&id=${e.partnerId}&name=${e.partnerName}`)
-          }} key={index} className=" h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
+          }} key={index} className="cursor-pointer h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
             <img
 
-              className="cursor-pointer object-contain max-w-full h-full w-full"
+              className=" object-contain max-w-full h-full w-full"
 
               src={imageHelper(e.Image.imageUrl)}
               alt="link"

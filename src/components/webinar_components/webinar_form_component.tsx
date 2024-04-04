@@ -77,8 +77,13 @@ export default function WebinarFormComponent({
             }
         },
     });
-    return <form onSubmit={formik.handleSubmit} className='  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
-
+    return <form onSubmit={formik.handleSubmit} className='relative  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
+<img
+  onClick={(e)=>{
+    closeModel()
+  }}
+  className="cursor-pointer absolute text-blue h-6 w-6 top-4 right-4"
+  src="/cancel.png" />
       
         <h3 className='text-lg mt-4 text-white font-medium text-center'>Webinar Registration</h3>
 

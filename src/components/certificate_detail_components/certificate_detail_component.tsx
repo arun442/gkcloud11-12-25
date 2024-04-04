@@ -27,7 +27,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
     const params = useParams();
     const entroll = async () => {
         if (userData == null) {
-            return alert("Before entrollment Please login");
+            return alert("Before enrollment Please login");
         }
         try {
             if (isLoading) {
@@ -123,7 +123,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                 <button onClick={(e) => {
                     entroll();
                 }} className="flex w-full justify-center rounded bg-blue py-3 px-10 font-medium text-white ">
-                    Entroll Now
+                    Enroll Now
                 </button>
             </section>
 <section className='mt-10'>

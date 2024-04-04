@@ -30,11 +30,11 @@ export default function UnqueOfferComponent() {
     return (
         <main className='flex flex-col justify-center items-center gap-14'>
             <MainHeading text='GKCS Unique Offerings'/>
-            <section className=" w-full px-40  grid grid-cols-2 gap-2">
+            <section className=" w-full px-40  grid grid-cols-2 gap-4">
 {
    
     items.map((e:any)=>{
-        return <div key={e.serviceTitle} className='p-6 bg-dark_blue border-2  border-blue rounded-md h-[200px] flex flex-col justify-center gap-8'>
+        return <div key={e.serviceTitle} className='box-border  h-[200px] p-6 bg-dark_blue border-2  border-blue rounded-md flex flex-col justify-center gap-8'>
             <h3 className='text-xl font-medium text-center text-white'>{e.serviceTitle}</h3>
             <p className='text-sm text-white'>{e.serviceDescription}</p>
         </div>

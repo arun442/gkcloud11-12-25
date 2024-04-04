@@ -9,7 +9,7 @@ import UnqueOfferComponent from "@/components/home_components/unique_offer_compo
 import OurClientComponent from "@/components/home_components/our_client_component";
 import TestimonialComponent from "@/components/home_components/testimonial_component";
 import NewsLetterComponent from "@/components/home_components/news_letter_component";
-import Footer from "@/components/helpers/Footer";
+import Footer from "@/components/helpers/footer";
 
 export default function Home() {
   return (

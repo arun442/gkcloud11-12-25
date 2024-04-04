@@ -1,7 +1,7 @@
 import Header from "@/components/helpers/header";
 import Image from "next/image";
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import Footer from "@/components/helpers/Footer";
+import Footer from "@/components/helpers/footer";
 import CourseDetailContainer from "@/components/course_detail_components/course_detail_component";
 import { axiosPublic } from "@/common/axiosPublic";
 

@@ -230,7 +230,7 @@ export default function CourseContainer() {
           <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10'></div>
           <section className='mt-10 flex flex-row items-center gap-10'>
             {
-              trainingData.map((e, index) => <div className='flex flex-row items-center gap-2'>
+              trainingData.map((e, index) => <div key={index} className='flex flex-row items-center gap-2'>
                 <input
                   id={e.trainingModeId}
                   name={`${e.trainingModeId}`}

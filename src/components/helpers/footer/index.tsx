@@ -17,7 +17,7 @@ const Footer: React.FC<FooterProps> = (props) => {
 
     <footer className="w-full flex flex-row justify-between">
       
-      <div className=" w-full">
+      <div className="flex-1">
                 <h4 className="mb-4 text-lg font-semibold text-white">
                   Follow Us On
                 </h4>
@@ -87,7 +87,7 @@ src="/Icon_facebool.svg" />
                 </Link>
                 <div>
                 
-        <div>
+        <div className="flex-1">
   <p className="text-xs text-white mt-1">
     GK Cloud Solutions Pvt Ltd <br />
     IndiQube Penta <br />

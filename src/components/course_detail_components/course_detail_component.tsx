@@ -207,7 +207,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                         (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).length != 0 ? <section className='mt-10'>
                             <h2 className='font-semibold text-2xl text-white mb-6'>Course Benefit Include</h2>
                             {
-                                (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).map((e: any, index: any) => <div className='w-full flex flex-row gap-2 '>
+                                (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
                                     <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
                                     <p key={index} className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
                                 </div>)
@@ -222,7 +222,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                             (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).length != 0 ? <section className=''>
 
                                 {
-                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) => <div className='w-full flex flex-row gap-2 '>
+                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
                                         <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
                                         <p key={index} className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
                                     </div>)
@@ -237,7 +237,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                                 (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).length != 0 ? <section className=''>
 
                                     {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).map((e: any, index: any) => <div className='w-full flex flex-row gap-2 '>
+                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
                                             <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
                                             <p key={index} className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
                                         </div>)
@@ -253,7 +253,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).length != 0 ? <section className=''>
 
                                         {
-                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).map((e: any, index: any) => <div className='w-full flex flex-row gap-2 '>
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
                                             </div>)

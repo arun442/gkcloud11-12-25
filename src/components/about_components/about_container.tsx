@@ -143,7 +143,7 @@ const leaderShip=[
           data.length == 0 ? <></> : index == 0 ? <section>
             <p className='leading-6 font-normal text-[16px] text-white'>{data.filter((e)=>e.generalId==2)[0].description}</p>
           </section> :index == 2 ? <section className='w-full mx-auto grid grid-cols-3 gap-4'>
-           {leaderShip.map((e)=><div className="relative cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue">
+           {leaderShip.map((e,index)=><div key={index} className="relative cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue">
            <Link
                     href={e.link}
                     className="absolute top-3 left-3"

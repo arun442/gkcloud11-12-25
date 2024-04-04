@@ -22,7 +22,7 @@ useEffect(() => {
 
 
 function removeDuplicates(array:any, property:any) {
-  let seen = {};
+  let seen:any = {};
   return array.filter(function(item:any) {
       let key = item[property];
       return seen.hasOwnProperty(key) ? false : (seen[key] = true);

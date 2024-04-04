@@ -14,7 +14,7 @@ export default function CertificateCard({data}:{data:any}) {
                                    
                                    className="text-text_grey_one h-4 w-4"
                                    src="/Icon_clock.svg"/>
-        <p className="text-text_grey_one text-base font-normal">{data.CertificateCourseCostPlans[0].CourseDuration.courseDuration} days</p>
+        <p className="text-text_grey_one text-base font-normal">{data.CertificateCourseCostPlans[0].CourseDuration.courseDuration} {data.CertificateCourseCostPlans[0].CourseDuration.courseDurationType}</p>
       </div>
   </section>
   

@@ -3,9 +3,15 @@ import { MagnifyingGlassIcon, CalendarIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react';
 import moment from 'moment';
 import imageHelper from '@/common/image_helper';
+import classNames from '@/helpers/add_class';
 
 export default function WebinarCard({ data }: { data: any}) {
   let [isOpen, setIsOpen] = useState(false)
+  const [showMore, setShowMore] = useState(false);
+
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
   function closeModal() {
     setIsOpen(false)
   }
@@ -13,27 +19,33 @@ export default function WebinarCard({ data }: { data: any}) {
   function openModal() {
     setIsOpen(true)
   }
-  return <div className="cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue">
+  return <div className={classNames("cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue",showMore?"h-auto":"h-80")}>
      <WebinarModel closeModal={closeModal} isOpen={isOpen} data={data} />
-  <div className='w-full bg-blue h-48'>
 
-  <img
-
-className="cursor-pointer object-fill max-w-full h-full w-full"
-
-src={imageHelper(data.Image.imageUrl)}
-alt="link"
-/>
+  <section className='flex-1 flex flex-col  p-6 '>
+ <div className='flex-1 flex-col'>
+ <h2 className="text-white text-lg font-medium">{data.webinarName}</h2>
+  {showMore ? (
+        <div>
+          <p className='w-full py-4 text-sm text-white'>{data.WebinarContents.length==0?"":data.WebinarContents[0].objective}</p>
+         
+        </div>
+      ) : (
+       <></>
+      )}
+  <div className='mt-6 flex flex-row justify-end'>
+  <p onClick={toggleShowMore} className="text-blue text-sm font-normal">{showMore==false?"More..":"Less.."}</p>
   </div>
-  <section className='flex flex-col  p-6 '>
-  <h2 className="text-white text-xl font-medium">{data.webinarName}</h2>
-   <div className="flex flex-row gap-1 mt-2 items-center justify-between">
-    <div className='flex flex-row justify-center items-center'>
-    <CalendarIcon className="text-text_grey_one h-4 w-4" />
-     <p className="text-text_grey_one text-base font-normal">{data.WebinarSchedules.length==0?"": moment(new Date(data.WebinarSchedules[0].scheduleDate)).format("DD MMM YYYY | hh:mmA")}</p>
+   <div className="flex flex-row gap-1 mt-6 items-center justify-between">
+    <div className='flex flex-row justify-center items-center gap-2'>
+    <CalendarIcon className="text-blue h-4 w-4" />
+     <p className="text-white text-[12px] font-normal">{data.WebinarSchedules.length==0?"": moment(new Date(data.WebinarSchedules[0].scheduleDate)).format("DD MMM YYYY | hh:mmA")}</p>
     </div>
-    <p className="text-text_grey_one text-base font-normal">More..</p>
+    
    </div>
+
+ </div>
+ 
 
  <div onClick={(e)=>{
   openModal();

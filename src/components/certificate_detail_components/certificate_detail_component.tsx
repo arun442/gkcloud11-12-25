@@ -85,15 +85,15 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
 
                         className="text-blue h-8 w-8"
                         src="/learning_mode.svg" />
-                    <p className="text-white text-xl font-normal">ILO</p>
+                    <p className="text-white text-xl font-normal">{trainingData.filter((e)=>e.trainingModeId==data.CertificateCourseCostPlans[0].CourseDuration.trainingModeId).length==0?"":trainingData.filter((e)=>e.trainingModeId==data.CertificateCourseCostPlans[0].CourseDuration.trainingModeId)[0].trainingModeShortName}</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                     <img
 
                         className="text-blue h-8 w-8"
                         src="/Icon_clock.svg" />
-  <p className="text-white text-xl font-normal">{trainingData.filter((e)=>e.trainingModeId==data.CertificateCourseCostPlans[0].CourseDuration.trainingModeId).length==0?"":trainingData.filter((e)=>e.trainingModeId==data.CertificateCourseCostPlans[0].CourseDuration.trainingModeId)[0].trainingModeShortName}</p>                        
-                    <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CourseDuration.courseDuration} days</p>
+                
+                    <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CourseDuration.courseDuration} {data.CertificateCourseCostPlans[0].CourseDuration.courseDurationType}</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                     <img

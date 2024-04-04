@@ -41,6 +41,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 
+1.footer
+4.leadership,overview
+5.webinar
+6.otp issue
 
-2.filters,home page links
-3.about us button navigaiton
+

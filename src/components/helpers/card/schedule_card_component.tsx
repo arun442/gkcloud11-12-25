@@ -55,13 +55,13 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
       </div>
 
     </div>
-    <table className="border-collapse border border-table_border mt-6 w-full">
+    <table className="border-collapse border-[0.5px] border-table_border mt-6 w-full">
       <thead>
         <tr >
 
-          <th className="border border-table_border text-base text-white font-normal py-6">Date</th>
-          <th className="border border-table_border text-base text-white font-normal">Location</th>
-          <th className="border border-table_border text-base text-white font-normal">Fees</th>
+          <th className="border-[0.5px] border-table_border text-base text-white font-normal py-6">Date</th>
+          <th className="border-[0.5px] border-table_border text-base text-white font-normal">Location</th>
+          <th className="border-[0.5px] border-table_border text-base text-white font-normal">Fees</th>
         </tr>
       </thead>
       <tbody>
@@ -69,7 +69,7 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
         data.CourseSchedules.map((option:any,index:any)=>{
           return  <tr key={index}>
 
-          <td className="border border-table_border  py-4 px-2 flex items-center gap-2"> 
+          <td className="border-[0.5px] border-table_border  py-4 px-2 flex items-center gap-2"> 
           <input
             id={option.scheduleId}
             name={`${option.scheduleId}[]`}
@@ -82,15 +82,15 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
 
             }}
             defaultChecked={false}
-            className={selectedCat == option.scheduleId ? "h-4 w-4 rounded border-custom_blue text-custom_blue focus:ring-custom_blue" : "h-4 w-4 rounded border-custom_grey text-custom_grey focus:ring-custom_grey"}
+            className={selectedCat == option.scheduleId ? "h-4 w-4 rounded  border-custom_blue text-custom_blue focus:ring-custom_blue" : "h-4 w-4 rounded border-custom_grey text-custom_grey focus:ring-custom_grey"}
           />
           
            <label
             htmlFor={`filter-mobile-${option.scheduleId}`}
             className={selectedCat == option.scheduleId ? "text-base font-medium text-blue text-center" : "text-base font-medium text-table_font text-center"}
           > {moment(new Date(option.startDate)).format('MMMM Do')}- {moment(new Date(option.endDate)).format('MMMM Do')}  </label></td>
-          <td className="border border-table_border text-base font-medium text-table_font text-center py-4">WBT</td>
-          <td className="border border-table_border text-base font-medium text-table_font text-center py-4"> {
+          <td className="border-[0.5px] border-table_border text-base font-medium text-table_font text-center py-4">WBT</td>
+          <td className="border-[0.5px] border-table_border text-base font-medium text-table_font text-center py-4"> {
   data.CourseCostPlans.length!=0&& data.CourseCostPlans[0].offerId!=null?     <div className="flex flex-row items-center">
   
         <h3 className=" text-base font-medium text-table_font">₹ {data.CourseCostPlans[0].planPrice}/-</h3>

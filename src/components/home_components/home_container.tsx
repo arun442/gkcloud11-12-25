@@ -7,7 +7,12 @@ import { axiosPublic } from '@/common/axiosPublic';
 
 import { Combobox } from '@headlessui/react'
 import { useRouter } from 'next/router';
-const TEXTS = ['Artificial Intelligence', 'Mobile Application', 'Web Application', 'Cloud Architecture'];
+
+
+
+
+
+const TEXTS = ['Artificial intelligence', 'Multi Cloud', 'Cyber Security', 'Infrastructure','Tableau'];
 
 export default function HomePageMainContainer() {
   const router=useRouter();
@@ -16,7 +21,7 @@ export default function HomePageMainContainer() {
   React.useEffect(() => {
     const intervalId = setInterval(
       () => setIndex((index) => index + 1),
-      3000, // every 3 seconds
+      2000, // every 3 seconds
     );
     return () => clearTimeout(intervalId);
   }, []);

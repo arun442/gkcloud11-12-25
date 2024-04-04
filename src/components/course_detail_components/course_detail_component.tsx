@@ -129,7 +129,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                         className="text-blue h-8 w-8"
                         src="/Icon_clock.svg" />
-                    <p className="text-white text-xl font-normal">{data.CourseDurations[0].courseDuration} days</p>
+                    <p className="text-white text-xl font-normal">{data.CourseDurations[0].courseDuration} {data.CourseDurations[0].courseDurationType}</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                     <img
@@ -217,7 +217,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                 </main> :
                     index == 1 ? <main>
-                        <h2 className='font-semibold text-2xl text-white mb-6'>{data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.description ?? ""}</h2>
+                        <h2 className='font-normal text-sm text-white mb-6'>{data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.description ?? ""}</h2>
                         {
                             (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).length != 0 ? <section className=''>
 
@@ -232,7 +232,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                     </main> : index == 2 ? < CourseScheduleComponent courseId={params.courseId[0]} /> : index == 3 ?
                         <main>
-                            <h2 className='font-semibold text-2xl text-white mb-6'>{data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.description ?? ""}</h2>
+                            <h2 className='font-normal text-sm text-white mb-6'>{data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.description ?? ""}</h2>
                             {
                                 (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).length != 0 ? <section className=''>
 
@@ -248,7 +248,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                         </main>
                         : index == 4 ?
                             <main>
-                                <h2 className='font-semibold text-2xl text-white mb-6'>{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
+                                <h2 className='font-normal text-sm text-white mb-6'>{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
                                 {
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).length != 0 ? <section className=''>
 
@@ -268,7 +268,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((main: any, mainIndex: any) => <section key={mainIndex} className='mb-10'>
                                         <h2 className='font-semibold text-2xl text-white mb-3'>{mainIndex + 1}. {main?.name ?? ""}</h2>
                                         {
-                                            main.moduleItems.map((e: any, index: any) => <div key={e} className='w-full flex flex-row gap-2 '>
+                                           ( main.moduleItems??[]).map((e: any, index: any) => <div key={e} className='w-full flex flex-row gap-2 '>
                                                 <p className='leading-6 font-normal text-sm text-white'>{mainIndex + 1}.{index + 1}.</p>
                                                 <p className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
                                             </div>)

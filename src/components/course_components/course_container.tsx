@@ -178,12 +178,13 @@ export default function CourseContainer() {
       </div>
 
       {
-        name != null && name == "AI" ? <section className='mt-10 flex flex-col justify-start items-start gap-6'>
+        name != null && name == "AI" ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
           <h2 className='text-3xl text-blue font-semibold'>Artificial Intelligence</h2>
-          <div className='flex flex-row items-center justify-center w-full'>
+          
+          <div className=' object-cover w-full flex flex-row items-center justify-center'>
             <img
 
-              className="mx-auto"
+              className="mx-auto h-128"
 
               src="https://gate.amudhu.tech/images/technology/ai-technology-radar.png" />
           </div>
@@ -240,11 +241,11 @@ export default function CourseContainer() {
 
           </section>
           <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10'></div>
-          <section className='flex flex-col items-center justify-center'>
+          <section className='w-full flex flex-row items-center justify-center gap-8'>
             <div onClick={(e: any) => {
               e.preventDefault();
               filter();
-            }} className="cursor-default mx-auto box-border border flex flex-row gap-3 mt-7 items-center py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
+            }} className="cursor-default  box-border border mt-7  py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
 
               <h3 className="text-blue text-lg font-medium">Filter</h3>
             </div>
@@ -252,7 +253,7 @@ export default function CourseContainer() {
               course.length != courseList.length ? <div onClick={(e: any) => {
                 e.preventDefault();
                 clearFilter();
-              }} className="cursor-default mx-auto box-border border flex flex-row gap-3 mt-7 items-center py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
+              }} className="cursor-default  box-border border  mt-7  py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
 
                 <h3 className="text-blue text-lg font-medium">Clear</h3>
               </div> : null

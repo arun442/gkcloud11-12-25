@@ -32,11 +32,14 @@ const PartnerComponent: React.FC = () => {
   return (
 
 
-    <div className="px-20 w-full grid gap-4 grid-cols-4">
+    <div className="w-full grid gap-4 grid-cols-5">
 
       {
         partners.map((e: any,index) => {
           return <div onClick={()=>{
+            if(e.isEnabled==false){
+              return;
+            }
             router.push(`/course?type=partner&id=${e.partnerId}&name=${e.partnerName}`)
           }} key={index} className=" h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
             <img

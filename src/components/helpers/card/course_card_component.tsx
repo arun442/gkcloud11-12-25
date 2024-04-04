@@ -27,7 +27,7 @@ export default function CourseCard({data,showPrice}:{data:any,showPrice:boolean}
                                    className="text-text_grey_one h-4 w-4"
                                    src="/Icon_clock.svg"/>
      
-        <p className="text-text_grey_one text-base font-normal">{data.CourseDurations[0].courseDuration} days</p>
+        <p className="text-text_grey_one text-base font-normal">{data.CourseDurations[0].courseDuration} {data.CourseDurations[0].courseDurationType}</p>
       </div>
   </section>
  {

@@ -85,6 +85,32 @@ export default function AboutContainer() {
         console.error('Error downloading file:', error);
     }
 };
+const leaderShip=[
+  {
+    "link":"https://www.linkedin.com/in/sendhil-kumar-a6aa13122/",
+    "image":"/sendhil.png",
+    "name":"Sendhil Kumar",
+    "position":"CEO"
+
+  },
+  {
+    "link":"https://www.linkedin.com/in/lakshmi-sendhil-3a25ba2b9/",
+    "image":"/lakshmi.png",
+    "name":"Lakshmi Sendhil",
+    "position":"CFO"
+
+  },
+  {
+    "link":"https://www.linkedin.com/in/ashwini-s-7208b7274/",
+    "image":"/Ashwini.png",
+    "name":"Ashwini S",
+    "position":"Business Head"
+
+  }
+ 
+  
+];
+
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
@@ -116,8 +142,34 @@ export default function AboutContainer() {
         {
           data.length == 0 ? <></> : index == 0 ? <section>
             <p className='leading-6 font-normal text-[16px] text-white'>{data.filter((e)=>e.generalId==2)[0].description}</p>
-          </section> :index == 2 ? <section>
-            <p className='leading-6 font-normal text-[16px] text-white'>{data.filter((e)=>e.generalId==12)[0].description}</p>
+          </section> :index == 2 ? <section className='w-full mx-auto grid grid-cols-3 gap-4'>
+           {leaderShip.map((e)=><div className="relative cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue">
+           <Link
+                    href={e.link}
+                    className="absolute top-3 left-3"
+                    >
+                  <img
+  
+  className="text-white h-6 w-6"
+  src="/Icon_linkedIn.svg" /></Link>
+           <div className='w-full bg-dark_blue h-48'>
+
+<img
+
+className="cursor-pointer object-fill max-w-full h-full w-full"
+
+src={e.image}
+alt="link"
+/>
+</div>
+<div className='w-full flex-col items-center justify-center p-3 border border-blue'>
+              <h3 className='text-white text-sm font-bold text-center'>{e.name}</h3>
+              <p className='text-white text-[12px] font-light text-center'>{e.position}</p>
+             </div>
+           </div>
+         
+           )}
+             
           </section> :index == 3 ?<OurClientAboutComponent
 /> : <PartnerAboutComponent/> 
         }

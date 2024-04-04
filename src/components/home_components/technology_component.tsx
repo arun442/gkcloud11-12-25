@@ -21,7 +21,13 @@ useEffect(() => {
 }, [])
 
 
-
+function removeDuplicates(array:any, property:any) {
+  let seen = {};
+  return array.filter(function(item:any) {
+      let key = item[property];
+      return seen.hasOwnProperty(key) ? false : (seen[key] = true);
+  });
+}
 const fetchData=async()=>{
   try {
     const result = await axiosPublic.get('/lms/course-category');
@@ -29,7 +35,7 @@ const fetchData=async()=>{
   
 
 
-   setItems(result.data.CourseCategory);
+   setItems(removeDuplicates( result.data.CourseCategory, 'categoryName'));
   } catch (error) {
  
   }

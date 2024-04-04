@@ -86,8 +86,21 @@ src="/Icon_facebool.svg" />
                                     />
                 </Link>
                 <div>
-                  <p className="text-sm text-white mt-2">GK Cloud Solutions Pvt<br/> Ltd IndiQube Penta<br/> New No. 51 Richmond Road<br/> Bengaluru - 560025</p>
-                  <p className="text-sm text-white mt-2">+918043003611<br/>enquiry@gkcloud.ai</p>
+                
+        <div>
+  <p className="text-xs text-white mt-1">
+    GK Cloud Solutions Pvt Ltd <br />
+    IndiQube Penta <br />
+    New No. 51 Richmond Road <br />
+    Bengaluru - 560025
+  </p>
+  <br />
+  <p className="text-xs text-white mt-1">
+    +91-6362234100 <br />
+    support@gkcloud.ai
+  </p>
+</div>
+
                 </div>
       </section>
       <section>

@@ -116,9 +116,9 @@ const leaderShip=[
 
 
       <h1 className='font-semibold text-2xl mt-6 text-white'>About Us</h1>
-      <p className='mt-6 leading-6 font-normal text-[16px] text-white'>A global leader in IT training.<br />Just tell us What, Where, When – we deliver the training.</p>
+      <p className='mt-6 leading-6 font-normal text-[16px] text-white'>GK Cloud Solutions has created a brand in the Cloud space with specialization on Cloud Trainings across multiple brands and focusing more towards AI  with evocative approach as a Solution Provider supporting enterprises to consistently succeed in the evolving world space.</p>
 
-      <h1 className='font-semibold text-2xl mt-6 text-white'>We help you earn Money, Respect and Peace of Mind.</h1>
+      <h1 className='font-semibold text-2xl mt-6 text-white'></h1>
       <section className='flex flex-row items-start mt-20'>
         <Link href={data.filter((e)=>e.generalId==1).length==0?"":imageHelper("/"+data.filter((e)=>e.generalId==1)[0].documentURL)} className=" mx-auto box-border border flex flex-row gap-3  items-center py-3  px-6 border-blue border-1 bg-dark_blue rounded-2xl">
         <img

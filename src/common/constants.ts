@@ -1,1 +1,1 @@
-export const baseUrl="http://gate.amudhu.tech";
+export const baseUrl="https://gate.amudhu.tech";

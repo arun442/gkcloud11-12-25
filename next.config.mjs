@@ -9,7 +9,7 @@ const nextConfig = {
        
       },
       {
-        protocol: 'http',
+        protocol: 'https',
         hostname: 'gate.amudhu.tech',
        
       },

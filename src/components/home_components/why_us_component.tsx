@@ -1,7 +1,8 @@
+"use client";
 import React, { Fragment, useState } from 'react'
 import MainHeading from '../helpers/heading/main_heading'
-
-
+import CountUp from 'react-countup';
+import VisibilitySensor from 'react-visibility-sensor';
 
 
 
@@ -10,22 +11,22 @@ export default function WhyUsComponent() {
     const items = [
         {
             image: "/Image_8.png",
-            title: "50+",
+            title: 50,
             desc: "Online Courses"
 
         }, {
             image:  "/Image_13.png",
-            title: "1000+",
+            title: 1000,
             desc: "Active Students"
 
         }, {
             image:  "/Image_14.png",
-            title: "15+",
+            title: 15,
             desc: "Instructors"
 
         }, {
             image:  "/Image_15.png",
-            title: "50+",
+            title: 50,
             desc: "Certifications"
 
         }
@@ -45,7 +46,11 @@ export default function WhyUsComponent() {
                                         src={e.image}/>
                                         
             </div>
-            <h3 className='text-4xl font-bold text-center text-blue'>{e.title}</h3>
+            <div className='text-4xl font-bold text-center text-blue'>
+            <CountUp enableScrollSpy end={e.title} /> <span>+</span>
+          </div>
+           
+          
             <p className='text-lg text-white font-medium text-center mb-10'>{e.desc}</p>
         </div>
     })

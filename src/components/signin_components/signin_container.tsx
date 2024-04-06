@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { axiosPublic } from '@/common/axiosPublic';
 import { useRouter } from 'next/navigation'
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/20/solid'
+import { EyeIcon, EyeSlashIcon,UserCircleIcon } from '@heroicons/react/20/solid'
 export default function SignInContainer() {
 
   const [passwordType, setPasswordType] = useState("password");
@@ -30,9 +30,10 @@ export default function SignInContainer() {
     },
     validationSchema: Yup.object({
     
-      password: Yup.string()
-      
-        .required('Required'),
+      password:  Yup.string()
+      .required('No password provided.') 
+      .min(8, 'Password is too short - should be 8 chars minimum.')
+      .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
       email: Yup.string().email('Invalid email address').required('Required'),
     }),
     onSubmit: async(values, { resetForm }) => {
@@ -64,10 +65,10 @@ export default function SignInContainer() {
   });
 
     return (
-        <main className="w-full bg-primary_color flex-1 flex flex-col justify-center items-center gap-10">
+        <main className="w-full  flex-1 flex flex-col justify-center items-center">
             {/* <!-- Sign Up Form --> */}
 
-            <div className='flex flex-col justify-center items-center gap-2' >
+            <div className='flex flex-col justify-center items-center gap-2 mb-10' >
                 <h3 className="text-3xl text-blue font-semibold">
                 Welcome <span className='text-white'>Back</span>
                 </h3>
@@ -77,7 +78,7 @@ export default function SignInContainer() {
 
                
 
-                <div className="mb-4">
+                <div className="mb-4 relative">
                   
                     <input
                        {...formik.getFieldProps('email')}
@@ -85,6 +86,13 @@ export default function SignInContainer() {
                         placeholder="Email"
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
                     />
+                      <span className="absolute top-4 right-4">
+                      <img
+                                   
+                                   className="text-blue h-4 w-5"
+                                   src="/email.png"/>
+                      
+                        </span>
                      {formik.errors.email ? (
                     <div className="text-sm text-white mt-2 ml-2">{formik.errors.email}</div>
                   ) : null}
@@ -102,7 +110,7 @@ export default function SignInContainer() {
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
                     />
                       <span className="absolute top-4 right-4" onClick={togglePassword}>
-                          {passwordType == "password"?<EyeIcon className="text-primary_color h-4 w-4" />:<EyeSlashIcon className="text-primary_color h-4 w-4" />}
+                          {passwordType == "password"?<EyeIcon className="text-blue h-4 w-4" />:<EyeSlashIcon className="text-blue h-4 w-4" />}
                         </span>
                         {formik.errors.password ? (
                     <div className="text-sm text-white mt-2 ml-2">{formik.errors.password}</div>
@@ -136,12 +144,12 @@ export default function SignInContainer() {
                   >
                     Forget password?
                   </Link></div>
-                <div className='flex flex-row items-center justify-center' >
-                    <h4 className='text-lg font-semibold text-white'>Dont have account? <span className='font-semibold text-blue cursor-pointer' onClick={(e)=>router.push("/auth/signup")}>Signup?</span></h4>
-                </div>
+               
 
             </form>
-
+            <div className='flex flex-row items-center justify-center' >
+                    <h4 className='text-sm font-normal text-white'>Dont have account? <span className='font-semibold text-blue cursor-pointer' onClick={(e)=>router.push("/auth/signup")}>Signup?</span></h4>
+                </div>
         </main>
     )
 }

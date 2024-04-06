@@ -227,7 +227,7 @@ export default function CourseContainer() {
             <PartnerDropdown data={partner} setData={setPartner} />
             <TechnologyDropdown data={technology} setData={setTechnology} />
           </section>
-          <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10'></div>
+          <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10 opacity-25'></div>
           <section className='mt-10 flex flex-row items-center gap-10'>
             {
               trainingData.map((e, index) => <div key={index} className='flex flex-row items-center gap-2'>
@@ -260,7 +260,7 @@ export default function CourseContainer() {
 
 
           </section>
-          <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10'></div>
+          <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10 opacity-25'></div>
           <section className='w-full flex flex-row items-center justify-center gap-8'>
             <div onClick={(e: any) => {
               e.preventDefault();

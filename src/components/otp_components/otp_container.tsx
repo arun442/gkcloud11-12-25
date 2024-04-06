@@ -20,7 +20,7 @@ export default function OtpContainer() {
     validationSchema: Yup.object({
       otp: Yup.string()
 
-        .required('Required'),
+        .required('Required').length(6, 'Please enter valid otp'),
 
     }),
     onSubmit: async (values, { resetForm }) => {
@@ -36,30 +36,31 @@ export default function OtpContainer() {
           "otp": values.otp,
           "email": JSON.parse(registerData!).email,
         });
-    const addUserResult=    await axiosPublic.post('/user/add-user', {
+
+        const addUserResult = await axiosPublic.post('/user/add-user', {
           "email": JSON.parse(registerData!).email,
           "password": JSON.parse(registerData!).password,
           "roleId": 1,
-          "firstName":JSON.parse(registerData!).name,
+          "firstName": JSON.parse(registerData!).name,
         });
-localStorage.removeItem("register");
+        localStorage.removeItem("register");
         console.log("what is the result");
         setLoading(false);
         console.log(result.data);
         console.log(addUserResult.data);
         resetForm();
         router.push("/auth/signin");
-      } catch (error:any) {
+      } catch (error: any) {
         setLoading(false);
         console.log(error);
         alert(error!.message);
-      
+
       }
     },
   });
 
   return (
-    <main className="w-full bg-primary_color flex-1 flex flex-col justify-center items-center gap-10">
+    <main className="w-full  flex-1 flex flex-col justify-center items-center gap-10">
       {/* <!-- Sign Up Form --> */}
 
       <div className='flex flex-col justify-center items-center gap-2' >
@@ -75,15 +76,15 @@ localStorage.removeItem("register");
         <div className="mb-4">
 
           <input
-           {...formik.getFieldProps('otp')}
+            {...formik.getFieldProps('otp')}
             maxLength={6}
             type="password"
             placeholder="Otp"
             className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
           />
-            {formik.errors.otp? (
-                    <div className="text-sm text-white mt-2 ml-2">{formik.errors.otp}</div>
-                  ) : null}
+          {formik.errors.otp ? (
+            <div className="text-sm text-white mt-2 ml-2">{formik.errors.otp}</div>
+          ) : null}
         </div>
 
 
@@ -91,9 +92,9 @@ localStorage.removeItem("register");
 
 
         <button type='submit' className="mb-3 flex w-full justify-center rounded bg-blue p-3 font-medium text-white ">
-        {
-                  isLoading?"Loading..":"Submit"
-                }
+          {
+            isLoading ? "Loading.." : "Submit"
+          }
         </button>
 
 

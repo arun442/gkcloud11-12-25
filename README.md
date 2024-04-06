@@ -41,17 +41,15 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 
-1.footer
-4.leadership,overview
-5.webinar
+
 6.otp issue
 
 
 1.technology based on parner
-3.unique offers border issue
-5.header need to static
-6.number animation in why us
-background blue in popup
-form validation
+
+
+
+
+
 
 

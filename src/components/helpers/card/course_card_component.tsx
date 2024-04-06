@@ -35,8 +35,8 @@ export default function CourseCard({data,showPrice}:{data:any,showPrice:boolean}
   {
  data.CourseCostPlans.length!=0&& data.CourseCostPlans[0].offerId!=null?     <div className="mx-auto box-border border flex flex-row gap-3 mt-7 items-center p-3  border-blue border-1 bg-primary_color rounded-2xl">
  
-       <h3 className="text-blue text-lg font-medium">₹ {data.CourseCostPlans[0].planPrice}/-</h3>
-       <h3 className="text-text_grey_one line-through text-lg font-normal">₹ {data.CourseCostPlans[0].offerPrice}/-</h3>
+       <h3 className="text-blue text-lg font-medium">₹ {data.CourseCostPlans[0].offerPrice}/-</h3>
+       <h3 className="text-text_grey_one line-through text-lg font-normal">₹ {data.CourseCostPlans[0].planPrice}/-</h3>
      </div>:  <div className="mx-auto box-border border flex flex-row gap-3 mt-7 items-center p-3  border-blue border-1 bg-primary_color rounded-2xl">
  
  <h3 className="text-blue text-lg font-medium">₹ {data.CourseCostPlans[0].planPrice}/-</h3>

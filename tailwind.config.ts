@@ -14,22 +14,23 @@ const config: Config = {
       xl: '1440px',
     },
     colors: {
-      "primary_color":"#000520",
-    
+      "primary_color": "#000520",
+
       'blue': '#129DD6',
-      "dark_blue":"#101635",
-      "grey":"#707070",
+      "dark_blue": "#101635",
+      "grey": "#707070",
       'purple': '#7e5bef',
       'pink': '#ff49db',
       'orange': '#ff7849',
       'green': '#13ce66',
-      "white":"#ECF4FF",
-      "normal_white":"#ffffff",
+      "white": "#ECF4FF",
+      "black":"#000000",
+      "normal_white": "#ffffff",
       'yellow': '#ffc82c',
-   "text_grey":"#D5D5D5",
-   "text_grey_one":"#B4B4B4",
-   "table_border":"#DCDCDC",
-   "table_font":"#E3E3E3"
+      "text_grey": "#D5D5D5",
+      "text_grey_one": "#B4B4B4",
+      "table_border": "#DCDCDC",
+      "table_font": "#E3E3E3"
     },
     fontFamily: {
       poppins: ['var(--font-poppins)'],

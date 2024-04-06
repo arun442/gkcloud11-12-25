@@ -10,6 +10,7 @@ export default function FormComponent({
     const [isLoading, setLoading] = useState(false);
 
     const [index, setIndex] = useState(0);
+    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const formik = useFormik({
         initialValues: {
@@ -29,22 +30,18 @@ export default function FormComponent({
 
             lastName: Yup.string()
 
-            ,
-            email: Yup.string()
+            .required('Required'),
+            email:  Yup.string().email('Invalid email address').required('Required'),  
+            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+            country:Yup.string()
 
-            ,
-            phone: Yup.string()
-
-            ,
-            country: Yup.string()
-
-            ,
+            .required('Required'),
             city: Yup.string()
 
-            ,
-            address: Yup.string()
+            .required('Required'),
+            address:Yup.string()
 
-            ,
+            .required('Required'),
             company: Yup.string()
 
             ,

@@ -3,34 +3,14 @@ import MainHeading from '../helpers/heading/main_heading'
 import { axiosPublic } from '@/common/axiosPublic';
 import DialogueModel from '../helpers/popup/subscription_success_popup';
 
-
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 
 
 export default function NewsLetterComponent() {
 
-  const [input, setInput] = useState('');
-  const submit = async () => {
-    try {
 
-
-      if (input == '') {
-        return;
-      }
-
-
-
-      const result = await axiosPublic.post('/lms/add-subscriber', {
-        "email": input,
-       
-      });
-      console.log("news letter");
-      console.log(result.data);
-      setInput('');
-      openModal();
-    } catch (error) {
-    }
-  }
   let [isOpen, setIsOpen] = useState(false)
   function closeModal() {
     setIsOpen(false)
@@ -39,28 +19,58 @@ export default function NewsLetterComponent() {
   function openModal() {
     setIsOpen(true)
   }
+  const formik = useFormik({
+    initialValues: {
+    
+      email: '',
+    },
+    validationSchema: Yup.object({
+    
+   
+      email: Yup.string().email('Invalid email address').required('Required'),
+    }),
+    onSubmit: async(values, { resetForm }) => {
+     
 
-    return (
-        <main className='flex flex-col justify-center items-center gap-14'>
-            <MainHeading text='Subscribe to our Newsletter'/>
-            <div className="w-128 mx-auto flex flex-row  items-center justify-center relative">
+      try {
+     
+       
+        const result = await axiosPublic.post('/lms/add-subscriber', {
+          "email": values.email,
          
-          <input
-          value={input} onChange={(event) => setInput(event.target.value)}
-            id="search"
-            name="search"
-            type="text"
-            autoComplete="text"
-            placeholder='Enter your email'
-            required
-            className="block pl-6 w-full text-white border-1 pr-40 rounded-full bg-dark_blue h-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-          <div   onClick={(e:any)=> {
-                    e.preventDefault();
-                    submit();
-                  }} className='cursor-pointer absolute right-0 top-0 bottom-0 h-12 w-40 bg-blue rounded-full text-white text-sm font-medium flex flex-row items-center justify-center'>Subscribe</div>
-        </div>
+        });
+        console.log("news letter");
+        console.log(result.data);
+     
+        openModal();
+        resetForm();
+      }catch (error:any) {
+       
+        alert(error!.message);
+      
+      }
+    },
+  });
+    return (
+        <form onSubmit={formik.handleSubmit} className='flex flex-col justify-center items-center gap-14'>
+            <MainHeading text='Subscribe to our Newsletter'/>
+          <div>
+          <div className="w-128 mx-auto flex flex-row  items-center justify-center relative">
+         
+         <input
+        {...formik.getFieldProps('email')}
+        type="email"
+        placeholder="Email"
+       
+           className="block pl-6 w-full text-white border-1 pr-40 rounded-full bg-dark_blue h-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+         />
+         <button type='submit'    className='cursor-pointer absolute right-0 top-0 bottom-0 h-12 w-40 bg-blue rounded-full text-white text-sm font-medium flex flex-row items-center justify-center'>Subscribe</button>
+       </div>
+       {formik.errors.email ? (
+                   <div className="text-sm text-white mt-2 ml-2">{formik.errors.email}</div>
+                 ) : null}
+          </div>
         <DialogueModel closeModal={closeModal} isOpen={isOpen} />
-        </main>
+        </form>
     )
 }

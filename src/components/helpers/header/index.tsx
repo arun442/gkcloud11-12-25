@@ -12,6 +12,23 @@ import { usePathname } from "next/navigation";
 
 
 export default function Header() {
+    const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
     const pathname = usePathname();
     const [navigation, setNavigation] = useState([
         {
@@ -92,7 +109,7 @@ export default function Header() {
     const { userData, isLoading } = useUserData();
     const router = useRouter();
     return (
-        <Disclosure as="nav" className="bg-primary_color">
+        <Disclosure as="nav" className={classNames(scrolling?"sticky top-0 z-10 bg-primary_color":"sticky top-0 z-10 ")}>
             {({ open }) => (
                 <>
                     <div className="sm:py-4">

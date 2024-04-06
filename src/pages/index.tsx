@@ -10,6 +10,7 @@ import OurClientComponent from "@/components/home_components/our_client_componen
 import TestimonialComponent from "@/components/home_components/testimonial_component";
 import NewsLetterComponent from "@/components/home_components/news_letter_component";
 import Footer from "@/components/helpers/footer";
+import CookieConsent from "@/components/helpers/cookie";
 
 export default function Home() {
   return (
@@ -17,11 +18,9 @@ export default function Home() {
       className={`relative max-w-7xl mx-auto bg-primary_color sm:px-20 xl:px-0 flex flex-col gap-24`}
     >
        <div className="absolute inset-0 bg-cover bg-center  h-screen" style={{backgroundImage: 'url("/bg_dot.png")', opacity: '0.1' }}></div>
-   <div className=" w-full bg-cover bg-center flex flex-col h-screen" >
-   <Header/>
+
+       <Header/>
     <HomePageMainContainer/>
-  
-   </div>
    <ExploreCourseComponent/>
    <ClassesComponent/>
    <WhyUsComponent/>
@@ -32,6 +31,7 @@ export default function Home() {
   <TestimonialComponent/>  
    <NewsLetterComponent/>
   <Footer/>
+  <CookieConsent/>
     </main>
   );
 }

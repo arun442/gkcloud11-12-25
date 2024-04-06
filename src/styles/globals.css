@@ -27,7 +27,58 @@ body{
   font-family: 'Poppins';
   background-color: "#000520";
 }
-
+@property --num0 {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+@keyframes counter0 {
+  from {
+      --num: 0;
+  }
+  to {
+      --num: 50;
+  }
+}   
+@property --num1 {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+@keyframes counter1 {
+  from {
+      --num: 0;
+  }
+  to {
+      --num: 1000;
+  }
+}   
+@property --num2 {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+@keyframes counter2 {
+  from {
+      --num: 0;
+  }
+  to {
+      --num: 15;
+  }
+}  
+@property --num3 {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+@keyframes counter3 {
+  from {
+      --num: 0;
+  }
+  to {
+      --num: 50;
+  }
+}     
 @layer utilities {
   .text-balance {
     text-wrap: balance;

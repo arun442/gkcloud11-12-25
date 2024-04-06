@@ -6,11 +6,12 @@ import classNames from '@/helpers/add_class';
 import useUserData from '@/hooks/userData';
 
 export default function WebinarFormComponent({
-    data,closeModel
-}: { data: any,closeModel:any }) {
+    data, closeModel
+}: { data: any, closeModel: any }) {
     const [isLoading, setLoading] = useState(false);
     const { userData, } = useUserData();
-   
+
+    const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const formik = useFormik({
         initialValues: {
@@ -27,13 +28,8 @@ export default function WebinarFormComponent({
                 .required('Required'),
 
 
-            email: Yup.string()
-
-            ,
-            phone: Yup.string()
-
-
-            ,
+            email: Yup.string().email('Invalid email address').required('Required'),
+            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
             company: Yup.string()
 
             ,
@@ -47,8 +43,8 @@ export default function WebinarFormComponent({
                     return;
                 }
                 setLoading(true);
-                let payload:any= {
-                  
+                let payload: any = {
+
                     "webinarId": data.webinarId,
                     "webinarScheduleId": data.WebinarSchedules.length == 0 ? "" : data.WebinarSchedules[0].webinarScheduleId,
                     "name": values.firstName,
@@ -56,10 +52,10 @@ export default function WebinarFormComponent({
                     "companyName": values.company,
                     "mobile": values.phone,
                 };
-                if(userData!=null){
-                    payload.userId= userData?.userId
+                if (userData != null) {
+                    payload.userId = userData?.userId
                 }
-                const result = await axiosPublic.post('/lms/add-webinar-registeration',payload);
+                const result = await axiosPublic.post('/lms/add-webinar-registeration', payload);
 
 
                 setLoading(false);
@@ -78,13 +74,13 @@ export default function WebinarFormComponent({
         },
     });
     return <form onSubmit={formik.handleSubmit} className='relative  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
-<img
-  onClick={(e)=>{
-    closeModel()
-  }}
-  className="cursor-pointer absolute text-blue h-6 w-6 top-4 right-4"
-  src="/cancel.png" />
-      
+        <img
+            onClick={(e) => {
+                closeModel()
+            }}
+            className="cursor-pointer absolute text-blue h-6 w-6 top-4 right-4"
+            src="/cancel.png" />
+
         <h3 className='text-lg mt-4 text-white font-medium text-center'>Webinar Registration</h3>
 
         <section>

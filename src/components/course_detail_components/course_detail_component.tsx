@@ -192,7 +192,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
       <main className='mt-14 w-full'>
                 {index == 0 ? <main>
                     <section>
-                        <h2 className='font-semibold text-2xl text-white'>Course Description</h2>
+                       
                         <p className='mt-6 leading-6 font-normal text-sm text-white'>{data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}</p>
                     </section>
                     {

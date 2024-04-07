@@ -70,9 +70,9 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
       <tbody>
        {
         data.CourseSchedules.map((option:any,index:any)=>{
-          return  <tr key={index}>
+          return  <tr className="border-[0.25px] border-text_grey_one" key={index}>
 
-          <td className="border-b-[0.25px] border-text_grey_one py-4 px-2 flex items-center gap-2"> 
+          <td className=" py-7 px-2 flex items-center justify-center gap-2"> 
           <input
             id={option.scheduleId}
             name={`${option.scheduleId}[]`}
@@ -92,9 +92,12 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
             htmlFor={`filter-mobile-${option.scheduleId}`}
             className={selectedCat == option.scheduleId ? "text-base font-medium text-blue text-center" : "text-base font-medium text-table_font text-center"}
           > {moment(new Date(option.startDate)).format('MMMM Do')}- {moment(new Date(option.endDate)).format('MMMM Do')}  </label></td>
-          <td className="border-[0.25px]  text-base font-medium text-table_font text-center py-4">{trainingData.filter((e) => e.trainingModeId == option.trainingModeId).length == 0 ? "" : trainingData.filter((e) => e.trainingModeId == option.trainingModeId)[0].trainingModeShortName}</td>
-          <td className="border-[0.25px]  text-base font-medium text-table_font text-center py-4"> {
-  data.CourseCostPlans.length!=0&& data.CourseCostPlans[0].offerId!=null?     <div className="flex flex-row items-center">
+          <td className="border-[0.25px] font-medium text-table_font text-center py-4">{trainingData.filter((e) => e.trainingModeId == option.trainingModeId).length == 0 ? "" : trainingData.filter((e) => e.trainingModeId == option.trainingModeId)[0].trainingModeShortName}</td>
+          <td className="border-[0.25px] font-medium text-table_font text-center py-4"> {
+  data.CourseCostPlans.length!=0&& data.CourseCostPlans[0].offerId!=null
+  &&data.CourseCostPlans[0].offerPrice>0
+   ?    
+    <div className="flex flex-col justify-center items-center">
   
         <h3 className=" text-base font-medium text-table_font">₹ {data.CourseCostPlans[0].offerPrice}/-</h3>
         <h3 className=" line-through text-base font-medium text-table_font">₹ {data.CourseCostPlans[0].planPrice}/-</h3>

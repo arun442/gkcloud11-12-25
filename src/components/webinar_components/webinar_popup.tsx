@@ -11,7 +11,7 @@ export default function WebinarModel({ isOpen, closeModal,data }:{ isOpen:any, c
 
 
             <Transition appear show={isOpen} as={Fragment}>
-                <Dialog as="div" className=" relative z-10" onClose={(e) => closeModal()}>
+                <Dialog as="div" className=" relative z-40" onClose={(e) => closeModal()}>
                     <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"

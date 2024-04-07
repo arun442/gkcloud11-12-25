@@ -40,7 +40,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
 
                 "courseCostPlanId": data.CertificateCourseCostPlans[0].certificateCourseCostPlanId,
                 "enrollmentReference": "This is Test Enrollment",
-                "amount": data.CertificateCourseCostPlans.length != 0 && data.CertificateCourseCostPlans[0].offerId != null ? data.CertificateCourseCostPlans[0].offerPrice : data.CertificateCourseCostPlans[0].planPrice
+                "amount": data.CertificateCourseCostPlans.length != 0 && data.CertificateCourseCostPlans[0].offerId != null   &&data.CertificateCourseCostPlans[0].offerPrice>0? data.CertificateCourseCostPlans[0].offerPrice : data.CertificateCourseCostPlans[0].planPrice
             });
 
 
@@ -102,7 +102,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                         src="/rubee_icon.svg" />
 
                     {
-                        data.CertificateCourseCostPlans.length != 0 && data.CertificateCourseCostPlans[0].offerId != null ? <div className='flex flex-row'>
+                        data.CertificateCourseCostPlans.length != 0 && data.CertificateCourseCostPlans[0].offerId != null  &&data.CertificateCourseCostPlans[0].offerPrice>0 ? <div className='flex flex-row'>
                             <p className="text-white text-xl font-normal">₹ {data.CertificateCourseCostPlans[0].offerPrice}/-</p>
                             <p className="text-white text-xl line-through font-normal">₹ {data.CertificateCourseCostPlans[0].planPrice}/-</p>
                         </div> : <p className="text-white text-xl font-normal">₹ {data.CertificateCourseCostPlans[0].planPrice}/-</p>

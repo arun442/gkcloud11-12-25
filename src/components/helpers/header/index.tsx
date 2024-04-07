@@ -62,14 +62,6 @@ export default function Header() {
             "imageId": null,
            
             "menuSequencePriority": 4
-        },
-        {
-            "menuId": 6,
-            "menuName": "Contact",
-            "menuUrl": "/contactUs",
-            "imageId": null,
-         
-            "menuSequencePriority": 6
         }
 
     ]);
@@ -109,7 +101,7 @@ export default function Header() {
     const { userData, isLoading } = useUserData();
     const router = useRouter();
     return (
-        <Disclosure as="nav" className={classNames(scrolling?"sticky top-0 z-10 bg-primary_color":"sticky top-0 z-10 ")}>
+        <Disclosure as="nav" className={classNames(scrolling?"sticky top-0 z-20 bg-primary_color":"sticky top-0 z-20",)}>
             {({ open }) => (
                 <>
                     <div className="sm:py-4">

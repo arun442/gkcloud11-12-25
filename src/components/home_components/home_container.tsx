@@ -54,15 +54,15 @@ export default function HomePageMainContainer() {
 
   }, [query])
   return (
-    <main className="w-full bg-primary_color  flex flex-col justify-center items-center">
+    <main className="w-full flex-1 flex flex-col justify-center items-center">
       <section className='w-full flex flex-row justify-end items-center gap-6'>
         <div className='relative z-10 w-[45%] flex justify-end text-5xl font-bold text-white text-start leading-[70px]'>Level Up<br />Your Skills </div>
         <TextTransition className='w-[55%] text-5xl mt-[68px]  font-bold text-start leading-[70px] text-blue' springConfig={presets.stiff}>{TEXTS[index % TEXTS.length]}</TextTransition>
       </section>
       <section >
         <Combobox >
-          <div className="relative mb-16">
-            <div className="mt-20 w-96 mx-auto flex flex-row  items-center justify-center relative">
+          <div className="relative ">
+            <div className="mt-16 w-96 mx-auto flex flex-row  items-center justify-center relative">
               <span className="absolute h-5 w-5 left-0 top-4  inset-0 pl-3">  <MagnifyingGlassIcon className="h-5 w-5 text-blue items-center" /></span>
               <Combobox.Input
                 className="block w-full border-1 pl-10 rounded-full bg-dark_blue py-[15px] text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"

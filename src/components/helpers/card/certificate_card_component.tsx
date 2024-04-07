@@ -19,7 +19,7 @@ export default function CertificateCard({data}:{data:any}) {
   </section>
   
       {
-  data.CertificateCourseCostPlans.length!=0&& data.CertificateCourseCostPlans[0].offerId!=null?     <div className="mx-auto box-border border flex flex-row gap-3 mt-7 items-center p-3  border-blue border-1 bg-primary_color rounded-2xl">
+  data.CertificateCourseCostPlans.length!=0&& data.CertificateCourseCostPlans[0].offerId!=null&& data.CertificateCourseCostPlans[0].offerPrice>0?     <div className="mx-auto box-border border flex flex-row gap-3 mt-7 items-center p-3  border-blue border-1 bg-primary_color rounded-2xl">
   
         <h3 className="text-blue text-lg font-medium">₹ {data.CertificateCourseCostPlans[0].offerPrice}/-</h3>
         <h3 className="text-text_grey_one line-through text-lg font-normal">₹ {data.CertificateCourseCostPlans[0].planPrice}/-</h3>

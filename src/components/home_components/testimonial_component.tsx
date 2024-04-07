@@ -66,9 +66,9 @@ export default function TestimonialComponent() {
              items={ items.map((e: any) => {
               return <div key={e.content} className='mx-3 h-[400px] p-6 bg-dark_blue border-2  border-blue rounded-md  flex flex-col justify-between gap-10'>
 
-                <p className='flex-1 text-[16px] text-white'>  <>
+                <p className='flex-1 text-[16px] text-white text-justify'>  <>
                           &quot;
-                         {e.content.length>500? `${e.content.substring(0,450)}...`:e.content}&quot;
+                         {e.content.length>500? `${e.content.substring(0,380)}...`:e.content}&quot;
                         </></p>
                 <div className='flex flex-col items-end'>
             <h3 className='font-medium text-blue text-lg'>-{e.authorName}</h3>

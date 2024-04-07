@@ -42,7 +42,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                 "courseCostPlanId": data.CourseCostPlans[0].courseCostPlanId,
                 "enrollmentReference": "This is Test Enrollment",
-                "amount": data.CourseCostPlans.length != 0 && data.CourseCostPlans[0].offerId != null?data.CourseCostPlans[0].offerPrice: data.CourseCostPlans[0].planPrice
+                "amount": data.CourseCostPlans.length != 0 && data.CourseCostPlans[0].offerId != null  &&data.CourseCostPlans[0].offerPrice>0?data.CourseCostPlans[0].offerPrice: data.CourseCostPlans[0].planPrice
             });
 
 
@@ -137,7 +137,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                         className="text-blue h-8 w-8"
                         src="/rubee_icon.svg" />
                     {
-                        data.CourseCostPlans.length != 0 && data.CourseCostPlans[0].offerId != null ? <div className='flex flex-row'>
+                        data.CourseCostPlans.length != 0 && data.CourseCostPlans[0].offerId != null &&data.CourseCostPlans[0].offerPrice>0? <div className='flex flex-row'>
                             <p className="text-white text-xl font-normal">₹ {data.CourseCostPlans[0].offerPrice}/-</p>
                             <p className="text-white line-through text-xl font-normal">₹ {data.CourseCostPlans[0].planPrice}/-</p>
                         </div> : <p className="text-white text-xl font-normal">₹ {data.CourseCostPlans[0].planPrice}/-</p>
@@ -189,27 +189,28 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
             </section>
       <ErrorBoundary>
-      <main className='mt-14 w-full'>
+      <main className='mt-6 w-full'>
                 {index == 0 ? <main>
+                    <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Course Description</h2>
                     <section>
                        
-                        <p className='mt-6 leading-6 font-normal text-sm text-white'>{data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}</p>
+                        <p className='mt-6 leading-6 font-normal text-sm text-white text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}</p>
                     </section>
                     {
                         (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).length != 0 ? <section className='mt-10'>
-                            <h2 className='font-semibold text-2xl text-white mb-6'>Highlights</h2>
+                            <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Highlights</h2>
                             {
-                                (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).map((e: any, index: any) => <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}. {e}</p>)
+                                (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).map((e: any, index: any) => <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}. {e}</p>)
                             }
                         </section> : <></>
                     }
                     {
                         (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).length != 0 ? <section className='mt-10'>
-                            <h2 className='font-semibold text-2xl text-white mb-6'>Course Benefit Include</h2>
+                            <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Course Benefit Include</h2>
                             {
                                 (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
                                     <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-                                    <p key={index} className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
+                                    <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                 </div>)
                             }
                         </section> : <></>
@@ -217,14 +218,15 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                 </main> :
                     index == 1 ? <main>
-                        <h2 className='font-normal text-sm text-white mb-6'>{data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.description ?? ""}</h2>
+                                                     <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Objectives</h2>
+                        <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.description ?? ""}</h2>
                         {
                             (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).length != 0 ? <section className=''>
 
                                 {
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                                        <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-                                        <p key={index} className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
+                                        <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                        <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                     </div>)
                                 }
                             </section> : <></>
@@ -232,14 +234,15 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                     </main> : index == 2 ? < CourseScheduleComponent courseId={params.courseId[0]} /> : index == 3 ?
                         <main>
-                            <h2 className='font-normal text-sm text-white mb-6'>{data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.description ?? ""}</h2>
+                             <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Audience</h2>
+                            <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.description ?? ""}</h2>
                             {
                                 (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).length != 0 ? <section className=''>
 
                                     {
                                         (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                                            <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-                                            <p key={index} className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
+                                            <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                            <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                         </div>)
                                     }
                                 </section> : <></>
@@ -248,14 +251,15 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                         </main>
                         : index == 4 ?
                             <main>
-                                <h2 className='font-normal text-sm text-white mb-6'>{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
+                                 <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Prerequisites</h2>
+                                <h2 className='font-normal text-sm text-white mb-6 text-justify'>1.{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
                                 {
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).length != 0 ? <section className=''>
 
                                         {
                                             (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                                                <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-                                                <p key={index} className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
+                                                <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                                <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                             </div>)
                                         }
                                     </section> : <></>
@@ -266,11 +270,11 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                                 {
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((main: any, mainIndex: any) => <section key={mainIndex} className='mb-10'>
-                                        <h2 className='font-semibold text-2xl text-white mb-3'>{mainIndex + 1}. {main?.name ?? ""}</h2>
+                                        <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>{mainIndex + 1}. {main?.name ?? ""}</h2>
                                         {
-                                           ( main.moduleItems??[]).map((e: any, index: any) => <div key={e} className='w-full flex flex-row gap-2 '>
-                                                <p className='leading-6 font-normal text-sm text-white'>{mainIndex + 1}.{index + 1}.</p>
-                                                <p className='leading-6 font-normal text-sm text-white flex-1'>{e}</p>
+                                           ( main.moduleItems??[]).map((e: any, index: any) => <div key={e} className='w-full flex flex-row gap-2 text-justify'>
+                                                <p className='leading-6 font-normal text-sm text-white text-justify'>{mainIndex + 1}.{index + 1}.</p>
+                                                <p className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                             </div>)
                                         }
                                     </section>)

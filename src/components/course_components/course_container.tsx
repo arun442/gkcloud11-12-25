@@ -61,7 +61,7 @@ export default function CourseContainer() {
   const fetchCertificate = async () => {
     try {
       const result = await axiosPublic.get('/lms/certificate-course');
-      console.log("what is the result");
+      console.log("what is the result certificate");
       console.log(result.data);
       setCertificate(result.data.certificateCourses);
       setCertificateList(result.data.certificateCourses);

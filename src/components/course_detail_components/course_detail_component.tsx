@@ -252,7 +252,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                         : index == 4 ?
                             <main>
                                  <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Prerequisites</h2>
-                                <h2 className='font-normal text-sm text-white mb-6 text-justify'>1.{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
+                                <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
                                 {
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).length != 0 ? <section className=''>
 

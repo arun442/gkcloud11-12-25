@@ -16,9 +16,12 @@ import useUserData from '@/hooks/userData';
 import { useParams, useRouter } from 'next/navigation';
 import { axiosPrivate } from '@/common/axiosPrivate';
 import useTrainingMode from '@/hooks/training_mode_hook';
+import CertificateCourseCard from '../helpers/card/certificate_course_card_component';
 
 
 export default function CertificateDetailContainer({ data }: { data: any }) {
+    console.log("certification detail data");
+    console.log(data.CertificateCourseCostPlans[0].CertificateCourseItems.reduce((accumulator:any, currentValue:any) => parseFloat(accumulator?.CourseDuration?.courseDuration) + currentValue, 0));
     const { trainingData } = useTrainingMode();
     const router = useRouter();
     const [index, setIndex] = useState(0);
@@ -85,7 +88,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
 
                         className="text-blue h-8 w-8"
                         src="/learning_mode.svg" />
-                    <p className="text-white text-xl font-normal">{trainingData.filter((e) => e.trainingModeId == data.CertificateCourseCostPlans[0].CourseDuration.trainingModeId).length == 0 ? "" : trainingData.filter((e) => e.trainingModeId == data.CertificateCourseCostPlans[0].CourseDuration.trainingModeId)[0].trainingModeShortName}</p>
+                    <p className="text-white text-xl font-normal">{trainingData.filter((e) => e.trainingModeId == data.CertificateCourseCostPlans[0].trainingModeId).length == 0 ? "" : trainingData.filter((e) => e.trainingModeId == data.CertificateCourseCostPlans[0].trainingModeId)[0].trainingModeShortName}</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                     <img
@@ -93,7 +96,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                         className="text-blue h-8 w-8"
                         src="/Icon_clock.svg" />
 
-                    <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CourseDuration.courseDuration} {data.CertificateCourseCostPlans[0].CourseDuration.courseDurationType}</p>
+                    <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CertificateCourseItems.reduce((accumulator:any, currentValue:any) => parseFloat(currentValue?.CourseDuration?.courseDuration??"0.0") + accumulator, 0)} {"hours"}</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                     <img
@@ -131,8 +134,8 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                 <div className="w-full grid grid-cols-3 gap-6 mt-6">
 
                     {
-                        data.CertificateCourseItems.map((e: any, index: any) => {
-                            return <CourseCard showPrice={false} key={index} data={e.Courses[0]} />
+                      data.CertificateCourseCostPlans[0].CertificateCourseItems.map((e: any, index: any) => {
+                            return <CertificateCourseCard showPrice={false} key={index} data={e} />
                         })
                     }
 

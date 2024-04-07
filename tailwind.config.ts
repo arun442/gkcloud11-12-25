@@ -36,6 +36,9 @@ const config: Config = {
       poppins: ['var(--font-poppins)'],
     },
     extend: {
+      height: {
+        'home': 'calc(100vh - 200px)',
+      },
       spacing: {
         '128': '32rem',
         '144': '36rem',

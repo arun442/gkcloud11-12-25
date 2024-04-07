@@ -54,7 +54,7 @@ export default function HomePageMainContainer() {
 
   }, [query])
   return (
-    <main className="w-full flex-1 flex flex-col justify-center items-center">
+    <main className="w-full h-home flex flex-col justify-start items-center">
       <section className='w-full flex flex-row justify-end items-center gap-6'>
         <div className='relative z-10 w-[45%] flex justify-end text-5xl font-bold text-white text-start leading-[70px]'>Level Up<br />Your Skills </div>
         <TextTransition className='w-[55%] text-5xl mt-[68px]  font-bold text-start leading-[70px] text-blue' springConfig={presets.stiff}>{TEXTS[index % TEXTS.length]}</TextTransition>

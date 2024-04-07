@@ -27,9 +27,7 @@ body{
   font-family: 'Poppins';
   background-color: "#000520";
 }
-.calc-height {
-  height: calc(100vh - 200px); /* Example: 100vh minus 100px */
-}
+
 @property --num0 {
   syntax: '<integer>';
   initial-value: 0;

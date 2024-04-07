@@ -45,9 +45,9 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
     
     }
         }
-  return <div className=" cursor-pointer box-border  p-6  border flex flex-col justify-start items-start border-grey border-1 bg-dark_blue rounded-2xl">
+  return <div className="w-full cursor-pointer box-border  p-6  border flex flex-col justify-start items-start border-grey border-1 bg-dark_blue rounded-2xl">
 
-<div className='flex-1'>
+<div className='flex-1 w-full'>
   
 <h2 className="text-white text-lg font-medium">{data.title}</h2>
     <div className="w-full flex flex-row mt-6 items-center justify-between">
@@ -101,7 +101,7 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
   
         <h3 className=" text-base font-medium text-table_font">₹ {data.CourseCostPlans[0].offerPrice}/-</h3>
         <h3 className=" line-through text-base font-medium text-table_font">₹ {data.CourseCostPlans[0].planPrice}/-</h3>
-      </div>:  <div className="flex flex-row items-center">
+      </div>:  <div className="flex flex-row justify-center items-center">
   
   <h3 className="text-base font-medium text-table_font">₹ {data.CourseCostPlans[0].planPrice}/-</h3>
 

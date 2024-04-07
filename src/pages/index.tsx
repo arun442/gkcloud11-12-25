@@ -19,10 +19,7 @@ export default function Home() {
     >
     
     <Header/>
-      <div className="calc-height w-full ">
-     
     <HomePageMainContainer/>
-      </div>
    <ExploreCourseComponent/>
    <ClassesComponent/>
    <WhyUsComponent/>

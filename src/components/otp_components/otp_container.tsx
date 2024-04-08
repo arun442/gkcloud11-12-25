@@ -37,7 +37,7 @@ export default function OtpContainer() {
           "email": JSON.parse(registerData!).email,
         });
 
-        const addUserResult = await axiosPublic.post('/user/add-user', {
+        const addUserResult = await axiosPublic.post('/auth/add-user', {
           "email": JSON.parse(registerData!).email,
           "password": JSON.parse(registerData!).password,
           "roleId": 1,

@@ -20,8 +20,7 @@ export default function CourseScheduleComponent({ courseId }: { courseId: any })
                     courseId
                 }
             });
-            console.log("what is the result");
-            console.log(result.data);
+          
             setData(result.data.courses);
         } catch (error) {
 

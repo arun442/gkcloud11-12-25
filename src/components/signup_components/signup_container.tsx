@@ -11,6 +11,7 @@ import TextTransition, { presets } from 'react-text-transition';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { axiosPublic } from '@/common/axiosPublic';
+import { toast } from 'react-toastify'
 
 export default function SignUpContainer() {
     const [passwordType, setPasswordType] = useState("password");
@@ -57,15 +58,15 @@ export default function SignUpContainer() {
           "password":values.password,
           "name":values.name
       }));
-        console.log("what is the result");
+       
         setLoading(false);
-       console.log(result.data);
+     
         resetForm();
         router.push("/auth/otp");
         } catch (error:any) {
           setLoading(false);
           console.log(error);
-          alert(error!.message);
+          toast.error(error!.message);
         
         }
       },
@@ -134,7 +135,7 @@ export default function SignUpContainer() {
                         {...formik.getFieldProps('password')}
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
                     />
-                     <span className="absolute top-4 right-4" onClick={togglePassword}>
+                     <span className="absolute top-4 right-4 cursor-pointer" onClick={togglePassword}>
                           {passwordType == "password"?<EyeIcon className="text-blue h-4 w-4" />:<EyeSlashIcon className="text-blue h-4 w-4" />}
                         </span>
                         {formik.errors.password ? (

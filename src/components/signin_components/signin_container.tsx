@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import { axiosPublic } from '@/common/axiosPublic';
 import { useRouter } from 'next/navigation'
 import { EyeIcon, EyeSlashIcon,UserCircleIcon } from '@heroicons/react/20/solid'
+import { toast } from 'react-toastify';
 export default function SignInContainer() {
 
   const [passwordType, setPasswordType] = useState("password");
@@ -49,16 +50,22 @@ export default function SignInContainer() {
           "password":values.password
         
       });
+      console.log("what is the login data");
+      console.log(result.data);
       localStorage.setItem("session",JSON.stringify(result.data));
-      console.log("what is the result");
-      setLoading(false);
-     console.log(result.data);
-      resetForm();
+      
+     
+
+     
       router.push("/");
+   setTimeout(()=>{
+    setLoading(false);
+    resetForm();
+   },2000);
       }catch (error:any) {
         setLoading(false);
         console.log(error);
-        alert(error!.message);
+        toast.error(error!.message);
       
       }
     },
@@ -109,7 +116,7 @@ export default function SignInContainer() {
                      
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
                     />
-                      <span className="absolute top-4 right-4" onClick={togglePassword}>
+                      <span className="absolute top-4 right-4 cursor-pointer" onClick={togglePassword}>
                           {passwordType == "password"?<EyeIcon className="text-blue h-4 w-4" />:<EyeSlashIcon className="text-blue h-4 w-4" />}
                         </span>
                         {formik.errors.password ? (

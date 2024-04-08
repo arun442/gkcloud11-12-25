@@ -4,6 +4,7 @@ import { axiosPublic } from '@/common/axiosPublic';
 import { useState } from 'react';
 import classNames from '@/helpers/add_class';
 
+import { toast } from "react-toastify";
 export default function FormComponent({
     type
 }: { type: string }) {
@@ -72,14 +73,14 @@ export default function FormComponent({
 
 
                 setLoading(false);
-                alert("Form submitted successfully")
+                toast.success("Form submitted successfully")
                 console.log(result.data);
                 resetForm();
 
             } catch (error: any) {
                 setLoading(false);
                 console.log(error);
-                alert(error!.message);
+            toast.error(error!.message);
 
             }
         },
@@ -107,7 +108,7 @@ export default function FormComponent({
                             autoComplete="text"
                             placeholder='First Name'
                             required
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1  ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.firstName ? (
                             <div className="text-sm text-white mt-2 ml-2">{formik.errors.firstName}</div>
@@ -122,7 +123,7 @@ export default function FormComponent({
                             autoComplete="text"
                             placeholder='Last Name'
                             required
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.lastName ? (
                             <div className="text-sm text-white mt-2 ml-2">{formik.errors.lastName}</div>
@@ -139,7 +140,7 @@ export default function FormComponent({
                             autoComplete="text"
                             placeholder='Email'
                             required
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.email ? (
                             <div className="text-sm text-white mt-2 ml-2">{formik.errors.email}</div>
@@ -154,7 +155,7 @@ export default function FormComponent({
                             autoComplete="text"
                             placeholder='Phone Number'
                             required
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.phone ? (
                             <div className="text-sm text-white mt-2 ml-2">{formik.errors.phone}</div>
@@ -171,7 +172,7 @@ export default function FormComponent({
                             autoComplete="text"
                             placeholder='Country'
                             required
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.country ? (
                             <div className="text-sm text-white mt-2 ml-2">{formik.errors.country}</div>
@@ -186,7 +187,7 @@ export default function FormComponent({
                             autoComplete="text"
                             placeholder='City'
                             required
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.city ? (
                             <div className="text-sm text-white mt-2 ml-2">{formik.errors.city}</div>
@@ -204,7 +205,7 @@ export default function FormComponent({
                                 autoComplete="text"
                                 placeholder='Company Name'
                                 required
-                                className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                             />
                             {formik.errors.company ? (
                                 <div className="text-sm text-white mt-2 ml-2">{formik.errors.company}</div>
@@ -223,7 +224,7 @@ export default function FormComponent({
                             autoComplete="text"
                             placeholder='Address'
                             required
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.address ? (
                             <div className="text-sm text-white mt-2 ml-2">{formik.errors.address}</div>

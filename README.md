@@ -60,3 +60,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 10.filter UI-vishnu
 11.partner and technology -learning path
 
+
+import { toast } from "react-toastify";
+toast.info

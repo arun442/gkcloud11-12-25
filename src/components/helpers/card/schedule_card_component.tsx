@@ -4,6 +4,7 @@ import useUserData from '@/hooks/userData';
 import { MagnifyingGlassIcon, CalendarIcon } from '@heroicons/react/24/outline'
 import moment from 'moment';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 
 export default function ScheduleCard({ data,type }: { data: any,type:number }) {
@@ -13,10 +14,10 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
   const { trainingData } = useTrainingMode();
   const entroll=async()=>{
     if(selectedCat==null){
-      return alert("Please select the schedule");
+      return toast.info("Please select the schedule");
     }
     if(userData==null){
-        return alert("Before enrollment Please login");
+        return toast.info("Before enrollment Please login");
     }
     try {
         if (isLoading) {
@@ -41,7 +42,7 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
     } catch (error: any) {
         setLoading(false);
         console.log(error);
-        alert(error!.message);
+        toast.error(error!.message);
     
     }
         }

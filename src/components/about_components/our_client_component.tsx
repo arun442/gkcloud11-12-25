@@ -20,8 +20,7 @@ const OurClientAboutComponent: React.FC = () => {
   const fetchData = async () => {
     try {
       const result = await axiosPublic.get('/lms/feature-customer');
-      console.log("what is the result");
-      console.log(result.data);
+     
       setData(result.data.featuredCustomer);
     } catch (error) {
 

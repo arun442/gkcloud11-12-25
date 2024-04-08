@@ -14,8 +14,12 @@ import OurClientAboutComponent from './our_client_component';
 import imageHelper from '@/common/image_helper';
 import { useRouter } from 'next/router';
 import { Link } from 'react-alice-carousel';
+import { useSearchParams } from 'next/navigation';
 
 export default function AboutContainer() {
+  const searchParams = useSearchParams()
+
+  const queryIndex = searchParams.get('index');
   const items = [
     {
       index: 0,
@@ -41,7 +45,9 @@ export default function AboutContainer() {
 
   useEffect(() => {
     fetchData();
-
+if(queryIndex){
+  setIndex(parseInt(queryIndex));
+}
     return () => {
 
     }
@@ -110,13 +116,24 @@ export default function AboutContainer() {
 
 
   ];
-
+const router=useRouter();
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
 
+     <main className='w-full flex flex-row gap-6'>
+    
+      <section className='flex-1 flex flex-col justify-start items-start'>
+      <div className="flex flex-row gap-1 items-center">
+        <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
+
+          router.replace("/");
+        }}>Home</p>
+        <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
+        <p className="cursor-pointer text-text_grey_one text-base font-medium">About Us</p>
+      </div>
       <h1 className='font-semibold text-2xl mt-6 text-white'>About Us</h1>
-      <p className='mt-6 leading-6 font-normal text-[16px] text-white'>GK Cloud Solutions has created a brand in the Cloud space with specialization on Cloud Trainings across multiple brands and focusing more towards AI  with evocative approach as a Solution Provider supporting enterprises to consistently succeed in the evolving world space.</p>
+      <p className='text-justify mt-6 leading-6 font-normal text-[16px] text-white'>GK Cloud Solutions has created a brand in the Cloud space with specialization on Cloud Trainings across multiple brands and focusing more towards AI  with evocative approach as a Solution Provider supporting enterprises to consistently succeed in the evolving world space.</p>
 
       <h1 className='font-semibold text-2xl mt-6 text-white'></h1>
       <section className='flex flex-row items-start mt-3'>
@@ -128,6 +145,15 @@ export default function AboutContainer() {
           <p className="text-white text-lg font-normal">Download Company Profile</p>
         </Link>
       </section>
+      </section>
+      <section className='w-1/3 h-auto'>
+      <img
+
+className="object-contain mx-auto h-72"
+
+src="/about.png" />
+      </section>
+     </main>
       <section className="mx-auto box-border w-full  mt-20  border-none border-blue grid grid-cols-4   items-center rounded-full">
         {
           items.map((e, indexx) => <div key={indexx} className={classNames("cursor-pointer py-4  w-full box-border border flex flex-row items-center justify-center text-white text-lg font-semibold border-blue border-1 ", index == e.index ? "rounded-full bg-dark_blue" : "border-none rounded-none ")} onClick={(event) => {
@@ -138,7 +164,7 @@ export default function AboutContainer() {
 
       </section>
 
-      <main className='w-full mt-14'>
+      <main className='w-full mt-14 text-justify'>
         {
           data.length == 0 ? <></> : index == 0 ? <section>
                         <p className='leading-6 font-normal text-[16px] text-white mb-6'>GK Cloud Solutions established to fill the void in Technology Training, Services & Project Consulting.</p>

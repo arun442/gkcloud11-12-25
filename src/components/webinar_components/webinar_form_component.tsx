@@ -4,6 +4,7 @@ import { axiosPublic } from '@/common/axiosPublic';
 import { useState } from 'react';
 import classNames from '@/helpers/add_class';
 import useUserData from '@/hooks/userData';
+import { toast } from 'react-toastify';
 
 export default function WebinarFormComponent({
     data, closeModel
@@ -59,7 +60,7 @@ export default function WebinarFormComponent({
 
 
                 setLoading(false);
-                alert("Form submitted successfully")
+                toast.success("Form submitted successfully")
                 closeModel();
                 console.log(result.data);
                 resetForm();
@@ -67,7 +68,7 @@ export default function WebinarFormComponent({
             } catch (error: any) {
                 setLoading(false);
                 console.log(error);
-                alert(error!.message);
+                toast.error(error!.message);
                 closeModel();
 
             }

@@ -20,6 +20,7 @@ import useTrainingMode from '@/hooks/training_mode_hook';
 import { axiosPublic } from '@/common/axiosPublic';
 import ErrorBoundary from '@/helpers/error_boundary';
 
+import { toast } from "react-toastify";
 
 export default function CourseDetailContainer({ data }: { data: any }) {
     const { userData, } = useUserData();
@@ -29,7 +30,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
     const router = useRouter();
     const entroll = async () => {
         if (userData == null) {
-            return alert("Before enrollment Please login");
+            return toast.info("Before enrollment Please login");
         }
         try {
             if (isLoading) {
@@ -54,7 +55,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
         } catch (error: any) {
             setLoading(false);
             console.log(error);
-            alert(error!.message);
+            toast.error(error!.message);
 
         }
     }

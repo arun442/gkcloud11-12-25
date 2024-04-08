@@ -1,8 +1,9 @@
-import React, { Fragment, useState,useEffect } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import MainHeading from '../helpers/heading/main_heading'
 
 import imageHelper from '@/common/image_helper';
 import { axiosPublic } from '@/common/axiosPublic';
+import { useRouter } from 'next/router';
 
 
 
@@ -11,6 +12,7 @@ import { axiosPublic } from '@/common/axiosPublic';
 export default function OurClientComponent() {
 
   const [data, setData] = useState<any[]>([]);
+  const router=useRouter();
   useEffect(() => {
 
     fetchData();
@@ -20,38 +22,40 @@ export default function OurClientComponent() {
   const fetchData = async () => {
     try {
       const result = await axiosPublic.get('/lms/feature-customer');
-      console.log("what is the result");
-      console.log(result.data);
-      setData(result.data.featuredCustomer);
+ 
+      setData(result.data.featuredCustomer.filter((e: any, index: number) => index <= 6));
     } catch (error) {
 
     }
   }
 
-    return (
-        <main className='bg-dark_blue flex flex-row justify-center items-center rounded-lg p-16 gap-10'>
-            <h2 className='text-blue text-4xl font-bold'>Our<br/>Clientele</h2>
-           
-          <section className='flex-1 w-full flex flex-col items-center justify-center gap-10'>
-          <div className="w-full grid grid-cols-3 gap-6">
-            {
-      data.map((e: any,index) => {
-          return <div key={index} className="w-ful h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-xl">
-            <img
+  return (
+    <main className='bg-dark_blue flex flex-row justify-center items-center rounded-lg p-16 gap-10'>
+      <h2 className='text-blue text-4xl font-bold'>Our<br />Clientele</h2>
 
-              className="cursor-pointer object-contain max-w-full h-full w-full"
+      <section className='flex-1 w-full flex flex-col items-center justify-center gap-10'>
+        <div className="w-full grid grid-cols-3 gap-6">
+          {
+            data.map((e: any, index) => {
+              return <div key={index} className="w-ful h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-xl">
+                <img
 
-              src={imageHelper(e.Image.imageUrl)}
-              alt="link"
-            />
+                  className="cursor-pointer object-contain max-w-full h-full w-full"
 
-          </div>
-        })
-      }
+                  src={imageHelper(e.Image.imageUrl)}
+                  alt="link"
+                />
+
+              </div>
+            })
+          }
         </div>
-        {/* <div className='text-blue text-lg font-medium'>Show all</div> */}
-          </section>
-        </main>
-       
-    )
+        <div onClick={(e)=>{
+          e.preventDefault();
+         router.push("/about?index=3")
+        }} className='text-blue text-lg font-medium cursor-pointer'>Show all</div>
+      </section>
+    </main>
+
+  )
 }

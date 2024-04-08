@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import imageHelper from "@/common/image_helper";
 import { axiosPublic } from "@/common/axiosPublic";
+import { useRouter } from "next/router";
 
 
 const PartnerAboutComponent: React.FC = () => {
@@ -20,13 +21,13 @@ const PartnerAboutComponent: React.FC = () => {
   const fetchData = async () => {
     try {
       const result = await axiosPublic.get('/lms/partner');
-      console.log("what is the result");
-      console.log(result.data);
+      
       setPartners(result.data.partners);
     } catch (error) {
 
     }
   }
+  const router=useRouter();
   return (
 
 
@@ -34,7 +35,12 @@ const PartnerAboutComponent: React.FC = () => {
 
       {
         partners.map((e: any,index) => {
-          return <div key={index} className="w-60 h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
+          return <div onClick={(event)=>{
+            if (e.isEnabled == false) {
+              return;
+            }
+            router.push(`/course?type=partner&id=${e.partnerId}&name=${e.partnerName}`)
+          }} key={index} className="transform transition duration-500 hover:scale-110 w-full h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
             <img
 
               className="cursor-pointer object-contain max-w-full h-full w-full"

@@ -136,7 +136,7 @@ export default function Header() {
                                                 key={item.menuName}
                                                 href={item.menuUrl}
                                                 className={classNames(
-                                                    true ? ' text-white' : 'text-white hover:bg-gray-700 hover:text-white',
+                                                    pathname.includes(item.menuUrl) ? ' text-blue font-semibold' : 'text-white hover:bg-gray-700 hover:text-white',
                                                     ' rounded-md mx-10 py-2 text-sm font-medium'
                                                 )}
                                                 aria-current={true ? 'page' : undefined}

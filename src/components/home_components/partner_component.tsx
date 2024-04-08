@@ -22,8 +22,7 @@ const PartnerComponent: React.FC = () => {
   const fetchData = async () => {
     try {
       const result = await axiosPublic.get('/lms/partner');
-      console.log("what is the result");
-      console.log(result.data);
+   
       setPartners(result.data.partners);
     } catch (error) {
 
@@ -41,7 +40,7 @@ const PartnerComponent: React.FC = () => {
               return;
             }
             router.push(`/course?type=partner&id=${e.partnerId}&name=${e.partnerName}`)
-          }} key={index} className="cursor-pointer h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
+          }} key={index} className="transform transition duration-500 hover:scale-110 cursor-pointer h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
             <img
 
               className=" object-contain max-w-full h-full w-full"

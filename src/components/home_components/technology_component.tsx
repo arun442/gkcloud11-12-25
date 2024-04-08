@@ -31,7 +31,7 @@ function removeDuplicates(array:any, property:any) {
 const fetchData=async()=>{
   try {
     const result = await axiosPublic.get('/lms/course-category');
-   console.log("what is the result");
+  
   
 
 
@@ -50,7 +50,7 @@ const fetchData=async()=>{
 items.map((e:any,index)=>{
 return  <div onClick={()=>{
   router.push(`/course?type=technology&id=${e.categoryId}&name=${e.categoryName}`)
-}} key={index} className="cursor-pointer box-border  border h-32 flex flex-col p-4 justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
+}} key={index} className="transform transition duration-500 hover:scale-110 cursor-pointer box-border  border h-32 flex flex-col p-4 justify-center items-center border-blue border-1 bg-dark_blue rounded-lg">
 {/* <div className="flex-1">
 <img
 

@@ -5,6 +5,7 @@ import DialogueModel from '../helpers/popup/subscription_success_popup';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
 
 
@@ -46,7 +47,7 @@ export default function NewsLetterComponent() {
         resetForm();
       }catch (error:any) {
        
-        alert(error!.message);
+        toast.error(error!.message);
       
       }
     },

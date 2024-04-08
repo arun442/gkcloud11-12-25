@@ -29,8 +29,7 @@ export default function TestimonialComponent() {
   const fetchData = async () => {
     try {
       const result = await axiosPublic.get('/lms/testimonial');
-      console.log("what is the result");
-      console.log(result.data.testimonials);
+      
 
 
       setItems(result.data.testimonials);

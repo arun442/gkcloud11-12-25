@@ -25,6 +25,7 @@ const Footer: React.FC<FooterProps> = (props) => {
                 <Link
                     href="https://twitter.com/gkcs_India"
                     className=" mr-3"
+                    rel="noopener noreferrer" target="_blank"
                     >
                   <img
   
@@ -34,6 +35,7 @@ const Footer: React.FC<FooterProps> = (props) => {
                   <Link
                     href="https://www.instagram.com/gkcloud_solutions/"
                     className=" mr-3"
+                    rel="noopener noreferrer" target="_blank"
                     >
                   <img
   
@@ -57,6 +59,7 @@ const Footer: React.FC<FooterProps> = (props) => {
                   <Link
                     href="/"
                     className=" mr-3"
+                    rel="noopener noreferrer" target="_blank"
                     >
                   <img
   
@@ -68,6 +71,7 @@ const Footer: React.FC<FooterProps> = (props) => {
                   <Link
                     href="https://www.facebook.com/profile.php?id=61557901947109"
                     className=" mr-3"
+                    rel="noopener noreferrer" target="_blank"
                   >
                 <img
 
@@ -78,11 +82,12 @@ src="/Icon_facebool.svg" />
                 </div>
                 </div>
                 <section >
-      <Link href="/" >
+      <Link href="/"  >
                 <img
                                         className="h-14 w-auto mb-3"
                                         src="/logo.png"
                                         alt="Your Company"
+                                       
                                     />
                 </Link>
                 <div>

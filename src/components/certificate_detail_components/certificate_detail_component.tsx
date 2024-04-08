@@ -17,6 +17,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { axiosPrivate } from '@/common/axiosPrivate';
 import useTrainingMode from '@/hooks/training_mode_hook';
 import CertificateCourseCard from '../helpers/card/certificate_course_card_component';
+import { toast } from "react-toastify";
 
 
 export default function CertificateDetailContainer({ data }: { data: any }) {
@@ -30,7 +31,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
     const params = useParams();
     const entroll = async () => {
         if (userData == null) {
-            return alert("Before enrollment Please login");
+            return toast.info("Before enrollment Please login");
         }
         try {
             if (isLoading) {
@@ -55,7 +56,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
         } catch (error: any) {
             setLoading(false);
             console.log(error);
-            alert(error!.message);
+        toast.error(error!.message);
 
         }
     }
@@ -88,7 +89,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
 
                         className="text-blue h-8 w-8"
                         src="/learning_mode.svg" />
-                    <p className="text-white text-xl font-normal">{trainingData.filter((e) => e.trainingModeId == data.CertificateCourseCostPlans[0].trainingModeId).length == 0 ? "" : trainingData.filter((e) => e.trainingModeId == data.CertificateCourseCostPlans[0].trainingModeId)[0].trainingModeShortName}</p>
+                    <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CertificateCourseItems.length} Courses</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                     <img

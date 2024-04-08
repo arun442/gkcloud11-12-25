@@ -12,10 +12,14 @@ import classNames from '@/helpers/add_class';
 import { axiosPublic } from '@/common/axiosPublic';
 import ScheduleCard from '../helpers/card/schedule_card_component';
 import { useRouter } from 'next/navigation';
+import PartnerDropdown from '../course_components/partner_dropdown_component';
+import TechnologyDropdown from '../course_components/technology_dropdown_component';
+
 
 export default function ScheduleContainer() {
   const [index, setIndex] = useState(0);
-  const [data, setData] = useState<any[]>([]);
+  let [data, setData] = useState([]);
+  const [scheduleList, setScheduleData] = useState([]);
   const router = useRouter();
   useEffect(() => {
 
@@ -26,12 +30,49 @@ export default function ScheduleContainer() {
   const fetchData = async () => {
     try {
       const result = await axiosPublic.get('/lms/course-schedule');
-      console.log("what is the result");
-      console.log(result.data);
+
       setData(result.data.courses.filter((e: any) => e.CourseSchedules.length != 0));
+      setScheduleData(result.data.courses.filter((e: any) => e.CourseSchedules.length != 0));
     } catch (error) {
 
     }
+  }
+
+  const [partner, setPartner] = useState<any>(null);
+  const [technology, setTechnology] = useState<any>(null);
+
+
+  const filter = () => {
+  
+ data = scheduleList;
+
+
+    if (partner != null || technology != null ) {
+      if (partner != null) {
+        console.log("partner");
+        console.log(partner);
+        data =  data.filter((e:any) => {
+
+          return e.partnerId == partner?.partnerId
+        })
+      }
+      if (technology != null) {
+        data = data.filter((e:any) => {
+
+          return e.categoryId == technology?.categoryId
+        })
+      }
+     
+    }
+    setData( data);
+  }
+
+  const clearFilter = () => {
+    setData(scheduleList);
+  
+    setPartner(null);
+    setTechnology(null);
+  
   }
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
@@ -45,17 +86,22 @@ export default function ScheduleContainer() {
         <p className="text-text_grey_one text-base font-medium">Schedules</p>
       </div>
       <div className='w-full flex flex-row  items-center justify-between mt-3'>
-        {/* <h3 className='text-xl font-normal text-white'>All Courses</h3> */}
-        {/* <div className='flex-1 flex flex-row gap-5 justify-end'>
-          <SelectPartnerDropdown />
-          <SelectCourseDropdown />
-          <NormalBtn text={"Search"} onClick={(e: any) => {
+        <h3 className='text-xl font-normal text-white'>All Courses</h3>
+        <div className='flex-1 flex flex-row gap-5 justify-end'>
+          <PartnerDropdown data={partner} setData={setPartner} />
+          <TechnologyDropdown data={technology} setData={setTechnology} />
+
+          <NormalBtn text={"Filter"} onClick={(e: any) => {
+            e.preventDefault();
+            filter();
 
           }} />
-          <NormalBtn text={"Clear"} onClick={(e: any) => {
+          {partner != null || technology != null ? <NormalBtn text={"Clear"} onClick={(e: any) => {
+            e.preventDefault();
+            clearFilter();
 
-          }} />
-        </div> */}
+          }} /> : <></>}
+        </div>
       </div>
       {/* <div className={classNames("w-full cursor-pointer text-xl  flex flex-row mt-12 mb-12 justify-center items-center  gap-7")}>
         <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>

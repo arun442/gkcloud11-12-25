@@ -22,8 +22,7 @@ const router=  useRouter();
   const fetchData = async () => {
     try {
       const result = await axiosPublic.get('/lms/webinar');
-      console.log("what is the result");
-      console.log(result.data);
+    
       setData(result.data.webinar);
     } catch (error) {
 

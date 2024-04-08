@@ -8,6 +8,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/navigation'
 import { axiosPublic } from '@/common/axiosPublic';
+import { toast } from 'react-toastify';
 
 export default function OtpContainer() {
   const [isLoading, setLoading] = useState(false);
@@ -44,16 +45,15 @@ export default function OtpContainer() {
           "firstName": JSON.parse(registerData!).name,
         });
         localStorage.removeItem("register");
-        console.log("what is the result");
+   
         setLoading(false);
-        console.log(result.data);
-        console.log(addUserResult.data);
+       
         resetForm();
         router.push("/auth/signin");
       } catch (error: any) {
         setLoading(false);
         console.log(error);
-        alert(error!.message);
+        toast.error(error!.message);
 
       }
     },

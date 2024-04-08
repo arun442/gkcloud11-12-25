@@ -17,6 +17,9 @@ import { useRouter, useParams } from 'next/navigation';
 import useTrainingMode from '@/hooks/training_mode_hook';
 import { useSearchParams } from 'next/navigation'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import NormalBtn from '../helpers/buttons/normal_btn_component';
+import TrainingModeDropdown from './training_mode_dropdown_component';
+
 export default function CourseContainer() {
   const [index, setIndex] = useState(0);
   const [showImage, setShowImage] = useState(false);
@@ -38,9 +41,9 @@ export default function CourseContainer() {
     fetchCourse();
     fetchCertificate();
 
-if(id){
-  setShowImage(true);
-}
+    if (id) {
+      setShowImage(true);
+    }
 
 
   }, [])
@@ -48,8 +51,7 @@ if(id){
   const fetchCourse = async () => {
     try {
       const result = await axiosPublic.get('/lms/course');
-      console.log("what is the result");
-      console.log(result.data);
+
       setCourse(result.data.courses);
 
       setCourseList(result.data.courses)
@@ -64,8 +66,7 @@ if(id){
   const fetchCertificate = async () => {
     try {
       const result = await axiosPublic.get('/lms/certificate-course');
-      console.log("what is the result certificate");
-      console.log(result.data);
+
       setCertificate(result.data.certificateCourses);
       setCertificateList(result.data.certificateCourses);
     } catch (error) {
@@ -76,17 +77,14 @@ if(id){
   const [partner, setPartner] = useState<any>(null);
   const [technology, setTechnology] = useState<any>(null);
 
-  const { trainingData, isLoading } = useTrainingMode();
+  const [mode, setMode] = useState<any>(null);
 
   const filter = () => {
     console.log(trainingList);
     course = courseList;
 
-    if (trainingList.length == 0 && partner == null && technology == null) {
-      return;
-    }
-    console.log(course);
-    if (partner != null || technology != null) {
+   
+    if (partner != null || technology != null || mode != null) {
       if (partner != null) {
         console.log("partner");
         console.log(partner);
@@ -101,16 +99,16 @@ if(id){
           return e.categoryId == technology?.categoryId
         })
       }
+      if (mode != null) {
+        console.log("mode id");
+        console.log(mode?.trainingModeId);
+        course = course.filter((e) => {
 
+          return e.CourseCostPlans[0].trainingModeId == mode?.trainingModeId;
+        })
+      }
     }
-    if (trainingList.length != 0) {
-      setCourse(course.filter((e) => {
-
-        return trainingList.some((tran) => e.CourseCostPlans.map((coursePlan: any) => coursePlan.trainingModeId).includes(tran))
-      }))
-    } else {
-      setCourse(course);
-    }
+setCourse(course);
   }
 
   const clearFilter = () => {
@@ -118,6 +116,7 @@ if(id){
     setTrainingData([]);
     setPartner(null);
     setTechnology(null);
+    setMode(null);
     setQuery('');
   }
 
@@ -151,7 +150,7 @@ if(id){
         setCourse(courseList);
         return;
       }
-      setCourse(course.filter((e) => {
+      setCourse(courseList.filter((e) => {
 
         return e.title.toLowerCase().startsWith(query.toLowerCase());
       }))
@@ -160,7 +159,7 @@ if(id){
         setCertificate(certificateList);
         return;
       }
-      setCertificate(certificate.filter((e) => {
+      setCertificate(certificateList.filter((e) => {
 
         return e.title.toLowerCase().startsWith(query.toLowerCase());
       }))
@@ -181,7 +180,7 @@ if(id){
       </div>
 
       {
-        name != null && (name == "AI"||name=="Artificial Intelligence") ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
+        name != null && (name == "AI" || name == "Artificial Intelligence") ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
           <h2 className='text-3xl text-blue font-semibold'>Artificial Intelligence</h2>
 
           <div className=' object-cover w-full flex flex-row items-center justify-center'>
@@ -197,11 +196,11 @@ if(id){
           <div className=' object-cover w-full flex flex-row items-center justify-center'>
             <img
 
-              className="mx-auto h-128"
+              className="object-contain mx-auto h-128"
 
               src="/gcp.png" />
           </div>
-        </section> : name != null && (name == "Microsoft Azure"||name=="Microsoft") ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
+        </section> : name != null && (name == "Microsoft Azure" || name == "Microsoft") ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
           <h2 className='text-3xl text-blue font-semibold'>{name}</h2>
 
           <div className=' object-cover w-full flex flex-row items-center justify-center'>
@@ -229,62 +228,23 @@ if(id){
           <section className='mt-10 flex flex-row gap-6'>
             <PartnerDropdown data={partner} setData={setPartner} />
             <TechnologyDropdown data={technology} setData={setTechnology} />
-          </section>
-          <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10 opacity-25'></div>
-          <section className='mt-10 flex flex-row items-center gap-10'>
-            {
-              trainingData.map((e, index) => <div key={index} className='flex flex-row items-center gap-2'>
-                <input
-                  id={e.trainingModeId}
-                  name={`${e.trainingModeId}`}
-                  defaultValue={e.trainingModeId}
-                  value={e.trainingModeId}
-                  type="checkbox"
-                  checked={trainingList.some((data) => data == e.trainingModeId) ? true : false}
-                  onChange={(onChangeData: any) => {
-                    if (trainingList.some((data) => data == e.trainingModeId)) {
-                      setTrainingData((prev) => prev.filter((data) => data != e.trainingModeId));
-                    } else {
-                      setTrainingData((prev) => [...prev, e.trainingModeId]);
-                    }
-                    console.log(trainingList);
-
-
-                  }}
-                  defaultChecked={false}
-                  className={trainingList.some((data) => data == e.trainingModeId) ? "h-4 w-4 rounded border-custom_blue text-custom_blue focus:ring-custom_blue" : "h-4 w-4 rounded border-custom_grey text-custom_grey focus:ring-custom_grey"}
-                />
-
-                <h2 className="text-white text-sm font-medium">{e.trainingModeName}</h2>
-              </div>
-              )
-            }
-
-
-
-          </section>
-          <div className='h-[0.5px] mx-auto w-[95%] bg-blue mt-10 opacity-25'></div>
-          <section className='w-full flex flex-row items-center justify-center gap-8'>
-            <div onClick={(e: any) => {
+            <TrainingModeDropdown data={mode} setData={setMode} />
+            <NormalBtn text={"Filter"} onClick={(e: any) => {
               e.preventDefault();
               filter();
-              router.replace("/course");
-            }} className="cursor-pointer  box-border border mt-7  py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
-
-              <h3 className="text-blue text-lg font-medium">Filter</h3>
-            </div>
-            {
-              course.length != courseList.length ? <div onClick={(e: any) => {
-                e.preventDefault();
-              clearFilter();
+              if(name){
                 router.replace("/course");
-              }} className="cursor-pointer  box-border border  mt-7  py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
-
-                <h3 className="text-blue text-lg font-medium">Clear</h3>
-              </div> : null
-            }
-
+               }
+            }} />
+           {partner!=null||technology!=null||mode!=null? <NormalBtn text={"Clear"} onClick={(e: any) => {
+              e.preventDefault();
+              clearFilter();
+              if(name){
+                router.replace("/course");
+               }
+            }} />:<></>}
           </section>
+
         </div> : <></>
       }
       <section className='flex flex-col items-start justify-start'>
@@ -297,8 +257,11 @@ if(id){
             value={query}
             className="block w-full border-1 pl-10 rounded-full bg-dark_blue py-[15px] text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
             placeholder='Search'
-
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => {
+              console.log("What is the event target value");
+              console.log(event.target.value);
+              setQuery(event.target.value)
+            }}
           />
 
         </div>

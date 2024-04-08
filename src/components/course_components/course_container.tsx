@@ -19,6 +19,7 @@ import { useSearchParams } from 'next/navigation'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 export default function CourseContainer() {
   const [index, setIndex] = useState(0);
+  const [showImage, setShowImage] = useState(false);
   let [course, setCourse] = useState<any[]>([]);
   const [courseList, setCourseList] = useState<any[]>([]);
   const [certificate, setCertificate] = useState<any[]>([]);
@@ -37,7 +38,9 @@ export default function CourseContainer() {
     fetchCourse();
     fetchCertificate();
 
-
+if(id){
+  setShowImage(true);
+}
 
 
   }, [])
@@ -178,7 +181,7 @@ export default function CourseContainer() {
       </div>
 
       {
-        name != null && name == "AI" ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
+        name != null && (name == "AI"||name=="Artificial Intelligence") ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
           <h2 className='text-3xl text-blue font-semibold'>Artificial Intelligence</h2>
 
           <div className=' object-cover w-full flex flex-row items-center justify-center'>
@@ -186,7 +189,7 @@ export default function CourseContainer() {
 
               className="mx-auto h-128"
 
-              src="https://gate.amudhu.tech/images/technology/ai-technology-radar.png" />
+              src="/ai.png" />
           </div>
         </section> : type != null && type == "partner" && name != null && name == "Google Cloud" ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
           <h2 className='text-3xl text-blue font-semibold'>{name}</h2>
@@ -196,9 +199,9 @@ export default function CourseContainer() {
 
               className="mx-auto h-128"
 
-              src="/gcp.jpg" />
+              src="/gcp.png" />
           </div>
-        </section> : name != null && name == "Microsoft Azure" ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
+        </section> : name != null && (name == "Microsoft Azure"||name=="Microsoft") ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
           <h2 className='text-3xl text-blue font-semibold'>{name}</h2>
 
           <div className=' object-cover w-full flex flex-row items-center justify-center'>
@@ -206,7 +209,7 @@ export default function CourseContainer() {
 
               className="mx-auto h-96"
 
-              src="/azure.jpg" />
+              src="/azure.png" />
           </div>
         </section> : <></>
       }

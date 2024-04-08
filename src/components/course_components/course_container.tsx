@@ -268,6 +268,7 @@ if(id){
             <div onClick={(e: any) => {
               e.preventDefault();
               filter();
+              router.replace("/course");
             }} className="cursor-pointer  box-border border mt-7  py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
 
               <h3 className="text-blue text-lg font-medium">Filter</h3>
@@ -275,7 +276,8 @@ if(id){
             {
               course.length != courseList.length ? <div onClick={(e: any) => {
                 e.preventDefault();
-                clearFilter();
+              clearFilter();
+                router.replace("/course");
               }} className="cursor-pointer  box-border border  mt-7  py-3 px-12 border-blue border-1 bg-primary_color rounded-full">
 
                 <h3 className="text-blue text-lg font-medium">Clear</h3>

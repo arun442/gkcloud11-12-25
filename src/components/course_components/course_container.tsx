@@ -203,10 +203,10 @@ setCourse(course);
         </section> : name != null && (name == "Microsoft Azure" || name == "Microsoft") ? <section className='w-full mt-10 flex flex-col justify-start items-start gap-6'>
           <h2 className='text-3xl text-blue font-semibold'>{name}</h2>
 
-          <div className=' object-cover w-full flex flex-row items-center justify-center'>
+          <div className=' object-contain w-full flex flex-row items-center justify-center'>
             <img
 
-              className="mx-auto h-96"
+              className="mx-auto h-128"
 
               src="/azure.png" />
           </div>

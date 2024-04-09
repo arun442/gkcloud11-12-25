@@ -30,7 +30,7 @@ export default function OurClientComponent() {
   }
 
   return (
-    <main className='bg-dark_blue flex flex-row justify-center items-center rounded-lg p-16 gap-10'>
+    <main className='bg-dark_blue flex flex-row justify-center items-center rounded-lg p-16 gap-10 mt-24'>
       <h2 className='text-blue text-4xl font-bold'>Our<br />Clientele</h2>
 
       <section className='flex-1 w-full flex flex-col items-center justify-center gap-10'>

@@ -42,7 +42,7 @@ export default function TestimonialComponent() {
   const [sliderState, setsliderState] = React.useState(0);
 
   return (
-    <main className='w-full flex flex-col justify-center items-center gap-14'>
+    <main className='mt-24 w-full flex flex-col justify-center items-center gap-14'>
       <MainHeading text='What They Say About Courses' />
       <div className="w-full">
            

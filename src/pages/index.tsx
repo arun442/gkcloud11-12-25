@@ -15,7 +15,7 @@ import CookieConsent from "@/components/helpers/cookie";
 export default function Home() {
   return (
     <main
-      className={`relative max-w-7xl mx-auto  sm:px-20 xl:px-0 flex flex-col gap-24`}
+      className={`relative max-w-7xl mx-auto h-auto  sm:px-20 xl:px-0 flex flex-col`}
     >
     
     <Header/>

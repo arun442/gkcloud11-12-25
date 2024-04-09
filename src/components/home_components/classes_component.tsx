@@ -10,7 +10,7 @@ export default function ClassesComponent() {
 const {trainingData:data, isLoading}=useTrainingMode();
     
     return (
-        <main className="w-full grid grid-cols-4 gap-2">
+        <main className="w-full grid grid-cols-4 gap-2 mt-24">
 {
    data.map((e)=>{
         return <div key={e.trainingModeId} className='p-4 bg-dark_blue border-2  border-blue rounded-md h-[350px] flex flex-col justify-center gap-10'>

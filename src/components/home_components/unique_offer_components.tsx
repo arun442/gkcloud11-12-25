@@ -28,7 +28,7 @@ export default function UnqueOfferComponent() {
   }
 
   return (
-    <main className='flex flex-col justify-center items-center gap-14'>
+    <main className='flex flex-col justify-center items-center gap-14 mt-24'>
       <MainHeading text='GKCS Unique Offerings' />
       <section className=" w-full px-40  grid grid-cols-2 gap-4">
         {

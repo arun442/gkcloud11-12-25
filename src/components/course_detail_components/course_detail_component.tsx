@@ -123,7 +123,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                         className="text-blue h-8 w-8"
                         src="/learning_mode.svg" />
 
-                    <p className="text-white text-xl font-normal">{trainingData.filter((e) => e.trainingModeId == data.CourseDurations[0].trainingModeId).length == 0 ? "" : trainingData.filter((e) => e.trainingModeId == data.CourseDurations[0].trainingModeId)[0].trainingModeShortName}</p>
+                    <p className="text-white text-xl font-normal">{trainingData.filter((e) => e.trainingModeId == data.CourseCostPlans[0].trainingModeId).length == 0 ? "" : trainingData.filter((e) => e.trainingModeId == data.CourseCostPlans[0].trainingModeId)[0].trainingModeShortName}</p>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                     <img

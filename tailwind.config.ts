@@ -37,7 +37,7 @@ const config: Config = {
     },
     extend: {
       height: {
-        'home': 'calc(100vh - 200px)',
+        'home': 'calc(100vh - 96px)',
       },
       spacing: {
         '128': '32rem',

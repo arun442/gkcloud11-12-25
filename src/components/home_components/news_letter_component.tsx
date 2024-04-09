@@ -53,7 +53,7 @@ export default function NewsLetterComponent() {
     },
   });
     return (
-        <form onSubmit={formik.handleSubmit} className='flex flex-col justify-center items-center gap-14'>
+        <form onSubmit={formik.handleSubmit} className='my-24 flex flex-col justify-center items-center gap-14'>
             <MainHeading text='Subscribe to our Newsletter'/>
           <div>
           <div className="w-128 mx-auto flex flex-row  items-center justify-center relative">

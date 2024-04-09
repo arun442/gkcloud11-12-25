@@ -33,7 +33,7 @@ export default function WhyUsComponent() {
     ];
 
     return (
-        <main className='flex flex-col justify-center items-center gap-14'>
+        <main className='flex flex-col justify-center items-center gap-14 mt-24'>
             <MainHeading text='Why Us'/>
             <section className=" w-full px-14  grid grid-cols-4 gap-2">
 {

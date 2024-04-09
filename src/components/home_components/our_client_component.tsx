@@ -23,7 +23,7 @@ export default function OurClientComponent() {
     try {
       const result = await axiosPublic.get('/lms/feature-customer');
  
-      setData(result.data.featuredCustomer.filter((e: any, index: number) => index <= 6));
+      setData(result.data.featuredCustomer.filter((e: any, index: number) => index < 6));
     } catch (error) {
 
     }

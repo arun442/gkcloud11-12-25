@@ -23,24 +23,18 @@ const Footer: React.FC<FooterProps> = (props) => {
                 </h4>
                 <div className="flex items-center">
                 <Link
-                    href="https://twitter.com/gkcs_India"
+                    href="https://www.linkedin.com/company/gk-cloud-solutions/"
                     className=" mr-3"
                     rel="noopener noreferrer" target="_blank"
                     >
-                  <img
-  
-  className="text-white h-8 w-8"
-  src="/Icon_linkedIn.svg" />
+                  <img   className="text-white h-8 w-8"   src="/Icon_linkedIn.svg" />
                   </Link>
                   <Link
-                    href="https://www.instagram.com/gkcloud_solutions/"
+                    href=" https://www.instagram.com/gkcloud_solutions/"
                     className=" mr-3"
                     rel="noopener noreferrer" target="_blank"
                     >
-                  <img
-  
-  className="text-white h-8 w-8"
-  src="/Icon_insta.svg" />
+                  <img   className="text-white h-8 w-8"   src="/Icon_insta.svg" />
                   </Link>
                   {/* <Link
                     href="javascript:void(0)"
@@ -57,14 +51,11 @@ const Footer: React.FC<FooterProps> = (props) => {
                     </svg>
                   </Link> */}
                   <Link
-                    href="/"
+                    href="https://www.youtube.com/channel/UCVPhohbPQ2OzZcXBKCrLgUA"
                     className=" mr-3"
                     rel="noopener noreferrer" target="_blank"
                     >
-                  <img
-  
-  className="text-white h-8 w-8"
-  src="/Icon_youtube.svg" />
+                  <img   className="text-white h-8 w-8"   src="/Icon_youtube.svg" />
                   </Link>
 
 
@@ -73,12 +64,18 @@ const Footer: React.FC<FooterProps> = (props) => {
                     className=" mr-3"
                     rel="noopener noreferrer" target="_blank"
                   >
-                <img
-
-className="text-white h-8 w-8"
-src="/Icon_facebool.svg" />
+                <img className="text-white h-8 w-8" src="/Icon_facebool.svg" />
 
                   </Link>
+                  <Link
+                    href=" https://twitter.com/gkcs_India"
+                    className=" mr-3"
+                    rel="noopener noreferrer" target="_blank"
+                  >
+                <img className="text-white h-8 w-8" src="/Icon fa-brands-x-twitter.png" />
+
+                  </Link>
+                 
                 </div>
                 </div>
                 <section >

@@ -23,14 +23,14 @@ const Footer: React.FC<FooterProps> = (props) => {
                 </h4>
                 <div className="flex items-center">
                 <Link
-                    href="https://www.linkedin.com/company/gk-cloud-solutions/"
+                    href="https://www.linkedin.com/company/gk-cloud-solutions"
                     className=" mr-3"
                     rel="noopener noreferrer" target="_blank"
                     >
                   <img   className="text-white h-8 w-8"   src="/Icon_linkedIn.svg" />
                   </Link>
                   <Link
-                    href=" https://www.instagram.com/gkcloud_solutions/"
+                    href="https://www.instagram.com/gkcloud_solutions"
                     className=" mr-3"
                     rel="noopener noreferrer" target="_blank"
                     >
@@ -68,7 +68,7 @@ const Footer: React.FC<FooterProps> = (props) => {
 
                   </Link>
                   <Link
-                    href=" https://twitter.com/gkcs_India"
+                    href="https://twitter.com/gkcs_India"
                     className=" mr-3"
                     rel="noopener noreferrer" target="_blank"
                   >

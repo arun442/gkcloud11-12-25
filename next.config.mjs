@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'gate.amudhu.tech',
+        hostname: 'i.gkcloud.ai',
        
       },
     ],

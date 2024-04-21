@@ -34,9 +34,9 @@ export default function UnqueOfferComponent() {
         {
 
           items.map((e: any) => {
-            return <div key={e.serviceTitle} className='mx-auto box-border border flex flex-col justify-center gap-8 h-auto lg:h-[200px]    p-6 border-blue border-1 bg-dark_blue  rounded-md '>
+            return <div key={e.serviceTitle} className='mx-auto box-border border flex flex-col justify-center gap-8 h-auto    p-6 border-blue border-1 bg-dark_blue  rounded-md '>
               <h3 className='text-xl font-medium text-center text-white'>{e.serviceTitle}</h3>
-              <p className='text-sm text-white'>{e.serviceDescription}</p>
+              <p className='text-sm flex-1 text-white'>{e.serviceDescription}</p>
             </div>
           })
 

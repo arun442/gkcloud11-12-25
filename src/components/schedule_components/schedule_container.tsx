@@ -67,6 +67,13 @@ export default function ScheduleContainer() {
     setData( data);
   }
 
+  useEffect(() => {
+   
+  filter();
+   
+  }, [partner,technology])
+  
+
   const clearFilter = () => {
     setData(scheduleList);
   
@@ -91,11 +98,11 @@ export default function ScheduleContainer() {
           <PartnerDropdown data={partner} setData={setPartner} />
           <TechnologyDropdown data={technology} setData={setTechnology} />
 
-          <NormalBtn text={"Filter"} onClick={(e: any) => {
+          {/* <NormalBtn text={"Filter"} onClick={(e: any) => {
             e.preventDefault();
             filter();
 
-          }} />
+          }} /> */}
           {partner != null || technology != null ? <NormalBtn text={"Clear"} onClick={(e: any) => {
             e.preventDefault();
             clearFilter();
@@ -103,16 +110,7 @@ export default function ScheduleContainer() {
           }} /> : <></>}
         </div>
       </div>
-      {/* <div className={classNames("w-full cursor-pointer text-xl  flex flex-row mt-12 mb-12 justify-center items-center  gap-7")}>
-        <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>
-          Week Days
-        </div>
-        <div className='h-6 w-[1px] rounded-lg bg-grey'></div>
-        <div className={index != 1 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(1)}>
-          Weekend
-        </div>
-
-      </div> */}
+     
 
       <div className="w-full grid grid-cols-2 gap-6 mt-8">
 

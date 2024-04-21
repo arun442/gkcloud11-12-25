@@ -53,7 +53,7 @@ export default function TestimonialComponent() {
              
              responsive={{
                0: { items: 1 },
-               550: { items: 1 },
+               550: { items: 2 },
                1050: { items: 3 },
              }}
              onSlideChanged={(e) => {

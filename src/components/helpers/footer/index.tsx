@@ -15,7 +15,7 @@ const Footer: React.FC<FooterProps> = (props) => {
   return (
     <>
 
-    <footer className="w-full flex flex-row justify-between">
+    <footer className="w-full flex flex-col gap-10 md:gap-0 md:flex-row justify-between">
       
       <div className="flex-1">
                 <h4 className="mb-4 text-lg font-semibold text-white">
@@ -24,22 +24,22 @@ const Footer: React.FC<FooterProps> = (props) => {
                 <div className="flex items-center">
                 <Link
                     href="https://twitter.com/gkcs_India"
-                    className=" mr-3"
+                    className=" mr-3 h-8 w-8"
                     rel="noopener noreferrer" target="_blank"
                     >
                   <img
   
-  className="text-white h-8 w-8"
+  className="text-white h-8 w-8 object-fill"
   src="/Icon_linkedIn.svg" />
                   </Link>
                   <Link
                     href="https://www.instagram.com/gkcloud_solutions/"
-                    className=" mr-3"
+                    className=" mr-3 h-8 w-8"
                     rel="noopener noreferrer" target="_blank"
                     >
                   <img
   
-  className="text-white h-8 w-8"
+  className="text-white h-8 w-8 object-fill"
   src="/Icon_insta.svg" />
                   </Link>
                   {/* <Link
@@ -58,25 +58,26 @@ const Footer: React.FC<FooterProps> = (props) => {
                   </Link> */}
                   <Link
                     href="/"
-                    className=" mr-3"
+                    className=" mr-3 h-10 w-10"
                     rel="noopener noreferrer" target="_blank"
                     >
                   <img
   
-  className="text-white h-8 w-8"
+  className="text-white h-10 w-10 object-fill"
   src="/Icon_youtube.svg" />
                   </Link>
 
 
                   <Link
                     href="https://www.facebook.com/profile.php?id=61557901947109"
-                    className=" mr-3"
+                    className=" mr-3 h-8 w-8"
                     rel="noopener noreferrer" target="_blank"
                   >
                 <img
 
-className="text-white h-8 w-8"
-src="/Icon_facebool.svg" />
+className="text-white h-8 w-8 object-fill"
+src="/Icon_facebool.svg" 
+/>
 
                   </Link>
                 </div>
@@ -112,7 +113,7 @@ src="/Icon_facebool.svg" />
   
   className="text-white h-5 w-5"
   src="/footer_email.svg" />
-   <p className="text-xs text-white mt-1 flex">support@gkcloud.ai</p>
+   <a href= "mailto: support@gkcloud.ai" className="text-xs text-white mt-1 flex">support@gkcloud.ai</a>
   </div>
  
 </div>
@@ -122,7 +123,7 @@ src="/Icon_facebool.svg" />
       <section>
       </section>
     </footer>
-      <div className="flex flex-row items-center justify-center text-white text-base">
+      <div className="flex flex-row items-center justify-center text-white text-base mt-5">
       © Copyright GK Cloud Solutions Pvt Ltd 2024. All rights reserved.
       </div>
     </>

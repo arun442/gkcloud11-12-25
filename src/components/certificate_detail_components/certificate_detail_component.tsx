@@ -18,11 +18,11 @@ import { axiosPrivate } from '@/common/axiosPrivate';
 import useTrainingMode from '@/hooks/training_mode_hook';
 import CertificateCourseCard from '../helpers/card/certificate_course_card_component';
 import { toast } from "react-toastify";
+import hideDuration from '@/helpers/hide_duration';
 
 
 export default function CertificateDetailContainer({ data }: { data: any }) {
-    console.log("certification detail data");
-    console.log(data.CertificateCourseCostPlans[0].CertificateCourseItems.reduce((accumulator:any, currentValue:any) => parseFloat(accumulator?.CourseDuration?.courseDuration) + currentValue, 0));
+   
     const { trainingData } = useTrainingMode();
     const router = useRouter();
     const [index, setIndex] = useState(0);
@@ -91,14 +91,17 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
                         src="/learning_mode.svg" />
                     <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CertificateCourseItems.length} Courses</p>
                 </div>
-                <div className="flex flex-row gap-3 items-center">
-                    <img
-
-                        className="text-blue h-8 w-8"
-                        src="/Icon_clock.svg" />
-
-                    <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CertificateCourseItems.reduce((accumulator:any, currentValue:any) => parseFloat(currentValue?.CourseDuration?.courseDuration??"0.0") + accumulator, 0)} {"hours"}</p>
-                </div>
+                {
+                     hideDuration(data.partnerId,data.categoryId)?<></>:   <div className="flex flex-row gap-3 items-center">
+                     <img
+ 
+                         className="text-blue h-8 w-8"
+                         src="/Icon_clock.svg" />
+ 
+                     <p className="text-white text-xl font-normal">{Math.round(data.CertificateCourseCostPlans[0].CertificateCourseItems.reduce((accumulator:any, currentValue:any) => parseFloat(currentValue?.CourseDuration?.courseDuration??"0.0") + accumulator, 0))} {"hours"}</p>
+                 </div>
+                }
+              
                 <div className="flex flex-row gap-3 items-center">
                     <img
 
@@ -107,9 +110,9 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
 
                     {
                         data.CertificateCourseCostPlans.length != 0 && data.CertificateCourseCostPlans[0].offerId != null  &&data.CertificateCourseCostPlans[0].offerPrice>0 ? <div className='flex flex-row'>
-                            <p className="text-white text-xl font-normal">₹ {data.CertificateCourseCostPlans[0].offerPrice}/-</p>
-                            <p className="text-white text-xl line-through font-normal">₹ {data.CertificateCourseCostPlans[0].planPrice}/-</p>
-                        </div> : <p className="text-white text-xl font-normal">₹ {data.CertificateCourseCostPlans[0].planPrice}/-</p>
+                            <p className="text-white text-xl font-normal">₹ {Math.round(data.CertificateCourseCostPlans[0].offerPrice)}/-</p>
+                            <p className="text-white text-xl line-through font-normal">₹ {Math.round(data.CertificateCourseCostPlans[0].planPrice)}/-</p>
+                        </div> :Math.round(data.CertificateCourseCostPlans[0].planPrice)<1?<></>: <p className="text-white text-xl font-normal">₹ {Math.round(data.CertificateCourseCostPlans[0].planPrice)}/-</p>
                     }
                 </div>
             </section>

@@ -56,7 +56,7 @@ export default function NewsLetterComponent() {
         <form onSubmit={formik.handleSubmit} className='my-24 flex flex-col justify-center items-center gap-14'>
             <MainHeading text='Subscribe to our Newsletter'/>
           <div>
-          <div className="w-128 mx-auto flex flex-row  items-center justify-center relative">
+          <div className="w-full md:w-128 mx-auto flex flex-col md:flex-row md:gap-0 gap-5  items-center justify-center  md:relative">
          
          <input
         {...formik.getFieldProps('email')}
@@ -65,7 +65,7 @@ export default function NewsLetterComponent() {
        
            className="block pl-6 w-full text-white border-1 pr-40 rounded-full bg-dark_blue h-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
          />
-         <button type='submit'    className='cursor-pointer absolute right-0 top-0 bottom-0 h-12 w-40 bg-blue rounded-full text-white text-sm font-medium flex flex-row items-center justify-center'>Subscribe</button>
+         <button type='submit'    className='cursor-pointer md:absolute right-0 top-0 bottom-0 h-12 w-40 bg-blue rounded-full text-white text-sm font-medium flex flex-row items-center justify-center'>Subscribe</button>
        </div>
        {formik.errors.email ? (
                    <div className="text-sm text-white mt-2 ml-2">{formik.errors.email}</div>

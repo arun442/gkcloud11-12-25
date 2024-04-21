@@ -21,6 +21,7 @@ import { axiosPublic } from '@/common/axiosPublic';
 import ErrorBoundary from '@/helpers/error_boundary';
 
 import { toast } from "react-toastify";
+import hideDuration from '@/helpers/hide_duration';
 
 export default function CourseDetailContainer({ data }: { data: any }) {
     const { userData, } = useUserData();
@@ -125,13 +126,16 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                     <p className="text-white text-xl font-normal">{trainingData.filter((e) => e.trainingModeId == data.CourseCostPlans[0].trainingModeId).length == 0 ? "" : trainingData.filter((e) => e.trainingModeId == data.CourseCostPlans[0].trainingModeId)[0].trainingModeShortName}</p>
                 </div>
-                <div className="flex flex-row gap-3 items-center">
-                    <img
+           {
+            hideDuration(data.partnerId,data.categoryId)?<></>:   <div className="flex flex-row gap-3 items-center">
+            <img
 
-                        className="text-blue h-8 w-8"
-                        src="/Icon_clock.svg" />
-                    <p className="text-white text-xl font-normal">{data.CourseDurations[0].courseDuration} {data.CourseDurations[0].courseDurationType}</p>
-                </div>
+                className="text-blue h-8 w-8"
+                src="/Icon_clock.svg" />
+            <p className="text-white text-xl font-normal">{Math.round(data.CourseDurations[0].courseDuration)} {data.CourseDurations[0].courseDurationType}</p>
+        </div>
+           }     
+               
                 <div className="flex flex-row gap-3 items-center">
                     <img
 
@@ -139,9 +143,9 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                         src="/rubee_icon.svg" />
                     {
                         data.CourseCostPlans.length != 0 && data.CourseCostPlans[0].offerId != null &&data.CourseCostPlans[0].offerPrice>0? <div className='flex flex-row'>
-                            <p className="text-white text-xl font-normal">₹ {data.CourseCostPlans[0].offerPrice}/-</p>
-                            <p className="text-white line-through text-xl font-normal">₹ {data.CourseCostPlans[0].planPrice}/-</p>
-                        </div> : <p className="text-white text-xl font-normal">₹ {data.CourseCostPlans[0].planPrice}/-</p>
+                            <p className="text-white text-xl font-normal">₹ {Math.round(data.CourseCostPlans[0].offerPrice)}/-</p>
+                            <p className="text-white line-through text-xl font-normal">₹ {Math.round(data.CourseCostPlans[0].planPrice)}/-</p>
+                        </div> :Math.round(data.CourseCostPlans[0].planPrice)<1?<></>: <p className="text-white text-xl font-normal">₹ {Math.round(data.CourseCostPlans[0].planPrice)}/-</p>
                     }
                 </div>
             </section>

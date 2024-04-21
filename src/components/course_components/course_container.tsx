@@ -80,11 +80,12 @@ export default function CourseContainer() {
   const [mode, setMode] = useState<any>(null);
 
   const filter = () => {
-    console.log(trainingList);
-    course = courseList;
-
    
+  
+
+
     if (partner != null || technology != null || mode != null) {
+      course = courseList;
       if (partner != null) {
         console.log("partner");
         console.log(partner);
@@ -107,9 +108,14 @@ export default function CourseContainer() {
           return e.CourseCostPlans[0].trainingModeId == mode?.trainingModeId;
         })
       }
+      setCourse(course);
+     
     }
-setCourse(course);
+   
   }
+useEffect(() => {
+ filter();
+}, [partner,technology,mode])
 
   const clearFilter = () => {
     setCourse(courseList);
@@ -152,7 +158,7 @@ setCourse(course);
       }
       setCourse(courseList.filter((e) => {
 
-        return e.title.toLowerCase().startsWith(query.toLowerCase());
+        return e.title.toLowerCase().includes(query.toLowerCase()) || e.courseCode.toLowerCase().includes(query.toLowerCase());
       }))
     } else {
       if (query == '') {
@@ -161,12 +167,12 @@ setCourse(course);
       }
       setCertificate(certificateList.filter((e) => {
 
-        return e.title.toLowerCase().startsWith(query.toLowerCase());
+        return e.title.toLowerCase().includes(query.toLowerCase());
       }))
     }
   }, [query])
+  const [loadMore, setLoadMore] = useState(9);
 
-  //  ||
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
@@ -213,11 +219,17 @@ setCourse(course);
         </section> : <></>
       }
       <div className={classNames("w-full cursor-pointer text-2xl  flex flex-row mt-12 mb-12 justify-center items-center  gap-7")}>
-        <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>
+        <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => {
+          setLoadMore(9);
+          setIndex(0)
+        }}>
           Courses Library
         </div>
         <div className='h-6 w-[1px] rounded-lg bg-grey'></div>
-        <div className={index != 1 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(1)}>
+        <div className={index != 1 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => {
+          setIndex(1)
+          setLoadMore(9);
+        }}>
           Certifications
         </div>
 
@@ -229,20 +241,18 @@ setCourse(course);
             <PartnerDropdown data={partner} setData={setPartner} />
             <TechnologyDropdown data={technology} setData={setTechnology} />
             <TrainingModeDropdown data={mode} setData={setMode} />
-            <NormalBtn text={"Filter"} onClick={(e: any) => {
+            {/* <NormalBtn text={"Filter"} onClick={(e: any) => {
               e.preventDefault();
               filter();
-              if(name){
-                router.replace("/course");
-               }
-            }} />
-           {partner!=null||technology!=null||mode!=null? <NormalBtn text={"Clear"} onClick={(e: any) => {
+            
+            }} /> */}
+            {partner != null || technology != null || mode != null ? <NormalBtn text={"Clear"} onClick={(e: any) => {
               e.preventDefault();
               clearFilter();
-              if(name){
+              if (name) {
                 router.replace("/course");
-               }
-            }} />:<></>}
+              }
+            }} /> : <></>}
           </section>
 
         </div> : <></>
@@ -258,8 +268,7 @@ setCourse(course);
             className="block w-full border-1 pl-10 rounded-full bg-dark_blue py-[15px] text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
             placeholder='Search'
             onChange={(event) => {
-              console.log("What is the event target value");
-              console.log(event.target.value);
+
               setQuery(event.target.value)
             }}
           />
@@ -271,7 +280,7 @@ setCourse(course);
 
           {
             course.map((e: any, index) => {
-              return <CourseCard showPrice={true} key={index} data={e} />
+              return (index + 1) > loadMore ? <></> : <CourseCard showPrice={true} key={index} data={e} />
             })
           }
 
@@ -282,7 +291,7 @@ setCourse(course);
 
           {
             certificate.map((e: any, index) => {
-              return <CertificateCard key={index} data={e} />
+              return (index + 1) > loadMore ? <></> : <CertificateCard key={index} data={e} />
             })
           }
 
@@ -291,6 +300,15 @@ setCourse(course);
 
         </div>
       }
+      <section className='w-full my-10 flex flex-row items-center justify-center'>
+
+        {
+          loadMore >= (index == 0 ? courseList.length : certificateList.length) ? <></> : <NormalBtn text={"Load More"} onClick={(e: any) => {
+            e.preventDefault();
+            setLoadMore(loadMore + 9);
+          }} />
+        }
+      </section>
     </main>
   )
 }

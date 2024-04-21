@@ -31,7 +31,7 @@ const PartnerComponent: React.FC = () => {
   return (
 
 
-    <div className="w-full grid gap-4 grid-cols-5">
+    <div className="w-full grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
 
       {
         partners.map((e: any, index) => {

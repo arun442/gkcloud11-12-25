@@ -35,7 +35,7 @@ export default function WhyUsComponent() {
     return (
         <main className='flex flex-col justify-center items-center gap-14 mt-24'>
             <MainHeading text='Why Us'/>
-            <section className=" w-full px-14  grid grid-cols-4 gap-2">
+            <section className=" w-full  lg:px-14  grid grid-cols-2 lg:grid-cols-4 gap-2">
 {
     items.map((e)=>{
         return <div key={e.title} className='flex flex-col justify-center items-center'>

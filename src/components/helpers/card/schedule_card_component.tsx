@@ -1,11 +1,11 @@
 import { axiosPrivate } from '@/common/axiosPrivate';
+import hideDuration from '@/helpers/hide_duration';
 import useTrainingMode from '@/hooks/training_mode_hook';
 import useUserData from '@/hooks/userData';
 import { MagnifyingGlassIcon, CalendarIcon } from '@heroicons/react/24/outline'
 import moment from 'moment';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-
 
 export default function ScheduleCard({ data,type }: { data: any,type:number }) {
   const { userData,} = useUserData();
@@ -53,10 +53,15 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
 <h2 className="text-white text-lg font-medium">{data.title}</h2>
     <div className="w-full flex flex-row mt-6 items-center justify-between">
       <p className="text-text_grey_one text-[12px] font-normal">{data.courseCode}</p>
-      <div className='flex-1 flex flex-row items-center justify-end gap-2'>
-        <CalendarIcon className="text-text_grey_one h-4 w-4" />
-        <p className="text-text_grey_one text-[12px] font-normal"> {data.CourseDurations[0].courseDuration} Days</p>
-      </div>
+      {
+         hideDuration(data.partnerId,data.categoryId)?<></>:<div className='flex-1 flex flex-row items-center justify-end gap-2'>
+         <CalendarIcon className="text-text_grey_one h-4 w-4" />
+    
+     <p className="text-text_grey_one text-[12px] font-normal"> {Math.round(data.CourseDurations[0].courseDuration)} Days</p>
+         
+       </div>
+      }
+      
 
     </div>
     <table className="border-collapse border-[0.25px] border-text_grey_one  mt-6 w-full">
@@ -100,11 +105,11 @@ export default function ScheduleCard({ data,type }: { data: any,type:number }) {
    ?    
     <div className="flex flex-col justify-center items-center">
   
-        <h3 className=" text-base font-medium text-table_font">₹ {data.CourseCostPlans[0].offerPrice}/-</h3>
-        <h3 className=" line-through text-base font-medium text-table_font">₹ {data.CourseCostPlans[0].planPrice}/-</h3>
-      </div>:  <div className="flex flex-row justify-center items-center">
+        <h3 className=" text-base font-medium text-table_font">₹ {Math.round(data.CourseCostPlans[0].offerPrice)}/-</h3>
+        <h3 className=" line-through text-base font-medium text-table_font">₹ {Math.round(data.CourseCostPlans[0].planPrice)}/-</h3>
+      </div>:Math.round(data.CourseCostPlans[0].planPrice)<1?<></>:  <div className="flex flex-row justify-center items-center">
   
-  <h3 className="text-base font-medium text-table_font">₹ {data.CourseCostPlans[0].planPrice}/-</h3>
+  <h3 className="text-base font-medium text-table_font">₹ {Math.round(data.CourseCostPlans[0].planPrice)}/-</h3>
 
 </div>
     }</td>

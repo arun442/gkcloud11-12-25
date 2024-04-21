@@ -1,4 +1,6 @@
+import hideDuration from '@/helpers/hide_duration';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { Metamorphous } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 
 
@@ -21,25 +23,30 @@ export default function CourseCard({data,showPrice}:{data:any,showPrice:boolean}
       </div> */}
      </div>
       <h2 className="text-white text-xl font-medium">{data.title}</h2>
-      <div className="flex flex-row gap-1 mt-2 items-center">
-      <img
-                                   
-                                   className="text-text_grey_one h-4 w-4"
-                                   src="/Icon_clock.svg"/>
+      {
+         hideDuration(data.partnerId,data.categoryId)?<></>: <div className="flex flex-row gap-1 mt-2 items-center">
+         <img
+                                      
+                                      className="text-text_grey_one h-4 w-4"
+                                      src="/Icon_clock.svg"/>
+        
+          
+           <p className="text-text_grey_one text-base font-normal">{Math.round(data.CourseDurations[0].courseDuration)} {data.CourseDurations[0].courseDurationType}</p>
+          
+         </div>
+      }
      
-        <p className="text-text_grey_one text-base font-normal">{data.CourseDurations[0].courseDuration} {data.CourseDurations[0].courseDurationType}</p>
-      </div>
   </section>
  {
   showPrice==true?  <>
   {
  data.CourseCostPlans.length!=0&& data.CourseCostPlans[0].offerId!=null &&data.CourseCostPlans[0].offerPrice>0?     <div className="mx-auto box-border border flex flex-row gap-3 mt-7 items-center p-3  border-blue border-1 bg-primary_color rounded-2xl">
  
-       <h3 className="text-blue text-lg font-medium">₹ {data.CourseCostPlans[0].offerPrice}/-</h3>
-       <h3 className="text-text_grey_one line-through text-lg font-normal">₹ {data.CourseCostPlans[0].planPrice}/-</h3>
-     </div>:  <div className="mx-auto box-border border flex flex-row gap-3 mt-7 items-center p-3  border-blue border-1 bg-primary_color rounded-2xl">
+       <h3 className="text-blue text-lg font-medium">₹ {Math.round(data.CourseCostPlans[0].offerPrice)}/-</h3>
+       <h3 className="text-text_grey_one line-through text-lg font-normal">₹ {Math.round(data.CourseCostPlans[0].planPrice)}/-</h3>
+     </div>:Math.round(data.CourseCostPlans[0].planPrice)<1?<></>:  <div className="mx-auto box-border border flex flex-row gap-3 mt-7 items-center p-3  border-blue border-1 bg-primary_color rounded-2xl">
  
- <h3 className="text-blue text-lg font-medium">₹ {data.CourseCostPlans[0].planPrice}/-</h3>
+ <h3 className="text-blue text-lg font-medium">₹ {Math.round(data.CourseCostPlans[0].planPrice)}/-</h3>
 
 </div>
    }

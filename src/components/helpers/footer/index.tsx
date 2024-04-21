@@ -24,22 +24,22 @@ const Footer: React.FC<FooterProps> = (props) => {
                 <div className="flex items-center">
                 <Link
                     href="https://twitter.com/gkcs_India"
-                    className=" mr-3 h-8 w-8"
+                    className=" mr-3"
                     rel="noopener noreferrer" target="_blank"
                     >
                   <img
   
-  className="text-white h-8 w-8 object-fill"
+  className="text-white h-8 w-8"
   src="/Icon_linkedIn.svg" />
                   </Link>
                   <Link
                     href="https://www.instagram.com/gkcloud_solutions/"
-                    className=" mr-3 h-8 w-8"
+                    className=" mr-3"
                     rel="noopener noreferrer" target="_blank"
                     >
                   <img
   
-  className="text-white h-8 w-8 object-fill"
+  className="text-white h-8 w-8"
   src="/Icon_insta.svg" />
                   </Link>
                   {/* <Link
@@ -58,12 +58,12 @@ const Footer: React.FC<FooterProps> = (props) => {
                   </Link> */}
                   <Link
                     href="/"
-                    className=" mr-3 h-10 w-10"
+                    className=" mr-3"
                     rel="noopener noreferrer" target="_blank"
                     >
                   <img
   
-  className="text-white h-10 w-10 object-fill"
+  className="text-white h-8 w-8"
   src="/Icon_youtube.svg" />
                   </Link>
 
@@ -75,11 +75,11 @@ const Footer: React.FC<FooterProps> = (props) => {
                   >
                 <img
 
-className="text-white h-8 w-8 object-fill"
-src="/Icon_facebool.svg" 
-/>
+className="text-white h-8 w-8"
+src="/Icon_facebool.svg" />
 
                   </Link>
+                 
                 </div>
                 </div>
                 <section >

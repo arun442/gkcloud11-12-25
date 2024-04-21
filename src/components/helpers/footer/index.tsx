@@ -63,7 +63,7 @@ const Footer: React.FC<FooterProps> = (props) => {
                     >
                   <img
   
-  className="text-white h-8 w-8"
+  className="text-white h-10 w-10"
   src="/Icon_youtube.svg" />
                   </Link>
 

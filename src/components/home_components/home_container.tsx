@@ -58,7 +58,7 @@ const screenSize=useScreenSize()
     <main className="w-full h-home  flex flex-col justify-center items-center">
       <section className='w-full flex flex-col lg:flex-row justify-center md:justify-end items-center md:items-center gap-6'>
 {
-  screenSize.width>=976?        <div className='relative z-10 w-full lg:w-[45%] flex justify-center lg:justify-end text-[44px] md:text-5xl font-bold text-white text-start leading-[50px] lg:leading-[70px]'>Level Up<br/>Your Skills </div>:        <div className='relative z-10 w-full lg:w-[45%] flex justify-center lg:justify-end text-[44px] md:text-5xl font-bold text-white text-center leading-[50px] lg:leading-[70px]'>Level Up Your Skills </div>
+ screenSize&& screenSize.width>=976?        <div className='relative z-10 w-full lg:w-[45%] flex justify-center lg:justify-end text-[44px] md:text-5xl font-bold text-white text-start leading-[50px] lg:leading-[70px]'>Level Up<br/>Your Skills </div>:        <div className='relative z-10 w-full lg:w-[45%] flex justify-center lg:justify-end text-[44px] md:text-5xl font-bold text-white text-center leading-[50px] lg:leading-[70px]'>Level Up Your Skills </div>
 }
         <TextTransition className='w-full lg:w-[55%] text-[44px] md:text-5xl  lg:mt-[68px]  font-bold flex flex-row justify-center lg:justify-start text-center lg:text-start leading-[50px] lg:leading-[70px] text-blue' springConfig={presets.stiff}>{TEXTS[index % TEXTS.length]}</TextTransition>
       </section>

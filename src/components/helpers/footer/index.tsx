@@ -79,7 +79,14 @@ className="text-white h-8 w-8"
 src="/Icon_facebool.svg" />
 
                   </Link>
-                 
+                  <Link
+                    href=" https://twitter.com/gkcs_India"
+                    className=" mr-3 h-8 w-8"
+                    rel="noopener noreferrer" target="_blank"
+                  >
+                <img className="text-white" src="/Icon fa-brands-x-twitter.png" />
+
+                  </Link>
                 </div>
                 </div>
                 <section >

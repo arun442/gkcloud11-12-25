@@ -41,7 +41,7 @@ export default function Header() {
         },
         {
             "menuId": 2,
-            "menuName": "Courses",
+            "menuName": "Program",
             "menuUrl": "/course",
             "imageId": null,
           

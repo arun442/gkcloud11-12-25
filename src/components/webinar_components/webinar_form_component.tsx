@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { axiosPublic } from '@/common/axiosPublic';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import classNames from '@/helpers/add_class';
 import useUserData from '@/hooks/userData';
 import { toast } from 'react-toastify';
@@ -11,7 +11,22 @@ export default function WebinarFormComponent({
 }: { data: any, closeModel: any }) {
     const [isLoading, setLoading] = useState(false);
     const { userData, } = useUserData();
+    useEffect(() => {
+        formik.setValues({
+            firstName: userData?.
+                first_name
+                ?? "",
+          
+            email: userData?.email ?? "",
+            phone: userData?.
 
+                mobile_number
+
+                ?? "",
+          
+            company: '',
+        })
+    }, [userData])
     const phoneRegExp =/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
 
     const formik = useFormik({

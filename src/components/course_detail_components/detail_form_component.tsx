@@ -1,13 +1,16 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { axiosPublic } from '@/common/axiosPublic';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from '@/helpers/add_class';
 
 import { toast } from "react-toastify";
+import useUserData from '@/hooks/userData';
+
 export default function FormComponent({
     type
 }: { type: string }) {
+    const { userData } = useUserData();
     const [isLoading, setLoading] = useState(false);
 
     const [index, setIndex] = useState(0);
@@ -17,7 +20,7 @@ export default function FormComponent({
         initialValues: {
             firstName: '',
             lastName: '',
-            email: '',
+            email: "",
             phone: '',
             country: '',
             city: '',
@@ -85,6 +88,27 @@ export default function FormComponent({
             }
         },
     });
+    useEffect(() => {
+        formik.setValues({
+            firstName: userData?.
+                first_name
+                ?? "",
+            lastName: userData?.
+                last_name
+                ?? "",
+            email: userData?.email ?? "",
+            phone: userData?.
+
+                mobile_number
+
+                ?? "",
+            country: '',
+            city: '',
+            address: '',
+            company: '',
+        })
+    }, [userData])
+
     return <form onSubmit={formik.handleSubmit} className='mt-20  mx-auto box-border border w-[80%] py-14 px-24 border-blue border-1 bg-dark_blue rounded-2xl'>
 
         <section className='flex'>

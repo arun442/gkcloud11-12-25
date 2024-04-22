@@ -14,3 +14,5 @@ export default function NormalBtn({
         <div onClick={onClick} className='cursor-pointer flex flex-row justify-center items-center bg-blue px-12 py-2 text-base font-medium text-white rounded-full'>{text}</div>
     )
 }
+
+

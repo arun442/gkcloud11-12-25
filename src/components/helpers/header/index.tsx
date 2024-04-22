@@ -9,7 +9,10 @@ import { axiosPublic } from '@/common/axiosPublic';
 import useUserData from '@/hooks/userData';
 import { useRouter } from 'next/router';
 import { usePathname } from "next/navigation";
-
+import AllCourses from './flyout_menu';
+// import SearchDialog from './dialog_search';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { SearchComponent } from './dialog_search';
 
 export default function Header() {
     const [scrolling, setScrolling] = useState(false);
@@ -41,7 +44,7 @@ export default function Header() {
         },
         {
             "menuId": 2,
-            "menuName": "Program",
+            "menuName": "Programs",
             "menuUrl": "/course",
             "imageId": null,
           
@@ -100,11 +103,15 @@ export default function Header() {
     }
     const { userData, isLoading } = useUserData();
     const router = useRouter();
+    let [isOpen, setIsOpen] = useState(false)
     return (
-        <Disclosure as="nav" className={classNames(scrolling?"sticky top-0 z-20 bg-primary_color":"sticky top-0 z-20",)}>
+<>
+{/* <SearchDialog isOpen={isOpen} setIsOpen={setIsOpen}/> */}
+<Disclosure as="nav" className={classNames(scrolling?"sticky top-0 z-20 bg-primary_color":"sticky top-0 z-20",)}>
             {({ open }) => (
                 <>
                     <div className="sm:py-4">
+                    
                         <div className="relative flex h-16 items-center justify-between">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
@@ -124,29 +131,41 @@ export default function Header() {
                                     onClick={(e)=>{
                                         router.push("/")
                                     }}
-                                        className="h-14 w-auto cursor-pointer"
+                                        className="h-20 w-auto cursor-pointer"
                                         src="/logo.png"
                                         alt="Your Company"
                                     />
+                                   
                                 </div>
+                               
                                 <div className="hidden sm:ml-6 sm:block ">
-                                    <div className="flex space-x">
-                                        {navigation.map((item) => (
+                                    <div className="flex justify-center items-center">
+                                        <div className='flex items-center gap-4'>
+                                        <SearchComponent/>
+                                      </div>
+                                        {navigation.map((item) => item.menuName=="Programs"?<AllCourses   key={item.menuName}/>: 
+                                            
                                             <a
                                                 key={item.menuName}
                                                 href={item.menuUrl}
                                                 className={classNames(
                                                     pathname.includes(item.menuUrl) ? ' text-blue font-semibold' : 'text-white hover:bg-gray-700 hover:text-white',
-                                                    ' rounded-md mx-10 py-2 text-sm font-medium'
+                                                    ' rounded-md mx-8 py-2 text-sm font-medium'
                                                 )}
                                                 aria-current={true ? 'page' : undefined}
                                             >
                                                 {item.menuName}
                                             </a>
-                                        ))}
+                                        )}
                                     </div>
                                 </div>
                             </div>
+                            {/* <div onClick={(event)=>{
+                                   event.preventDefault();
+                               setIsOpen(!isOpen);
+                           }}>
+                            <MagnifyingGlassIcon  className="h-5 w-5 text-white items-center" />
+                            </div> */}
                            {
                             pathname.includes("auth")?<></>: <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                
@@ -235,6 +254,9 @@ export default function Header() {
                     </Disclosure.Panel>
                 </>
             )}
+          
         </Disclosure>
+</>
+       
     )
 }

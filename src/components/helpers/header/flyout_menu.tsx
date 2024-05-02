@@ -61,7 +61,7 @@ export default function AllCourses() {
       timeOutRef.current = setTimeout(() => {
         isOpen && triggerRef.current?.click()
       }, timeoutDuration)
-    }
+    } 
 
     return (
         <Popover className="relative">

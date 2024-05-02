@@ -148,7 +148,7 @@ router.replace("/course");
 
                 </div>
             </section>
-            <FormComponent type='Certificate' />
+            <FormComponent type='Certificate' referenceId={ parseInt(params.courseId[0])} referenceCode={ params.courseId[0]} requestDescription={data.title} />
 
         </main>
     )

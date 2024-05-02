@@ -296,7 +296,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
             </ErrorBoundary>
 
 
-            <FormComponent type='Course' />
+            <FormComponent type='Course' referenceId={data.courseId} referenceCode={data.courseCode} requestDescription={data.title} />
 
 
         </main>

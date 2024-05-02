@@ -8,8 +8,8 @@ import { toast } from "react-toastify";
 import useUserData from '@/hooks/userData';
 
 export default function FormComponent({
-    type
-}: { type: string }) {
+    type,referenceId,referenceCode, requestDescription
+}: { type: string,referenceId:number,referenceCode:string, requestDescription:string }) {
     const { userData } = useUserData();
     const [isLoading, setLoading] = useState(false);
 
@@ -57,6 +57,12 @@ export default function FormComponent({
                     return;
                 }
                 setLoading(true);
+                console.log("params");
+                console.log({
+                    "referenceId":referenceId,
+                    "referenceCode":referenceCode,
+                    "requestDescription": requestDescription
+                })
                 const result = await axiosPublic.post('/lms/add-request-form', {
                     "email": values.email,
                     "requestType": type,
@@ -69,7 +75,10 @@ export default function FormComponent({
                     "country": values.country,
                     "city": values.city,
                     "address": values.address,
-                    "message": "RequstForm"
+                    "message": "RequstForm",
+                    "referenceId":referenceId,
+                    "referenceCode":referenceCode,
+                    "requestDescription": requestDescription
                 });
 
 

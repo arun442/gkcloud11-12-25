@@ -49,15 +49,15 @@ export default function AllCourses() {
     }, [partnerData])
     
     const timeoutDuration = 120
-    const triggerRef = useRef()
-    const timeOutRef = useRef()
+    const triggerRef = useRef<any>()
+    const timeOutRef = useRef<any>()
   
     const handleEnter = (isOpen:any) => {
       clearTimeout(timeOutRef.current)
       !isOpen && triggerRef.current?.click()
     }
   
-    const handleLeave = (isOpen) => {
+    const handleLeave = (isOpen:any) => {
       timeOutRef.current = setTimeout(() => {
         isOpen && triggerRef.current?.click()
       }, timeoutDuration)

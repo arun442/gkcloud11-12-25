@@ -3,8 +3,26 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowDownCircleIcon } from '@heroicons/react/20/solid'
 import useTechnologyMode from '@/hooks/technology_mode_hook';
 
-export default function TechnologyDropdown({data,setData}:{data:any,setData:any}) {
+export default function TechnologyDropdown({partner,data,setData}:{partner:any, data:any,setData:any}) {
  const {  technologyData, isLoading}=  useTechnologyMode();
+
+ useEffect(() => {
+
+  if(partner){
+    console.log(partner);
+    setItem(technologyData.filter((e)=>e.partnerId==partner.partnerId));
+    console.log(technologyData.filter((e)=>e.partnerId==partner.partnerId));
+  }
+  if(partner==null){
+    setItem(technologyData);
+  }
+   
+
+ }, [partner])
+ useEffect(() => {
+  setItem(technologyData);
+ }, [technologyData])
+ const [item,setItem]=useState<any[]>([]);
   return (
     <div className="px-1 py-1 bg-dark_blue  box-border border-blue border-2 rounded-full">
       <Menu as="div" className="relative inline-block text-left">
@@ -28,7 +46,7 @@ export default function TechnologyDropdown({data,setData}:{data:any,setData:any}
         >
           <Menu.Items className="absolute z-10 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
           {
-            technologyData.map((e, index) => <div key={index} className="px-1 py-1">
+           item.map((e, index) => <div key={index} className="px-1 py-1">
                 <Menu.Item>
                   {({ active }) => (
                     <button

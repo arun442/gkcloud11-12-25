@@ -62,7 +62,7 @@ const screenSize=useScreenSize()
 }
         <TextTransition className='w-full lg:w-[55%] text-[44px] md:text-5xl  lg:mt-[68px]  font-bold flex flex-row justify-center lg:justify-start text-center lg:text-start leading-[50px] lg:leading-[70px] text-blue' springConfig={presets.stiff}>{TEXTS[index % TEXTS.length]}</TextTransition>
       </section>
-      <section className='w-full'>
+      {/* <section className='w-full'>
         <Combobox >
           <div className="relative w-full">
             <div className="mt-20 lg:mt-16 w-full md:w-96 mx-auto flex flex-row  items-center justify-center relative">
@@ -113,7 +113,7 @@ const screenSize=useScreenSize()
             </Transition>
           </div>
         </Combobox>
-      </section>
+      </section> */}
     </main>
   )
 }

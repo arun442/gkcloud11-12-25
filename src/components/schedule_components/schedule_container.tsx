@@ -96,7 +96,7 @@ export default function ScheduleContainer() {
         <h3 className='text-xl font-normal text-white'>All Courses</h3>
         <div className='flex-1 flex flex-row gap-5 justify-end'>
           <PartnerDropdown data={partner} setData={setPartner} />
-          <TechnologyDropdown data={technology} setData={setTechnology} />
+          <TechnologyDropdown partner={partner} data={technology} setData={setTechnology} />
 
           {/* <NormalBtn text={"Filter"} onClick={(e: any) => {
             e.preventDefault();

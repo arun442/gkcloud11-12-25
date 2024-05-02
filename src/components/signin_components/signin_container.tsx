@@ -149,13 +149,13 @@ export default function SignInContainer() {
           href="#"
           className="text-sm text-white"
         >
-          Forget password?
+          Forgot password?
         </Link></div>
 
 
       </form>
       <div className='flex flex-row items-center justify-center' >
-        <h4 className='text-sm font-normal text-white'>Dont have account? <span className='font-semibold text-blue cursor-pointer' onClick={(e) => router.push("/auth/signup")}>Signup?</span></h4>
+        <h4 className='text-sm font-normal text-white'>Don't have account? <span className='font-semibold text-blue cursor-pointer' onClick={(e) => router.push("/auth/signup")}>Signup?</span></h4>
       </div>
     </main>
   )

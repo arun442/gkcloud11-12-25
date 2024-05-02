@@ -173,6 +173,8 @@ useEffect(() => {
   }, [query])
   const [loadMore, setLoadMore] = useState(9);
 
+  
+
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
@@ -192,7 +194,7 @@ useEffect(() => {
           <div className=' object-cover w-full flex flex-row items-center justify-center'>
             <img
 
-              className="mx-auto h-128"
+              className="mx-auto h-144"
 
               src="/ai.png" />
           </div>
@@ -239,7 +241,7 @@ useEffect(() => {
           <h2 className="text-white text-lg font-medium">Fliter by</h2>
           <section className='mt-10 flex flex-row gap-6'>
             <PartnerDropdown data={partner} setData={setPartner} />
-            <TechnologyDropdown data={technology} setData={setTechnology} />
+            <TechnologyDropdown partner={partner} data={technology} setData={setTechnology} />
             <TrainingModeDropdown data={mode} setData={setMode} />
             {/* <NormalBtn text={"Filter"} onClick={(e: any) => {
               e.preventDefault();

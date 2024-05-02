@@ -102,7 +102,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                 }}>Home</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
                 <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
-                    router.back();
+                    router.replace("/course");
                 }}>Course</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
                 <p className="cursor-pointer text-text_grey_one text-base font-medium">{data.courseCode}</p>

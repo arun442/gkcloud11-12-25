@@ -32,11 +32,9 @@ export default function FormComponent({
 
                 .required('Required'),
 
-            lastName: Yup.string()
-
-                .required('Required'),
+            lastName: Yup.string() ,
             email: Yup.string().email('Invalid email address').required('Required'),
-            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid') .required('Required'),
             country: Yup.string()
 
             ,
@@ -89,6 +87,9 @@ export default function FormComponent({
         },
     });
     useEffect(() => {
+        if(!userData){
+            return;
+        }
         formik.setValues({
             firstName: userData?.
                 first_name
@@ -131,7 +132,7 @@ export default function FormComponent({
 
                         autoComplete="text"
                         placeholder='First Name'
-                        required
+                    
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1  ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                     />
                     {formik.errors.firstName ? (
@@ -146,7 +147,7 @@ export default function FormComponent({
 
                         autoComplete="text"
                         placeholder='Last Name'
-                        required
+                    
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                     />
                     {formik.errors.lastName ? (
@@ -163,7 +164,7 @@ export default function FormComponent({
 
                         autoComplete="text"
                         placeholder='Email'
-                        required
+                       
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                     />
                     {formik.errors.email ? (
@@ -178,7 +179,7 @@ export default function FormComponent({
 
                         autoComplete="text"
                         placeholder='Phone Number'
-                        required
+                        
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                     />
                     {formik.errors.phone ? (
@@ -196,7 +197,7 @@ export default function FormComponent({
 
                             autoComplete="text"
                             placeholder='Country'
-                            required
+                         
                             className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.country ? (
@@ -211,7 +212,7 @@ export default function FormComponent({
 
                             autoComplete="text"
                             placeholder='City'
-                            required
+                          
                             className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.city ? (
@@ -230,7 +231,7 @@ export default function FormComponent({
 
                             autoComplete="text"
                             placeholder='Company Name'
-                            required
+                          
                             className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.company ? (
@@ -250,7 +251,7 @@ export default function FormComponent({
 
                             autoComplete="text"
                             placeholder='Address'
-                            required
+                         
                             className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.address ? (

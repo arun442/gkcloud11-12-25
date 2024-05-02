@@ -12,6 +12,9 @@ export default function WebinarFormComponent({
     const [isLoading, setLoading] = useState(false);
     const { userData, } = useUserData();
     useEffect(() => {
+        if(!userData){
+            return;
+        }
         formik.setValues({
             firstName: userData?.
                 first_name
@@ -109,7 +112,7 @@ export default function WebinarFormComponent({
 
                         autoComplete="text"
                         placeholder='Name'
-                        required
+                   
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                     {formik.errors.firstName ? (
@@ -127,7 +130,7 @@ export default function WebinarFormComponent({
 
                         autoComplete="text"
                         placeholder='Email'
-                        required
+                    
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                     {formik.errors.email ? (
@@ -145,7 +148,7 @@ export default function WebinarFormComponent({
 
                         autoComplete="text"
                         placeholder='Phone Number'
-                        required
+                      
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                     {formik.errors.phone ? (
@@ -162,7 +165,7 @@ export default function WebinarFormComponent({
 
                         autoComplete="text"
                         placeholder='Company Name'
-                        required
+                     
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                     {formik.errors.company ? (

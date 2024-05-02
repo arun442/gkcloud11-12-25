@@ -140,7 +140,7 @@ export default function Header() {
                                
                                 <div className="hidden sm:ml-6 sm:block ">
                                     <div className="flex justify-center items-center">
-                                        <div className='flex items-center gap-4'>
+                                        <div className='flex-1 flex items-center gap-4'>
                                         <SearchComponent/>
                                       </div>
                                         {navigation.map((item) => item.menuName=="Programs"?<AllCourses   key={item.menuName}/>: 

@@ -53,6 +53,8 @@ export default function AllCourses() {
     const timeOutRef = useRef<any>()
   
     const handleEnter = (isOpen:any) => {
+        setCourse(courseList.current.filter((e: any) => e.partnerId == partnerData[0].partnerId));
+        setSelectedCat( partnerData[0].partnerName);
       clearTimeout(timeOutRef.current)
       !isOpen && triggerRef.current?.click()
     }
@@ -60,7 +62,8 @@ export default function AllCourses() {
     const handleLeave = (isOpen:any) => {
       timeOutRef.current = setTimeout(() => {
         isOpen && triggerRef.current?.click()
-      }, timeoutDuration)
+      }, timeoutDuration);
+
     } 
 
     return (
@@ -91,7 +94,11 @@ export default function AllCourses() {
                                       setSelectedCat(item.partnerName);
                                       console.log(courseList.current);
                                       setCourse(courseList.current.filter((e: any) => e.partnerId == item.partnerId));
-                                  }} key={item.partnerName} className="cursor-pointer group relative flex gap-x-6 rounded-lg p-4 justify-center  hover:bg-gray-50">
+                                  }} key={item.partnerName} onMouseEnter={(e)=>{
+                                    setSelectedCat(item.partnerName);
+                                    console.log(courseList.current);
+                                    setCourse(courseList.current.filter((e: any) => e.partnerId == item.partnerId));
+                                  }} className="cursor-pointer group relative flex gap-x-6 rounded-lg p-4 justify-center  hover:bg-gray-50">
                                       <div className='flex-1 group'>
                                           <a className={classNames(" font-normal text-gray-900 group-hover:text-blue", selectedCat == item.partnerName ? "text-blue" : "text-gray-900")}>
                                               {item.partnerName}

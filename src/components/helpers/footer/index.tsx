@@ -98,7 +98,7 @@ const Footer: React.FC<FooterProps> = (props) => {
 
             </Link>
             <Link
-              href=" https://twitter.com/gkcs_India"
+              href="https://twitter.com/gkcs_India"
               className=" mr-3 h-8 w-8"
               rel="noopener noreferrer" target="_blank"
             >

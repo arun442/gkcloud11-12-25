@@ -22,6 +22,9 @@ import ErrorBoundary from '@/helpers/error_boundary';
 
 import { toast } from "react-toastify";
 import hideDuration from '@/helpers/hide_duration';
+import LeadFormComponent from '../helpers/lead_form';
+import LeadFormModel from '../helpers/LeadFromModel';
+
 
 export default function CourseDetailContainer({ data }: { data: any }) {
     const { userData, } = useUserData();
@@ -92,9 +95,20 @@ export default function CourseDetailContainer({ data }: { data: any }) {
         }
     };
     const [index, setIndex] = useState(0);
+    let [isOpen, setIsOpen] = useState(false)
+    function closeModal(isDownloaded:any) {
+if(isDownloaded==true){
+    handleDownload(data.courseId, data.title)
+}
+      setIsOpen(false)
+    }
+  
+    function openModal() {
+      setIsOpen(true)
+    }
     return (
         <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
-
+<LeadFormModel data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={data.title} courseName={data.courseCode}/>
             <div className="flex flex-row gap-1 items-center">
                 <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
                     router.back();
@@ -151,7 +165,11 @@ export default function CourseDetailContainer({ data }: { data: any }) {
             </section>
             <section className='flex flex-row items-start mt-20'>
                 <div onClick={(e) => {
+                if(userData){
                     handleDownload(data.courseId, data.title)
+                }else{
+                    openModal();
+                }
                 }} className="cursor-pointer mx-auto box-border border flex flex-row gap-3  items-center p-3  border-blue border-1 bg-dark_blue rounded-2xl">
                     <img
 

@@ -71,7 +71,7 @@ export default function AllCourses() {
              {({ open }) => (
                 <div  onMouseEnter={() => handleEnter(open)}
                 onMouseLeave={() => handleLeave(open)}>
-                      <Popover.Button ref={triggerRef} className="inline-flex items-center mx-8 py-2 text-sm font-medium leading-6 text-white">
+                      <Popover.Button ref={triggerRef} className="border-none inline-flex items-center mx-8 py-2 text-sm font-medium leading-6 text-white hover:text-blue">
                   <span>Programs</span>
                   {show ? <ChevronUpIcon className="h-5 w-5" aria-hidden="true" /> : <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />}
               </Popover.Button>
@@ -87,8 +87,8 @@ export default function AllCourses() {
                   leaveTo="opacity-0 translate-y-1"
               >
                   <Popover.Panel onMouseLeave={(event) => setShow(false)} className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
-                      <div className="w-screen max-w-4xl flex flex-row overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
-                          <div className=" w-1/4">
+                      <div className="w-screen max-w-4xl h-[400px] flex flex-row overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                          <div className=" w-1/4 ">
                               {[ ...partnerData].map((item) => (
                                   <div onClick={(event) => {
                                       setSelectedCat(item.partnerName);
@@ -98,15 +98,15 @@ export default function AllCourses() {
                                     setSelectedCat(item.partnerName);
                                     console.log(courseList.current);
                                     setCourse(courseList.current.filter((e: any) => e.partnerId == item.partnerId));
-                                  }} className="cursor-pointer group relative flex gap-x-6 rounded-lg p-4 justify-center  hover:bg-gray-50">
+                                  }} className={classNames("cursor-pointer group relative flex gap-x-6 p-4 justify-center  hover:bg-light_blue border-b border-blue",selectedCat == item.partnerName ? "bg-light_blue" : "")}>
                                       <div className='flex-1 group'>
-                                          <a className={classNames(" font-normal text-gray-900 group-hover:text-blue", selectedCat == item.partnerName ? "text-blue" : "text-gray-900")}>
+                                          <a className={classNames(" font-normal text-gray-900 group-hover:text-blue", selectedCat == item.partnerName ? "text-blue " : "text-gray-900")}>
                                               {item.partnerName}
   
                                           </a>
   
                                       </div>
-                                      <ChevronRightIcon className={classNames("h-4 w-4 text-gray-600 font-normal group-hover:text-blue", selectedCat == item.partnerName ? "text-blue" : "text-gray-600")} aria-hidden="true" />
+                                      {/* <ChevronRightIcon className={classNames("h-4 w-4 text-gray-600 font-normal group-hover:text-blue", selectedCat == item.partnerName ? "text-blue" : "text-gray-600")} aria-hidden="true" /> */}
   
                                   </div>
                               ))}

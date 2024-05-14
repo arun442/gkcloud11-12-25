@@ -6,12 +6,13 @@ import imageHelper from '@/common/image_helper';
 import classNames from '@/helpers/add_class';
 
 export default function WebinarCard({ data }: { data: any}) {
-  let [isOpen, setIsOpen] = useState(false)
+
   const [showMore, setShowMore] = useState(false);
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
+  let [isOpen, setIsOpen] = useState(false)
   function closeModal() {
     setIsOpen(false)
   }
@@ -19,6 +20,7 @@ export default function WebinarCard({ data }: { data: any}) {
   function openModal() {
     setIsOpen(true)
   }
+
   return <div className={classNames("cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue",showMore?"h-auto":"h-80")}>
      <WebinarModel closeModal={closeModal} isOpen={isOpen} data={data} />
 

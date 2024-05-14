@@ -28,7 +28,7 @@ export default function Home() {
 
 
   <TestimonialComponent/>  
-   <NewsLetterComponent/>
+   {/* <NewsLetterComponent/> */}
   <Footer/>
   <CookieConsent/>
     </main>

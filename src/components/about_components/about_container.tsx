@@ -26,10 +26,10 @@ export default function AboutContainer() {
       name: "Overview"
     },
 
-    {
+   /* {
       index: 2,
       name: "Leadership"
-    },
+    },*/
     {
       index: 3,
       name: "Our Client"
@@ -149,7 +149,7 @@ const router=useRouter();
       <section className='w-1/3 h-auto'>
       <img
 
-className="object-contain mx-auto h-72"
+className="object-contain mx-auto  h-72"
 
 src="/about.png" />
       </section>

@@ -112,9 +112,17 @@ export default function AllCourses() {
                               ))}
                           </div>
                           <section className="flex-1 p-4 flex flex-col justify-center items-center">
-                              <div className="flex-1  grid grid-cols-3 gap-4">
+                                {
+                                course.length === 0 ? (
+                                    <>
+                                    <div className='cursor-pointer flex flex-row justify-center items-center bg-orange px-6 py-2 text-base font-normal text-white rounded-full'>
+                                        Stay tuned! We’re working on some exciting new courses. 
+                                    </div>   <br /><br /></>
+                                ) : (
+                              <div className="flex-1  grid grid-cols-2 gap-4">
                                   {
-                                      course.map((e, index) => {
+                                  course.map((e, index) => {
+                                      //  console.log ("Index :", index);
                                           if (index > 11) return <></>
                                           return <a key={e.courseId} onClick={(event) => {
                                               router.push(`/course/${e.courseId}`)
@@ -125,6 +133,7 @@ export default function AllCourses() {
                                       })
                                   }
                               </div>
+                              )}
                               {/* {
                                   course.length > 12 && <div onClick={(e) => {
                                       router.push(`/course`);

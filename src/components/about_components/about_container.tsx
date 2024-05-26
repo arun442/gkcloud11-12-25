@@ -65,10 +65,19 @@ if(queryIndex){
   }
   const handleDownload = async () => {
     try {
-      // Make a GET request to the API endpoint that serves the file
-      const response = await axiosPublic.get('/lms/about-download', {
+      // Check if there is a document to download
+      const documentData = data.filter((e) => e.generalId == 1);
+      if (documentData.length == 0) {
+        console.error('No document found to download');
+        return;
+      }
 
-        responseType: 'blob' // This tells Axios to expect a binary response
+      // Get the document URL from the data
+      const documentURL = imageHelper("/" + documentData[0].documentURL);
+      
+      // GET the document URL
+      const response = await axiosPublic.get(documentURL, {
+        responseType: 'blob' 
       });
 
       // Create a blob object from the response data
@@ -137,13 +146,11 @@ const router=useRouter();
 
       <h1 className='font-semibold text-2xl mt-6 text-white'></h1>
       <section className='flex flex-row items-start mt-3'>
-        <Link href={data.filter((e) => e.generalId == 1).length == 0 ? "" : imageHelper("/" + data.filter((e) => e.generalId == 1)[0].documentURL)} className=" mx-auto box-border border flex flex-row gap-3  items-center py-3  px-6 border-blue border-1 bg-dark_blue rounded-2xl">
-          <img
-
-            className="text-blue h-6 w-6"
-            src="/pdf_icon.svg" />
-          <p className="text-white text-lg font-normal">Download Company Profile</p>
-        </Link>
+        <div onClick={() => handleDownload()} 
+          className="cursor-pointer mx-auto box-border border flex flex-row gap-3 items-center p-3 border-blue border-1 bg-dark_blue rounded-2xl">
+          <img className="text-blue h-6 w-6" src="/pdf_icon.svg" alt="PDF Icon"/>
+          <p className="text-white text-base font-normal">Download Company Profile</p>
+        </div>
       </section>
       </section>
       <section className='w-1/3 h-auto'>

@@ -121,8 +121,7 @@ export default function AllCourses() {
                                 ) : (
                               <div className="flex-1  grid grid-cols-2 gap-4">
                                   {
-                                  course.map((e, index) => {
-                                      //  console.log ("Index :", index);
+                                  course.sort((a, b) => a.courseId - b.courseId).map((e, index) => {
                                           if (index > 11) return <></>
                                           return <a key={e.courseId} onClick={(event) => {
                                               router.push(`/course/${e.courseId}`)

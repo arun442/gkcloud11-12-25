@@ -80,8 +80,8 @@ export default function CourseContainer() {
   const [mode, setMode] = useState<any>(null);
 
   const filter = () => {
-   
-  
+
+
 
 
     if (partner != null || technology != null || mode != null) {
@@ -109,13 +109,13 @@ export default function CourseContainer() {
         })
       }
       setCourse(course);
-     
+
     }
-   
+
   }
-useEffect(() => {
- filter();
-}, [partner,technology,mode])
+  useEffect(() => {
+    filter();
+  }, [partner, technology, mode])
 
   const clearFilter = () => {
     setCourse(courseList);
@@ -173,7 +173,7 @@ useEffect(() => {
   }, [query])
   const [loadMore, setLoadMore] = useState(9);
 
-  
+
 
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">

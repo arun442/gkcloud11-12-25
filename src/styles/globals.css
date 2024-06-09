@@ -27,7 +27,12 @@ body{
   font-family: 'Poppins';
   background-color: "#000520";
 }
-
+@layer components {
+.bg_gradient{
+  /* background: transparent linear-gradient(180deg, #000520 0%, #5FEF5C 100%) 0% 0% no-repeat padding-box;
+   */
+}
+}
 @property --num0 {
   syntax: '<integer>';
   initial-value: 0;

@@ -10,6 +10,8 @@ import { axiosPublic } from '@/common/axiosPublic';
 import { useRouter } from 'next/navigation'
 import { EyeIcon, EyeSlashIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 import { toast } from 'react-toastify';
+import errorHelper from '@/common/error_helper';
+
 export default function SignInContainer() {
 
   const [passwordType, setPasswordType] = useState("password");
@@ -65,7 +67,7 @@ export default function SignInContainer() {
       } catch (error: any) {
         setLoading(false);
         console.log(error);
-        toast.error(error!.message);
+        toast.error(errorHelper(error));
 
       }
     },

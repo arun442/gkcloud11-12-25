@@ -1,0 +1,139 @@
+
+import ProfileLayout from "@/components/profile_components/profile_layout";
+import { useRouter } from "next/router";
+import { axiosPrivate } from "@/common/axiosPrivate";
+import { useEffect, useState } from "react";
+
+import classNames from '@/helpers/add_class';
+
+import { toast } from "react-toastify";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+export default function Index() {
+    let [course, setCourse] = useState<any[]>([]);
+    useEffect(() => {
+
+        fetchCourse();
+
+
+
+    }, [])
+
+
+    const fetchCourse = async () => {
+        try {
+            const result = await axiosPrivate.get('/user/user-course');
+            console.log("what is the course");
+            console.log(result.data);
+            setCourse(result.data);
+
+
+
+
+
+
+        } catch (error) {
+
+        }
+    }
+    const router = useRouter();
+    const [index, setIndex] = useState(0);
+    const [isLoading, setLoading] = useState(false);
+    const formik = useFormik({
+        initialValues: {
+            subject: '',
+            message: '',
+
+        },
+        validationSchema: Yup.object({
+            subject: Yup.string()
+
+                .required('Required'),
+
+            message: Yup.string().required('Required'),
+
+
+        }),
+        onSubmit: async (values, { resetForm }) => {
+
+
+            try {
+                if (isLoading) {
+                    return;
+                }
+                setLoading(true);
+
+                const result = await axiosPrivate.post('/user/add-user-inquiry', {
+                    subject: values.subject,
+                    message: values.message
+                });
+
+
+                setLoading(false);
+                toast.success("Form submitted successfully")
+                console.log(result.data);
+                resetForm();
+
+            } catch (error: any) {
+                setLoading(false);
+                console.log(error);
+                toast.error(error!.message);
+
+            }
+        },
+    });
+    return (
+        <ProfileLayout>
+            <main className="w-full h-full flex flex-col">
+                <h2 className="text-xl font-medium text-normal_white">Talk with us</h2>
+
+                <form onSubmit={formik.handleSubmit} className="flex-1 w-full flex-col mt-12">
+
+                    <section className="flex mb-8">
+                        <p className="text-[#ECF4FFBF] w-20">Subject</p>
+                        <div className='flex-1'>
+                            <input
+                                {...formik.getFieldProps('subject')}
+                                type="text"
+
+
+                                autoComplete="text"
+
+
+                                className="block px-4 w-full rounded-sm bg-dark_blue h-14 text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
+                            />
+                            {formik.errors.subject ? (
+                                <div className="text-sm text-white mt-2 ml-2">{formik.errors.subject}</div>
+                            ) : null}
+                        </div>
+                    </section>
+                    <section className="flex mb-8">
+                        <p className="text-[#ECF4FFBF] w-20">Message</p>
+                        <div className='flex-1'>
+                            <textarea
+                                {...formik.getFieldProps('message')}
+                                rows={5}
+
+
+                                autoComplete="text"
+
+
+                                className="block px-4 w-full rounded-sm bg-dark_blue  text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
+                            />
+                            {formik.errors.message ? (
+                                <div className="text-sm text-white mt-2 ml-2">{formik.errors.message}</div>
+                            ) : null}
+                        </div>
+                    </section>
+                   <div className="w-full flex justify-center items-center">
+                   <button type='submit' className=" flex  justify-center rounded bg-blue py-2 px-6 font-medium text-white ">
+                {
+                    isLoading ? "Loading.." : "Submit"
+                }
+            </button>
+                   </div>
+                </form>
+            </main>
+        </ProfileLayout>
+    );
+}

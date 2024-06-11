@@ -53,29 +53,38 @@ export default function Index() {
                 <h2 className="text-xl font-medium text-normal_white">Purchase History</h2>
                 <div className="flex-1 w-full grid grid-cols-1 gap-6 mt-8">
 
-                    <table className="border-collapse border-[0.25px] border-text_grey_one  mt-6 w-full">
-                        <thead className='border-[0.25px] border-text_grey_one'>
+                    <table className=" border-text_grey_one  mt-6 w-full">
+                        <thead className='border-b-[0.25px] border-t-[0.25px] border-text_grey_one'>
                             <tr >
-                                <th className="border-[0.25px] border-text_grey_one text-base text-white font-normal py-6"></th>
-                                <th className="border-[0.25px] border-text_grey_one text-base text-white font-normal py-6">Date</th>
-                                <th className="border-[0.25px] border-text_grey_one text-base text-white font-normal">Total Price</th>
-                                <th className="border-[0.25px] border-text_grey_one text-base text-white font-normal">Payment Type</th>
-                                <th className="border-[0.25px] border-text_grey_one text-base text-white font-normal py-6"></th>
+                                <th className=" border-text_grey_one text-base text-white font-normal py-6"></th>
+                                <th className=" border-text_grey_one text-base text-white font-normal py-6">Date</th>
+                                <th className=" border-text_grey_one text-base text-white font-normal">Total Price</th>
+                                <th className=" border-text_grey_one text-base text-white font-normal">Payment Type</th>
+                                <th className=" border-text_grey_one text-base text-white font-normal py-6"></th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 course.map((e: any, index: any) => {
-                                    return <tr className="border-[0.25px] border-text_grey_one" key={index}>
+                                    return <tr className="h-20 border-b-[0.25px] border-text_grey_one" key={index}>
 
-                                        <td className=" p-4 text-blue flex items-start justify-start gap-2">
+                                        <td className=" py-2 text-sm text-blue  w-44">
 
                                             {e.Course.title}
                                         </td>
-                                        <td className="border-[0.25px] font-medium text-table_font text-center p-4">{moment(new Date(e.enrollmentDate)).format("DD MMM YYYY")}</td>
-                                        <td className="border-[0.25px] font-medium text-table_font text-center p-4"> </td>
-                                        <td className="border-[0.25px] font-medium text-table_font text-center p-4"></td>
-                                        <td className="border-[0.25px] font-medium text-table_font text-center p-4"> </td>
+                                        <td className=" font-medium text-sm text-table_font text-center p-2">{moment(new Date(e.enrollmentDate)).format("DD MMM YYYY")}</td>
+                                        <td className=" font-medium text-sm text-table_font text-center p-2">1000 </td>
+                                        <td className=" font-medium text-sm text-table_font text-center p-2">1500 UPI</td>
+                                        <td className=" font-medium text-sm text-table_font text-center  ">
+                                           <section className="flex gap-2 justify-end">
+                                           <div className="border-[0.25px] text-xs font-normal py-1 px-2">
+                                                Receipt
+                                            </div>
+                                            <div className="border-[0.25px] text-xs font-normal py-1 px-2">
+                                              Invoice
+                                            </div>
+                                           </section>
+                                        </td>
                                     </tr>
                                 })
                             }

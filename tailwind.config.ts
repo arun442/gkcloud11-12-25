@@ -29,7 +29,7 @@ const config: Config = {
       "normal_white": "#ffffff",
       'yellow': '#ffc82c',
       "text_grey": "#D5D5D5",
-      "text_grey_one": "#B4B4B4",
+      "text_grey_one": "#E2E2E2",
       "table_border": "#DCDCDC",
       "table_font": "#E3E3E3",
       "light_green":"#8FC23E"

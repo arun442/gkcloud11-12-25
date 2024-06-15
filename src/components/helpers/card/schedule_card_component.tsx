@@ -85,7 +85,7 @@ export default function ScheduleCard({ data, type }: { data: any, type: number }
         </section>
         {
             data.CourseSchedules.map((option: any, index: any) => {
-              return  <section className='w-full h-16 flex text-sm text-white font-normal  border-t-[0.25px] border-text_grey_one'>
+              return  <section key={option.scheduleId} className='w-full h-16 flex text-sm text-white font-normal  border-t-[0.25px] border-text_grey_one'>
               <div className='w-[49%] h-full flex items-center justify-center gap-2'>
               <input
                     id={option.scheduleId}

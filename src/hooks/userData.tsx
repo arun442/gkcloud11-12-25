@@ -14,8 +14,7 @@ const useUserData = () => {
         // Check if user data exists in local storage
         const storedUserData = localStorage.getItem('userData');
         if (storedUserData) {
-          console.log("what is the user result");
-          console.log(JSON.parse(storedUserData));
+         
           setUserData(JSON.parse(storedUserData));
           setIsLoading(false);
         } else {
@@ -24,8 +23,7 @@ const useUserData = () => {
           if (response.status === 200) {
            
             const userDataFromApi = response.data.user[0];
-            console.log("what is the user result");
-            console.log(userDataFromApi);
+          
             setUserData(userDataFromApi);
             localStorage.setItem('userData', JSON.stringify(userDataFromApi));
           } else {

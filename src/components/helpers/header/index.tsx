@@ -92,7 +92,6 @@ export default function Header() {
     const fetchData = async () => {
         try {
             const result = await axiosPublic.get("/lms/menu");
-            console.log("what is the response", result.data);
             setNavigation(result.data.menu.sort(function (a: any, b: any) {
                 return a.menuSequencePriority - b.menuSequencePriority; // Sort by ascending age
             }))

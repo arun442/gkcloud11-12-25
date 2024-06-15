@@ -36,8 +36,7 @@ export default function Index() {
     const fetchShedule = async () => {
         try {
             const result = await axiosPrivate.get('/user/user-course-schedule');
-            console.log("what is the course");
-            console.log(result.data);
+          
             setSchedule(result.data?.schedules ?? []);
         } catch (error) {
 
@@ -46,8 +45,7 @@ export default function Index() {
     const fetchWebinar = async () => {
         try {
             const result = await axiosPrivate.get('/user/user-webinar');
-            console.log("what is the course");
-            console.log(result.data);
+           
             setWebinar(result.data);
         } catch (error) {
 

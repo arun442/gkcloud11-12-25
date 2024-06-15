@@ -42,7 +42,7 @@ export default function CourseDetails({data}:{data:any}) {
       className={`max-w-7xl mx-auto bg-primary_color xl:px-0 sm:px-20 flex flex-col gap-10`}
     >
    <Header/>
-  <CourseDetailContainer data={data}/>
+  {/* <CourseDetailContainer data={data}/> */}
   <Footer/>
     </main>
   );

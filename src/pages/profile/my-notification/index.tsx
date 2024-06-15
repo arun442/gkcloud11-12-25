@@ -34,8 +34,7 @@ export default function Index() {
     const fetchCourse = async () => {
         try {
             const result = await axiosPrivate.get('/user/user-course');
-            console.log("what is the course");
-            console.log(result.data);
+           
             setCourse(result.data);
 
 

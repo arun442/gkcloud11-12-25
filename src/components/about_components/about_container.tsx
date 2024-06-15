@@ -58,7 +58,6 @@ export default function AboutContainer() {
   const fetchData = async () => {
     try {
       const result = await axiosPublic.get("/lms/about-us");
-      console.log("what is the response", result.data);
       setData(result.data.aboutUs)
     } catch (error) {
       console.log("what is the error");

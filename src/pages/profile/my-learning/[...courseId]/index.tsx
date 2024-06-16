@@ -89,11 +89,14 @@ export default function Player({ modules, id }: { modules: any, id: any }) {
 
   return (
     <main
-      className={`relative w-full  h-screen px-5 flex flex-col`}
+    className={`relative w-full lg:max-w-7xl lg:mx-auto h-auto px-5 md:px-14 lg:px-20 xl:px-0 flex flex-col`}
     >
+          <Header/>
+
       <div className="w-full flex h-full">
-        <div className="w-[70%] h-full">
-          <PlayerComponent item={selectedItem}  />
+        <div className="flex-1 w-full h-screen">
+        <div className="h-[70%] bg-dark_blue relative">  <PlayerComponent item={selectedItem}  /></div>
+          <div className="h-[30%] bg-blue"></div>
         </div>
         <div className="w-[30%] h-full">
           <ModuleList modules={modules} onSelectItem={setSelectedItem} />

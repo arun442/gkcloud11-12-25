@@ -85,6 +85,10 @@ export default function Header() {
             }
 
         }
+        if (pathname.includes("/profile") && !localStorage.getItem('userData')) {
+            localStorage.clear();
+            router.push("/");
+        }
 
 
     }
@@ -177,7 +181,7 @@ export default function Header() {
 
                                                         {
                                                             // pathname.includes("profile") ? 
-                                                            <div className='text-white flex justify-end items-center gap-2'>Hello <span className='text-secondary_yellow'>{userData?.firstName??"User"}</span><ChevronDownIcon className="text-text_grey_one h-4 w-4" /></div> 
+                                                            <div className='text-white flex justify-end items-center gap-2'>Hello <span className='text-secondary_yellow'>{userData?.firstName ?? "User"}</span><ChevronDownIcon className="text-text_grey_one h-4 w-4" /></div>
                                                             // : !userData?.profilePictureUrl ? <UserCircleIcon className='text-text_grey h-12 w-12' /> :
                                                             //     <Image
                                                             //         width={20}
@@ -231,7 +235,7 @@ export default function Header() {
                                                                 <a
                                                                     onClick={(e) => {
                                                                         localStorage.clear();
-                                                                        router.reload();
+                                                                        router.push("/");
                                                                     }}
                                                                     className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                 >

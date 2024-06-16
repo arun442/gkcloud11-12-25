@@ -21,7 +21,8 @@ const ModuleList = ({ modules, onSelectItem }: { modules: any, onSelectItem: any
                                 <input
                                     type="checkbox"
                                     checked={false}
-                                // onChange={() => handleAnswerChange(currentQuestion.id, answer)}
+                                    onChange={()=>{}}
+                               
                                 />
                                 <button className='flex-1 text-white font-normal text-xs text-start' onClick={() => onSelectItem(item?.moduleItemDetails ? item?.moduleItemDetails[0] : item)}>{itemIndex + 1}.{item.moduleItemName}</button>
 

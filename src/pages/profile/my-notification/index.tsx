@@ -77,7 +77,7 @@ export default function Index() {
                     </div>
 
                 </div>
-                <div className="flex-1 w-full grid grid-cols-1 gap-12 mt-12">
+                <div className="w-full grid grid-cols-1 gap-12 mt-12">
 
                     {
                         notification.map((e: any, index) => {

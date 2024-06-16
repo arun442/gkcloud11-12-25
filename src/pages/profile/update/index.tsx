@@ -126,7 +126,7 @@ export default function Index() {
             <main className="w-full h-full flex flex-col">
                 <h2 className="text-xl font-medium text-normal_white">My Profile</h2>
 
-                <form onSubmit={formik.handleSubmit} className="flex-1 w-full flex-col mt-6">
+                <form onSubmit={formik.handleSubmit} className=" w-full flex-col mt-6">
                     <h2 className="mb-2 text-white">Details</h2>
                     <section className="ml-14 mb-6">
                         <p className="text-white text-sm w-20 mb-2">Name</p>
@@ -171,7 +171,7 @@ export default function Index() {
                                 <input
                                     {...formik.getFieldProps('email')}
                                     type="email"
-readOnly={true}
+                                    readOnly={true}
 
 
 
@@ -192,7 +192,7 @@ readOnly={true}
                     </section>
 
                 </form>
-                <form onSubmit={passwordFormik.handleSubmit} className="flex-1 w-full flex-col mt-6">
+                <form onSubmit={passwordFormik.handleSubmit} className=" w-full flex-col mt-6">
                     <h2 className="mb-2  text-white">Change Password</h2>
 
                     <section className="flex ml-14 gap-10 ">

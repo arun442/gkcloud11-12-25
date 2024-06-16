@@ -96,7 +96,7 @@ export default function Index() {
                                 type="text"
 
 
-                                autoComplete="text"
+                                
 
 
                                 className="block px-4 w-full rounded-sm bg-dark_blue h-14 text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
@@ -114,7 +114,7 @@ export default function Index() {
                                 rows={5}
 
 
-                                autoComplete="text"
+                                
 
 
                                 className="block px-4 w-full rounded-sm bg-dark_blue  text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"

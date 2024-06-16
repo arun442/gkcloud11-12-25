@@ -21,6 +21,9 @@ export default function MyScheduleCard({ data }: { data: any }) {
   function openModal() {
     setIsOpen(true)
   }
+  const openUrlInNewTab = (url: any) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
   return <div className={classNames("cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue", showMore ? "h-auto" : "h-80")}>
 
@@ -51,7 +54,13 @@ export default function MyScheduleCard({ data }: { data: any }) {
 
 
       <div onClick={(e) => {
-
+        if ((data?.UserCourseSchedules ?? []).length == 0) {
+          return;
+        }
+        if ((data?.UserCourseSchedules ?? [])[0].isActive == false) {
+          return
+        }
+        openUrlInNewTab((data?.UserCourseSchedules ?? [])[0].scheduleURL);
       }} className="text-white text-sm font-medium mx-auto mt-7 items-center py-3  px-6  rounded-full bg-blue">
 
         Join Now

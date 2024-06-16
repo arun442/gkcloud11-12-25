@@ -21,7 +21,9 @@ export default function MyWebinarCard({ data }: { data: any }) {
   function openModal() {
     setIsOpen(true)
   }
-
+  const openUrlInNewTab = (url: any) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
   return <div className={classNames("cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue", showMore ? "h-auto" : "h-80")}>
 
 
@@ -51,7 +53,13 @@ export default function MyWebinarCard({ data }: { data: any }) {
 
 
       <div onClick={(e) => {
-
+        if (!data?.Webinar) {
+          return;
+        }
+        if (data?.Webinar?.isActive == false) {
+          return
+        }
+        openUrlInNewTab(data?.Webinar?.webinarUrl);
       }} className="text-white text-sm font-medium mx-auto mt-7 items-center py-3  px-6  rounded-full bg-blue">
 
         Join Now

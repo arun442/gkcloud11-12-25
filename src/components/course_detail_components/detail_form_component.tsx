@@ -139,7 +139,7 @@ export default function FormComponent({
                         type="text"
 
 
-                        autoComplete="text"
+                        
                         placeholder='First Name'
                     
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1  ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
@@ -154,7 +154,7 @@ export default function FormComponent({
                         type="text"
 
 
-                        autoComplete="text"
+                        
                         placeholder='Last Name'
                     
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
@@ -171,7 +171,7 @@ export default function FormComponent({
                         type="text"
 
 
-                        autoComplete="text"
+                        
                         placeholder='Email'
                        
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
@@ -186,7 +186,7 @@ export default function FormComponent({
                         type="text"
 
 
-                        autoComplete="text"
+                        
                         placeholder='Phone Number'
                         
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
@@ -204,7 +204,7 @@ export default function FormComponent({
                             type="text"
 
 
-                            autoComplete="text"
+                            
                             placeholder='Country'
                          
                             className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
@@ -219,7 +219,7 @@ export default function FormComponent({
                             type="text"
 
 
-                            autoComplete="text"
+                            
                             placeholder='City'
                           
                             className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
@@ -238,7 +238,7 @@ export default function FormComponent({
                             type="text"
 
 
-                            autoComplete="text"
+                            
                             placeholder='Company Name'
                           
                             className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
@@ -258,7 +258,7 @@ export default function FormComponent({
                             type="text"
 
 
-                            autoComplete="text"
+                            
                             placeholder='Address'
                          
                             className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"

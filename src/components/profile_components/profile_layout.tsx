@@ -18,7 +18,7 @@ export default function ProfileLayout({
             <Header />
             <main className="flex-1 max-h-full w-full  flex flex-row mt-10 gap-5">
          {
-               pathname.includes("profile/my-learning")|| pathname.includes("profile/my-webinar")?null:    <section className="flex flex-col gap-4 text-white text-sm w-48 my-4 mr-4 cursor-pointer">
+             pathname.includes("profile/update")||   pathname.includes("profile/my-learning")|| pathname.includes("profile/my-webinar")?null:    <section className="flex flex-col gap-4 text-white text-sm w-48 my-4 mr-4 cursor-pointer">
                <div onClick={()=>{
                 router.push("/profile")
                }} className={classNames("px-2 py-2 rounded-sm  cursor-pointer",pathname=="/profile"?"bg-dark_blue":"")}>Dashboard</div>

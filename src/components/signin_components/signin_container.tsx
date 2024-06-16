@@ -34,9 +34,8 @@ export default function SignInContainer() {
     validationSchema: Yup.object({
 
       password: Yup.string()
-        .required('No password provided.')
-        .min(8, 'Password is too short - should be 8 chars minimum.')
-        .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+        .required('No password provided.'),
+      
       email: Yup.string().email('Invalid email address').required('Required'),
     }),
     onSubmit: async (values, { resetForm }) => {

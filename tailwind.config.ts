@@ -32,7 +32,8 @@ const config: Config = {
       "text_grey_one": "#E2E2E2",
       "table_border": "#DCDCDC",
       "table_font": "#E3E3E3",
-      "light_green":"#8FC23E"
+      "light_green":"#8FC23E",
+      "secondary_yellow":"#FCDC30"
     },
     fontFamily: {
       poppins: ['var(--font-poppins)'],

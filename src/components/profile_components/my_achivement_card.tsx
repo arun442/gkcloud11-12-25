@@ -103,22 +103,24 @@ export default function MyAchivementCard({ data }: { data: any }) {
                 className="h-6 w-6"
                 src="/icon_download.svg" />
             <img
-
+  onClick={() => {
+    shareCertificate(data.userCertificateId, data.certificateTitle);
+}}
 
                 className="h-6 w-6"
                 src="/icon_share.svg" />
         </div>
 
         {isPopupOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div  onClick={closePopup} className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded shadow-lg">
-            <button
+            {/* <button
               onClick={closePopup}
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
             >
               &times;
-            </button>
-            <h3 className="text-xl mb-4">Share your certificate:</h3>
+            </button> */}
+
             <div className="flex space-x-4">
               <FacebookShareButton url={certificateUrl}>
                 <FacebookIcon size={32} round />

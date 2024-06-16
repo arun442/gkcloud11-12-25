@@ -55,6 +55,7 @@ export default function Player({ modules, id }: { modules: any, id: any }) {
 
 
   const [selectedItem, setSelectedItem] = useState(null);
+  const [moduleId, setModuleId] = useState(null);
 
   // useEffect(() => {
   //   // If the initial selectedItem is null, set it to the first item of the first module
@@ -71,8 +72,10 @@ export default function Player({ modules, id }: { modules: any, id: any }) {
         }
       });
       const userCourseProgress = response?.data?.userCourseProgresses ?? [];
-      setSelectedItem(userCourseProgress.length == 0 ? modules[0]?.moduleItems[0]?.moduleItemDetails ? modules[0]?.moduleItems[0].moduleItemDetails[0] : modules[0]?.moduleItems[0].details[0]
-        : modules[userCourseProgress[0].moduleId - 1]?.moduleItems[userCourseProgress[0].moduleItemId - 1]?.moduleItemDetails ? modules[userCourseProgress[0].moduleId - 1]?.moduleItems[userCourseProgress[0].moduleItemId - 1].moduleItemDetails[0] : modules[userCourseProgress[0].moduleId - 1]?.moduleItems[userCourseProgress[0].moduleItemId - 1].details[0]);
+
+      setModuleId(userCourseProgress.length == 0 ? modules[0]?.moduleId : userCourseProgress[0].moduleId);
+      setSelectedItem(userCourseProgress.length == 0 ? modules[0]?.moduleItems[0]
+        : modules[userCourseProgress[0].moduleId - 1]?.moduleItems[userCourseProgress[0].moduleItemId - 1]);
 
     } catch (error) {
 
@@ -83,23 +86,41 @@ export default function Player({ modules, id }: { modules: any, id: any }) {
     fetchUserProgress();
 
 
-  }, [])
+  }, []);
+
+  const nextItem = async () => {
+    try {
+      const response = await axiosPrivate.get("/user/user-course-progress", {
+        params: {
+          courseId: id
+        }
+      });
+      const userCourseProgress = response?.data?.userCourseProgresses ?? [];
+
+      setModuleId(userCourseProgress.length == 0 ? modules[0]?.moduleId : userCourseProgress[0].moduleId);
+      setSelectedItem(userCourseProgress.length == 0 ? modules[0]?.moduleItems[0]
+        : modules[userCourseProgress[0].moduleId - 1]?.moduleItems[userCourseProgress[0].moduleItemId - 1]);
+
+    } catch (error) {
+
+    }
+  }
 
 
 
   return (
     <main
-    className={`relative w-full lg:max-w-7xl lg:mx-auto h-auto px-5 md:px-14 lg:px-20 xl:px-0 flex flex-col`}
+      className={`relative w-full lg:max-w-7xl lg:mx-auto h-auto px-5 md:px-14 lg:px-20 xl:px-0 flex flex-col`}
     >
-          <Header/>
+      <Header />
 
       <div className="w-full flex h-full">
         <div className="flex-1 w-full h-screen">
-        <div className="h-[70%] bg-dark_blue relative">  <PlayerComponent item={selectedItem}  /></div>
+          <div className="h-[70%] bg-dark_blue relative">  <PlayerComponent modules={modules} item={selectedItem} moduleId={moduleId} /></div>
           <div className="h-[30%] bg-blue"></div>
         </div>
         <div className="w-[30%] h-full">
-          <ModuleList modules={modules} onSelectItem={setSelectedItem} />
+          <ModuleList modules={modules} setMouduleId={setModuleId} onSelectItem={setSelectedItem} />
         </div>
       </div>
       <section></section>

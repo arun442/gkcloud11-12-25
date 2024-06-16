@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const ModuleList = ({ modules, onSelectItem }: { modules: any, onSelectItem: any }) => {
+const ModuleList = ({ modules, setMouduleId, onSelectItem }: { modules: any, setMouduleId: any, onSelectItem: any }) => {
     console.log("modules", modules);
     return (
         <div className="bg-dark_blue border-text_grey_one p-4 h-full overflow-auto">
@@ -21,10 +21,13 @@ const ModuleList = ({ modules, onSelectItem }: { modules: any, onSelectItem: any
                                 <input
                                     type="checkbox"
                                     checked={false}
-                                    onChange={()=>{}}
-                               
+                                    onChange={() => { }}
+
                                 />
-                                <button className='flex-1 text-white font-normal text-xs text-start' onClick={() => onSelectItem(item?.moduleItemDetails ? item?.moduleItemDetails[0] : item)}>{itemIndex + 1}.{item.moduleItemName}</button>
+                                <button className='flex-1 text-white font-normal text-xs text-start' onClick={() => {
+                                    setMouduleId(module.moduleId);
+                                    onSelectItem(item)
+                                }}>{itemIndex + 1}.{item.moduleItemName}</button>
 
 
                             </li>
@@ -37,7 +40,10 @@ const ModuleList = ({ modules, onSelectItem }: { modules: any, onSelectItem: any
                                     checked={false}
                                 // onChange={() => handleAnswerChange(currentQuestion.id, answer)}
                                 />
-                                <button className='flex-1 text-white font-normal text-xs text-start' onClick={() => onSelectItem(item)}>{itemIndex + 1}.{item.mode=="quiz"?"Quiz": item.moduleItemName}</button>
+                                <button className='flex-1 text-white font-normal text-xs text-start' onClick={() => {
+                                    setMouduleId(module.moduleId);
+                                    onSelectItem(module.details[0]);
+                                }}>{itemIndex + 1}.{item.mode == "quiz" ? "Quiz" : item.moduleItemName}</button>
 
 
                             </li>

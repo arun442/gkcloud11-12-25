@@ -59,12 +59,12 @@ export default function Index() {
             console.error('Error downloading file:', error);
         }
     };
-    const downloadInvoice = async (receiptId: any,courseName:any) => {
+    const downloadInvoice = async (invoiceId: any,courseName:any) => {
         try {
             // Make a GET request to the API endpoint that serves the file
             const response = await axiosPrivate.get('/user/download-payment-invoice', {
 
-                params: { receiptId: receiptId }, responseType: 'blob' // This tells Axios to expect a binary response
+                params: {invoiceId:invoiceId}, responseType: 'blob' // This tells Axios to expect a binary response
             });
 
             // Create a blob object from the response data
@@ -123,7 +123,7 @@ export default function Index() {
                                                     Receipt
                                                 </div>
                                                 <div onClick={()=>{
-                                                    downloadInvoice(e.receiptId,e.courseName)
+                                                    downloadInvoice(e.invoiceId,e.courseName)
                                                 }} className="cursor-pointer border-[0.25px] text-xs font-normal py-1 px-2">
                                                     Invoice
                                                 </div>

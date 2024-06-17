@@ -85,7 +85,7 @@ export default function Header() {
             }
 
         }
-        if (pathname.includes("/profile") && !localStorage.getItem('userData')) {
+        if (pathname.includes("/profile") && !localStorage.getItem('session')) {
             localStorage.clear();
             router.push("/");
         }
@@ -236,6 +236,7 @@ export default function Header() {
                                                                     onClick={(e) => {
                                                                         localStorage.clear();
                                                                         router.push("/");
+                                                                        router.reload()
                                                                     }}
                                                                     className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                 >

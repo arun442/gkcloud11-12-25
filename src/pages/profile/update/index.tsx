@@ -50,12 +50,12 @@ export default function Index() {
                     mobile: values.phone,
                     firstName: values.name
                 });
-
+                localStorage.removeItem('userData');
 
                 setLoading(false);
                 toast.success("Profile updated successfully")
                 console.log(result.data);
-                resetForm();
+               
 
             } catch (error: any) {
                 setLoading(false);

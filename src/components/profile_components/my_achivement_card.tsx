@@ -20,6 +20,7 @@ import {
     EmailIcon,
     TelegramIcon,
     RedditIcon,
+
   } from 'react-share';
 export default function MyAchivementCard({ data }: { data: any }) {
     const downloadCertificate = async (certificateId: any, courseName: any) => {

@@ -117,7 +117,7 @@ export default function Player({ modules, id }: { modules: any, id: any }) {
       <div className="w-full flex h-full">
         <div className="flex-1 w-full h-screen">
           <div className="h-[70%] bg-dark_blue relative">  <PlayerComponent modules={modules} item={selectedItem} moduleId={moduleId} /></div>
-          <div className="h-[30%] bg-blue"></div>
+          <div className="h-[30%]"></div>
         </div>
         <div className="w-[30%] h-full">
           <ModuleList modules={modules} setMouduleId={setModuleId} onSelectItem={setSelectedItem} />

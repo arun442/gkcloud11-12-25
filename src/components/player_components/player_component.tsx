@@ -10,25 +10,36 @@ import useUserData from '@/hooks/userData';
 
 const PlayerComponent = ({ modules, item, moduleId, setMouduleId, onSelectItem }: { modules: any, item: any, moduleId: any, setMouduleId: any, onSelectItem: any }) => {
     const params = useParams();
-    const router=useRouter()
+    const router = useRouter()
     const [isLoading, setLoading] = useState(false);
     console.log("what is the items", item, moduleId);
     const { userData, } = useUserData();
     const updateCourseItem = async (moduleId: any, itemId: any) => {
         try {
-            console.log("what is the params");
-            console.log({
-
-            })
-            const response = await axiosPrivate.post("/user/upsert-user-course-progress", {
-                "userId": userData.userId,
-                "courseId": parseInt(params.courseId[0]),
-
-                "moduleId": moduleId,
-                "moduleItemId": itemId,
-                "userCourseProgressId": 5
+            const response = await axiosPrivate.get("/user/user-course-progress", {
+                params: {
+                    "userId": userData.userId,
+                    "courseId": parseInt(params.courseId[0]),
+                }
             });
 
+            const userCourseProgress = (response?.data?.userCourseProgresses ?? []).filter((e: any) => e.userCourseProgressId == 5);
+            let payload: any = {
+                "userId": userData.userId,
+                "courseId": parseInt(params.courseId[0]),
+                "progressDate": new Date(),
+                "moduleId": moduleId,
+                "moduleItemId": itemId
+            }
+            if (userCourseProgress.length != 0) {
+                payload.userCourseProgressId = userCourseProgress[0].userCourseProgressId
+
+            }
+            console.log("paylad", payload);
+
+            //[]
+            await axiosPrivate.post("/user/upsert-user-course-progress", payload);
+            console.log("api done");
 
         } catch (error) {
 
@@ -82,25 +93,29 @@ const PlayerComponent = ({ modules, item, moduleId, setMouduleId, onSelectItem }
                         setLoading(true);
                         console.log("On Ready");
                     }}
-                    onEnded={async() => {
-                       await updateCourseItem(moduleId, item.moduleItemId);
+                    onEnded={async () => {
+                        await updateCourseItem(moduleId, item.moduleItemId);
                         const currentModule = modules.find((e: any) => e.moduleId == moduleId);
                         const moduleIndex = modules.findIndex((e: any) => e.moduleId == moduleId);
                         if (moduleIndex < 0) {
                             return;
                         }
-                        const moduleItemIndex = currentModule.moduleItems.findIndex((e: any) => e.moduleItemId == item.moduleItemId);
+                        const moduleItemIndex = (currentModule.moduleItems ?? currentModule.details).findIndex((e: any) => e.moduleItemId == item.moduleItemId);
 
-                        if (moduleItemIndex < (currentModule.moduleItems.length - 1)) {
-                            console.log("First",moduleId,currentModule.moduleItems[moduleItemIndex + 1]);
+                        if (moduleItemIndex < ((currentModule.moduleItems ?? currentModule.details).length - 1)) {
+                            console.log("First");
                             setMouduleId(moduleId);
-                            onSelectItem(currentModule.moduleItems[moduleItemIndex + 1])
+                            onSelectItem((currentModule.moduleItems ?? currentModule.details)[moduleItemIndex + 1])
                         } else {
-                            console.log("Second",modules[moduleIndex + 1].moduleId,modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
+                            const checkIndex = modules.findIndex((e: any) => e.moduleId == (moduleId + 1));
+                            if (checkIndex < 0) {
+                                return;
+                            }
+                            console.log("Second", modules[moduleIndex + 1].moduleId, modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
                             setMouduleId(modules[moduleIndex + 1].moduleId);
                             onSelectItem(modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
                         }
- 
+
                         //first need to fetch the current module using modules id 
                         //then need to check extra moudle items there or not 
                         //if there need to pass that moduleItem data into function params
@@ -117,16 +132,30 @@ const PlayerComponent = ({ modules, item, moduleId, setMouduleId, onSelectItem }
         console.log(item.quiz);
         return (
             <div className="h-full w-full relative bg-normal_white">
-                <Quiz questions={item.quiz} submit={(answer: any) => {
-                    updateQuiz(moduleId, item.id, answer);
-                    updateCourseItem(moduleId, item.id);
+                <Quiz questions={item.quiz} submit={async (answer: any) => {
+                    await updateCourseItem(moduleId, item.id);
+                    await updateQuiz(moduleId, item.id, answer);
+
                     const currentModule = modules.find((e: any) => e.moduleId == moduleId);
                     const moduleIndex = modules.findIndex((e: any) => e.moduleId == moduleId);
                     if (moduleIndex < 0) {
                         return;
                     }
-                    setMouduleId(modules[moduleIndex + 1].moduleId);
-                    onSelectItem(modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
+                    const moduleItemIndex = (currentModule.moduleItems ?? currentModule.details).findIndex((e: any) => e.moduleItemId == item.moduleItemId);
+
+                    if (moduleItemIndex < ((currentModule.moduleItems ?? currentModule.details).length - 1)) {
+                        console.log("First");
+                        setMouduleId(moduleId);
+                        onSelectItem((currentModule.moduleItems ?? currentModule.details)[moduleItemIndex + 1])
+                    } else {
+                        const checkIndex = modules.findIndex((e: any) => e.moduleId == (moduleId + 1));
+                        if (checkIndex < 0) {
+                            return;
+                        }
+                        console.log("Second", modules[moduleIndex + 1].moduleId, modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
+                        setMouduleId(modules[moduleIndex + 1].moduleId);
+                        onSelectItem(modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
+                    }
                 }} />
             </div>
         );

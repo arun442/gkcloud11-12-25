@@ -96,19 +96,19 @@ export default function CourseDetailContainer({ data }: { data: any }) {
     };
     const [index, setIndex] = useState(0);
     let [isOpen, setIsOpen] = useState(false)
-    function closeModal(isDownloaded:any) {
-if(isDownloaded==true){
-    handleDownload(data.courseId, data.title)
-}
-      setIsOpen(false)
+    function closeModal(isDownloaded: any) {
+        if (isDownloaded == true) {
+            handleDownload(data.courseId, data.title)
+        }
+        setIsOpen(false)
     }
-  
+
     function openModal() {
-      setIsOpen(true)
+        setIsOpen(true)
     }
     return (
         <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
-<LeadFormModel data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={data.title} courseName={data.courseCode}/>
+            <LeadFormModel data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={data.title} courseName={data.courseCode} />
             <div className="flex flex-row gap-1 items-center">
                 <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
                     router.back();
@@ -165,11 +165,11 @@ if(isDownloaded==true){
             </section>
             <section className='flex flex-row items-start mt-20'>
                 <div onClick={(e) => {
-                if(userData){
-                    handleDownload(data.courseId, data.title)
-                }else{
-                    openModal();
-                }
+                    if (userData) {
+                        handleDownload(data.courseId, data.title)
+                    } else {
+                        openModal();
+                    }
                 }} className="cursor-pointer mx-auto box-border border flex flex-row gap-3  items-center p-3  border-blue border-1 bg-dark_blue rounded-2xl">
                     <img
 
@@ -222,7 +222,7 @@ if(isDownloaded==true){
                             {
                                 (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
                                     <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-                                    <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                    <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e?.title ?? e}</p>
                                 </div>)
                             }
                         </section>
@@ -299,15 +299,31 @@ if(isDownloaded==true){
                                 : <main>
 
                                     {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((main: any, mainIndex: any) => <section key={mainIndex} className='mb-10'>
-                                            <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>{mainIndex + 1}. {main?.name ?? ""}</h2>
-                                            {
-                                                (main.moduleItems ?? []).map((e: any, index: any) => <div key={e} className='w-full flex flex-row gap-2 text-justify'>
-                                                    <p className='leading-6 font-normal text-sm text-white text-justify'>{mainIndex + 1}.{index + 1}.</p>
-                                                    <p className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
-                                                </div>)
-                                            }
-                                        </section>)
+                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((module: any, index: any) => <div key={module.moduleId} >
+                                            <h3 className='font-semibold text-lg text-white mb-3 text-justify'>Module {index + 1}.{module?.name}</h3>
+                                            <p>{module.moduleDescription}</p>
+                                            <ul>
+                                                {module.moduleItems ? module.moduleItems.map((item: any, itemIndex: any) => (
+                                                    <li className='flex gap-2 my-2' key={item.moduleItemId
+                                                    }>
+
+
+                                                        <button className='leading-6 font-normal text-sm text-white text-justify' >{itemIndex + 1}.{item.moduleItemName}</button>
+
+
+                                                    </li>
+                                                )) : module.details.map((item: any, itemIndex: any) => (
+                                                    <li className='flex gap-2 my-2' key={item.id
+                                                    }>
+
+
+                                                        <button className='leading-6 font-normal text-sm text-white text-justify' >{itemIndex + 1}.{item.mode == "quiz" ? "Quiz" : item.moduleItemName}</button>
+
+
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>)
                                     }</main>}
                 </main>
 
@@ -320,3 +336,6 @@ if(isDownloaded==true){
         </main>
     )
 }
+
+
+

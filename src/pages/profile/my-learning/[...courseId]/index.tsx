@@ -32,7 +32,7 @@ export async function getServerSideProps(context: any) {
       }
     }
 
-    return { props: { title: result.data.courses[0]?.title, modules: result.data.courses[0]?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? [], id: id } }
+    return { props: {data:result.data.courses[0], title: result.data.courses[0]?.title, modules: result.data.courses[0]?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? [], id: id } }
   } catch (error) {
     console.log("what is the Erro", error);
     return {
@@ -43,12 +43,13 @@ export async function getServerSideProps(context: any) {
     }
   }
 }
-export default function Player({ modules, id, title }: { modules: any, id: any, title: any }) {
+export default function Player({data, modules, id, title }: {data:any, modules: any, id: any, title: any }) {
 
   const router = useRouter();
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [moduleId, setModuleId] = useState(null);
   const { userData, } = useUserData();
+  const [notes, setNotes] = useState('');
   // useEffect(() => {
   //   // If the initial selectedItem is null, set it to the first item of the first module
   //   if (!selectedItem && modules.length > 0 && (modules[0].moduleitems??[]).length > 0) {
@@ -66,12 +67,13 @@ export default function Player({ modules, id, title }: { modules: any, id: any, 
         }
       });
 
-      const userCourseProgress = (response?.data?.userCourseProgresses ?? []).filter((e: any) => e.userCourseProgressId == 5);
+      const userCourseProgress = (response?.data?.userCourseProgresses ?? []);
       console.log("what is the response", userCourseProgress);
       if (userCourseProgress.length == 0) {
         setModuleId(modules[0]?.moduleId);
         setSelectedItem(modules[0]?.moduleItems ? modules[0]?.moduleItems[0] : modules[0]?.details[0]);
       } else {
+        setNotes(userCourseProgress[0].notes);
         const currentModule = modules.find((e: any) => e.moduleId == userCourseProgress[0].moduleId);
         const moduleIndex = modules.findIndex((e: any) => e.moduleId == userCourseProgress[0].moduleId);
         console.log("moduleIndex", moduleIndex);
@@ -90,9 +92,7 @@ export default function Player({ modules, id, title }: { modules: any, id: any, 
         }
 
       }
-      // setModuleId(userCourseProgress.length == 0 ? modules[0]?.moduleId : userCourseProgress[0].moduleId);
-      // setSelectedItem(userCourseProgress.length == 0 ? modules[0]?.moduleItems[0]
-      //   : modules[userCourseProgress[0].moduleId - 1]?.moduleItems[userCourseProgress[0].moduleItemId - 1]);
+     
 
     } catch (error) {
 
@@ -147,9 +147,8 @@ export default function Player({ modules, id, title }: { modules: any, id: any, 
       </div>
 
       <div className="w-full flex h-full">
-        <div className="flex-1 w-full h-screen">
-          <div className="h-[70%] bg-dark_blue relative">  <PlayerComponent setMouduleId={setModuleId} onSelectItem={setSelectedItem} modules={modules} item={selectedItem} moduleId={moduleId} /></div>
-          <div className="h-[30%]"></div>
+        <div className="flex-1 w-full">
+        <PlayerComponent notes={notes} setNotes={setNotes} data={data} setMouduleId={setModuleId} onSelectItem={setSelectedItem} modules={modules} item={selectedItem} moduleId={moduleId} />
         </div>
         <div className="w-[30%] h-full">
           {selectedItem && <ModuleList modules={modules} setMouduleId={setModuleId} onSelectItem={setSelectedItem} currentItem={selectedItem} moduleId={moduleId} />}

@@ -1,21 +1,10 @@
 import Header from "@/components/helpers/header";
-import Image from "next/image";
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import HomePageMainContainer from "@/components/home_components/home_container";
-import ExploreCourseComponent from "@/components/home_components/explore_course_compoent";
-import ClassesComponent from "@/components/home_components/classes_component";
-import WhyUsComponent from "@/components/home_components/why_us_component";
-import UnqueOfferComponent from "@/components/home_components/unique_offer_components";
-import OurClientComponent from "@/components/home_components/our_client_component";
-import TestimonialComponent from "@/components/home_components/testimonial_component";
-import NewsLetterComponent from "@/components/home_components/news_letter_component";
-import Footer from "@/components/helpers/footer";
-import CookieConsent from "@/components/helpers/cookie";
 import { axiosPublic } from "@/common/axiosPublic";
 import { useState, useEffect } from "react";
 import PlayerComponent from "@/components/player_components/player_component";
 import ModuleList from "@/components/player_components/module_list_component";
 import { axiosPrivate } from "@/common/axiosPrivate";
+import useUserData from "@/hooks/userData";
 
 
 export async function getServerSideProps(context: any) {
@@ -56,7 +45,7 @@ export default function Player({ modules, id }: { modules: any, id: any }) {
 
   const [selectedItem, setSelectedItem] = useState(null);
   const [moduleId, setModuleId] = useState(null);
-
+  const { userData, } = useUserData();
   // useEffect(() => {
   //   // If the initial selectedItem is null, set it to the first item of the first module
   //   if (!selectedItem && modules.length > 0 && (modules[0].moduleitems??[]).length > 0) {
@@ -68,14 +57,36 @@ export default function Player({ modules, id }: { modules: any, id: any }) {
     try {
       const response = await axiosPrivate.get("/user/user-course-progress", {
         params: {
-          courseId: id
+          courseId: id,
+          "userId": userData.userId
+
         }
       });
-      const userCourseProgress = response?.data?.userCourseProgresses ?? [];
+      const userCourseProgress = (response?.data?.userCourseProgresses ?? []).filter((e: any) => e.userCourseProgressId == 5);
+      console.log("user progress", userCourseProgress);
+      if (userCourseProgress.length == 0) {
+        setModuleId(modules[0]?.moduleId);
+        setSelectedItem(modules[0]?.moduleItems ? modules[0]?.moduleItems[0] : modules[0]?.details[0]);
+      } else {
+        const currentModule = modules.find((e: any) => e.moduleId == userCourseProgress[0].moduleId);
+        const moduleIndex = modules.findIndex((e: any) => e.moduleId == userCourseProgress[0].moduleId);
+        if (moduleIndex < 0) {
+          return;
+        }
+        const moduleItemIndex = currentModule.moduleItems.findIndex((e: any) => e.moduleItemId == userCourseProgress[0].moduleItemId);
 
-      setModuleId(userCourseProgress.length == 0 ? modules[0]?.moduleId : userCourseProgress[0].moduleId);
-      setSelectedItem(userCourseProgress.length == 0 ? modules[0]?.moduleItems[0]
-        : modules[userCourseProgress[0].moduleId - 1]?.moduleItems[userCourseProgress[0].moduleItemId - 1]);
+        if (moduleItemIndex < (currentModule.moduleItems.length - 1)) {
+          setModuleId(userCourseProgress[0].moduleId);
+          setSelectedItem(currentModule.moduleItems[moduleItemIndex + 1])
+        } else {
+          setModuleId(modules[moduleIndex + 1].moduleId);
+          setSelectedItem(modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
+        }
+
+      }
+      // setModuleId(userCourseProgress.length == 0 ? modules[0]?.moduleId : userCourseProgress[0].moduleId);
+      // setSelectedItem(userCourseProgress.length == 0 ? modules[0]?.moduleItems[0]
+      //   : modules[userCourseProgress[0].moduleId - 1]?.moduleItems[userCourseProgress[0].moduleItemId - 1]);
 
     } catch (error) {
 
@@ -86,25 +97,9 @@ export default function Player({ modules, id }: { modules: any, id: any }) {
     fetchUserProgress();
 
 
-  }, []);
+  }, [userData]);
 
-  const nextItem = async () => {
-    try {
-      const response = await axiosPrivate.get("/user/user-course-progress", {
-        params: {
-          courseId: id
-        }
-      });
-      const userCourseProgress = response?.data?.userCourseProgresses ?? [];
 
-      setModuleId(userCourseProgress.length == 0 ? modules[0]?.moduleId : userCourseProgress[0].moduleId);
-      setSelectedItem(userCourseProgress.length == 0 ? modules[0]?.moduleItems[0]
-        : modules[userCourseProgress[0].moduleId - 1]?.moduleItems[userCourseProgress[0].moduleItemId - 1]);
-
-    } catch (error) {
-
-    }
-  }
 
 
 
@@ -116,11 +111,11 @@ export default function Player({ modules, id }: { modules: any, id: any }) {
 
       <div className="w-full flex h-full">
         <div className="flex-1 w-full h-screen">
-          <div className="h-[70%] bg-dark_blue relative">  <PlayerComponent modules={modules} item={selectedItem} moduleId={moduleId} /></div>
+          <div className="h-[70%] bg-dark_blue relative">  <PlayerComponent setMouduleId={setModuleId} onSelectItem={setSelectedItem} modules={modules} item={selectedItem} moduleId={moduleId} /></div>
           <div className="h-[30%]"></div>
         </div>
         <div className="w-[30%] h-full">
-          <ModuleList modules={modules} setMouduleId={setModuleId} onSelectItem={setSelectedItem} />
+          {selectedItem && <ModuleList modules={modules} setMouduleId={setModuleId} onSelectItem={setSelectedItem} currentItem={selectedItem} moduleId={moduleId} />}
         </div>
       </div>
       <section></section>

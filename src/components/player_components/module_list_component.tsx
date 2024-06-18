@@ -1,8 +1,8 @@
 
 import React from 'react';
 
-const ModuleList = ({ modules, setMouduleId, onSelectItem }: { modules: any, setMouduleId: any, onSelectItem: any }) => {
-    console.log("modules", modules);
+const ModuleList = ({ currentItem, moduleId, modules, setMouduleId, onSelectItem }: { currentItem: any, moduleId: any, modules: any, setMouduleId: any, onSelectItem: any }) => {
+    console.log("modules", moduleId, currentItem);
     return (
         <div className="bg-dark_blue border-text_grey_one p-4 h-full overflow-auto">
             <div className='flex justify-between items-center'>
@@ -20,29 +20,35 @@ const ModuleList = ({ modules, setMouduleId, onSelectItem }: { modules: any, set
 
                                 <input
                                     type="checkbox"
-                                    checked={false}
-                                    onChange={() => { }}
+                                    defaultChecked={parseInt(`${module.moduleId}${item.moduleItemId}`) < parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`) ? true : false}
 
                                 />
                                 <button className='flex-1 text-white font-normal text-xs text-start' onClick={() => {
-                                    setMouduleId(module.moduleId);
-                                    onSelectItem(item)
+                                    console.log(parseInt(`${module.moduleId}${item.moduleItemId}`) , parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`))
+                                    if (parseInt(`${module.moduleId}${item.moduleItemId}`) < parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`)) {
+                                        setMouduleId(module.moduleId);
+                                        onSelectItem(item)
+                                    }
+
                                 }}>{itemIndex + 1}.{item.moduleItemName}</button>
 
 
                             </li>
                         )) : module.details.map((item: any, itemIndex: any) => (
-                            <li className='flex gap-2 my-2' key={item.moduleItemId
+                            <li className='flex gap-2 my-2' key={item.id
                             }>
 
                                 <input
                                     type="checkbox"
-                                    checked={false}
-                                // onChange={() => handleAnswerChange(currentQuestion.id, answer)}
+                                    defaultChecked={parseInt(`${module.moduleId}${item.id}`) < parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`) ? true : false}
                                 />
                                 <button className='flex-1 text-white font-normal text-xs text-start' onClick={() => {
-                                    setMouduleId(module.moduleId);
-                                    onSelectItem(module.details[0]);
+                                      console.log(parseInt(`${module.moduleId}${item.id}`) , parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`))
+                                    if (parseInt(`${module.moduleId}${item.id}`) < parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`)) {
+                                        setMouduleId(module.moduleId);
+                                        onSelectItem(module.details[0]);
+                                    }
+
                                 }}>{itemIndex + 1}.{item.mode == "quiz" ? "Quiz" : item.moduleItemName}</button>
 
 

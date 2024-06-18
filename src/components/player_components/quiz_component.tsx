@@ -1,7 +1,7 @@
 // components/Quiz.js
 import React, { useState } from 'react';
 
-const Quiz = ({ questions }:{questions:any}) => {
+const Quiz = ({ questions ,submit}:{questions:any,submit:any}) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState<any>({});
 
@@ -60,7 +60,7 @@ const Quiz = ({ questions }:{questions:any}) => {
                 <div className='flex justify-end'>
                     {currentQuestionIndex === questions.length - 1 && (
                         <button className='font-semibold' onClick={() => {
-                            console.log("submit");
+                           submit(selectedAnswers)
                         }}>
                             Submit
                         </button>

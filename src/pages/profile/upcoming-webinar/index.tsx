@@ -44,9 +44,9 @@ export default function Index() {
   }
     return (
         <ProfileLayout>
-            <main className="w-full h-full flex flex-col">
+            <main className="w-full h-auto flex flex-col">
                 <h2 className="text-xl font-medium text-normal_white">Webinars</h2>
-                <div className="flex-1 w-full grid grid-cols-3 gap-6 mt-8">
+                <div className="h-auto w-full grid grid-cols-3 gap-6 mt-8">
 
 {
   data.map((e: any, index) => {

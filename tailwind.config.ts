@@ -33,12 +33,22 @@ const config: Config = {
       "table_border": "#DCDCDC",
       "table_font": "#E3E3E3",
       "light_green":"#8FC23E",
-      "secondary_yellow":"#FCDC30"
+      "secondary_yellow":"#FCDC30",
+      "scroll_green":"#5FEF5C"
     },
     fontFamily: {
       poppins: ['var(--font-poppins)'],
     },
     extend: {
+        keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(10%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
+      animation: {
+        marquee: 'marquee 60s linear infinite',
+      },
       height: {
         'home': 'calc(100vh - 96px)',
       },

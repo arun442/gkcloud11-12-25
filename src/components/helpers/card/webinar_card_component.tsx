@@ -24,12 +24,12 @@ export default function WebinarCard({ data }: { data: any}) {
   return <div className={classNames("cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue",showMore?"h-auto":"h-80")}>
      <WebinarModel closeModal={closeModal} isOpen={isOpen} data={data} />
 
-  <section className='flex-1 flex flex-col  p-6 '>
- <div className='flex-1 flex-col'>
+  <section className='flex flex-col  p-6 '>
+ <div className='flex-col'>
  <h2 className="text-white text-lg font-medium">{data.webinarName}</h2>
   {showMore ? (
         <div>
-          <p className='w-full py-4 text-sm text-white'>{data.WebinarContents.length==0?"":data.WebinarContents[0].objective}</p>
+          <p className='w-full pt-4 text-sm text-white'>{data.WebinarContents.length==0?"":data.WebinarContents[0].objective }</p>
          
         </div>
       ) : (

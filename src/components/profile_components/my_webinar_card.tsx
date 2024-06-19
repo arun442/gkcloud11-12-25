@@ -27,8 +27,8 @@ export default function MyWebinarCard({ data }: { data: any }) {
   return <div className={classNames("cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue", showMore ? "h-auto" : "h-80")}>
 
 
-    <section className='flex-1 flex flex-col  p-6 '>
-      <div className='flex-1 flex-col'>
+    <section className=' flex flex-col  p-6 '>
+      <div className='flex-col'>
         {
           (data?.WebinarSchedule?.CourseInstructors ?? []).length == 0 ? null : <p className='text-white text-xs mb-3'>Trainer: {data?.WebinarSchedule?.CourseInstructors[0].firstName} {data?.WebinarSchedule?.CourseInstructors[0].lastName}</p>
         }

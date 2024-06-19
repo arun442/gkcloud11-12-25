@@ -11,7 +11,7 @@ import ErrorBoundary from '@/helpers/error_boundary';
 import OverlayLoader from '../helpers/OverlayLoader';
 
 
-const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMouduleId, onSelectItem }: {notes:any, setNotes:any, data:any, modules: any, item: any, moduleId: any, setMouduleId: any, onSelectItem: any }) => {
+const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMouduleId, onSelectItem }: { notes: any, setNotes: any, data: any, modules: any, item: any, moduleId: any, setMouduleId: any, onSelectItem: any }) => {
     const params = useParams();
     const router = useRouter()
     const [isLoading, setLoading] = useState(true);
@@ -34,7 +34,7 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
                 "progressDate": new Date(),
                 "moduleId": moduleId,
                 "moduleItemId": itemId,
-                "notes": notes,
+
             }
             if (userCourseProgress.length != 0) {
                 payload.userCourseProgressId = userCourseProgress[0].userCourseProgressId
@@ -65,8 +65,38 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
                 "userId": userData.userId,
                 "courseId": parseInt(params.courseId[0]),
                 "progressDate": new Date(),
-                "courseStatus":"Completed",
+                "courseStatus": "Completed",
                 "notes": notes,
+            }
+            if (userCourseProgress.length != 0) {
+                payload.userCourseProgressId = userCourseProgress[0].userCourseProgressId
+
+            }
+            console.log("paylad", payload);
+
+            //[]
+            await axiosPrivate.post("/user/upsert-user-course-progress", payload);
+            console.log("api done");
+
+        } catch (error) {
+
+        }
+    }
+    const updateNotes = async (moduleId: any, itemId: any,note:any) => {
+        try {
+            const response = await axiosPrivate.get("/user/user-course-progress", {
+                params: {
+                    "userId": userData.userId,
+                    "courseId": parseInt(params.courseId[0]),
+                }
+            });
+
+            const userCourseProgress = (response?.data?.userCourseProgresses ?? []);
+            let payload: any = {
+                "userId": userData.userId,
+                "courseId": parseInt(params.courseId[0]),
+
+                "notes": note,
             }
             if (userCourseProgress.length != 0) {
                 payload.userCourseProgressId = userCourseProgress[0].userCourseProgressId
@@ -113,11 +143,11 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
         <section className='w-full h-[70vh]'>{
             item == null ? <></> : item.moduleItemDetails && item.moduleItemDetails.length != 0 && item.moduleItemDetails[0].mode == "video" ?
                 <div className="h-full w-full bg-dark_blue relative">
-                  {
-                  isLoading&&   <div className="w-full h-full absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                     <div className="w-16 h-16 border-4 border-t-transparent border-blue rounded-full animate-spin"></div>
-                   </div>
-                  }
+                    {
+                        isLoading && <div className="w-full h-full absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                            <div className="w-16 h-16 border-4 border-t-transparent border-blue rounded-full animate-spin"></div>
+                        </div>
+                    }
                     <ReactPlayer style={{
                         objectFit: "cover",
                         width: "100%",
@@ -150,7 +180,8 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
                             } else {
                                 const checkIndex = modules.findIndex((e: any) => e.moduleId == (moduleId + 1));
                                 if (checkIndex < 0) {
-                                    updateCourseStatus(moduleId, item.moduleItemId);
+                                    await updateCourseStatus(moduleId, item.moduleItemId);
+                                    router.refresh();
                                     return;
                                 }
                                 console.log("Second", modules[moduleIndex + 1].moduleId, modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
@@ -184,7 +215,8 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
                         } else {
                             const checkIndex = modules.findIndex((e: any) => e.moduleId == (moduleId + 1));
                             if (checkIndex < 0) {
-                                updateCourseStatus(moduleId, item.moduleItemId);
+                                await updateCourseStatus(moduleId, item.moduleItemId);
+                                router.refresh();
                                 return;
                             }
                             console.log("Second", modules[moduleIndex + 1].moduleId, modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
@@ -197,74 +229,74 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
         <section className='w-full p-2'>
             <section className={classNames("w-full cursor-pointer text-sm  flex flex-row mt-12 justify-start items-center  gap-7")}>
                 <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>
-                   OverView
+                    OverView
                 </div>
                 <div className='h-6 w-[1px] rounded-lg bg-grey'></div>
                 <div className={index != 1 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(1)}>
-               Notes
+                    Notes
                 </div>
                 <div className='h-6 w-[1px] rounded-lg bg-grey'></div>
                 <div className={index != 2 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(2)}>
-           Stu
+                    Stu
                 </div>
-              
+
 
             </section>
             <ErrorBoundary>
                 <main className='mt-2 w-full'>
-                 {
-index==0?<section className='w-full'>
-    <main className='mb-8'>
-<h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Course Description</h2>
-<section>
+                    {
+                        index == 0 ? <section className='w-full'>
+                            <main className='mb-8'>
+                                <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Course Description</h2>
+                                <section>
 
-    <p className='my-6 leading-6 font-normal text-sm text-white text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.description?.description ?? data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}</p>
-
-    {
-        (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-            <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-            <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e?.title ?? e}</p>
-        </div>)
-    }
-</section>
-{
-    (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).length != 0 ? <section className='mt-10'>
-        <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Highlights</h2>
-        {
-            (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).map((e: any, index: any) => <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}. {e}</p>)
-        }
-    </section> : <></>
-}
-{
-    (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).length != 0 ? <section className='mt-10'>
-        <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Course Benefit Include</h2>
-        {
-            (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-                <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
-            </div>)
-        }
-    </section> : <></>
-}
-
-</main>
-<main className='mb-8'>
-                            <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Objectives</h2>
-                            <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.description ?? ""}</h2>
-                            {
-                                (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).length != 0 ? <section className=''>
+                                    <p className='my-6 leading-6 font-normal text-sm text-white text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.description?.description ?? data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}</p>
 
                                     {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                                            <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
-                                            <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                            <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
+                                            <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e?.title ?? e}</p>
                                         </div>)
                                     }
-                                </section> : <></>
-                            }
+                                </section>
+                                {
+                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).length != 0 ? <section className='mt-10'>
+                                        <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Highlights</h2>
+                                        {
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).map((e: any, index: any) => <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}. {e}</p>)
+                                        }
+                                    </section> : <></>
+                                }
+                                {
+                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).length != 0 ? <section className='mt-10'>
+                                        <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Course Benefit Include</h2>
+                                        {
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                                <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
+                                                <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                            </div>)
+                                        }
+                                    </section> : <></>
+                                }
 
-                        </main>
-                        <main className='mb-8'>
+                            </main>
+                            <main className='mb-8'>
+                                <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Objectives</h2>
+                                <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.description ?? ""}</h2>
+                                {
+                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).length != 0 ? <section className=''>
+
+                                        {
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                                <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                                <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                            </div>)
+                                        }
+                                    </section> : <></>
+                                }
+
+                            </main>
+                            <main className='mb-8'>
                                 <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Audience</h2>
                                 <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.description ?? ""}</h2>
                                 {
@@ -281,33 +313,37 @@ index==0?<section className='w-full'>
 
                             </main>
                             <main className='mb-8'>
-                                    <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Prerequisites</h2>
-                                    <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
-                                    {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).length != 0 ? <section className=''>
+                                <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Prerequisites</h2>
+                                <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
+                                {
+                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).length != 0 ? <section className=''>
 
-                                            {
-                                                (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                                                    <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
-                                                    <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
-                                                </div>)
-                                            }
-                                        </section> : <></>
-                                    }
+                                        {
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                                <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                                <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                            </div>)
+                                        }
+                                    </section> : <></>
+                                }
 
-                                </main>
-</section>:index==1?  <textarea
-                               
-                                rows={5}
+                            </main>
+                        </section> : index == 1 ? <textarea
 
-value={notes}
-onChange={(e)=>setNotes(e.target.value)}
+                            rows={5}
+
+                            value={notes}
+                            onChange={(e) => {
+                                updateNotes(moduleId, item.moduleItemId,e.target.value);
+                                setNotes(e.target.value);
                                 
+                            }}
 
 
-                                className="block px-4 w-full rounded-sm bg-dark_blue  text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                            />:<></>
-                 }
+
+                            className="block px-4 w-full rounded-sm bg-dark_blue  text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
+                        /> : <></>
+                    }
                 </main>
 
             </ErrorBoundary>

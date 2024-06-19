@@ -11,14 +11,19 @@ import TestimonialComponent from "@/components/home_components/testimonial_compo
 import NewsLetterComponent from "@/components/home_components/news_letter_component";
 import Footer from "@/components/helpers/footer";
 import CookieConsent from "@/components/helpers/cookie";
+import Marquee from "@/components/helpers/Marquee";
+
 
 export default function Home() {
   return (
-    <main
+    <div className="w-full">
+        <Marquee/>
+       <main
       className={`relative w-full lg:max-w-7xl lg:mx-auto h-auto px-5 md:px-14 lg:px-20 xl:px-0 flex flex-col`}
     >
     <div className="absolute inset-0 -z-10 bg-cover bg-center  h-screen" style={{backgroundImage: 'url("/bg_dot.png")', opacity: '0.1' }}></div>
     <Header/>
+  
     <HomePageMainContainer/>
    <ExploreCourseComponent/>
    <ClassesComponent/>
@@ -32,5 +37,7 @@ export default function Home() {
   <Footer/>
   <CookieConsent/>
     </main>
+    </div>
+   
   );
 }

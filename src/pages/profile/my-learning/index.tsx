@@ -131,7 +131,7 @@ export default function Index() {
 
                     {
                         (userProgress.filter((e: any) => e.courseStatus == "Completed")).map((e: any, index: any) => {
-                            return < CompletedCourseCard data={course.filter((data) => data.Course.courseId == e?.courseId)[0]} percentage={e?.autoCalculatedProgressPercentage ?? "0"} />
+                            return < CompletedCourseCard key={index} data={course.filter((data) => data.Course.courseId == e?.courseId)[0]} percentage={e?.autoCalculatedProgressPercentage ?? "0"} />
                         })
                     }
 

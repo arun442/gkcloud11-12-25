@@ -5,38 +5,16 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { Metamorphous } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import LinearProgressBar from '../helpers/linearProgress';
+import CircleProgressBar from '../helpers/circleProgress';
 
 
-export default function MyCourseCard({ data }: { data: any }) {
+export default function CompletedCourseCard({ data, percentage }: { data: any, percentage: any }) {
     const router = useRouter();
-    const { userData, } = useUserData();
-    const [userProgress,setUserProgress]=useState<any>([]);
-    const fetchUserProgress = async () => {
-        try {
-          const response = await axiosPrivate.get("/user/user-course-progress", {
-            params: {
-              courseId: data.Course.courseId,
-              "userId": userData.userId
-    
-            }
-          });
-    
-          const userCourseProgress = (response?.data?.userCourseProgresses ?? []);
-          setUserProgress(userCourseProgress);
-         
-    
-        } catch (error) {
-    
-        }
-      }
-      useEffect(() => {
-        fetchUserProgress();
-    
-    
-      }, [userData]);
+
     return <div onClick={(e) => {
         router.push(`/profile/my-learning/${data.Course.courseId}`)
-    }} className="cursor-pointer box-border border flex flex-col p-6 justify-start items-start border-blue border-1 bg-dark_blue rounded-2xl">
+    }} className="cursor-pointer box-border border flex w-full p-6 justify-start items-start border-blue border-1 bg-dark_blue rounded-2xl">
 
         <section className='flex-1 flex-col'>
             <div className='w-full flex flex-row justify-between items-center'>
@@ -52,13 +30,11 @@ export default function MyCourseCard({ data }: { data: any }) {
             </div>
             <h2 className="text-white text-xl font-medium">{data.Course.title}</h2>
 
-{
- userProgress.length!=0&&userProgress[0]?.autoCalculatedProgressPercentage!=null?   <div className='flex mt-2'>
-    <p className="text-text_grey text-[12px] font-medium">Completed : </p>
-    <p className="text-white text-[12px] font-semibold">{userProgress[0]?.autoCalculatedProgressPercentage}%</p>
-    </div>:<></>
-}
+          
         </section>
-
+        <div className="flex flex-shrink-0 gap-2 items-center">
+          <CircleProgressBar percentage={100} />
+          <p className="cursor-pointer text-text_grey_one text-base font-normal">100%</p>
+        </div>
     </div>;
 }

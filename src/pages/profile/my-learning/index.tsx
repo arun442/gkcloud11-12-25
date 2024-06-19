@@ -16,7 +16,10 @@ import { useRouter } from "next/router";
 import { axiosPrivate } from "@/common/axiosPrivate";
 import { useEffect, useState } from "react";
 import MyCourseCard from "@/components/profile_components/my_course_card";
-
+import classNames from "@/helpers/add_class";
+import RecentViewCourseCard from "@/components/profile_components/recent_view_course_card";
+import useUserData from "@/hooks/userData";
+import CompletedCourseCard from "@/components/profile_components/completed_course_card";
 
 export default function Index() {
     let [course, setCourse] = useState<any[]>([]);
@@ -44,6 +47,41 @@ export default function Index() {
         }
     }
     const router = useRouter();
+    const [index, setIndex] = useState(0);
+    const { userData, } = useUserData();
+    const [userProgress, setUserProgress] = useState<any>([]);
+    const fetchUserProgress = async () => {
+        try {
+            const response = await axiosPrivate.get("/user/user-course-progress", {
+                params: {
+
+                    "userId": userData.userId
+
+                }
+            });
+
+            const userCourseProgress = (response?.data?.userCourseProgresses ?? []);
+            setUserProgress(userCourseProgress);
+
+
+        } catch (error) {
+
+        }
+    }
+    useEffect(() => {
+        fetchUserProgress();
+
+
+    }, [userData]);
+
+    const sortByDate = (data: any) => {
+        const sortedEventsDesc = data.sort((a: any, b: any) => {
+            const dateA: any = new Date(a.progressDate);
+            const dateB: any = new Date(b.progressDate);
+            return dateB - dateA; // Descending order
+        });
+        return sortedEventsDesc;
+    }
     return (
         <ProfileLayout>
             <main className="w-full h-full flex flex-col">
@@ -55,18 +93,62 @@ export default function Index() {
                     <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
                     <p className="cursor-pointer text-text_grey_one text-base font-medium">My Learning</p>
                 </div>
-                <div className="w-full grid grid-cols-3 gap-6 mt-8">
+                <div className={classNames("w-full cursor-pointer text-[16px]  flex flex-row justify-start items-center text-white mt-10 gap-16")}>
+                    <div className={index != 0 ? "font-normal" : "border-b-2 font-semibold"} onClick={(e) => {
 
-{
-  course.map((e: any, index) => {
-    return  <MyCourseCard  key={index} data={e} />
-  })
-}
+                        setIndex(0)
+                    }}>
+                        All Courses
+                    </div>
+
+                    <div className={index != 1 ? " font-normal" : "border-b-2 font-semibold"} onClick={(e) => {
+                        setIndex(1)
+
+                    }}>
+                        Recently Viewed
+                    </div>
+                    <div className={index != 2 ? " font-normal" : "border-b-2 font-semibold"} onClick={(e) => {
+                        setIndex(2)
+
+                    }}>
+                        Completed
+                    </div>
+
+                </div>
+                {index == 0 && <div className="w-full grid grid-cols-3 gap-6 mt-8">
+
+                    {
+                        course.map((e: any, index) => {
+                            return <MyCourseCard key={index} data={e} />
+                        })
+                    }
 
 
 
 
-</div>
+                </div>}
+                {index == 2 && <div className="w-full grid grid-cols-1 gap-6 mt-8">
+
+                    {
+                        (userProgress.filter((e: any) => e.courseStatus == "Completed")).map((e: any, index: any) => {
+                            return < CompletedCourseCard data={course.filter((data) => data.Course.courseId == e?.courseId)[0]} percentage={e?.autoCalculatedProgressPercentage ?? "0"} />
+                        })
+                    }
+
+
+
+
+                </div>}
+                {index == 1 && <div className="w-full grid grid-cols-1 gap-6 mt-8">
+
+                    {
+                        course.length != 0 && userProgress.length != 0 ? <RecentViewCourseCard data={course.filter((e) => e.Course.courseId == sortByDate(userProgress)[0]?.courseId)[0]} percentage={sortByDate(userProgress)[0]?.autoCalculatedProgressPercentage ?? "0"} /> : <></>
+                    }
+
+
+
+
+                </div>}
             </main>
         </ProfileLayout>
     );

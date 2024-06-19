@@ -65,7 +65,7 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
                 "userId": userData.userId,
                 "courseId": parseInt(params.courseId[0]),
                 "progressDate": new Date(),
-                "courseStatus":  "Completed",
+                "courseStatus":"Completed",
                 "notes": notes,
             }
             if (userCourseProgress.length != 0) {

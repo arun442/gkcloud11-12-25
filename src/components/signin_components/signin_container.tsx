@@ -34,7 +34,7 @@ export default function SignInContainer() {
     validationSchema: Yup.object({
 
       password: Yup.string()
-        .required('No password provided.'),
+       .required('Please provide a password.'),
       
       email: Yup.string().email('Invalid email address').required('Required'),
     }),
@@ -111,7 +111,7 @@ export default function SignInContainer() {
           <input
             type={passwordType}
             placeholder="Password *"
-
+            maxLength={30}
 
             {...formik.getFieldProps('password')}
 

@@ -72,13 +72,19 @@ export default function Index() {
         },
         validationSchema: Yup.object({
             currentPassword: Yup.string()
-                .required('No password provided.')
-                .min(8, 'Password is too short')
-                .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+               // .required('No password provided.')
+                //.min(8, 'Password is too short')
+               // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+               .required('Please provide a password.')
+               .min(8, 'Password must be at least 8 characters long.')
+               .matches(/[a-zA-Z0-9!@#$%^&*]/, 'Password can only contain letters, numbers, and special characters like !@#$%^&*.'),
             newPassword: Yup.string()
-                .required('No password provided.')
-                .min(8, 'Password is too short')
-                .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+               // .required('No password provided.')
+                //.min(8, 'Password is too short')
+               // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+               .required('Please provide a password.')
+               .min(8, 'Password must be at least 8 characters long.')
+               .matches(/[a-zA-Z0-9!@#$%^&*]/, 'Password can only contain letters, numbers, and special characters like !@#$%^&*.')
 
         }),
         onSubmit: async (values, { resetForm }) => {
@@ -221,7 +227,7 @@ export default function Index() {
                                     {...passwordFormik.getFieldProps('currentPassword')}
                                    
                                     type={passwordOneType}
-
+                                    maxLength={30}
 
 
 
@@ -241,7 +247,7 @@ export default function Index() {
                                 <input
                                     {...passwordFormik.getFieldProps('newPassword')}
                                     type={passwordTwoType}
-
+                                    maxLength={30}
 
 
 

@@ -30,11 +30,11 @@ export default function FormComponent({
         validationSchema: Yup.object({
             firstName: Yup.string()
 
-                .required('Required'),
+                .required('*'),
 
             lastName: Yup.string() ,
-            email: Yup.string().email('Invalid email address').required('Required'),
-            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid') .required('Required'),
+            email: Yup.string().email('Invalid email address').required('*'),
+            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid') .required('*'),
             country: Yup.string()
 
             ,
@@ -145,7 +145,7 @@ export default function FormComponent({
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1  ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                     />
                     {formik.errors.firstName ? (
-                        <div className="text-sm text-white mt-2 ml-2">{formik.errors.firstName}</div>
+                        <div className="text-sm text-red mt-2 ml-2">{formik.errors.firstName}</div>
                     ) : null}
                 </div>
                 <div className='flex-1'>
@@ -160,7 +160,7 @@ export default function FormComponent({
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                     />
                     {formik.errors.lastName ? (
-                        <div className="text-sm text-white mt-2 ml-2">{formik.errors.lastName}</div>
+                        <div className="text-sm text-red mt-2 ml-2">{formik.errors.lastName}</div>
                     ) : null}
                 </div>
             </div>
@@ -177,7 +177,7 @@ export default function FormComponent({
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                     />
                     {formik.errors.email ? (
-                        <div className="text-sm text-white mt-2 ml-2">{formik.errors.email}</div>
+                        <div className="text-sm text-red mt-2 ml-2">{formik.errors.email}</div>
                     ) : null}
                 </div>
                 <div className='flex-1'>
@@ -192,7 +192,7 @@ export default function FormComponent({
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                     />
                     {formik.errors.phone ? (
-                        <div className="text-sm text-white mt-2 ml-2">{formik.errors.phone}</div>
+                        <div className="text-sm text-red mt-2 ml-2">{formik.errors.phone}</div>
                     ) : null}
                 </div>
             </div>
@@ -244,7 +244,7 @@ export default function FormComponent({
                             className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                         />
                         {formik.errors.company ? (
-                            <div className="text-sm text-white mt-2 ml-2">{formik.errors.company}</div>
+                            <div className="text-sm text-red mt-2 ml-2">{formik.errors.company}</div>
                         ) : null}
                     </div>
 

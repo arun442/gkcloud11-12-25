@@ -34,7 +34,8 @@ const config: Config = {
       "table_font": "#E3E3E3",
       "light_green":"#8FC23E",
       "secondary_yellow":"#FCDC30",
-      "scroll_green":"#5FEF5C"
+      "scroll_green":"#5FEF5C",
+      "red":"#C70039"
     },
     fontFamily: {
       poppins: ['var(--font-poppins)'],

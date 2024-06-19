@@ -28,7 +28,7 @@ export default function NewsLetterComponent() {
     validationSchema: Yup.object({
     
    
-      email: Yup.string().email('Invalid email address').required('Required'),
+      email: Yup.string().email('Invalid email address').required('*'),
     }),
     onSubmit: async(values, { resetForm }) => {
      
@@ -68,7 +68,7 @@ export default function NewsLetterComponent() {
          <button type='submit'    className='cursor-pointer md:absolute right-0 top-0 bottom-0 h-12 w-40 bg-blue rounded-full text-white text-sm font-medium flex flex-row items-center justify-center'>Subscribe</button>
        </div>
        {formik.errors.email ? (
-                   <div className="text-sm text-white mt-2 ml-2">{formik.errors.email}</div>
+                   <div className="text-sm text-red mt-2 ml-2">{formik.errors.email}</div>
                  ) : null}
           </div>
         <DialogueModel closeModal={closeModal} isOpen={isOpen} />

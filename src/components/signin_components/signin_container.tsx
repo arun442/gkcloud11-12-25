@@ -36,7 +36,7 @@ export default function SignInContainer() {
       password: Yup.string()
        .required('Please provide a password.'),
       
-      email: Yup.string().email('Invalid email address').required('Required'),
+      email: Yup.string().email('Invalid email address').required('*'),
     }),
     onSubmit: async (values, { resetForm }) => {
 
@@ -102,7 +102,7 @@ export default function SignInContainer() {
 
           </span>
           {formik.errors.email ? (
-            <div className="text-sm text-white mt-2 ml-2">{formik.errors.email}</div>
+            <div className="text-sm text-red mt-2 ml-2">{formik.errors.email}</div>
           ) : null}
         </div>
 
@@ -121,7 +121,7 @@ export default function SignInContainer() {
             {passwordType == "password" ? <EyeIcon className="text-blue h-4 w-4" /> : <EyeSlashIcon className="text-blue h-4 w-4" />}
           </span>
           {formik.errors.password ? (
-            <div className="text-sm text-white mt-2 ml-2">{formik.errors.password}</div>
+            <div className="text-sm text-red mt-2 ml-2">{formik.errors.password}</div>
           ) : null}
         </div>
 

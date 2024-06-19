@@ -29,10 +29,10 @@ export default function Index() {
 
         },
         validationSchema: Yup.object({
-            email: Yup.string().email('Invalid email address').required('Required'),
-            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Required'),
+            email: Yup.string().email('Invalid email address').required('*'),
+            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('*'),
 
-            name: Yup.string().required('Required'),
+            name: Yup.string().required('*'),
 
 
         }),
@@ -166,7 +166,7 @@ export default function Index() {
                                 className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                             />
                             {formik.errors.name ? (
-                                <div className="text-sm text-white mt-2 ml-2">{formik.errors.name}</div>
+                                <div className="text-sm text-red mt-2 ml-2">{formik.errors.name}</div>
                             ) : null}
                         </div>
                     </section>
@@ -203,7 +203,7 @@ export default function Index() {
                                     className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                                 />
                                 {formik.errors.email ? (
-                                    <div className="text-sm text-white mt-2 ml-2">{formik.errors.email}</div>
+                                    <div className="text-sm text-red mt-2 ml-2">{formik.errors.email}</div>
                                 ) : null}
                             </div>
                         </section>
@@ -237,7 +237,7 @@ export default function Index() {
             {passwordOneType == "password" ? <EyeIcon className="text-blue h-4 w-4" /> : <EyeSlashIcon className="text-blue h-4 w-4" />}
           </span>
                                 {passwordFormik.errors.currentPassword ? (
-                                    <div className="text-sm text-white mt-2 ml-2">{passwordFormik.errors.currentPassword}</div>
+                                    <div className="text-sm text-red mt-2 ml-2">{passwordFormik.errors.currentPassword}</div>
                                 ) : null}
                             </div>
                         </section>
@@ -258,7 +258,7 @@ export default function Index() {
             {passwordTwoType == "password" ? <EyeIcon className="text-blue h-4 w-4" /> : <EyeSlashIcon className="text-blue h-4 w-4" />}
           </span>
                                 {passwordFormik.errors.newPassword ? (
-                                    <div className="text-sm text-white mt-2 ml-2">{passwordFormik.errors.newPassword}</div>
+                                    <div className="text-sm text-red mt-2 ml-2">{passwordFormik.errors.newPassword}</div>
                                 ) : null}
                             </div>
                         </section>

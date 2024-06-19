@@ -33,14 +33,14 @@ export default function SignUpContainer() {
       },
       validationSchema: Yup.object({
         name: Yup.string()
-        .required('Required'),
+        .required('*'),
         password:  Yup.string()
         .required('Please provide a password.')
        // .min(8, 'Password is too short - should be 8 chars minimum.')
        // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
        .min(8, 'Password must be at least 8 characters long.')
        .matches(/[a-zA-Z0-9!@#$%^&*]/, 'Password can only contain letters, numbers, and special characters like !@#$%^&*.'),
-        email: Yup.string().email('Invalid email address').required('Required'),
+        email: Yup.string().email('Invalid email address').required('*'),
       }),
       onSubmit: async(values, { resetForm }) => {
        
@@ -100,7 +100,7 @@ export default function SignUpContainer() {
                       
                         </span>
                      {formik.errors.name ? (
-                    <div className="text-sm text-white mt-2 ml-2">{formik.errors.name}</div>
+                    <div className="text-sm text-red mt-2 ml-2">{formik.errors.name}</div>
                   ) : null}
                 </div>
 
@@ -120,7 +120,7 @@ export default function SignUpContainer() {
                       
                         </span>
                        {formik.errors.email ? (
-                    <div className="text-sm text-white mt-2 ml-2">{formik.errors.email}</div>
+                    <div className="text-sm text-red mt-2 ml-2">{formik.errors.email}</div>
                   ) : null}
 
                 </div>
@@ -140,7 +140,7 @@ export default function SignUpContainer() {
                           {passwordType == "password"?<EyeIcon className="text-blue h-4 w-4" />:<EyeSlashIcon className="text-blue h-4 w-4" />}
                         </span>
                         {formik.errors.password ? (
-                    <div className="text-sm text-white mt-2 ml-2">{formik.errors.password}</div>
+                    <div className="text-sm text-red mt-2 ml-2">{formik.errors.password}</div>
                   ) : null}
                 </div>
 

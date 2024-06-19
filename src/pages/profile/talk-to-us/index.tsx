@@ -47,9 +47,9 @@ export default function Index() {
         validationSchema: Yup.object({
             subject: Yup.string()
 
-                .required('Required'),
+                .required('*'),
 
-            message: Yup.string().required('Required'),
+            message: Yup.string().required('*'),
 
 
         }),
@@ -102,7 +102,7 @@ export default function Index() {
                                 className="block px-4 w-full rounded-sm bg-dark_blue h-14 text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                             />
                             {formik.errors.subject ? (
-                                <div className="text-sm text-white mt-2 ml-2">{formik.errors.subject}</div>
+                                <div className="text-sm text-red mt-2 ml-2">{formik.errors.subject}</div>
                             ) : null}
                         </div>
                     </section>
@@ -120,7 +120,7 @@ export default function Index() {
                                 className="block px-4 w-full rounded-sm bg-dark_blue  text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                             />
                             {formik.errors.message ? (
-                                <div className="text-sm text-white mt-2 ml-2">{formik.errors.message}</div>
+                                <div className="text-sm text-red mt-2 ml-2">{formik.errors.message}</div>
                             ) : null}
                         </div>
                     </section>

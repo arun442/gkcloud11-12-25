@@ -21,7 +21,7 @@ export default function OtpContainer() {
     validationSchema: Yup.object({
       otp: Yup.string()
 
-        .required('Required').length(6, 'Please enter valid otp'),
+        .required('*').length(6, 'Please enter valid otp'),
 
     }),
     onSubmit: async (values, { resetForm }) => {
@@ -83,7 +83,7 @@ export default function OtpContainer() {
             className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
           />
           {formik.errors.otp ? (
-            <div className="text-sm text-white mt-2 ml-2">{formik.errors.otp}</div>
+            <div className="text-sm text-red mt-2 ml-2">{formik.errors.otp}</div>
           ) : null}
         </div>
 

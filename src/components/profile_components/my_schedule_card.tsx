@@ -22,7 +22,7 @@ export default function MyScheduleCard({ data }: { data: any }) {
     setIsOpen(true)
   }
   const openUrlInNewTab = (url: any) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.location.href =url;
   };
 
   return <div className={classNames("cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue", showMore ? "h-auto" : "h-80")}>

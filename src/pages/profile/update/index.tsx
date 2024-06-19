@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import useUserData from "@/hooks/userData";
-
+import { EyeIcon, EyeSlashIcon, UserCircleIcon } from '@heroicons/react/20/solid'
 export default function Index() {
     const { userData } = useUserData();
 
@@ -73,11 +73,11 @@ export default function Index() {
         validationSchema: Yup.object({
             currentPassword: Yup.string()
                 .required('No password provided.')
-                .min(8, 'Password is too short - should be 8 chars minimum.')
+                .min(8, 'Password is too short')
                 .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
             newPassword: Yup.string()
                 .required('No password provided.')
-                .min(8, 'Password is too short - should be 8 chars minimum.')
+                .min(8, 'Password is too short')
                 .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
 
         }),
@@ -121,6 +121,24 @@ export default function Index() {
 
 
     }, [userData])
+    const [passwordOneType, setPasswordOneType] = useState("password");
+
+  const toggleOnePassword = () => {
+    if (passwordOneType === "password") {
+      setPasswordOneType("text")
+      return;
+    }
+    setPasswordOneType("password")
+  }
+  const [passwordTwoType, setPasswordTwoType] = useState("password");
+
+  const toggleTwoPassword = () => {
+    if (passwordTwoType === "password") {
+      setPasswordTwoType("text")
+      return;
+    }
+    setPasswordTwoType("password")
+  }
     return (
         <ProfileLayout>
             <main className="w-full h-full flex flex-col">
@@ -129,7 +147,7 @@ export default function Index() {
                 <form onSubmit={formik.handleSubmit} className=" w-full flex-col mt-6">
                     <h2 className="mb-2 text-white">Details</h2>
                     <section className="ml-14 mb-6">
-                        <p className="text-white text-sm w-20 mb-2">Name</p>
+                        <p className="text-white text-sm w-20 mb-2">Name *</p>
                         <div className=''>
                             <input
                                 {...formik.getFieldProps('name')}
@@ -148,7 +166,7 @@ export default function Index() {
                     </section>
                     <section className="flex ml-14 mb-6 gap-10 ">
                         <section className="">
-                            <p className="text-white text-sm w-20 mb-2">Phone</p>
+                            <p className="text-white text-sm w-20 mb-2">Phone *</p>
                             <div className=''>
                                 <input
                                     {...formik.getFieldProps('phone')}
@@ -166,7 +184,7 @@ export default function Index() {
                             </div>
                         </section>
                         <section className="">
-                            <p className="text-white text-sm w-20 mb-2">Email</p>
+                            <p className="text-white text-sm w-20 mb-2">Email *</p>
                             <div className=''>
                                 <input
                                     {...formik.getFieldProps('email')}
@@ -198,17 +216,20 @@ export default function Index() {
                     <section className="flex ml-14 gap-10 ">
                         <section className="">
                             <p className="text-white text-sm mb-2">Current Password</p>
-                            <div className=''>
+                            <div className='relative'>
                                 <input
                                     {...passwordFormik.getFieldProps('currentPassword')}
-                                    type="text"
-
+                                   
+                                    type={passwordOneType}
 
 
 
 
                                     className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                                 />
+                                   <span className="absolute top-4 right-4 cursor-pointer" onClick={toggleOnePassword}>
+            {passwordOneType == "password" ? <EyeIcon className="text-blue h-4 w-4" /> : <EyeSlashIcon className="text-blue h-4 w-4" />}
+          </span>
                                 {passwordFormik.errors.currentPassword ? (
                                     <div className="text-sm text-white mt-2 ml-2">{passwordFormik.errors.currentPassword}</div>
                                 ) : null}
@@ -216,10 +237,10 @@ export default function Index() {
                         </section>
                         <section className="">
                             <p className="text-white text-sm mb-2">New Password</p>
-                            <div className=''>
+                            <div className='relative'>
                                 <input
                                     {...passwordFormik.getFieldProps('newPassword')}
-                                    type="text"
+                                    type={passwordTwoType}
 
 
 
@@ -227,6 +248,9 @@ export default function Index() {
 
                                     className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                                 />
+                                   <span className="absolute top-4 right-4 cursor-pointer" onClick={toggleTwoPassword}>
+            {passwordTwoType == "password" ? <EyeIcon className="text-blue h-4 w-4" /> : <EyeSlashIcon className="text-blue h-4 w-4" />}
+          </span>
                                 {passwordFormik.errors.newPassword ? (
                                     <div className="text-sm text-white mt-2 ml-2">{passwordFormik.errors.newPassword}</div>
                                 ) : null}

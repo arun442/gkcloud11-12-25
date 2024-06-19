@@ -304,7 +304,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                                             <p>{module.moduleDescription}</p>
                                             <ul>
                                                 {module.moduleItems ? module.moduleItems.map((item: any, itemIndex: any) => (
-                                                    <li className='flex gap-2 my-2' key={item.moduleItemId
+                                                    <li className='ml-6 flex gap-2 my-2' key={item.moduleItemId
                                                     }>
 
 
@@ -313,7 +313,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                                                     </li>
                                                 )) : module.details.map((item: any, itemIndex: any) => (
-                                                    <li className='flex gap-2 my-2' key={item.id
+                                                    <li className='ml-6 flex gap-2 my-2' key={item.id
                                                     }>
 
 

@@ -89,7 +89,7 @@ export default function Index() {
                 <form onSubmit={formik.handleSubmit} className="flex-1 w-full flex-col mt-12">
 
                     <section className="flex mb-8">
-                        <p className="text-[#ECF4FFBF] w-20">Subject</p>
+                        <p className="text-[#ECF4FFBF] w-20">Subject *</p>
                         <div className='flex-1'>
                             <input
                                 {...formik.getFieldProps('subject')}
@@ -107,7 +107,7 @@ export default function Index() {
                         </div>
                     </section>
                     <section className="flex mb-8">
-                        <p className="text-[#ECF4FFBF] w-20">Message</p>
+                        <p className="text-[#ECF4FFBF] w-20">Message *</p>
                         <div className='flex-1'>
                             <textarea
                                 {...formik.getFieldProps('message')}

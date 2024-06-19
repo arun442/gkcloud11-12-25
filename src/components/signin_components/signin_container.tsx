@@ -13,10 +13,10 @@ import { toast } from 'react-toastify';
 import errorHelper from '@/common/error_helper';
 
 export default function SignInContainer() {
-
-  const [passwordType, setPasswordType] = useState("password");
   const [isLoading, setLoading] = useState(false);
   const router = useRouter()
+  const [passwordType, setPasswordType] = useState("password");
+
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text")
@@ -91,7 +91,7 @@ export default function SignInContainer() {
           <input
             {...formik.getFieldProps('email')}
             type="email"
-            placeholder="Email"
+            placeholder="Email *"
             className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
           />
           <span className="absolute top-4 right-4">
@@ -110,7 +110,7 @@ export default function SignInContainer() {
 
           <input
             type={passwordType}
-            placeholder="Password"
+            placeholder="Password *"
 
 
             {...formik.getFieldProps('password')}

@@ -64,20 +64,36 @@ export default function MyAchivementCard({ data }: { data: any }) {
             });
 
             // Create a blob object from the response data
-            const blob = new Blob([response.data], { type: 'application/pdf' });
+            const certificateBlob = new Blob([response.data], { type: 'application/pdf' });
+            const file = new File([certificateBlob], 'certificate.pdf', { type: 'application/pdf' });
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+              try {
+                console.log('Attempting to share:', file);
+                await navigator.share({
+                  files: [file],
+                  title: 'Certificate',
+                  text: 'Here is your certificate!',
+                });
+                alert('File shared successfully');
+              } catch (error) {
+                console.error('Error sharing file:', error);
+              //  alert('Failed to share the file. Error:', error.message);
+              }
+            } else {
+              alert('Your browser does not support file sharing.');
+            }
+            // // Create a URL for the blob object
+            // const url = window.URL.createObjectURL(blob);
 
-            // Create a URL for the blob object
-            const url = window.URL.createObjectURL(blob);
-
-            // Create a link element and click it to trigger the download
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `${courseName}_certificate.pdf`; // Specify the filename here
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-            setCertificateUrl(url);
-            setIsPopupOpen(true); // Open popup after downloading
+            // // Create a link element and click it to trigger the download
+            // const link = document.createElement('a');
+            // link.href = url;
+            // link.download = `${courseName}_certificate.pdf`; // Specify the filename here
+            // document.body.appendChild(link);
+            // link.click();
+            // link.remove();
+            // setCertificateUrl(url);
+            // setIsPopupOpen(true); // Open popup after downloading
         } catch (error) {
             console.error('Error downloading file:', error);
         }
@@ -88,6 +104,7 @@ export default function MyAchivementCard({ data }: { data: any }) {
     const closePopup = () => {
         setIsPopupOpen(false);
       };
+  
     return <div  className="relative cursor-pointer box-border border flex flex-row p-6 justify-between items-center border-blue border-1 bg-dark_blue rounded-2xl">
 
         <div className='flex-1 flex flex-col'>
@@ -103,13 +120,13 @@ export default function MyAchivementCard({ data }: { data: any }) {
 
                 className="h-6 w-6"
                 src="/icon_download.svg" />
-            <img
+            {/* <img
   onClick={() => {
     shareCertificate(data.userCertificateId, data.certificateTitle);
 }}
 
                 className="h-6 w-6"
-                src="/icon_share.svg" />
+                src="/icon_share.svg" /> */}
         </div>
 
         {isPopupOpen && (
@@ -141,7 +158,7 @@ export default function MyAchivementCard({ data }: { data: any }) {
               <TelegramShareButton url={certificateUrl}>
                 <TelegramIcon size={32} round />
               </TelegramShareButton>
-              <RedditShareButton url={certificateUrl}>
+              <RedditShareButton  url={certificateUrl}>
                 <RedditIcon size={32} round />
               </RedditShareButton>
             </div>

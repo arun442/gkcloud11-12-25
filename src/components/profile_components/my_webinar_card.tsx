@@ -22,7 +22,7 @@ export default function MyWebinarCard({ data }: { data: any }) {
     setIsOpen(true)
   }
   const openUrlInNewTab = (url: any) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.location.href =url;
   };
   return <div className={classNames("cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue", showMore ? "h-auto" : "h-80")}>
 
@@ -33,7 +33,14 @@ export default function MyWebinarCard({ data }: { data: any }) {
           (data?.WebinarSchedule?.CourseInstructors ?? []).length == 0 ? null : <p className='text-white text-xs mb-3'>Trainer: {data?.WebinarSchedule?.CourseInstructors[0].firstName} {data?.WebinarSchedule?.CourseInstructors[0].lastName}</p>
         }
         <h2 className="text-white text-lg font-medium">{data.Webinar.webinarName}</h2>
-
+        {showMore ? (
+        <div>
+          <p className='w-full py-4 text-sm text-white'>{(data?.Webinar?.WebinarContents??[]).length==0?"":data.Webinar.WebinarContents[0].objective}</p>
+         
+        </div>
+      ) : (
+       <></>
+      )}
         <div className='mt-6 flex flex-row justify-end'>
           <p onClick={toggleShowMore} className="text-blue text-sm font-normal">{showMore == false ? "More.." : "Less.."}</p>
         </div>

@@ -88,7 +88,7 @@ export default function SignUpContainer() {
                     <input
                       {...formik.getFieldProps('name')}
                         type="text"
-                        placeholder="Username"
+                        placeholder="Username *"
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
                     />
                      <span className="absolute top-4 right-4">
@@ -108,7 +108,7 @@ export default function SignUpContainer() {
                     <input
                       {...formik.getFieldProps('email')}
                         type="email"
-                        placeholder="Email"
+                        placeholder="Email *"
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
                     />
                      <span className="absolute top-4 right-4">
@@ -129,7 +129,7 @@ export default function SignUpContainer() {
                     <input
                       
                         type={passwordType}
-                        placeholder="Password"
+                        placeholder="Password *"
 
 
                         {...formik.getFieldProps('password')}

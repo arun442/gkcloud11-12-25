@@ -27,13 +27,45 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
                 }
             });
 
-            const userCourseProgress = (response?.data?.userCourseProgresses ?? []).filter((e: any) => e.userCourseProgressId == 5);
+            const userCourseProgress = (response?.data?.userCourseProgresses ?? []);
             let payload: any = {
                 "userId": userData.userId,
                 "courseId": parseInt(params.courseId[0]),
                 "progressDate": new Date(),
                 "moduleId": moduleId,
                 "moduleItemId": itemId,
+                "notes": notes,
+            }
+            if (userCourseProgress.length != 0) {
+                payload.userCourseProgressId = userCourseProgress[0].userCourseProgressId
+
+            }
+            console.log("paylad", payload);
+
+            //[]
+            await axiosPrivate.post("/user/upsert-user-course-progress", payload);
+            console.log("api done");
+
+        } catch (error) {
+
+        }
+    }
+
+    const updateCourseStatus = async (moduleId: any, itemId: any) => {
+        try {
+            const response = await axiosPrivate.get("/user/user-course-progress", {
+                params: {
+                    "userId": userData.userId,
+                    "courseId": parseInt(params.courseId[0]),
+                }
+            });
+
+            const userCourseProgress = (response?.data?.userCourseProgresses ?? []);
+            let payload: any = {
+                "userId": userData.userId,
+                "courseId": parseInt(params.courseId[0]),
+                "progressDate": new Date(),
+                "courseStatus":  "Completed",
                 "notes": notes,
             }
             if (userCourseProgress.length != 0) {
@@ -118,6 +150,7 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
                             } else {
                                 const checkIndex = modules.findIndex((e: any) => e.moduleId == (moduleId + 1));
                                 if (checkIndex < 0) {
+                                    updateCourseStatus(moduleId, item.moduleItemId);
                                     return;
                                 }
                                 console.log("Second", modules[moduleIndex + 1].moduleId, modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
@@ -151,6 +184,7 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
                         } else {
                             const checkIndex = modules.findIndex((e: any) => e.moduleId == (moduleId + 1));
                             if (checkIndex < 0) {
+                                updateCourseStatus(moduleId, item.moduleItemId);
                                 return;
                             }
                             console.log("Second", modules[moduleIndex + 1].moduleId, modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
@@ -169,13 +203,18 @@ const PlayerComponent = ({notes,setNotes, data, modules, item, moduleId, setMoud
                 <div className={index != 1 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(1)}>
                Notes
                 </div>
+                <div className='h-6 w-[1px] rounded-lg bg-grey'></div>
+                <div className={index != 2 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(2)}>
+           Stu
+                </div>
               
 
             </section>
             <ErrorBoundary>
                 <main className='mt-2 w-full'>
                  {
-index==0?<main>
+index==0?<section className='w-full'>
+    <main className='mb-8'>
 <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Course Description</h2>
 <section>
 
@@ -208,7 +247,56 @@ index==0?<main>
     </section> : <></>
 }
 
-</main>:  <textarea
+</main>
+<main className='mb-8'>
+                            <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Objectives</h2>
+                            <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.description ?? ""}</h2>
+                            {
+                                (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).length != 0 ? <section className=''>
+
+                                    {
+                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                            <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                            <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                        </div>)
+                                    }
+                                </section> : <></>
+                            }
+
+                        </main>
+                        <main className='mb-8'>
+                                <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Audience</h2>
+                                <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.description ?? ""}</h2>
+                                {
+                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).length != 0 ? <section className=''>
+
+                                        {
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                                <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                                <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                            </div>)
+                                        }
+                                    </section> : <></>
+                                }
+
+                            </main>
+                            <main className='mb-8'>
+                                    <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Prerequisites</h2>
+                                    <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
+                                    {
+                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).length != 0 ? <section className=''>
+
+                                            {
+                                                (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                                    <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                                    <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                                </div>)
+                                            }
+                                        </section> : <></>
+                                    }
+
+                                </main>
+</section>:index==1?  <textarea
                                
                                 rows={5}
 
@@ -218,7 +306,7 @@ onChange={(e)=>setNotes(e.target.value)}
 
 
                                 className="block px-4 w-full rounded-sm bg-dark_blue  text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                            />
+                            />:<></>
                  }
                 </main>
 

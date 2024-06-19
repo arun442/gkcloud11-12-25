@@ -33,12 +33,13 @@ export default function SignUpContainer() {
       },
       validationSchema: Yup.object({
         name: Yup.string()
-  
-          .required('Required'),
+        .required('Required'),
         password:  Yup.string()
-        .required('No password provided.') 
-        .min(8, 'Password is too short - should be 8 chars minimum.')
-        .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+        .required('Please provide a password.')
+       // .min(8, 'Password is too short - should be 8 chars minimum.')
+       // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+       .min(8, 'Password must be at least 8 characters long.')
+       .matches(/[a-zA-Z0-9!@#$%^&*]/, 'Password can only contain letters, numbers, and special characters like !@#$%^&*.'),
         email: Yup.string().email('Invalid email address').required('Required'),
       }),
       onSubmit: async(values, { resetForm }) => {
@@ -130,7 +131,7 @@ export default function SignUpContainer() {
                       
                         type={passwordType}
                         placeholder="Password *"
-
+                        maxLength={30}
 
                         {...formik.getFieldProps('password')}
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"

@@ -142,7 +142,7 @@ export default function Index() {
                 {index == 1 && <div className="w-full grid grid-cols-1 gap-6 mt-8">
 
                     {
-                        course.length != 0 && userProgress.length != 0 ? <RecentViewCourseCard data={course.filter((e) => e.Course.courseId == sortByDate(userProgress)[0]?.courseId)[0]} percentage={sortByDate(userProgress)[0]?.autoCalculatedProgressPercentage ?? "0"} /> : <></>
+                        course.length != 0 && userProgress.length != 0 ?(sortByDate(userProgress).map((progress:any,index:any)=> <RecentViewCourseCard key={index} data={course.filter((e) => e.Course.courseId == progress?.courseId)[0]} percentage={progress?.autoCalculatedProgressPercentage ?? "0"} />)) : <></>
                     }
 
 

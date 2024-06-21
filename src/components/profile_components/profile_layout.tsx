@@ -24,7 +24,7 @@ export default function ProfileLayout({
                }} className={classNames("px-2 py-2 rounded-sm  cursor-pointer",pathname=="/profile"?"bg-dark_blue":"")}>Dashboard</div>
                <div onClick={()=>{
                 router.push("/profile/my-achivement")
-               }} className={classNames("px-2 py-2 rounded-sm  cursor-pointer",pathname=="/profile/my-achivement"?"bg-dark_blue":"")}>Achivement</div>
+               }} className={classNames("px-2 py-2 rounded-sm  cursor-pointer",pathname=="/profile/my-achivement"?"bg-dark_blue":"")}>Achievement</div>
                <div onClick={()=>{
                 router.push("/profile/my-notification")
                }} className={classNames("px-2 py-2 rounded-sm  cursor-pointer",pathname=="/profile/my-notification"?"bg-dark_blue":"")}>Notification</div>

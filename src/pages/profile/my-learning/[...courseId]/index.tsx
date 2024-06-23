@@ -150,7 +150,7 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
         <div className="flex-1 w-full">
         <PlayerComponent notes={notes} setNotes={setNotes} data={data} setMouduleId={setModuleId} onSelectItem={setSelectedItem} modules={modules} item={selectedItem} moduleId={moduleId} />
         </div>
-        <div className="w-[30%] h-full">
+        <div className="w-[30%] h-[70vh]">
           {selectedItem && <ModuleList modules={modules} setMouduleId={setModuleId} onSelectItem={setSelectedItem} currentItem={selectedItem} moduleId={moduleId} />}
         </div>
       </div>

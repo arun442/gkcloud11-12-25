@@ -30,7 +30,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
     const { userData, } = useUserData();
     const { trainingData } = useTrainingMode();
     const [isLoading, setLoading] = useState(false);
-    const params = useParams();
+ //   const params = useParams();
     const router = useRouter();
     const entroll = async () => {
         if (userData == null) {
@@ -43,7 +43,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
             setLoading(true);
             const result = await axiosPrivate.post('/lms/add-course-enrollment', {
                 "userId": userData.userId,
-                "courseId": parseInt(params.courseId[0]),
+                "courseId": data.courseId,
 
                 "courseCostPlanId": data.CourseCostPlans[0].courseCostPlanId,
                 "enrollmentReference": "This is Test Enrollment",
@@ -262,7 +262,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                                 </section> : <></>
                             }
 
-                        </main> : index == 2 ? < CourseScheduleComponent courseId={params.courseId[0]} /> : index == 3 ?
+                        </main> : index == 2 ? < CourseScheduleComponent courseId={data.courseId} /> : index == 3 ?
                             <main>
                                 <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Audience</h2>
                                 <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.description ?? ""}</h2>

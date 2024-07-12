@@ -124,7 +124,7 @@ export default function AllCourses() {
                                   course.sort((a, b) => a.courseId - b.courseId).map((e, index) => {
                                           if (index > 11) return <></>
                                           return <a key={e.courseId} onClick={(event) => {
-                                              router.push(`/course/${e.courseId}`)
+                                              router.push(`/course/${e.slug}`)
                                           }} className="cursor-pointer font-normal text-gray-900 hover:text-blue hover:underline">
                                               {e.title}
   

@@ -55,7 +55,7 @@ export default function Index() {
                 setLoading(false);
                 toast.success("Profile updated successfully")
                 console.log(result.data);
-               
+               router.reload();
 
             } catch (error: any) {
                 setLoading(false);

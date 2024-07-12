@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 export default function CourseCard({data,showPrice}:{data:any,showPrice:boolean}) {
   const router=useRouter();
     return <div onClick={(e)=>{
-      router.push(`/course/${data.courseId}`)
+      router.push(`/course/${data.slug}`)
     }} className="cursor-pointer box-border border flex flex-col p-6 justify-start items-start border-blue border-1 bg-dark_blue rounded-2xl">
   
   <section className='flex-1 flex-col'>

@@ -89,7 +89,7 @@ import classNames from '@/helpers/add_class'
                   <Combobox.Option
                     onClick={(e) =>{
                      
-                        router.push(`/course/${person.courseId}`);
+                        router.push(`/course/${person.slug}`);
                     } }
                     key={person.courseId}
                     className="relative cursor-default py-2 pl-10 pr-4 text-gray-900"

@@ -39,7 +39,7 @@ export async function getServerSideProps(context: any) {
 export default function CourseDetails({ data }: { data: any }) {
   return (
     <>
-     {<Head>
+     <Head>
         <title>{data.title}</title>
         <meta name="description" content={data.metaDescription} />
         <meta name="keywords" content={data.metaKeyword} />
@@ -51,7 +51,7 @@ export default function CourseDetails({ data }: { data: any }) {
         <meta name="twitter:title" content={data.title} />
         <meta name="twitter:description" content={data.metaDescription} />
         <meta name="twitter:image" content={data.image} />
-      </Head>}
+      </Head>
      <main
       className={`max-w-7xl mx-auto bg-primary_color xl:px-0 sm:px-20 flex flex-col gap-10`}
     >

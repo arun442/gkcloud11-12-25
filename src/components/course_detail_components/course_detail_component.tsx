@@ -212,119 +212,120 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
             </section>
             <ErrorBoundary>
+           
                 <main className='mt-6 w-full'>
-                    {index == 0 ? <main>
-                        <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Course Description</h2>
-                        <section>
-
-                            <p className='my-6 leading-6 font-normal text-sm text-white text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.description?.description ?? data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}</p>
-
-                            {
-                                (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                                    <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-                                    <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e?.title ?? e}</p>
-                                </div>)
-                            }
-                        </section>
-                        {
-                            (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).length != 0 ? <section className='mt-10'>
-                                <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Highlights</h2>
-                                {
-                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).map((e: any, index: any) => <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}. {e}</p>)
-                                }
-                            </section> : <></>
-                        }
-                        {
-                            (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).length != 0 ? <section className='mt-10'>
-                                <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Course Benefit Include</h2>
-                                {
-                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                                        <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-                                        <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
-                                    </div>)
-                                }
-                            </section> : <></>
-                        }
-
-                    </main> :
-                        index == 1 ? <main>
+                    {index == 0 ? (
+                        <main>
+                            <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Course Description</h2>
+                            <section>
+                                <p className='my-6 leading-6 font-normal text-sm text-white text-justify'>
+                                    {data?.CourseContent?.courseContent?.course?.courseDetails?.description?.description ?? data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}
+                                </p>
+                                {(data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).filter(e => e?.id && e?.description).map((e: any, index: any) => (
+                                    <div key={index} className='w-full flex flex-row gap-2 mb-4'>
+                                        <p className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
+                                        <p className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e?.title ?? e}</p>
+                                    </div>
+                                ))}
+                            </section>
+                            {data?.CourseContent?.courseContent?.course?.courseDetails?.highlights?.length > 0 && (
+                                <section className='mt-10'>
+                                    <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Highlights</h2>
+                                    {data?.CourseContent?.courseContent?.course?.courseDetails?.highlights.map((e: any, index: any) => (
+                                        <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}. {e}</p>
+                                    ))}
+                                </section>
+                            )}
+                            {data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude?.length > 0 && (
+                                <section className='mt-10'>
+                                    <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Course Benefit Include</h2>
+                                    {data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude.map((e: any, index: any) => (
+                                        <div key={index} className='w-full flex flex-row gap-2 mb-4'>
+                                            <p className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
+                                            <p className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                        </div>
+                                    ))}
+                                </section>
+                            )}
+                        </main>
+                    ) : index == 1 ? (
+                        <main>
                             <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Objectives</h2>
                             <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.description ?? ""}</h2>
-                            {
-                                (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).length != 0 ? <section className=''>
-
-                                    {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                                            <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
-                                            <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
-                                        </div>)
-                                    }
-                                </section> : <></>
-                            }
-
-                        </main> : index == 2 ? < CourseScheduleComponent courseId={data.courseId} /> : index == 3 ?
-                            <main>
-                                <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Audience</h2>
-                                <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.description ?? ""}</h2>
-                                {
-                                    (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).length != 0 ? <section className=''>
-
-                                        {
-                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                                                <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
-                                                <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
-                                            </div>)
-                                        }
-                                    </section> : <></>
-                                }
-
-                            </main>
-                            : index == 4 ?
-                                <main>
-                                    <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Prerequisites</h2>
-                                    <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
-                                    {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).length != 0 ? <section className=''>
-
-                                            {
-                                                (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
-                                                    <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
-                                                    <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
-                                                </div>)
-                                            }
-                                        </section> : <></>
-                                    }
-
-                                </main>
-                                : <main>
-
-                                    {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((module: any, index: any) => <div key={module.moduleId} >
-                                            <h3 className='font-semibold text-lg text-white mb-3 text-justify'>Module {index + 1}.{module?.name}</h3>
-                                            <p>{module.moduleDescription}</p>
-                                            <ul>
-                                                {module.moduleItems ? module.moduleItems.map((item: any, itemIndex: any) => (
-                                                    <li className='ml-6 flex gap-2 my-2' key={item.moduleItemId
-                                                    }>
-
-
-                                                        <button className='leading-6 font-normal text-sm text-white text-justify' >{itemIndex + 1}.{item.moduleItemName}</button>
-
-
-                                                    </li>
-                                                )) : module.details.map((item: any, itemIndex: any) => (
-                                                    <li className='ml-6 flex gap-2 my-2' key={item.id
-                                                    }>
-
-
-                                                        <button className='leading-6 font-normal text-sm text-white text-justify' >{itemIndex + 1}.{item.mode == "quiz" ? "Quiz" : item.moduleItemName}</button>
-
-
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>)
-                                    }</main>}
+                            {data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList?.filter(item => item.trim() !== "").length > 0 ? (
+                                <section className=''>
+                                    {data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList
+                                        ?.filter(item => item.trim() !== "")  
+                                        .map((e: any, index: any) => (
+                                            <div key={index} className='w-full flex flex-row gap-2 mb-4'>
+                                                <p className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                                <p className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                            </div>
+                                        ))}
+                                </section>
+                            ) : null}
+                        </main>
+                    ) : index == 2 ? (
+                        <CourseScheduleComponent courseId={data.courseId} />
+                    ) : index == 3 ? (
+                        <main>
+                            <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Audience</h2>
+                            <h2 className='font-normal text-sm text-white mb-6 text-justify'>
+                                {data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.description ?? ""}
+                            </h2>
+                            <div className='mb-4'></div> 
+                            {data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList?.filter(item => item.trim() !== "").length > 0 ? (
+                                <section className=''>
+                                    {data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList
+                                        ?.filter(item => item.trim() !== "") 
+                                        .map((e: any, index: any) => (
+                                            <div key={index} className='w-full flex flex-row gap-2 mb-4'>
+                                                <p className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                                <p className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                            </div>
+                                        ))}
+                                </section>
+                            ) : null}
+                        </main>
+                    ) : index == 4 ? (
+                        <main>
+                            <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Prerequisites</h2>
+                            <h2 className='font-normal text-sm text-white mb-6 text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.description ?? ""}</h2>
+                            {data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.prerequisiteList?.filter(item => item.trim() !== "").length > 0 ? (
+                                <section className=''>
+                                    {data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.prerequisiteList
+                                        ?.filter(item => item.trim() !== "")  
+                                        .map((e: any, index: any) => (
+                                            <div key={index} className='w-full flex flex-row gap-2 mb-4'>
+                                                <p className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
+                                                <p className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                            </div>
+                                        ))}
+                                </section>
+                            ) : null}
+                        </main>
+                    ) : (
+                        <main>
+                            {data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules?.map((module: any, index: any) => (
+                                <div key={module.moduleId}>
+                                    <h3 className='font-semibold text-base md:text-s text-white mb-4 mt-8 text-justify'><span className="italic">Module {index + 1}</span>&emsp;{module?.name}</h3>
+                                    <p className='font-normal text-sm text-white mb-6 text-justify'>{module.moduleDescription}</p>
+                                    <ul>
+                                        {module.moduleItems ? module.moduleItems.filter(item => item?.moduleItemId && item?.moduleItemDescription).map((item: any, itemIndex: any) => (
+                                            <li className='ml-6 flex gap-2 my-2  mb-4' key={item.moduleItemId}>
+                                                <button className='leading-6 font-normal text-sm text-white text-justify'>{itemIndex + 1}.{item.moduleItemName}</button>
+                                            </li>
+                                        )) : module.details.filter(item => item?.id && item?.description).map((item: any, itemIndex: any) => (
+                                            <li className='ml-6 flex gap-2 my-2' key={item.id}>
+                                                <button className='leading-6 font-normal text-sm text-white text-justify'>{itemIndex + 1}.{item.mode == "quiz" ? "Quiz" : item.moduleItemName}</button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            
+                            ))}
+                        </main>
+                    )}
                 </main>
 
             </ErrorBoundary>

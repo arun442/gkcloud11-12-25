@@ -224,6 +224,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
             </section>
             <ErrorBoundary>
+           
                 <main className='mt-6 w-full'>
                     {index == 0 ? <main>
                         <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Course Description</h2>

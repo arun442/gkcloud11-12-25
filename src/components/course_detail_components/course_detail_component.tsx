@@ -64,15 +64,27 @@ export default function CourseDetailContainer({ data }: { data: any }) {
         }
     }
 
-    const handleDownload = async (courseId: any, courseName: any) => {
+    const handleDownload = async (courseId: any, courseName: any,data:any) => {
         try {
-            // Make a GET request to the API endpoint that serves the file
-            const response = await axiosPublic.get('/lms/course-download', {
+            console.log("broucherURL",data.broucherURL);
+            let response;
+            if(data.broucherURL){
+            response = await axiosPublic.get(data.broucherURL, {
 
-                params: {
-                    courseId: courseId
-                }, responseType: 'blob' // This tells Axios to expect a binary response
-            });
+                 responseType: 'blob' // This tells Axios to expect a binary response
+                });
+                console.log("its from broucherURL");
+            }else{
+        response = await axiosPublic.get('/lms/course-download', {
+
+                    params: {
+                        courseId: courseId
+                    }, responseType: 'blob' // This tells Axios to expect a binary response
+                });
+            }
+           
+            // Make a GET request to the API endpoint that serves the file
+          
 
             // Create a blob object from the response data
             const blob = new Blob([response.data], { type: 'application/pdf' });
@@ -98,7 +110,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
     let [isOpen, setIsOpen] = useState(false)
     function closeModal(isDownloaded: any) {
         if (isDownloaded == true) {
-            handleDownload(data.courseId, data.title)
+            handleDownload(data.courseId, data.title,data)
         }
         setIsOpen(false)
     }
@@ -166,7 +178,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
             <section className='flex flex-row items-start mt-20'>
                 <div onClick={(e) => {
                     if (userData) {
-                        handleDownload(data.courseId, data.title)
+                        handleDownload(data.courseId, data.title,data)
                     } else {
                         openModal();
                     }
@@ -220,7 +232,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                             <p className='my-6 leading-6 font-normal text-sm text-white text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.description?.description ?? data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}</p>
 
                             {
-                                (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) =>(e?.title ?? e??"").length==0?<></>: <div key={index} className='w-full flex flex-row gap-2 '>
                                     <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
                                     <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e?.title ?? e}</p>
                                 </div>)
@@ -254,7 +266,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                                 (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).length != 0 ? <section className=''>
 
                                     {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) =>(e??"").length==0?<></>: <div key={index} className='w-full flex flex-row gap-2 '>
                                             <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
                                             <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                         </div>)
@@ -270,7 +282,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).length != 0 ? <section className=''>
 
                                         {
-                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).map((e: any, index: any) =>(e??"").length==0?<></>: <div key={index} className='w-full flex flex-row gap-2 '>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                             </div>)
@@ -299,11 +311,11 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                                 : <main>
 
                                     {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((module: any, index: any) => <div key={module.moduleId} >
+                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((module: any, index: any) =>(module?.name??"").length==0?<></>: <div key={module.moduleId} >
                                             <h3 className='font-semibold text-lg text-white mb-3 text-justify'>Module {index + 1}.{module?.name}</h3>
                                             <p>{module.moduleDescription}</p>
                                             <ul>
-                                                {module.moduleItems ? module.moduleItems.map((item: any, itemIndex: any) => (
+                                                {module.moduleItems ? module.moduleItems.map((item: any, itemIndex: any) =>(item?.moduleItemName??"").length==0?<></>: (
                                                     <li className='ml-6 flex gap-2 my-2' key={item.moduleItemId
                                                     }>
 
@@ -312,7 +324,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
 
                                                     </li>
-                                                )) : module.details.map((item: any, itemIndex: any) => (
+                                                )) : module.details.map((item: any, itemIndex: any) =>(item.mode == "quiz" ? "Quiz" : item?.moduleItemName??"").length==0?<></>: (
                                                     <li className='ml-6 flex gap-2 my-2' key={item.id
                                                     }>
 

@@ -147,7 +147,7 @@ export default function LeadFormComponent({
                         {...formik.getFieldProps('phone')}
                         type="text"
 
-
+                        maxLength={10}
                         
                         placeholder='Phone Number *'
 

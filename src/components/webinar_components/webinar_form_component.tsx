@@ -145,7 +145,7 @@ export default function WebinarFormComponent({
                         {...formik.getFieldProps('phone')}
                         type="text"
 
-
+                        maxLength={10}
                         
                         placeholder='Phone Number *'
                       

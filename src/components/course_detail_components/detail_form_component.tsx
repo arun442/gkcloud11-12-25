@@ -185,7 +185,7 @@ export default function FormComponent({
                         {...formik.getFieldProps('phone')}
                         type="text"
 
-
+maxLength={10}
                         
                         placeholder='Phone Number *'
                         

@@ -78,7 +78,7 @@ export default function Header() {
     }, []);
 
     function clearLocalStorage() {
-        if (pathname.includes("auth")) {
+        if (pathname=="/auth/signin") {
             if (localStorage.getItem('userData')) {
                 localStorage.clear();
                 router.reload();
@@ -170,7 +170,7 @@ export default function Header() {
                             <MagnifyingGlassIcon  className="h-5 w-5 text-white items-center" />
                             </div> */}
                                 {
-                                    pathname.includes("auth") ? <></> : <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                                    pathname=="/auth/signin" ? <></> : <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
                                         {
                                             userData == null ? <ButtonLoginHeader /> : <Menu as="div" className="relative ml-3">

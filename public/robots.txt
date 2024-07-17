@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://gkcloud.ai/
+
+# Sitemaps
+Sitemap: https://gkcloud.ai/sitemap.xml

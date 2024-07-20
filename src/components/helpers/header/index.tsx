@@ -136,7 +136,7 @@ export default function Header() {
                                             }}
                                             className="h-20 w-auto cursor-pointer"
                                             src="/logo.png"
-                                            alt="Your Company"
+                                            alt="GK cloud solutions"
                                         />
 
                                     </div>

@@ -14,6 +14,8 @@ export default function CertificateCard({data}:{data:any}) {
       {
          hideDuration(data.partnerId,data.categoryId)?<></>:<div className="flex flex-row gap-1 mt-2 items-center">
          <img
+         alt='clock icon'
+
                                        
                                        className="text-text_grey_one h-4 w-4"
                                        src="/Icon_clock.svg"/> 

@@ -119,7 +119,7 @@ export default function FormComponent({
         })
     }, [userData])
 
-    return <form onSubmit={formik.handleSubmit} className='mt-20  mx-auto box-border border w-[80%] py-14 px-24 border-blue border-1 bg-dark_blue rounded-2xl'>
+    return <form  autoComplete="off"  onSubmit={formik.handleSubmit} className='mt-20  mx-auto box-border border w-[80%] py-14 px-24 border-blue border-1 bg-dark_blue rounded-2xl'>
 
         <section className='flex'>
             <div className=" mx-auto box-border border flex flex-row w-96 items-center   border-blue border-1 bg-dark_blue rounded-lg">
@@ -138,11 +138,11 @@ export default function FormComponent({
                         {...formik.getFieldProps('firstName')}
                         type="text"
 
-
+                       
                         
                         placeholder='First Name *'
                     
-                        className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1  ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
+                        className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1  ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6 "
                     />
                     {formik.errors.firstName ? (
                         <div className="text-sm text-red mt-2 ml-2">{formik.errors.firstName}</div>

@@ -30,7 +30,7 @@ export default function TechnologyDropdown({partner,data,setData}:{partner:any, 
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black/20 px-6 py-2 text-sm font-normal text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
           {data==null?"Technology":data.categoryName}  
             <img
-                                   
+                               alt='arrow icon'    
                                    className="ml-8 h-5 w-5"
                                    src="/Icon_arrow.svg"/>
           </Menu.Button>

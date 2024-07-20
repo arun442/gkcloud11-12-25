@@ -121,21 +121,21 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
             }}
             className="h-20 w-auto cursor-pointer"
             src="/logo.png"
-            alt="Your Company"
+            alt="GK cloud solutions"
           />
 
         </div>
         <div className="ml-4 flex-1 flex flex-row gap-1 items-center">
-          <p className="cursor-pointer text-[#A1A1A1] text-base font-normal" onClick={(e) => {
+          <p className="hover:text-blue cursor-pointer text-[#A1A1A1] text-base font-normal" onClick={(e) => {
             router.back();
             router.back();
           }}>Dashboard</p>
           <ChevronRightIcon className="text-[#A1A1A1] h-4 w-4" />
-          <p className="cursor-pointer text-[#A1A1A1] text-base font-normal" onClick={(e) => {
+          <p className="hover:text-blue cursor-pointer text-[#A1A1A1] text-base font-normal" onClick={(e) => {
             router.back();
           }}>{title}</p>
           <ChevronRightIcon className="text-[#A1A1A1] h-4 w-4" />
-          <p className="cursor-pointer text-text_grey_one text-base font-normal">{selectedItem != null ? selectedItem?.mode ? "Quiz" : selectedItem?.moduleItemName : ""}</p>
+          <p className="hover:text-blue cursor-pointer text-text_grey_one text-base font-normal">{selectedItem != null ? selectedItem?.mode ? "Quiz" : selectedItem?.moduleItemName : ""}</p>
         </div>
 
         <div className="flex flex-shrink-0 gap-2 items-center">

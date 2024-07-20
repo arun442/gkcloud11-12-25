@@ -19,7 +19,7 @@ export default function UnqueOfferComponent() {
     try {
       const result = await axiosPublic.get('/lms/service');
 
-
+console.log("what is the service", result.data.service);
 
       setItems(result.data.service);
     } catch (error) {
@@ -34,8 +34,13 @@ export default function UnqueOfferComponent() {
         {
 
           items.map((e: any) => {
-            return <div key={e.serviceTitle} className='mx-auto box-border border flex flex-col justify-center gap-8 h-auto    p-6 border-blue border-1 bg-dark_blue  rounded-md '>
-              <h3 className='text-xl font-medium text-center text-white'>{e.serviceTitle}</h3>
+            return <div key={e.serviceTitle} className='mx-auto box-border border flex flex-col items-center justify-center gap-8 h-auto    p-6 border-blue border-1 bg-dark_blue  rounded-md '>
+           {
+            e.serviceTitle=="STU"? <img
+alt='STU'
+            className=" h-12 w-20 text-center"
+            src="/stu.png" />:<h3 className='text-xl font-medium text-center text-white'>{e.serviceTitle}</h3>
+           }   
               <p className='text-sm flex-1 text-white'>{e.serviceDescription}</p>
             </div>
           })

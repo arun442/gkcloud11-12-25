@@ -82,7 +82,7 @@ export default function SignInContainer() {
         </h3>
         <p className='text-sm font-normal text-white'>Login to Continue</p>
       </div>
-      <form onSubmit={formik.handleSubmit} className='w-[375px]'>
+      <form autoComplete="off" onSubmit={formik.handleSubmit} className='w-[375px]'>
 
 
 
@@ -96,7 +96,7 @@ export default function SignInContainer() {
           />
           <span className="absolute top-4 right-4">
             <img
-
+alt='email icon'
               className="text-blue h-4 w-5"
               src="/email.png" />
 

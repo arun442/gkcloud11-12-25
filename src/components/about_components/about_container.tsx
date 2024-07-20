@@ -142,7 +142,7 @@ export default function AboutContainer() {
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
-      <LeadFormModel data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={""} courseName={""} />
+      <LeadFormModel isFromOffer={false}  data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={""} courseName={""} />
       <main className='w-full flex flex-row gap-6'>
 
         <section className='flex-1 flex flex-col justify-start items-start'>
@@ -167,7 +167,7 @@ export default function AboutContainer() {
             }
             }}
               className="cursor-pointer mx-auto box-border border flex flex-row gap-3 items-center p-3 border-blue border-1 bg-dark_blue rounded-2xl">
-              <img className="text-blue h-6 w-6" src="/pdf_icon.svg" alt="PDF Icon" />
+              <img  className="text-blue h-6 w-6" src="/pdf_icon.svg" alt="Download Company Profile" />
               <p className="text-white text-base font-normal">Download Company Profile</p>
             </div>
           </section>
@@ -176,7 +176,7 @@ export default function AboutContainer() {
           <img
 
             className="object-contain mx-auto  h-72"
-
+alt="about"
             src="/about.png" />
         </section>
       </main>
@@ -204,7 +204,7 @@ export default function AboutContainer() {
                 className="absolute top-3 left-3"
               >
                 <img
-
+alt='linkedIn'
                   className="text-white h-6 w-6"
                   src="/Icon_linkedIn.svg" /></Link>
               <div className='w-full bg-dark_blue h-52'>
@@ -214,7 +214,7 @@ export default function AboutContainer() {
                   className="cursor-pointer object-fill max-w-full h-full w-full"
 
                   src={e.image}
-                  alt="link"
+                  alt={e.name}
                 />
               </div>
               <div className='w-full flex-col items-center justify-center p-3 border border-blue'>

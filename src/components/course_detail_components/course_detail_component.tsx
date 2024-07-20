@@ -22,7 +22,7 @@ import ErrorBoundary from '@/helpers/error_boundary';
 
 import { toast } from "react-toastify";
 import hideDuration from '@/helpers/hide_duration';
-import LeadFormComponent from '../helpers/lead_form';
+
 import LeadFormModel from '../helpers/LeadFromModel';
 
 
@@ -120,25 +120,25 @@ export default function CourseDetailContainer({ data }: { data: any }) {
     }
     return (
         <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
-            <LeadFormModel data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={data.title} courseName={data.courseCode} />
+            <LeadFormModel isFromOffer={false} data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={data.title} courseName={data.courseCode} />
             <div className="flex flex-row gap-1 items-center">
-                <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
-                    router.back();
-                    router.back();
+                <p className="hover:text-blue cursor-pointer text-blue text-base font-medium" onClick={(e) => {
+                   
+                    router.replace("/");
                 }}>Home</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-                <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
+                <p className="hover:text-blue cursor-pointer text-blue text-base font-medium" onClick={(e) => {
                     router.replace("/course");
                 }}>Course</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-                <p className="cursor-pointer text-text_grey_one text-base font-medium">{data.courseCode}</p>
+                <p className="hover:text-blue cursor-pointer text-text_grey_one text-base font-medium">{data.courseCode}</p>
             </div>
 
             <h1 className='font-semibold text-4xl mt-5 text-white'>{data.title}</h1>
             <section className='flex mt-10 flex-row gap-10'>
                 <div className="flex flex-row gap-3 items-center">
                     <img
-
+alt='category icon'
                         className="text-blue h-8 w-8"
                         src="/category_icon.svg" />
 
@@ -146,7 +146,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                     <img
-
+alt='learning mode'
                         className="text-blue h-8 w-8"
                         src="/learning_mode.svg" />
 
@@ -155,7 +155,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                 {
                     hideDuration(data.partnerId, data.categoryId) ? <></> : <div className="flex flex-row gap-3 items-center">
                         <img
-
+alt='clock icon'
                             className="text-blue h-8 w-8"
                             src="/Icon_clock.svg" />
                         <p className="text-white text-xl font-normal">{Math.round(data.CourseDurations[0].courseDuration)} {data.CourseDurations[0].courseDurationType}</p>
@@ -164,7 +164,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
                 <div className="flex flex-row gap-3 items-center">
                     <img
-
+alt='rubee icon'
                         className="text-blue h-8 w-8"
                         src="/rubee_icon.svg" />
                     {
@@ -175,21 +175,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                     }
                 </div>
             </section>
-            <section className='flex flex-row items-start mt-20'>
-                <div onClick={(e) => {
-                    if (userData) {
-                        handleDownload(data.courseId, data.title,data)
-                    } else {
-                        openModal();
-                    }
-                }} className="cursor-pointer mx-auto box-border border flex flex-row gap-3  items-center p-3  border-blue border-1 bg-dark_blue rounded-2xl">
-                    <img
-
-                        className="text-blue h-6 w-6"
-                        src="/pdf_icon.svg" />
-                    <p className="text-white text-sm font-normal">Download Course Content</p>
-                </div>
-            </section>
+          
             <section className='flex flex-row items-start mt-10'>
                 <button onClick={(e) => {
                     entroll();
@@ -233,10 +219,19 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                             <p className='my-6 leading-6 font-normal text-sm text-white text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.description?.description ?? data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}</p>
 
                             {
-                                (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) =>(e?.title ?? e??"").length==0?<></>: <div key={index} className='w-full flex flex-row gap-2 '>
-                                    <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-                                    <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e?.title ?? e}</p>
-                                </div>)
+                                (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) =>(e?.title ?? e??"").length==0?<></>:<section key={index}> <div  className='w-full flex flex-row gap-2 mb-4'>
+                                    <p key={index} className='leading-6 font-medium text-lg text-white'>{index + 1}.</p>
+                                    <p key={index} className='leading-6 font-medium text-lg  text-white flex-1 text-justify'>{e?.title ?? e}</p>
+                                    
+                                </div>
+                                {
+                                        (e?.titleListItems??[]).map((e: any, subIndex: any) =><div key={`${index}${subIndex}`} className='ml-4 mt-4 w-full flex flex-row gap-2 '>
+                                        <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.{subIndex + 1}.</p>
+                                        <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                     
+                                    </div>)
+                                    }
+                                </section>)
                             }
                         </section>
                         {
@@ -337,7 +332,23 @@ export default function CourseDetailContainer({ data }: { data: any }) {
                                                 ))}
                                             </ul>
                                         </div>)
-                                    }</main>}
+                                    }
+                                      <section className='w-full flex flex-row items-start justify-start mt-10'>
+                <div onClick={(e) => {
+                    if (userData) {
+                        handleDownload(data.courseId, data.title,data)
+                    } else {
+                        openModal();
+                    }
+                }} className="cursor-pointer  box-border border flex flex-row gap-3  items-center p-3  border-blue border-1 bg-dark_blue rounded-2xl">
+                    <img
+alt='pdf icon'
+                        className="text-blue h-6 w-6"
+                        src="/pdf_icon.svg" />
+                    <p className="text-white text-sm font-normal">Download Course Content</p>
+                </div>
+            </section>
+                                    </main>}
                 </main>
 
             </ErrorBoundary>

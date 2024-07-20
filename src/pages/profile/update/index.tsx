@@ -29,10 +29,10 @@ export default function Index() {
 
         },
         validationSchema: Yup.object({
-            email: Yup.string().email('Invalid email address').required('*'),
-            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('*'),
+            email: Yup.string().email('Invalid email address').required('Please enter a valid email.'),
+            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Please enter a valid phone number.'),
 
-            name: Yup.string().required('*'),
+            name: Yup.string().required('*').required('Please enter a valid name.'),
 
 
         }),
@@ -75,14 +75,14 @@ export default function Index() {
                // .required('No password provided.')
                 //.min(8, 'Password is too short')
                // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
-               .required('Please provide a password.')
+               .required('Please provide a current password.')
                .min(8, 'Password must be at least 8 characters long.')
                .matches(/[a-zA-Z0-9!@#$%^&*]/, 'Password can only contain letters, numbers, and special characters like !@#$%^&*.'),
             newPassword: Yup.string()
                // .required('No password provided.')
                 //.min(8, 'Password is too short')
                // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
-               .required('Please provide a password.')
+               .required('Please provide a new password.')
                .min(8, 'Password must be at least 8 characters long.')
                .matches(/[a-zA-Z0-9!@#$%^&*]/, 'Password can only contain letters, numbers, and special characters like !@#$%^&*.')
 
@@ -148,11 +148,11 @@ export default function Index() {
     return (
         <ProfileLayout>
             <main className="w-full h-full flex flex-col">
-                <h2 className="text-xl font-medium text-normal_white">My Profile</h2>
+                {/* <h2 className="text-xl font-medium text-normal_white">My Profile</h2> */}
 
-                <form onSubmit={formik.handleSubmit} className=" w-full flex-col mt-6">
+                <form autoComplete="off" onSubmit={formik.handleSubmit} className=" w-full flex-col">
                     <h2 className="mb-2 text-white">Details</h2>
-                    <section className="ml-14 mb-6">
+                    <section className="ml-14 mb-4">
                         <p className="text-white text-sm w-20 mb-2">Name *</p>
                         <div className=''>
                             <input
@@ -166,11 +166,11 @@ export default function Index() {
                                 className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                             />
                             {formik.errors.name ? (
-                                <div className="text-sm text-red mt-2 ml-2">{formik.errors.name}</div>
+                                <div className="text-sm text-red mt-1 ml-2">{formik.errors.name}</div>
                             ) : null}
                         </div>
                     </section>
-                    <section className="flex ml-14 mb-6 gap-10 ">
+                    <section className="flex ml-14 mb-2 gap-10 ">
                         <section className="">
                             <p className="text-white text-sm w-20 mb-2">Phone *</p>
                             <div className=''>
@@ -185,7 +185,7 @@ export default function Index() {
                                     className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                                 />
                                 {formik.errors.phone ? (
-                                    <div className="text-sm text-white mt-2 ml-2">{formik.errors.phone}</div>
+                                    <div className="text-sm text-red mt-1 ml-2">{formik.errors.phone}</div>
                                 ) : null}
                             </div>
                         </section>
@@ -203,7 +203,7 @@ export default function Index() {
                                     className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                                 />
                                 {formik.errors.email ? (
-                                    <div className="text-sm text-red mt-2 ml-2">{formik.errors.email}</div>
+                                    <div className="text-sm text-red mt-1 ml-2">{formik.errors.email}</div>
                                 ) : null}
                             </div>
                         </section>
@@ -216,7 +216,7 @@ export default function Index() {
                     </section>
 
                 </form>
-                <form onSubmit={passwordFormik.handleSubmit} className=" w-full flex-col mt-6">
+                <form autoComplete="off" onSubmit={passwordFormik.handleSubmit} className=" w-full flex-col mt-2">
                     <h2 className="mb-2  text-white">Change Password</h2>
 
                     <section className="flex ml-14 gap-10 ">
@@ -237,7 +237,7 @@ export default function Index() {
             {passwordOneType == "password" ? <EyeIcon className="text-blue h-4 w-4" /> : <EyeSlashIcon className="text-blue h-4 w-4" />}
           </span>
                                 {passwordFormik.errors.currentPassword ? (
-                                    <div className="text-sm text-red mt-2 ml-2">{passwordFormik.errors.currentPassword}</div>
+                                    <div className="text-sm text-red mt-1 ml-2">{passwordFormik.errors.currentPassword}</div>
                                 ) : null}
                             </div>
                         </section>
@@ -258,7 +258,7 @@ export default function Index() {
             {passwordTwoType == "password" ? <EyeIcon className="text-blue h-4 w-4" /> : <EyeSlashIcon className="text-blue h-4 w-4" />}
           </span>
                                 {passwordFormik.errors.newPassword ? (
-                                    <div className="text-sm text-red mt-2 ml-2">{passwordFormik.errors.newPassword}</div>
+                                    <div className="text-sm text-red mt-1 ml-2">{passwordFormik.errors.newPassword}</div>
                                 ) : null}
                             </div>
                         </section>

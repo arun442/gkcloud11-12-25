@@ -69,7 +69,7 @@ export default function OtpContainer() {
         </h3>
 
       </div>
-      <form onSubmit={formik.handleSubmit} className='w-[375px]'>
+      <form autoComplete="off" onSubmit={formik.handleSubmit} className='w-[375px]'>
 
 
 

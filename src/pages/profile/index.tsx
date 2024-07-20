@@ -25,13 +25,13 @@ export default function Profile() {
                     <div onClick={(e)=>router.push("/profile/my-learning")} className="w-60 h-32 rounded-lg flex flex-col justify-center items-center gap-3 bg-light_green"><p className="text-[16px] font-bold text-black">My Learning</p>
                         <img
 
-
+alt="my course icon"
                             className="h-10 w-15"
                             src="/my_courses.png" />
                     </div>
                     <div onClick={(e)=>router.push("/profile/my-webinar")} className="w-60 h-32 rounded-lg flex flex-col justify-center items-center gap-3 bg-blue"><p className="text-[16px] font-bold text-black">My Schedules/Webinar</p>
                         <img
-
+alt="my webinar icon"
 
                             className="h-10 w-15"
                             src="/my_webinar.png" />

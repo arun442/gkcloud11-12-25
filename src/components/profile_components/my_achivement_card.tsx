@@ -117,7 +117,7 @@ export default function MyAchivementCard({ data }: { data: any }) {
                 onClick={() => {
                     downloadCertificate(data.userCertificateId, data.certificateTitle);
                 }}
-
+alt='download icon'
                 className="h-6 w-6"
                 src="/icon_download.svg" />
             {/* <img

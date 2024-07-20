@@ -41,7 +41,7 @@ export default function WhyUsComponent() {
         return <div key={e.title} className='flex flex-col justify-center items-center'>
             <div className='w-32 h-32 mb-3 rounded-full bg-blue flex items-center justify-center'>
             <img
-                                   
+                                 alt={e.desc}  
                                         className="h-14 w-auto"
                                         src={e.image}/>
                                         

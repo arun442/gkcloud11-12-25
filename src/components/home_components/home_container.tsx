@@ -13,7 +13,7 @@ import useScreenSize from '@/hooks/size_hook';
 
 
 
-const TEXTS = ['Artificial intelligence', 'Multi Cloud', 'Cyber Security', 'Infrastructure', 'Tableau'];
+const TEXTS = ['Artificial Intelligence', 'Multicloud', 'Cyber Security', 'Infrastructure', 'Tableau'];
 
 export default function HomePageMainContainer() {
   const router = useRouter();

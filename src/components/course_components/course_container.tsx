@@ -179,12 +179,12 @@ export default function CourseContainer() {
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
       <div className="flex flex-row gap-1 items-center">
-        <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
+        <p className="hover:text-blue cursor-pointer text-blue text-base font-medium" onClick={(e) => {
 
-          router.back();
+          router.push("/");
         }}>Home</p>
         <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-        <p className="cursor-pointer text-text_grey_one text-base font-medium">Course</p>
+        <p className="hover:text-blue cursor-pointer text-text_grey_one text-base font-medium">Course</p>
       </div>
 
       {
@@ -193,7 +193,7 @@ export default function CourseContainer() {
 
           <div className=' object-cover w-full flex flex-row items-center justify-center'>
             <img
-
+alt='ai'
               className="mx-auto h-144"
 
               src="/ai.png" />
@@ -203,7 +203,7 @@ export default function CourseContainer() {
 
           <div className=' object-cover w-full flex flex-row items-center justify-center'>
             <img
-
+alt='gcp'
               className="object-contain mx-auto h-128"
 
               src="/gcp.png" />
@@ -213,7 +213,7 @@ export default function CourseContainer() {
 
           <div className=' object-contain w-full flex flex-row items-center justify-center'>
             <img
-
+alt='azure'
               className="mx-auto h-128"
 
               src="/azure.png" />

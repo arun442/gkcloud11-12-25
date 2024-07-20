@@ -53,7 +53,7 @@ export default function NewsLetterComponent() {
     },
   });
     return (
-        <form onSubmit={formik.handleSubmit} className='flex flex-col justify-center items-center gap-14'>
+        <form autoComplete="off" onSubmit={formik.handleSubmit} className='flex flex-col justify-center items-center gap-14'>
         
           <div>
           <div className="w-full mx-auto flex flex-col md:flex-row md:gap-0 gap-5  items-center justify-center  md:relative">

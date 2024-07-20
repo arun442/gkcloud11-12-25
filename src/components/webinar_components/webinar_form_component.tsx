@@ -92,8 +92,9 @@ export default function WebinarFormComponent({
             }
         },
     });
-    return <form onSubmit={formik.handleSubmit} className='relative  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
+    return <form autoComplete="off" onSubmit={formik.handleSubmit} className='relative  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
         <img
+        alt='cancel icon'
             onClick={(e) => {
                 closeModel()
             }}

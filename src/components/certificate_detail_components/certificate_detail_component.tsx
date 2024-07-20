@@ -64,17 +64,17 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
         <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
             <div className="flex flex-row gap-1 items-center">
-                <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
-                    router.back();
-                    router.back();
+                <p className="hover:text-blue cursor-pointer text-blue text-base font-medium" onClick={(e) => {
+                  
+                    router.replace("/");
                 }}>Home</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-                <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
+                <p className="hover:text-blue cursor-pointer text-blue text-base font-medium" onClick={(e) => {
 
 router.replace("/course");
                 }}>Course</p>
                 <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-                <p className="text-text_grey_one text-base font-medium">{data.title}</p>
+                <p className="hover:text-blue cursor-pointer text-text_grey_one text-base font-medium">{data.title}</p>
             </div>
 
             <h1 className='font-semibold text-4xl mt-5 text-white'>{data.title}</h1>
@@ -86,7 +86,7 @@ router.replace("/course");
                 </div> */}
                 <div className="flex flex-row gap-3 items-center">
                     <img
-
+alt='learning mode'
                         className="text-blue h-8 w-8"
                         src="/learning_mode.svg" />
                     <p className="text-white text-xl font-normal">{data.CertificateCourseCostPlans[0].CertificateCourseItems.length} Courses</p>
@@ -94,7 +94,7 @@ router.replace("/course");
                 {
                      hideDuration(data.partnerId,data.categoryId)?<></>:   <div className="flex flex-row gap-3 items-center">
                      <img
- 
+ alt='clock icon'
                          className="text-blue h-8 w-8"
                          src="/Icon_clock.svg" />
  
@@ -104,7 +104,7 @@ router.replace("/course");
               
                 <div className="flex flex-row gap-3 items-center">
                     <img
-
+alt='rubee icon'
                         className="text-blue h-8 w-8"
                         src="/rubee_icon.svg" />
 

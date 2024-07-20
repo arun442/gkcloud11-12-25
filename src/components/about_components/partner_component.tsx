@@ -46,7 +46,7 @@ const PartnerAboutComponent: React.FC = () => {
               className="cursor-pointer object-contain max-w-full h-full w-full"
 
               src={imageHelper(e.Image.imageUrl)}
-              alt="link"
+              alt={`our partner ${e.partnerName}`}
             />
 
           </div>

@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react'
 import LeadFormComponent from '../lead_form'
 
 
-export default function LeadFormModel({ isOpen, closeModal, data, courseCode, courseName }: { isOpen: any, closeModal: any, data: any, courseCode: string, courseName: string }) {
+export default function LeadFormModel({isFromOffer=false, isOpen, closeModal, data, courseCode, courseName }: {isFromOffer:boolean, isOpen: any, closeModal: any, data: any, courseCode: string, courseName: string }) {
 
 
     return (
@@ -36,7 +36,7 @@ export default function LeadFormModel({ isOpen, closeModal, data, courseCode, co
                                 leaveTo="opacity-0 scale-95"
                             >
                                 <Dialog.Panel className="m-4 bg-white-A700 w-full max-w-128 transform overflow-hidden rounded-2xl bg-white p-0 text-left align-middle shadow-xl transition-all">
-                                    <LeadFormComponent data={data} closeModel={closeModal} courseCode={courseCode} courseName={courseName} />
+                                    <LeadFormComponent isFromOffer={isFromOffer} data={data} closeModel={closeModal} courseCode={courseCode} courseName={courseName} />
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

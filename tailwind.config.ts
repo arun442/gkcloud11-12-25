@@ -62,6 +62,27 @@ const config: Config = {
       }
     }
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }:{ addUtilities:any }) {
+      addUtilities({
+        '.custom-scrollbar': {
+          '&::-webkit-scrollbar': {
+            width: '12px',
+          },
+          '&::-webkit-scrollbar-track': {
+            background: '#f1f1f1',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: '#129DD6',
+            borderRadius: '10px',
+            border: '3px solid #f1f1f1',
+          },
+          '&::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: '#555',
+          },
+        },
+      }, ['responsive']);
+    },
+  ],
 };
 export default config;

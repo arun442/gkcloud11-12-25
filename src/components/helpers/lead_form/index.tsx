@@ -7,8 +7,8 @@ import useUserData from '@/hooks/userData';
 import { toast } from 'react-toastify';
 
 export default function LeadFormComponent({
-    data, closeModel, courseCode, courseName
-}: { data: any, closeModel: any, courseCode: string, courseName: string }) {
+    isFromOffer=false,   data, closeModel, courseCode, courseName
+}: {isFromOffer:boolean, data: any, closeModel: any, courseCode: string, courseName: string }) {
     const [isLoading, setLoading] = useState(false);
     // const { userData, } = useUserData();
     // useEffect(() => {
@@ -81,7 +81,12 @@ export default function LeadFormComponent({
 
 
                 setLoading(false);
-                toast.success("Form submitted successfully")
+                if(isFromOffer){
+                    toast.success("Thanks for your interest, one of our Sales Agent will get in touch with you shortly")
+                }else{
+                    toast.success("Form submitted successfully")
+                }
+               
                 closeModel(true);
                 console.log(result.data);
                 resetForm();
@@ -95,11 +100,12 @@ export default function LeadFormComponent({
             }
         },
     });
-    return <form onSubmit={formik.handleSubmit} className='relative  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
+    return <form autoComplete="off" onSubmit={formik.handleSubmit} className='relative  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
         <img
             onClick={(e) => {
                 closeModel(false)
             }}
+            alt='cancel icon'
             className="cursor-pointer absolute text-blue h-6 w-6 top-4 right-4"
             src="/cancel.png" />
 
@@ -176,7 +182,8 @@ export default function LeadFormComponent({
                 </div>
 
             </div>
-            <div className='mt-4 flex flex-row gap-8'>
+            {
+              isFromOffer==true?<></>:  <div className='mt-4 flex flex-row gap-8'>
                 <div className='flex-1'>
                     <input
                         {...formik.getFieldProps('company')}
@@ -194,6 +201,7 @@ export default function LeadFormComponent({
                 </div>
 
             </div>
+            }
 
 
             <button type='submit' className="mt-4 flex w-full justify-center rounded bg-blue p-3 font-medium text-white ">

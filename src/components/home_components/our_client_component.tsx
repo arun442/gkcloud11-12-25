@@ -43,7 +43,7 @@ export default function OurClientComponent() {
                   className="cursor-pointer object-contain max-w-full h-full w-full"
 
                   src={imageHelper(e.Image.imageUrl)}
-                  alt="link"
+                  alt={`our client ${e.customerName}`}
                 />
 
               </div>

@@ -30,11 +30,11 @@ const Footer: React.FC<FooterProps> = (props) => {
           <br />
           <div className="mt-2">
             <div className="flex flex-row gap-2 items-center">
-              <img className="text-white h-6 w-6" src="/footer_call.svg" />
+              <img alt="call icon" className="text-white h-6 w-6" src="/footer_call.svg" />
               <p className="text-sm text-white">+91 9364893718</p>
             </div>
             <div className="flex flex-row gap-2 items-center mt-2">
-              <img className="text-white h-6 w-6" src="/footer_email.svg" />
+              <img alt="email icon" className="text-white h-6 w-6" src="/footer_email.svg" />
               <a href="mailto:support@gkcloud.ai" className="text-sm text-white">support@gkcloud.ai</a>
             </div>
           </div>
@@ -48,21 +48,21 @@ const Footer: React.FC<FooterProps> = (props) => {
           <div className="mt-2">
             <div className="flex flex-row gap-3">
               <Link href="https://twitter.com/gkcs_India" rel="noopener noreferrer" target="_blank">
-                <img className="text-white h-6 w-6" src="/Icon fa-brands-x-twitter.svg" />
+                <img alt="twitter icon" className="text-white h-6 w-6" src="/Icon fa-brands-x-twitter.svg" />
               </Link>
               <Link href="https://www.instagram.com/gkcloud_solutions/" rel="noopener noreferrer" target="_blank">
-                <img className="text-white h-6 w-6" src="/Icon akar-instagram-fill.svg" />
+                <img alt="instagram icon" className="text-white h-6 w-6" src="/Icon akar-instagram-fill.svg" />
               </Link>
               <Link href="https://www.youtube.com/@GKCloudSolutions" rel="noopener noreferrer" target="_blank">
-                <img className="text-white h-6 w-8 " src="/Icon feather-youtube.svg" />
+                <img alt="youtube icon" className="text-white h-6 w-8 " src="/Icon feather-youtube.svg" />
               </Link>
             </div>
             <div className="flex flex-row gap-3 mt-2">
               <Link href="https://www.linkedin.com/company/gk-cloud-solutions/" rel="noopener noreferrer" target="_blank">
-                <img className="text-white h-6 w-6" src="/Icon ion-social-linkedin-outline.svg" />
+                <img alt="linkedIn icon" className="text-white h-6 w-6" src="/Icon ion-social-linkedin-outline.svg" />
               </Link>
               <Link href="https://www.facebook.com/profile.php?id=61557901947109" rel="noopener noreferrer" target="_blank">
-                <img className="text-white h-6 w-6" src="/Icon-facebook.svg" />
+                <img alt="facebook icon" className="text-white h-6 w-6" src="/Icon-facebook.svg" />
               </Link>
             </div>
           </div>

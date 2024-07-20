@@ -86,7 +86,7 @@ export default function Index() {
             <main className="w-full h-full flex flex-col">
                 <h2 className="text-xl font-medium text-normal_white">Talk with us</h2>
 
-                <form onSubmit={formik.handleSubmit} className="flex-1 w-full flex-col mt-12">
+                <form autoComplete="off" onSubmit={formik.handleSubmit} className="flex-1 w-full flex-col mt-12">
 
                     <section className="flex mb-8">
                         <p className="text-[#ECF4FFBF] w-20">Subject *</p>

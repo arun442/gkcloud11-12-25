@@ -20,7 +20,7 @@ const OurClientAboutComponent: React.FC = () => {
   const fetchData = async () => {
     try {
       const result = await axiosPublic.get('/lms/feature-customer');
-     
+     console.log("feature customers",result.data.featuredCustomer);
       setData(result.data.featuredCustomer);
     } catch (error) {
 
@@ -39,7 +39,7 @@ const OurClientAboutComponent: React.FC = () => {
             className="cursor-pointer object-contain max-w-full h-full w-full"
 
             src={imageHelper(e.Image.imageUrl)}
-            alt="link"
+            alt={`our client ${e.customerName}`}
           />
 
         </div>

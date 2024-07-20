@@ -41,6 +41,7 @@ const CircleProgressBar = ({ percentage }:{percentage:any}) => {
       </svg>
       <div className="absolute flex items-center justify-center w-full h-full">
       <img
+      
                                             onClick={(e) => {
                                               
                                             }}

@@ -83,16 +83,19 @@ export default function ScheduleContainer() {
   }
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
-      <MainHeading text='Schedules' />
-      <div className="flex flex-row gap-1 items-center mt-14">
-        <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
+      <MainHeading text={data.length==0?"Coming Soon…":'Schedules'} />
+     {
+      data.length!=0&& <div className="flex flex-row gap-1 items-center mt-14 hover:text-blue ">
+      <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
 
-          router.back();
-        }}>Home</p>
-        <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-        <p className="text-text_grey_one text-base font-medium">Schedules</p>
-      </div>
-      <div className='w-full flex flex-row  items-center justify-between mt-3'>
+        router.replace("/");
+      }}>Home</p>
+      <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
+      <p className="text-text_grey_one text-base font-medium hover:text-blue cursor-pointer">Schedules</p>
+    </div>
+     }
+      {
+        data.length!=0&&<div className='w-full flex flex-row  items-center justify-between mt-3'>
         <h3 className='text-xl font-normal text-white'>All Courses</h3>
         <div className='flex-1 flex flex-row gap-5 justify-end'>
           <PartnerDropdown data={partner} setData={setPartner} />
@@ -110,6 +113,7 @@ export default function ScheduleContainer() {
           }} /> : <></>}
         </div>
       </div>
+      }
      
 
       <div className="w-full grid grid-cols-2 gap-6 mt-8">

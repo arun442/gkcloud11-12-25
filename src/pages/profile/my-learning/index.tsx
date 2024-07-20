@@ -86,12 +86,12 @@ export default function Index() {
         <ProfileLayout>
             <main className="w-full h-full flex flex-col">
                 <div className="flex flex-row gap-1 items-center">
-                    <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
+                    <p className="hover:text-blue cursor-pointer text-blue text-base font-medium" onClick={(e) => {
 
                         router.back();
                     }}>Dashboard</p>
                     <ChevronRightIcon className="text-text_grey_one h-4 w-4" />
-                    <p className="cursor-pointer text-text_grey_one text-base font-medium">My Learning</p>
+                    <p className="hover:text-blue cursor-pointer text-text_grey_one text-base font-medium">My Learning</p>
                 </div>
                 <div className={classNames("w-full cursor-pointer text-[16px]  flex flex-row justify-start items-center text-white mt-10 gap-16")}>
                     <div className={index != 0 ? "font-normal" : "border-b-2 font-semibold"} onClick={(e) => {

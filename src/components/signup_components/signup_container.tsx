@@ -82,7 +82,7 @@ export default function SignUpContainer() {
                 </h3>
                 <p className='text-sm font-normal text-white'>Create a New Account</p>
             </div>
-            <form onSubmit={formik.handleSubmit} className='w-[375px]'>
+            <form autoComplete="off" onSubmit={formik.handleSubmit} className='w-[375px]'>
 
                 <div className="mb-6 relative">
                    
@@ -94,6 +94,7 @@ export default function SignUpContainer() {
                     />
                      <span className="absolute top-4 right-4">
                       <img
+                      alt='user icon'
                                    
                                    className="text-blue h-4 w-4"
                                    src="/user.png"/>
@@ -114,7 +115,7 @@ export default function SignUpContainer() {
                     />
                      <span className="absolute top-4 right-4">
                       <img
-                                   
+                               alt='email icon'    
                                    className="text-blue h-4 w-5"
                                    src="/email.png"/>
                       

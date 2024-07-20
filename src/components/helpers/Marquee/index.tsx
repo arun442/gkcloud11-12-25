@@ -11,7 +11,7 @@ const Marquee = () => {
       fetchData();
   
     }, [])
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     
     const fetchData = async () => {
       try {
@@ -34,10 +34,11 @@ const Marquee = () => {
     return (
     data.length!=0&&  <div className=" relative overflow-hidden whitespace-nowrap bg-scroll_green font-semibold p-2">
        <LeadFormModel isFromOffer={true} data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={""} courseName={""} />
-        <div className="inline-block animate-marquee">
-          <span className="mx-4 "  onClick={(e)=>openModal()}>{data[0].description}</span>
-          {/* <span className="mx-4">Here is another piece of scrolling text.</span>
-          <span className="mx-4">And yet another scrolling message!</span> */}
+        <div className="inline-block animate-marquee cursor-pointer" onClick={(e)=>openModal()}>
+          {
+            data[0].description.trim()
+          }
+         
         </div>
       </div>
     );

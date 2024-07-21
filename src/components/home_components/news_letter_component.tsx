@@ -28,7 +28,7 @@ export default function NewsLetterComponent() {
     validationSchema: Yup.object({
     
    
-      email: Yup.string().email('Invalid email address').required('*'),
+      email: Yup.string().email('Invalid email address').required('Please enter a valid email'),
     }),
     onSubmit: async(values, { resetForm }) => {
      

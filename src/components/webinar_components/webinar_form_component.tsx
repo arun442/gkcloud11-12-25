@@ -44,11 +44,11 @@ export default function WebinarFormComponent({
         validationSchema: Yup.object({
             firstName: Yup.string()
 
-                .required('*'),
+                .required('Please enter a valid name'),
 
 
-            email: Yup.string().email('Invalid email address').required('*'),
-            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('*'),
+            email: Yup.string().email('Invalid email address').required('Please enter a valid email'),
+            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Please enter a valid phone number'),
             company: Yup.string()
 
             ,

@@ -36,7 +36,7 @@ export default function SignInContainer() {
       password: Yup.string()
        .required('Please provide a password.'),
       
-      email: Yup.string().email('Invalid email address').required('*'),
+      email: Yup.string().email('Invalid email address').required('Please enter a valid email'),
     }),
     onSubmit: async (values, { resetForm }) => {
 

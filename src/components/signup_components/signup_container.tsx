@@ -33,14 +33,14 @@ export default function SignUpContainer() {
       },
       validationSchema: Yup.object({
         name: Yup.string()
-        .required('*'),
+        .required('Please enter a valid user name'),
         password:  Yup.string()
         .required('Please provide a password.')
        // .min(8, 'Password is too short - should be 8 chars minimum.')
        // .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
        .min(8, 'Password must be at least 8 characters long.')
        .matches(/[a-zA-Z0-9!@#$%^&*]/, 'Password can only contain letters, numbers, and special characters like !@#$%^&*.'),
-        email: Yup.string().email('Invalid email address').required('*'),
+        email: Yup.string().email('Invalid email address').required('Please enter a valid email'),
       }),
       onSubmit: async(values, { resetForm }) => {
        

@@ -47,9 +47,9 @@ export default function Index() {
         validationSchema: Yup.object({
             subject: Yup.string()
 
-                .required('*'),
+                .required('Please enter a valid subject'),
 
-            message: Yup.string().required('*'),
+            message: Yup.string().required('Please enter a valid message'),
 
 
         }),

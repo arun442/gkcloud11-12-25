@@ -56,7 +56,7 @@ export default function NewsLetterComponent() {
         <form autoComplete="off" onSubmit={formik.handleSubmit} className='flex flex-col justify-center items-center gap-14'>
         
           <div>
-          <div className="w-full mx-auto flex flex-col md:flex-row md:gap-0 gap-5  items-center justify-center  md:relative">
+          <div className="w-full mx-auto flex flex-col sm:flex-row  sm:gap-5 gap-5  items-center justify-center   sm:relative">
          
          <input
         {...formik.getFieldProps('email')}

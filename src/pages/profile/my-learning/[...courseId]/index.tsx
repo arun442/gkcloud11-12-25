@@ -113,19 +113,19 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
     <main
       className={`relative w-full lg:max-w-7xl lg:mx-auto h-auto px-5 md:px-14 lg:px-20 xl:px-0 flex flex-col`}
     >
-      <div className="w-full flex items-center justify-start py-2">
+      <div className="w-full flex items-center justify-between md:justify-start py-2">
         <div className="flex flex-shrink-0 items-center">
           <img
             onClick={(e) => {
               router.push("/")
             }}
-            className="h-20 w-auto cursor-pointer"
+            className="h-14 md:h-20 w-auto cursor-pointer"
             src="/logo.png"
             alt="GK cloud solutions"
           />
 
         </div>
-        <div className="ml-4 flex-1 flex flex-row gap-1 items-center">
+        <div className="hidden ml-4 flex-1 md:flex flex-row gap-1 items-center">
           <p className="hover:text-blue cursor-pointer text-[#A1A1A1] text-base font-normal" onClick={(e) => {
             router.back();
             router.back();
@@ -147,10 +147,10 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
       </div>
 
       <div className="w-full flex h-full">
-        <div className="flex-1 w-full">
+        <div className="h-auto flex-1  md:w-full">
         <PlayerComponent notes={notes} setNotes={setNotes} data={data} setMouduleId={setModuleId} onSelectItem={setSelectedItem} modules={modules} item={selectedItem} moduleId={moduleId} />
         </div>
-        <div className="w-[30%] h-[70vh]">
+        <div className="hidden md:flex w-[30%] h-[70vh]">
           {selectedItem && <ModuleList modules={modules} setMouduleId={setModuleId} onSelectItem={setSelectedItem} currentItem={selectedItem} moduleId={moduleId} />}
         </div>
       </div>

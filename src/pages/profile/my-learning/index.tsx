@@ -115,7 +115,7 @@ export default function Index() {
                     </div>
 
                 </div>
-                {index == 0 && <div className="w-full grid grid-cols-3 gap-6 mt-8">
+                {index == 0 && <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
 
                     {
                         course.map((e: any, index) => {

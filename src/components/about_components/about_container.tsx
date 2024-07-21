@@ -143,7 +143,7 @@ export default function AboutContainer() {
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
       <LeadFormModel isFromOffer={false}  data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={""} courseName={""} />
-      <main className='w-full flex flex-row gap-6'>
+      <main className='w-full flex md:flex-row  flex-col gap-6'>
 
         <section className='flex-1 flex flex-col justify-start items-start'>
           <div className="flex flex-row gap-1 items-center">
@@ -172,15 +172,15 @@ export default function AboutContainer() {
             </div>
           </section>
         </section>
-        <section className='w-1/3 h-auto'>
+        <section className='w-auto m-auto md:w-1/3 h-auto'>
           <img
 
-            className="object-contain mx-auto  h-72"
+            className="object-contain mx-auto h-auto  md:h-72"
 alt="about"
             src="/about.png" />
         </section>
       </main>
-      <section className="mx-auto box-border w-full  mt-20  border-none border-blue grid grid-cols-4   items-center rounded-full">
+      <section className="mx-auto box-border w-full  mt-20  border-none border-blue grid grid-cols-2 md:grid-cols-4   items-center rounded-full">
         {
           items.map((e, indexx) => <div key={indexx} className={classNames("cursor-pointer py-4  w-full box-border border flex flex-row items-center justify-center text-white text-lg font-semibold border-blue border-1 ", index == e.index ? "rounded-full bg-dark_blue" : "border-none rounded-none ")} onClick={(event) => {
             event.preventDefault();

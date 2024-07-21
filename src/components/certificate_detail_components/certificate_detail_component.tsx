@@ -79,7 +79,7 @@ router.replace("/course");
 
             <h1 className='font-semibold text-4xl mt-5 text-white'>{data.title}</h1>
             <p className='mt-2 leading-6 font-normal text-[16px] text-white'>{data?.description ?? ""}</p>
-            <section className='flex mt-10 flex-row gap-10'>
+            <section className='flex mt-10 flex-row flex-wrap gap-10'>
                 {/* <div className="flex flex-row gap-3 items-center">
                     <MagnifyingGlassIcon className="text-blue h-8 w-8" />
                     <p className="text-white text-xl font-normal">Gen002</p>
@@ -135,7 +135,7 @@ alt='rubee icon'
             </section>
             <section className='mt-10'>
                 <h3 className='text-xl font-medium text-white'>Courses</h3>
-                <div className="w-full grid grid-cols-3 gap-6 mt-6">
+                <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
 
                     {
                       data.CertificateCourseCostPlans[0].CertificateCourseItems.map((e: any, index: any) => {

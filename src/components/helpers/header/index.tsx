@@ -69,6 +69,66 @@ export default function Header() {
 
     ]);
 
+    const profileNavigation=[
+        {
+            "menuId": 0,
+            "menuName": "Home",
+            "menuUrl": "/",
+            "imageId": null,
+
+            "menuSequencePriority": 1
+        },
+        {
+            "menuId": 1,
+            "menuName": "Dashboard",
+            "menuUrl": "/profile",
+            "imageId": null,
+
+            "menuSequencePriority": 1
+        },
+        {
+            "menuId": 2,
+            "menuName": "Achievement",
+            "menuUrl": "/profile/my-achivement",
+            "imageId": null,
+
+            "menuSequencePriority": 2
+        },
+        {
+            "menuId": 3,
+            "menuName": "Notification",
+            "menuUrl": "/profile/my-notification",
+            "imageId": null,
+
+            "menuSequencePriority": 3
+        },
+        {
+            "menuId": 4,
+            "menuName": "Upcoming Webinar",
+            "menuUrl": "/profile/upcoming-webinar",
+            "imageId": null,
+
+            "menuSequencePriority": 4
+        },
+        {
+            "menuId": 5,
+            "menuName": "Talk to us",
+            "menuUrl": "/profile/talk-to-us",
+            "imageId": null,
+
+            "menuSequencePriority": 5
+        },
+        {
+            "menuId": 6,
+            "menuName": "Purchase History",
+            "menuUrl": "/profile/my-history",
+            "imageId": null,
+
+            "menuSequencePriority": 6
+        }
+
+    ]
+
     useEffect(() => {
         fetchData();
         clearLocalStorage();
@@ -116,7 +176,7 @@ export default function Header() {
                         <div className="sm:py-4">
 
                             <div className="relative flex h-16 items-center justify-between">
-                                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                                <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                                     {/* Mobile menu button*/}
                                     <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-white  hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                         <span className="absolute -inset-0.5" />
@@ -128,7 +188,7 @@ export default function Header() {
                                         )}
                                     </Disclosure.Button>
                                 </div>
-                                <div className="flex flex-1 items-center justify-center sm:items-center sm:justify-between">
+                                <div className="hidden md:flex md:flex-1 items-center justify-center md:items-center md:justify-between">
                                     <div className="flex flex-shrink-0 items-center">
                                         <img
                                             onClick={(e) => {
@@ -141,7 +201,7 @@ export default function Header() {
 
                                     </div>
 
-                                    <div className="hidden sm:ml-6 sm:block ">
+                                    <div className="hidden md:ml-6 md:block ">
                                         <div className="flex justify-center items-center">
                                             <div className='flex-1 flex items-center gap-4'>
                                                 <SearchComponent />
@@ -170,7 +230,7 @@ export default function Header() {
                             <MagnifyingGlassIcon  className="h-5 w-5 text-white items-center" />
                             </div> */}
                                 {
-                                    pathname=="/auth/signin" ? <></> : <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                                    pathname=="/auth/signin" ? <></> : <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
 
                                         {
                                             userData == null ? <ButtonLoginHeader /> : <Menu as="div" className="relative ml-3">
@@ -253,9 +313,22 @@ export default function Header() {
                             </div>
                         </div>
 
-                        <Disclosure.Panel className="sm:hidden">
+                        <Disclosure.Panel className="md:hidden">
                             <div className="space-y-1 px-2 pb-3 pt-2">
-                                {navigation.map((item) => (
+                                {pathname.includes("/profile")? profileNavigation.map((item) => (
+                                    <Disclosure.Button
+                                        key={item.menuName}
+                                        as="a"
+                                        href={item.menuUrl}
+                                        className={classNames(
+                                            userData == null ? 'bg-gray-900 text-white' : 'text-white hover:bg-gray-700 hover:text-white',
+                                            'block rounded-md px-3 py-2 text-base font-medium'
+                                        )}
+                                        aria-current={userData == null ? 'page' : undefined}
+                                    >
+                                        {item.menuName}
+                                    </Disclosure.Button>
+                                )):  navigation.map((item) => (
                                     <Disclosure.Button
                                         key={item.menuName}
                                         as="a"

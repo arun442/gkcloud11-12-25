@@ -9,6 +9,7 @@ import useUserData from '@/hooks/userData';
 import classNames from '@/helpers/add_class';
 import ErrorBoundary from '@/helpers/error_boundary';
 import OverlayLoader from '../helpers/OverlayLoader';
+import ModuleList from './module_list_component';
 
 
 const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMouduleId, onSelectItem }: { notes: any, setNotes: any, data: any, modules: any, item: any, moduleId: any, setMouduleId: any, onSelectItem: any }) => {
@@ -139,8 +140,8 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
         }
     }
     const [index, setIndex] = useState(0);
-    return (<div className='w-full '>
-        <section className='w-full h-[70vh]'>{
+    return (<div className='w-full h-screen md:h-auto'>
+        <section className='w-full h-[30vh] md:h-[70vh]'>{
             item == null ? <></> : item.moduleItemDetails && item.moduleItemDetails.length != 0 && item.moduleItemDetails[0].mode == "video" ?
                 <div className="h-full w-full bg-dark_blue relative">
                     {
@@ -226,8 +227,8 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                     }} />
                 </div> : <></>
         }</section>
-        <section className='w-full p-2'>
-            <section className={classNames("w-full cursor-pointer text-sm  flex flex-row mt-12 justify-start items-center  gap-7")}>
+        <section className='w-full p-2 h-[70vh] md:h-auto flex-col'>
+            <section className={classNames("w-full cursor-pointer text-sm  flex flex-row flex-wrap mt-12 justify-start items-center  gap-7")}>
                 <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>
                     OverView
                 </div>
@@ -239,11 +240,15 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                 <div className={index != 2 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(2)}>
                     Stu
                 </div>
+                <div className='h-6 w-[1px] rounded-lg bg-grey md:hidden'></div>
+                <div className={index != 3 ? "text-white font-normal md:hidden" : "text-blue font-medium md:hidden"} onClick={(e) => setIndex(3)}>
+               Lectures
+                </div>
 
 
             </section>
-            <ErrorBoundary>
-                <main className='mt-2 w-full'>
+          
+                <main className='mt-2 w-full flex-1 md:h-auto md:block'>
                     {
                         index == 0 ? <section className='w-full'>
                             <main className='mb-8'>
@@ -253,7 +258,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                                     <p className='my-6 leading-6 font-normal text-sm text-white text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.description?.description ?? data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}</p>
 
                                     {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) =>(e?.title ?? e??"").length==0?<></>: <div key={index} className='w-full flex flex-row gap-2 '>
                                             <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
                                             <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e?.title ?? e}</p>
                                         </div>)
@@ -303,7 +308,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).length != 0 ? <section className=''>
 
                                         {
-                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.audience?.audienceList ?? []).map((e: any, index: any) =>(e??"").length==0?<></>: <div key={index} className='w-full flex flex-row gap-2 '>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                             </div>)
@@ -342,11 +347,13 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
 
 
                             className="block px-4 w-full rounded-sm bg-dark_blue  text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                        /> : <></>
+                        /> : <div className=" md:hidden w-full h-full overflow-y-auto">
+                        {item && <ModuleList modules={modules} setMouduleId={setMouduleId} onSelectItem={onSelectItem} currentItem={item} moduleId={moduleId} />}
+                      </div>
                     }
                 </main>
 
-            </ErrorBoundary>
+            
         </section>
     </div>)
 

@@ -29,11 +29,11 @@ const OurClientAboutComponent: React.FC = () => {
   return (
 
 
-    <div className=" w-full grid  grid-cols-4 gap-6">
+    <div className=" w-full grid  grid-cols-2 md:grid-cols-4 gap-6">
 
       {
         data.map((e: any,index) => {
-          return <div key={index} className="w-60 h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-xl">
+          return <div key={index} className="w-full md:w-60 h-32 border p-4 flex flex-row justify-center items-center border-blue border-1 bg-dark_blue rounded-xl">
           <img
 
             className="cursor-pointer object-contain max-w-full h-full w-full"

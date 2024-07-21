@@ -119,10 +119,10 @@ export default function FormComponent({
         })
     }, [userData])
 
-    return <form  autoComplete="off"  onSubmit={formik.handleSubmit} className='mt-20  mx-auto box-border border w-[80%] py-14 px-24 border-blue border-1 bg-dark_blue rounded-2xl'>
+    return <form  autoComplete="off"  onSubmit={formik.handleSubmit} className='mt-20  mx-auto box-border border w-full md:w-[80%] p-6 md:py-14 md:px-24 border-blue border-1 bg-dark_blue rounded-2xl'>
 
         <section className='flex'>
-            <div className=" mx-auto box-border border flex flex-row w-96 items-center   border-blue border-1 bg-dark_blue rounded-lg">
+            <div className=" mx-auto box-border border flex flex-row w-full md:w-96 items-center   border-blue border-1 bg-dark_blue rounded-lg">
 
                 <div onClick={(e) => setIndex(0)} className={classNames("cursor-pointer py-3 w-1/2 box-border border flex flex-row items-center justify-center text-white text-lg font-semibold  bg-primary_color rounded-lg", index == 1 ? "border-none" : "border-blue border-1")}>Individual</div>
                 <div onClick={(e) => setIndex(1)} className={classNames("cursor-pointer py-3 w-1/2 box-border border flex flex-row items-center justify-center text-white text-lg font-semibold  bg-primary_color rounded-lg", index == 0 ? "border-none" : "border-blue border-1")}>Corporate</div>
@@ -132,7 +132,7 @@ export default function FormComponent({
         <h3 className='text-lg mt-8 text-white text-center'>Request More Information</h3>
 
         <section>
-            <div className='mt-8 flex flex-row gap-8'>
+            <div className='mt-8 flex flex-col md:flex-row gap-8'>
                 <div className='flex-1'>
                     <input
                         {...formik.getFieldProps('firstName')}
@@ -164,7 +164,7 @@ export default function FormComponent({
                     ) : null}
                 </div>
             </div>
-            <div className='mt-8 flex flex-row gap-8'>
+            <div className='mt-8 flex flex-col md:flex-row gap-8'>
                 <div className='flex-1'>
                     <input
                         {...formik.getFieldProps('email')}
@@ -231,7 +231,7 @@ maxLength={10}
                 </div>
             } */}
             {
-                index == 1 ? <div className='mt-8 flex flex-row gap-8'>
+                index == 1 ? <div className='mt-8 flex flex-col md:flex-row gap-8'>
                     <div className='flex-1'>
                         <input
                             {...formik.getFieldProps('company')}

@@ -88,8 +88,8 @@ export default function Index() {
 
                 <form autoComplete="off" onSubmit={formik.handleSubmit} className="flex-1 w-full flex-col mt-12">
 
-                    <section className="flex mb-8">
-                        <p className="text-[#ECF4FFBF] w-20">Subject *</p>
+                    <section className="flex flex-col md:flex-row mb-8">
+                        <p className="text-[#ECF4FFBF] w-24 mb-2 md:mb-0">Subject *</p>
                         <div className='flex-1'>
                             <input
                                 {...formik.getFieldProps('subject')}
@@ -106,8 +106,8 @@ export default function Index() {
                             ) : null}
                         </div>
                     </section>
-                    <section className="flex mb-8">
-                        <p className="text-[#ECF4FFBF] w-20">Message *</p>
+                    <section className="flex flex-col md:flex-row mb-8">
+                        <p className="text-[#ECF4FFBF] w-24 mb-2 md:mb-0">Message *</p>
                         <div className='flex-1'>
                             <textarea
                                 {...formik.getFieldProps('message')}

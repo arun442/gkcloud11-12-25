@@ -46,10 +46,14 @@ export default function Index() {
         <ProfileLayout>
             <main className="w-full h-auto flex flex-col">
                 <h2 className="text-xl font-medium text-normal_white">Webinars</h2>
+{
+    data.length==0&& <h2 className='w-full text-center mt-20 text-white text-4xl font-semibold'>{"Coming Soon…"}</h2>
+}
+                
                 <div className="h-auto w-full grid grid-cols-3 gap-6 mt-8">
 
 {
-  data.map((e: any, index) => {
+ data.map((e: any, index) => {
     return <WebinarCard key={index} data={e} />
   })
 }

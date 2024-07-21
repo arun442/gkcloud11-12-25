@@ -74,7 +74,7 @@ export default function Index() {
                 <div className="w-full ">
 
                     {
-                        index == 0 ? <div className="w-full grid grid-cols-3 gap-6 mt-8">
+                        index == 0 ? <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
 
                             {
                                 schedule.map((e: any, index) => {
@@ -85,7 +85,7 @@ export default function Index() {
 
 
 
-                        </div> : <div className="w-full grid grid-cols-3 gap-6 mt-8">
+                        </div> : <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
 
                             {
                                 webinar.map((e: any, index) => {

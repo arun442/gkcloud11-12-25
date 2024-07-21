@@ -40,7 +40,7 @@ const Footer: React.FC<FooterProps> = (props) => {
           </div>
         </section>
 
-        <section className="col-span-1 flex flex-col items-center justify-top">
+        <section className="flex flex-col items-start justify-start">
           <h4 className="text-lg font-semibold text-white" style={{ color: '#FCDC30' }}>
             Follow us
           </h4>
@@ -74,7 +74,7 @@ const Footer: React.FC<FooterProps> = (props) => {
           </div>
           <br />
           <div className="w-full mt-6 flex flex-col space-y-4">
-            <div className="flex flex-row items-center space-x-3">
+            <div className="flex flex-row items-center justify-center lg:justify-start space-x-3">
               <Link href="#" className="text-sm text-white">Privacy Policy</Link>
               <div className='h-6 w-[2px] rounded-lg bg-blue'></div>
               <Link href="#" className="text-sm text-white ">Refund Policy</Link>

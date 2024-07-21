@@ -152,7 +152,7 @@ export default function Index() {
 
                 <form autoComplete="off" onSubmit={formik.handleSubmit} className=" w-full flex-col">
                     <h2 className="mb-2 text-white">Details</h2>
-                    <section className="ml-14 mb-4">
+                    <section className="ml-0 md:ml-14 mb-4">
                         <p className="text-white text-sm w-20 mb-2">Name *</p>
                         <div className=''>
                             <input
@@ -163,14 +163,14 @@ export default function Index() {
 
 
 
-                                className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
+                                className="block px-4  rounded-md w-full md:w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                             />
                             {formik.errors.name ? (
                                 <div className="text-sm text-red mt-1 ml-2">{formik.errors.name}</div>
                             ) : null}
                         </div>
                     </section>
-                    <section className="flex ml-14 mb-2 gap-10 ">
+                    <section className="flex flex-col md:flex-row ml-0 md:ml-14 mb-2 gap-4 md:gap-10 ">
                         <section className="">
                             <p className="text-white text-sm w-20 mb-2">Phone *</p>
                             <div className=''>
@@ -179,10 +179,10 @@ export default function Index() {
                                     type="text"
 
 
+                                    maxLength={10}
 
 
-
-                                    className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
+                                    className="block px-4  rounded-md w-full md:w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                                 />
                                 {formik.errors.phone ? (
                                     <div className="text-sm text-red mt-1 ml-2">{formik.errors.phone}</div>
@@ -200,14 +200,14 @@ export default function Index() {
 
 
 
-                                    className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
+                                    className="block px-4  rounded-md w-full md:w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                                 />
                                 {formik.errors.email ? (
                                     <div className="text-sm text-red mt-1 ml-2">{formik.errors.email}</div>
                                 ) : null}
                             </div>
                         </section>
-                        <button type='submit' className="mt-7 ml-14 flex  justify-center items-center  bg-blue h-12 w-40 font-medium text-white rounded-full">
+                        <button type='submit' className="mt-7 ml-0 md:ml-14 mb-5 md:mb-0 flex  justify-center items-center  bg-blue h-12 w-40 font-medium text-white rounded-full">
                             {
                                 isLoading ? "Loading.." : "Save"
                             }
@@ -219,7 +219,7 @@ export default function Index() {
                 <form autoComplete="off" onSubmit={passwordFormik.handleSubmit} className=" w-full flex-col mt-2">
                     <h2 className="mb-2  text-white">Change Password</h2>
 
-                    <section className="flex ml-14 gap-10 ">
+                    <section className="flex flex-col md:flex-row ml-0 md:ml-14 gap-4 md:gap-10 ">
                         <section className="">
                             <p className="text-white text-sm mb-2">Current Password</p>
                             <div className='relative'>
@@ -231,7 +231,7 @@ export default function Index() {
 
 
 
-                                    className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
+                                    className="block px-4  rounded-md w-full md:w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                                 />
                                    <span className="absolute top-4 right-4 cursor-pointer" onClick={toggleOnePassword}>
             {passwordOneType == "password" ? <EyeIcon className="text-blue h-4 w-4" /> : <EyeSlashIcon className="text-blue h-4 w-4" />}
@@ -252,7 +252,7 @@ export default function Index() {
 
 
 
-                                    className="block px-4  rounded-md w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
+                                    className="block px-4  rounded-md w-full md:w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
                                 />
                                    <span className="absolute top-4 right-4 cursor-pointer" onClick={toggleTwoPassword}>
             {passwordTwoType == "password" ? <EyeIcon className="text-blue h-4 w-4" /> : <EyeSlashIcon className="text-blue h-4 w-4" />}
@@ -262,7 +262,7 @@ export default function Index() {
                                 ) : null}
                             </div>
                         </section>
-                        <button type='submit' className="mt-7 ml-14 flex  justify-center items-center  bg-blue h-12 w-40 font-medium text-white rounded-full">
+                        <button type='submit' className="mt-7 ml-0 md:ml-14 flex  justify-center items-center  bg-blue h-12 w-40 font-medium text-white rounded-full">
                             {
                                 isPasswordLoading ? "Loading.." : "Save"
                             }

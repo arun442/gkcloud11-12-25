@@ -135,7 +135,7 @@ export default function CourseDetailContainer({ data }: { data: any }) {
             </div>
 
             <h1 className='font-semibold text-4xl mt-5 text-white'>{data.title}</h1>
-            <section className='flex mt-10 flex-row gap-10'>
+            <section className='flex mt-10 flex-row flex-wrap gap-10'>
                 <div className="flex flex-row gap-3 items-center">
                     <img
 alt='category icon'
@@ -183,7 +183,7 @@ alt='rubee icon'
                     Enroll Now
                 </button>
             </section>
-            <section className={classNames("w-full cursor-pointer text-sm  flex flex-row mt-12 justify-center items-center  gap-7")}>
+            <section className={classNames("w-full cursor-pointer text-sm  flex flex-row flex-wrap mt-12 justify-center items-center  gap-7")}>
                 <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>
                     Course Description
                 </div>
@@ -308,7 +308,7 @@ alt='rubee icon'
 
                                     {
                                         (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((module: any, index: any) =>(module?.name??"").length==0?<></>: <div key={module.moduleId} >
-                                            <h3 className='font-semibold text-lg text-white mb-3 text-justify'>Module {index + 1}.{module?.name}</h3>
+                                            <h3 className='font-semibold text-lg text-white mb-3 text-start'>Module {index + 1}.{module?.name}</h3>
                                             <p>{module.moduleDescription}</p>
                                             <ul>
                                                 {module.moduleItems ? module.moduleItems.map((item: any, itemIndex: any) =>(item?.moduleItemName??"").length==0?<></>: (
@@ -316,7 +316,7 @@ alt='rubee icon'
                                                     }>
 
 
-                                                        <button className='leading-6 font-normal text-sm text-white text-justify' >{itemIndex + 1}.{item.moduleItemName}</button>
+                                                        <button className='leading-6 font-normal text-sm text-white text-start' >{itemIndex + 1}.{item.moduleItemName}</button>
 
 
                                                     </li>
@@ -325,7 +325,7 @@ alt='rubee icon'
                                                     }>
 
 
-                                                        <button className='leading-6 font-normal text-sm text-white text-justify' >{itemIndex + 1}.{item.mode == "quiz" ? "Quiz" : item.moduleItemName}</button>
+                                                        <button className='leading-6 font-normal text-sm text-white text-start' >{itemIndex + 1}.{item.mode == "quiz" ? "Quiz" : item.moduleItemName}</button>
 
 
                                                     </li>

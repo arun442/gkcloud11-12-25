@@ -109,7 +109,7 @@ export default function WebinarFormComponent({
                     <input
                         {...formik.getFieldProps('firstName')}
                         type="text"
-
+                        maxLength={50}
 
                         
                         placeholder='Name *'
@@ -128,7 +128,7 @@ export default function WebinarFormComponent({
                         {...formik.getFieldProps('email')}
                         type="text"
 
-
+                        maxLength={50}
                         
                         placeholder='Email *'
                     
@@ -163,7 +163,7 @@ export default function WebinarFormComponent({
                         {...formik.getFieldProps('company')}
                         type="text"
 
-
+                        maxLength={50}
                         
                         placeholder='Company Name'
                      

@@ -138,7 +138,7 @@ export default function FormComponent({
                         {...formik.getFieldProps('firstName')}
                         type="text"
 
-                       
+                        maxLength={50}
                         
                         placeholder='First Name *'
                     
@@ -153,7 +153,7 @@ export default function FormComponent({
                         {...formik.getFieldProps('lastName')}
                         type="text"
 
-
+                        maxLength={50}
                         
                         placeholder='Last Name'
                     
@@ -170,7 +170,7 @@ export default function FormComponent({
                         {...formik.getFieldProps('email')}
                         type="text"
 
-
+                        maxLength={50}
                         
                         placeholder='Email *'
                        
@@ -237,7 +237,7 @@ maxLength={10}
                             {...formik.getFieldProps('company')}
                             type="text"
 
-
+                            maxLength={50}
                             
                             placeholder='Company Name'
                           

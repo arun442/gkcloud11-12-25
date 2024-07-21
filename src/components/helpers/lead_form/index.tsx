@@ -115,7 +115,7 @@ export default function LeadFormComponent({
                     <input
                         {...formik.getFieldProps('firstName')}
                         type="text"
-
+                        maxLength={50}
 
                         
                         placeholder='First Name *'
@@ -134,7 +134,7 @@ export default function LeadFormComponent({
                         {...formik.getFieldProps('lastName')}
                         type="text"
 
-
+                        maxLength={50}
                         
                         placeholder='Last Name *'
 
@@ -170,7 +170,7 @@ export default function LeadFormComponent({
                         {...formik.getFieldProps('email')}
                         type="text"
 
-
+                        maxLength={50}
                         
                         placeholder='Email *'
 
@@ -190,7 +190,7 @@ export default function LeadFormComponent({
                         type="text"
 
 
-                        
+                        maxLength={50}
                         placeholder='Company Name'
 
                         className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

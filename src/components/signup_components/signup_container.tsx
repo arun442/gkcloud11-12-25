@@ -90,6 +90,8 @@ export default function SignUpContainer() {
                       {...formik.getFieldProps('name')}
                         type="text"
                         placeholder="Username *"
+                        
+                        maxLength={50}
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
                     />
                      <span className="absolute top-4 right-4">
@@ -111,6 +113,7 @@ export default function SignUpContainer() {
                       {...formik.getFieldProps('email')}
                         type="email"
                         placeholder="Email *"
+                        maxLength={50}
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-primary_color outline-none transition focus:border-blue active:border-blue disabled:cursor-default disabled:bg-whiter"
                     />
                      <span className="absolute top-4 right-4">

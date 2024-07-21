@@ -160,7 +160,7 @@ export default function Index() {
                                 type="text"
 
 
-
+                                maxLength={50}
 
 
                                 className="block px-4  rounded-md w-full md:w-80 bg-white h-12 text-black  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
@@ -196,7 +196,7 @@ export default function Index() {
                                     {...formik.getFieldProps('email')}
                                     type="email"
                                     readOnly={true}
-
+                                    maxLength={50}
 
 
 

@@ -188,13 +188,13 @@ export default function Header() {
                                         )}
                                     </Disclosure.Button>
                                 </div>
-                                <div className="hidden md:flex md:flex-1 items-center justify-center md:items-center md:justify-between">
+                                <div className="flex flex-1 md:flex md:flex-1 items-center justify-center md:items-center md:justify-between">
                                     <div className="flex flex-shrink-0 items-center">
                                         <img
                                             onClick={(e) => {
                                                 router.push("/")
                                             }}
-                                            className="h-20 w-auto cursor-pointer"
+                                            className="h-14 md:h-20 w-auto cursor-pointer"
                                             src="/logo.png"
                                             alt="GK cloud solutions"
                                         />

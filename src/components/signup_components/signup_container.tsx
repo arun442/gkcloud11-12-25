@@ -82,7 +82,7 @@ export default function SignUpContainer() {
                 </h3>
                 <p className='text-sm font-normal text-white'>Create a New Account</p>
             </div>
-            <form autoComplete="off" onSubmit={formik.handleSubmit} className='w-[375px]'>
+            <form autoComplete="off" onSubmit={formik.handleSubmit} className='w-full md:w-[375px]'>
 
                 <div className="mb-6 relative">
                    

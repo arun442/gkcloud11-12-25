@@ -10,7 +10,7 @@ const ModuleList = ({ currentItem, moduleId, modules: data, setMouduleId, onSele
     }, [moduleId]);
 
     return (
-        <div className="bg-dark_blue border-text_grey_one p-4 h-full overflow-auto">
+        <div className="bg-dark_blue text-white border-text_grey_one p-4 h-full overflow-auto">
             <div className='flex justify-between items-center'>
                 <h2 className='text-white mb-2 font-medium text-sm'>Course Content</h2>
             </div>
@@ -18,7 +18,7 @@ const ModuleList = ({ currentItem, moduleId, modules: data, setMouduleId, onSele
             {modules.map((module: any, index: any) => (
                 <div key={module.moduleId} >
                     <h3 className='text-white font-medium text-sm'>Module {index + 1}.{module.name}</h3>
-                    <p>{module.moduleDescription}</p>
+                    <p className='text-white text-sm'>{module.moduleDescription}</p>
                     <ul>
                         {module.moduleItems ? module.moduleItems.map((item: any, itemIndex: any) => (
                             <li className='flex gap-2 my-2' key={item.moduleItemId

@@ -91,7 +91,7 @@ export default function Index() {
         <ProfileLayout>
             <main className="w-full h-auto flex flex-col">
                 <h2 className="text-xl font-medium text-normal_white">Purchase History</h2>
-                <div className="w-full grid grid-cols-1 gap-6 mt-8">
+                <div className="w-full overflow-auto grid grid-cols-1 gap-6 mt-8">
 
                     <table className=" border-text_grey_one  mt-6 w-full">
                         <thead className='border-b-[0.25px] border-t-[0.25px] border-text_grey_one'>

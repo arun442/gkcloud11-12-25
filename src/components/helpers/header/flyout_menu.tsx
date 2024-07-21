@@ -87,7 +87,7 @@ export default function AllCourses() {
                   leaveTo="opacity-0 translate-y-1"
               >
                   <Popover.Panel onMouseLeave={(event) => setShow(false)} className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
-                      <div className="w-screen max-w-2xl h-[430px] flex flex-row overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                      <div className="w-screen max-w-2xl h-[410px] flex flex-row overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
                           <div className=" w-1/4 ">
                               {[ ...partnerData].map((item) => (
                                   <div onClick={(event) => {

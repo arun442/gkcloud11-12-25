@@ -14,6 +14,7 @@ export default function OtpContainer() {
   const [isLoading, setLoading] = useState(false);
   const router = useRouter()
   const formik = useFormik({
+    validateOnBlur:false,
     initialValues: {
       otp: '',
 

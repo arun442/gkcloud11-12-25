@@ -19,6 +19,7 @@ import { useSearchParams } from "next/navigation";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import NormalBtn from "../helpers/buttons/normal_btn_component";
 import TrainingModeDropdown from "./training_mode_dropdown_component";
+import { searchTextRegEx } from "@/common/constants";
 
 export default function CourseContainer() {
   const [index, setIndex] = useState(0);
@@ -153,7 +154,7 @@ export default function CourseContainer() {
 
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
-      <div className="flex flex-row gap-1 items-center">
+      <div className="flex flex-row gap-1  items-center">
         <p
           className="hover:text-blue cursor-pointer text-blue text-base font-medium"
           onClick={(e) => {
@@ -282,7 +283,14 @@ export default function CourseContainer() {
             className="block w-full border-1 pl-10 rounded-full bg-dark_blue py-[15px] text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
             placeholder="Search"
             onChange={(event) => {
-              setQuery(event.target.value);
+              if(event.target.value.length==0){
+                setQuery("");
+                return;
+              }
+              if (searchTextRegEx.test(event.target.value)) {
+                setQuery(event.target.value)
+              }
+             
             }}
           />
         </div>

@@ -4,6 +4,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { axiosPublic } from '@/common/axiosPublic'
 import { useRouter } from 'next/router'
 import classNames from '@/helpers/add_class'
+import { searchTextRegEx } from '@/common/constants'
 
 
   
@@ -66,7 +67,17 @@ import classNames from '@/helpers/add_class'
               onFocus={expandSearch}
               onMouseOut={collapseSearch}
               onBlur={collapseSearch}
-              onChange={(event) => setQuery(event.target.value)}
+              value={query}
+              onChange={(event) =>{
+                if(event.target.value.length==0){
+                  setQuery("");
+                  return;
+                }
+                if (searchTextRegEx.test(event.target.value)) {
+                  setQuery(event.target.value)
+                }
+             
+              }}
             />
  {
    !isExpanded &&<MagnifyingGlassIcon onMouseEnter={expandSearch}  onClick={expandSearch} className="h-5 w-5 text-white items-center" />

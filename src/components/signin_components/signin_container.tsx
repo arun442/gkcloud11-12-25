@@ -26,6 +26,7 @@ export default function SignInContainer() {
   }
 
   const formik = useFormik({
+    validateOnBlur:false,
     initialValues: {
 
       password: '',

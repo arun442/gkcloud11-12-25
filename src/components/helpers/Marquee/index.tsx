@@ -18,7 +18,7 @@ const Marquee = () => {
         const result = await axiosPublic.get('/lms/scroller-message');
   
         setData(result.data.scrollerMessage);
-       
+       console.log("scroll message", result.data.scrollerMessage);
       } catch (error) {
   
       }
@@ -32,11 +32,11 @@ const Marquee = () => {
     setIsOpen(true)
   }
     return (
-    data.length!=0&&  <div className=" relative overflow-hidden whitespace-nowrap bg-scroll_green font-semibold p-2">
+    data.length!=0&&  <div className=" relative overflow-hidden  bg-scroll_green font-semibold p-2 flex justify-center items-center">
        <LeadFormModel isFromOffer={true} data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={""} courseName={""} />
-        <div className="inline-block animate-marquee cursor-pointer" onClick={(e)=>openModal()}>
+        <div className="inline-block cursor-pointer" onClick={(e)=>openModal()}>
           {
-            data[0].description.trim()
+            data[0].description
           }
          
         </div>

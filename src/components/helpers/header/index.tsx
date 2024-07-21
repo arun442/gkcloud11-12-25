@@ -230,7 +230,7 @@ export default function Header() {
                             <MagnifyingGlassIcon  className="h-5 w-5 text-white items-center" />
                             </div> */}
                                 {
-                                isLoading?<></>:    pathname=="/auth/signin" ? <></> : <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
+                                    pathname=="/auth/signin" ? <></> : <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
 
                                         {
                                          userData == null ? <ButtonLoginHeader /> : <Menu as="div" className="relative ml-3">

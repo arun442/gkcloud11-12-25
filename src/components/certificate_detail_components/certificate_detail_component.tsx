@@ -63,7 +63,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
     return (
         <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
-            <div className="flex flex-row gap-1 items-center">
+            <div className="flex mt-4 flex-row gap-1 items-center">
                 <p className="hover:text-blue cursor-pointer text-blue text-base font-medium" onClick={(e) => {
                   
                     router.replace("/");

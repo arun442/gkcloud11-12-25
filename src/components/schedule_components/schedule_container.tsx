@@ -97,15 +97,11 @@ export default function ScheduleContainer() {
       {
         data.length!=0&&<div className='w-full flex flex-row  items-center justify-between mt-3'>
         <h3 className='text-xl font-normal text-white'>All Courses</h3>
-        <div className='flex-1 flex flex-row gap-5 justify-end'>
+        <div className='flex-1 flex flex-row flex-wrap gap-5 justify-end'>
           <PartnerDropdown data={partner} setData={setPartner} />
           <TechnologyDropdown partner={partner} data={technology} setData={setTechnology} />
 
-          {/* <NormalBtn text={"Filter"} onClick={(e: any) => {
-            e.preventDefault();
-            filter();
-
-          }} /> */}
+       
           {partner != null || technology != null ? <NormalBtn text={"Clear"} onClick={(e: any) => {
             e.preventDefault();
             clearFilter();
@@ -116,7 +112,7 @@ export default function ScheduleContainer() {
       }
      
 
-      <div className="w-full grid grid-cols-2 gap-6 mt-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
 
         {
           data.map((e: any, index) => {

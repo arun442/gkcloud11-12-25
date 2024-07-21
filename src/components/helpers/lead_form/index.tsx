@@ -33,6 +33,7 @@ export default function LeadFormComponent({
     const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
 
     const formik = useFormik({
+        validateOnBlur:false,
         initialValues: {
             firstName: '',
             lastName: '',
@@ -53,7 +54,7 @@ export default function LeadFormComponent({
 
             email: Yup.string().email('Invalid email address') .required('Please enter a valid email'),
             phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Please enter a valid phone number'),
-            company: Yup.string()
+            company: Yup.string().matches(/^[a-zA-Z0-9 ._\-,()\[\]]+$/,'Pleaes enter a valid company name')
 
             ,
 
@@ -100,7 +101,7 @@ export default function LeadFormComponent({
             }
         },
     });
-    return <form autoComplete="off" onSubmit={formik.handleSubmit} className='relative  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
+    return <section className='relative  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
         <img
             onClick={(e) => {
                 closeModel(false)
@@ -109,7 +110,7 @@ export default function LeadFormComponent({
             className="cursor-pointer absolute text-blue h-6 w-6 top-4 right-4"
             src="/cancel.png" />
 
-        <section>
+        <form   id='my-form' autoComplete="off" onSubmit={formik.handleSubmit}>
             <div className='mt-4 flex flex-row gap-8'>
                 <div className='flex-1'>
                     <input
@@ -204,12 +205,12 @@ export default function LeadFormComponent({
             }
 
 
-            <button type='submit' className="mt-4 flex w-full justify-center rounded bg-blue p-3 font-medium text-white ">
+            <button form='my-form' type='submit' className="mt-4 flex w-full justify-center rounded bg-blue p-3 font-medium text-white ">
                 {
                     isLoading ? "Loading.." : "Submit"
                 }
             </button>
-        </section>
+        </form>
 
-    </form>
+    </section>
 }

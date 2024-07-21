@@ -28,6 +28,7 @@ export default function WebinarContainer() {
 
       setData(result.data.webinar);
       setList(result.data.webinar);
+      console.log("what is the webinar",result.data.webinar);
     } catch (error) {
 
     }
@@ -71,7 +72,7 @@ export default function WebinarContainer() {
      {
       data.length!=0&& <div className='w-full flex flex-row  items-center justify-between mt-3'>
       <h3 className='text-xl font-normal text-white'>Upcoming Webinars</h3>
-     <div className='flex flex-row gap-4'>
+     <div className='flex flex-row flex-wrap justify-end gap-4'>
        <WebinarPartnerDropdown data={partner} setData={setPartner} />
       {partner != null  ? <NormalBtn text={"Clear Filter"} onClick={(e: any) => {
             e.preventDefault();
@@ -86,7 +87,7 @@ export default function WebinarContainer() {
 
     </div>
      }
-      <div className="w-full grid grid-cols-3 gap-6 mt-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
 
 {
   data.map((e: any, index) => {

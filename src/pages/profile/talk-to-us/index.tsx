@@ -39,6 +39,7 @@ export default function Index() {
     const [index, setIndex] = useState(0);
     const [isLoading, setLoading] = useState(false);
     const formik = useFormik({
+        validateOnBlur:false,
         initialValues: {
             subject: '',
             message: '',
@@ -47,9 +48,9 @@ export default function Index() {
         validationSchema: Yup.object({
             subject: Yup.string()
 
-                .required('Please enter a valid subject'),
+                .required('Please enter a valid subject') .matches(/^[a-zA-Z0-9 ._\-,()\[\]]+$/,'Pleaes enter a valid subject'),
 
-            message: Yup.string().required('Please enter a valid message'),
+            message: Yup.string().required('Please enter a valid message') .matches(/^[a-zA-Z0-9 ._\-,()\[\]]+$/,'Pleaes enter a valid message'),
 
 
         }),

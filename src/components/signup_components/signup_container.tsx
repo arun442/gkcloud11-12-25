@@ -26,6 +26,7 @@ export default function SignUpContainer() {
     }
   
     const formik = useFormik({
+      validateOnBlur:false,
       initialValues: {
         name: '',
         password: '',

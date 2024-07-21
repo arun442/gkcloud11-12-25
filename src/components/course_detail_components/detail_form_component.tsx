@@ -17,6 +17,7 @@ export default function FormComponent({
     const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
 
     const formik = useFormik({
+        validateOnBlur:false,
         initialValues: {
             firstName: '',
             lastName: '',
@@ -41,10 +42,10 @@ export default function FormComponent({
             city: Yup.string().matches(/^[A-Za-z\s]+$/, 'Only letters are allowed')
 
             ,
-            address: Yup.string()
+            address:Yup.string().matches(/^[a-zA-Z0-9 ._\-,()\[\]]+$/,'Pleaes enter a valid address')
 
             ,
-            company: Yup.string()
+           company: Yup.string().matches(/^[a-zA-Z0-9 ._\-,()\[\]]+$/,'Pleaes enter a valid company name')
 
             ,
 

@@ -21,6 +21,7 @@ export default function NewsLetterComponent() {
     setIsOpen(true)
   }
   const formik = useFormik({
+    validateOnBlur:false,
     initialValues: {
     
       email: '',

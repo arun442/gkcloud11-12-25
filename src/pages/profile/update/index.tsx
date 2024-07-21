@@ -22,6 +22,7 @@ export default function Index() {
     const [isPasswordLoading, setPasswordLoading] = useState(false);
     const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
     const formik = useFormik({
+        validateOnBlur:false,
         initialValues: {
             name: '',
             phone: '',
@@ -66,6 +67,7 @@ export default function Index() {
         },
     });
     const passwordFormik = useFormik({
+        validateOnBlur:false,
         initialValues: {
             currentPassword: "",
             newPassword: ""

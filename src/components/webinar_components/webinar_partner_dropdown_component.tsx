@@ -9,7 +9,7 @@ export default function WebinarPartnerDropdown({data,setData}:{data:any,setData:
     <div className="px-1 py-1 bg-blue ">
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center rounded-md  px-6 py-2 text-sm font-normal text-white  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+          <Menu.Button className="inline-flex w-full justify-center rounded-md  items-center px-6 py-2 text-sm font-normal text-white  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
          {data==null?"Filter by Partner":data.partnerName}
             <img
 alt='arrow icon'

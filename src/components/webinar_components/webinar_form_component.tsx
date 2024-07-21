@@ -33,6 +33,7 @@ export default function WebinarFormComponent({
     const phoneRegExp =/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
 
     const formik = useFormik({
+        validateOnBlur:false,
         initialValues: {
             firstName: '',
 
@@ -49,7 +50,7 @@ export default function WebinarFormComponent({
 
             email: Yup.string().email('Invalid email address').required('Please enter a valid email'),
             phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Please enter a valid phone number'),
-            company: Yup.string()
+            company:  Yup.string().matches(/^[a-zA-Z0-9 ._\-,()\[\]]+$/,'Pleaes enter a valid company name')
 
             ,
 

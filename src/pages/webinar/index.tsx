@@ -7,7 +7,7 @@ import WebinarContainer from "@/components/webinar_components/webinar_container"
 export default function Webinar() {
   return (
     <main
-      className={`max-w-7xl mx-auto bg-primary_color xl:px-0 sm:px-20 flex flex-col gap-24`}
+      className={`relative w-full lg:max-w-7xl lg:mx-auto h-auto px-5 md:px-14 lg:px-20 xl:px-0 flex flex-col`}
     >
    <Header/>
    <WebinarContainer/>

@@ -45,10 +45,10 @@ export default function LeadFormComponent({
         validationSchema: Yup.object({
             firstName: Yup.string()
 
-                .required('Please enter a valid first name'),
+                .required('Please enter a valid first name').matches(/^[A-Za-z\s]+$/, 'Only letters are allowed'),
             lastName: Yup.string()
 
-                .required('Please enter a valid last name'),
+                .required('Please enter a valid last name').matches(/^[A-Za-z\s]+$/, 'Only letters are allowed'),
 
 
             email: Yup.string().email('Invalid email address') .required('Please enter a valid email'),

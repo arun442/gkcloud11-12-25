@@ -30,15 +30,15 @@ export default function FormComponent({
         validationSchema: Yup.object({
             firstName: Yup.string()
 
-                .required('Please enter a valid first name'),
+                .required('Please enter a valid first name').matches(/^[A-Za-z\s]+$/, 'Only letters are allowed'),
 
-            lastName: Yup.string() ,
+            lastName: Yup.string() .matches(/^[A-Za-z\s]+$/, 'Only letters are allowed'),
             email: Yup.string().email('Invalid email address').required('Please enter a valid email'),
             phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid') .required('Please enter a valid phone number'),
-            country: Yup.string()
+            country: Yup.string().matches(/^[A-Za-z\s]+$/, 'Only letters are allowed')
 
             ,
-            city: Yup.string()
+            city: Yup.string().matches(/^[A-Za-z\s]+$/, 'Only letters are allowed')
 
             ,
             address: Yup.string()

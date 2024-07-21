@@ -33,7 +33,7 @@ export default function SignUpContainer() {
       },
       validationSchema: Yup.object({
         name: Yup.string()
-        .required('Please enter a valid user name'),
+        .required('Please enter a valid user name').matches(/^[A-Za-z\s]+$/, 'Only letters are allowed'),
         password:  Yup.string()
         .required('Please provide a password.')
        // .min(8, 'Password is too short - should be 8 chars minimum.')

@@ -21,7 +21,7 @@ export default function OtpContainer() {
     validationSchema: Yup.object({
       otp: Yup.string()
 
-        .required('Please enter a valid otp').length(6, 'Please enter a valid otp'),
+        .required('Please enter a valid otp').length(6, 'Please enter a valid otp') .matches(/^[0-9]+$/, 'Only numbers are allowed'),
 
     }),
     onSubmit: async (values, { resetForm }) => {

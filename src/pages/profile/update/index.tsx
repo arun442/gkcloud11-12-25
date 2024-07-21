@@ -32,7 +32,7 @@ export default function Index() {
             email: Yup.string().email('Invalid email address').required('Please enter a valid email.'),
             phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Please enter a valid phone number.'),
 
-            name: Yup.string().required('*').required('Please enter a valid name.'),
+            name: Yup.string().required('*').required('Please enter a valid name.').matches(/^[A-Za-z\s]+$/, 'Only letters are allowed'),
 
 
         }),

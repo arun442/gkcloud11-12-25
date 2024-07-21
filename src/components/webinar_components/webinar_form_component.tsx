@@ -44,7 +44,7 @@ export default function WebinarFormComponent({
         validationSchema: Yup.object({
             firstName: Yup.string()
 
-                .required('Please enter a valid name'),
+                .required('Please enter a valid name').matches(/^[A-Za-z\s]+$/, 'Only letters are allowed'),
 
 
             email: Yup.string().email('Invalid email address').required('Please enter a valid email'),

@@ -8,6 +8,7 @@ import useUserData from "@/hooks/userData";
 import { useRouter } from "next/router";
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import CircleProgressBar from "@/components/helpers/circleProgress";
+import ErrorBoundary from "@/helpers/error_boundary";
 
 
 export async function getServerSideProps(context: any) {
@@ -110,6 +111,7 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
 
 
   return (
+    <ErrorBoundary>
     <main
       className={`relative w-full lg:max-w-7xl lg:mx-auto h-auto px-5 md:px-14 lg:px-20 xl:px-0 flex flex-col`}
     >
@@ -156,5 +158,6 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
       </div>
       <section></section>
     </main>
+     </ErrorBoundary>
   );
 }

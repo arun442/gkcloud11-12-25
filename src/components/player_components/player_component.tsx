@@ -141,6 +141,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
     }
     const [index, setIndex] = useState(0);
     return (<div className='w-full h-screen md:h-auto'>
+         <ErrorBoundary>
         <section className='w-full h-[30vh] md:h-[70vh]'>{
             item == null ? <></> : item.moduleItemDetails && item.moduleItemDetails.length != 0 && item.moduleItemDetails[0].mode == "video" ?
                 <div className="h-full w-full bg-dark_blue relative">
@@ -227,6 +228,8 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                     }} />
                 </div> : <></>
         }</section>
+        </ErrorBoundary>
+        <ErrorBoundary>
         <section className='w-full p-2 h-[70vh] md:h-auto flex-col'>
             <section className={classNames("w-full cursor-pointer text-sm  flex flex-row flex-wrap mt-12 justify-start items-center  gap-7")}>
                 <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>
@@ -264,7 +267,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                                     
                                 </div>
                                 {
-                                        (e?.titleListItems??[]).map((e: any, subIndex: any) =><div key={`${index}${subIndex}`} className='ml-4 mt-4 w-full flex flex-row gap-2 '>
+                                        (e?.titleListItems??[]).map((e: any, subIndex: any) =>(e??"").length==0?<></>: <div key={`${index}${subIndex}`} className='ml-4 mt-4 w-full flex flex-row gap-2 '>
                                         <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.{subIndex + 1}.</p>
                                         <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                      
@@ -277,7 +280,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).length != 0 ? <section className='mt-10'>
                                         <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Highlights</h2>
                                         {
-                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).map((e: any, index: any) => <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}. {e}</p>)
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).map((e: any, index: any) =>(e??"").length==0?<></>: <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}. {e}</p>)
                                         }
                                     </section> : <></>
                                 }
@@ -285,7 +288,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).length != 0 ? <section className='mt-10'>
                                         <h2 className='font-semibold text-2xl text-white mb-6 text-justify'>Course Benefit Include</h2>
                                         {
-                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.courseBenefitInclude ?? []).map((e: any, index: any) =>(e??"").length==0?<></>: <div key={index} className='w-full flex flex-row gap-2 '>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                             </div>)
@@ -301,7 +304,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).length != 0 ? <section className=''>
 
                                         {
-                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.objectives?.objectiveList ?? []).map((e: any, index: any) =>(e??"").length==0?<></>: <div key={index} className='w-full flex flex-row gap-2 '>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                             </div>)
@@ -333,7 +336,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).length != 0 ? <section className=''>
 
                                         {
-                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).map((e: any, index: any) => <div key={index} className='w-full flex flex-row gap-2 '>
+                                            (data?.CourseContent?.courseContent?.course?.courseDetails?.prerequisites?.PrerequisiteList ?? []).map((e: any, index: any) =>(e??"").length==0?<></>: <div key={index} className='w-full flex flex-row gap-2 '>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white text-justify'>{index + 1}.</p>
                                                 <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
                                             </div>)
@@ -356,7 +359,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
 
 
                             className="block px-4 w-full rounded-sm bg-dark_blue  text-white  placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                        /> : <div className=" md:hidden w-full h-full overflow-y-auto">
+                        /> :index == 2?<></>: <div className=" md:hidden w-full h-full overflow-y-auto">
                         {item && <ModuleList modules={modules} setMouduleId={setMouduleId} onSelectItem={onSelectItem} currentItem={item} moduleId={moduleId} />}
                       </div>
                     }
@@ -364,6 +367,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
 
             
         </section>
+        </ErrorBoundary>
     </div>)
 
 

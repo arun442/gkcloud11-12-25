@@ -1,4 +1,5 @@
 
+import ErrorBoundary from '@/helpers/error_boundary';
 import React, { useEffect, useState } from 'react';
 
 const ModuleList = ({ currentItem, moduleId, modules: data, setMouduleId, onSelectItem }: { currentItem: any, moduleId: any, modules: any, setMouduleId: any, onSelectItem: any }) => {
@@ -14,7 +15,7 @@ const ModuleList = ({ currentItem, moduleId, modules: data, setMouduleId, onSele
             <div className='flex justify-between items-center'>
                 <h2 className='text-white mb-2 font-medium text-sm'>Course Content</h2>
             </div>
-
+            <ErrorBoundary>
             {modules.map((module: any, index: any) => (
                 <div key={module.moduleId} >
                     <h3 className='text-white font-medium text-sm'>Module {index + 1}.{module.name}</h3>
@@ -63,6 +64,7 @@ const ModuleList = ({ currentItem, moduleId, modules: data, setMouduleId, onSele
                     </ul>
                 </div>
             ))}
+            </ErrorBoundary>
         </div>
     );
 };

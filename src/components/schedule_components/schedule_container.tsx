@@ -14,9 +14,11 @@ import ScheduleCard from '../helpers/card/schedule_card_component';
 import { useRouter } from 'next/navigation';
 import PartnerDropdown from '../course_components/partner_dropdown_component';
 import TechnologyDropdown from '../course_components/technology_dropdown_component';
+import ComponentLoader from '../helpers/ComponentLoader';
 
 
 export default function ScheduleContainer() {
+  const [isLoading,setLoading]=useState(true);
   const [index, setIndex] = useState(0);
   let [data, setData] = useState([]);
   const [scheduleList, setScheduleData] = useState([]);
@@ -28,13 +30,15 @@ export default function ScheduleContainer() {
   }, [])
 
   const fetchData = async () => {
-    try {
+    try {   setLoading(true);
+     
       const result = await axiosPublic.get('/lms/course-schedule');
 
       setData(result.data.courses.filter((e: any) => e.CourseSchedules.length != 0));
       setScheduleData(result.data.courses.filter((e: any) => e.CourseSchedules.length != 0));
+      setLoading(false);
     } catch (error) {
-
+      setLoading(false);
     }
   }
 
@@ -83,7 +87,7 @@ export default function ScheduleContainer() {
   }
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
-      <MainHeading text={data.length==0?"Coming Soon…":'Schedules'} />
+      <MainHeading text={isLoading?"": data.length==0?"Coming Soon…":'Schedules'} />
      {
       data.length!=0&& <div className="flex flex-row gap-1 items-center mt-14 hover:text-blue ">
       <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {
@@ -110,7 +114,11 @@ export default function ScheduleContainer() {
         </div>
       </div>
       }
-     
+      {
+       isLoading&&<div className='w-full h-40 flex justify-center items-center'>
+        <ComponentLoader/>
+       </div>
+     }
 
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
 

@@ -178,7 +178,7 @@ export default function Header() {
                             <div className="relative flex h-16 items-center justify-between">
                                 <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                                     {/* Mobile menu button*/}
-                                    <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-white  hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                    <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md  text-white  hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                         <span className="absolute -inset-0.5" />
                                         <span className="sr-only">Open main menu</span>
                                         {open ? (
@@ -230,7 +230,7 @@ export default function Header() {
                             <MagnifyingGlassIcon  className="h-5 w-5 text-white items-center" />
                             </div> */}
                                 {
-                                    pathname=="/auth/signin" ? <></> : <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
+                                    pathname=="/auth/signin" ? <></> : <div className="absolute inset-y-0 right-0 flex items-center  md:static md:inset-auto md:ml-6 md:pr-0">
 
                                         {
                                          userData == null ? <ButtonLoginHeader /> : <Menu as="div" className="relative ml-3">

@@ -21,11 +21,11 @@ export default function WebinarCard({ data }: { data: any}) {
     setIsOpen(true)
   }
 
-  return <div className={classNames("cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue",showMore?"h-auto":"h-80")}>
+  return <div className={classNames("w-full cursor-pointer box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue",showMore?"h-auto":"h-80")}>
      <WebinarModel closeModal={closeModal} isOpen={isOpen} data={data} />
 
-  <section className='flex flex-col  p-6 '>
- <div className='flex-col'>
+  <section className='w-full flex flex-col  p-6 '>
+ <div className='w-full flex-col'>
  <h2 className="text-white text-lg font-medium">{data.webinarName}</h2>
   {showMore ? (
         <div>

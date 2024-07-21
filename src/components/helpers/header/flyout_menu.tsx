@@ -11,10 +11,12 @@ import { axiosPublic } from '@/common/axiosPublic'
 import NormalBtn from '../buttons/normal_btn_component'
 import { useRouter } from 'next/navigation';
 import classNames from '@/helpers/add_class'
+import Loading from '@/pages/loading'
 
 export default function AllCourses() {
     const router = useRouter();
     const [show, setShow] = useState(false);
+    const [isLoading, setLoading] = useState(true);
     let [course, setCourse] = useState<any[]>([]);
     let [selectedCat, setSelectedCat] = useState("All Courses");
     let courseList = useRef<any[]>([]);
@@ -23,6 +25,8 @@ export default function AllCourses() {
     };
     const fetchCourse = async () => {
         try {
+            setLoading(true);
+           
             const result = await axiosPublic.get('/lms/course');
             const shuffleCourses = shuffle(result.data.courses);
             setCourse(shuffleCourses);
@@ -31,15 +35,15 @@ export default function AllCourses() {
             setCourse(courseList.current.filter((e: any) => e.partnerId == partnerData[0].partnerId));
             setSelectedCat( partnerData[0].partnerName);
             console.log(courseList)
-
+            setLoading(false);
         } catch (error) {
-
+            setLoading(false);
         }
     }
 
    
 
-    const { partnerData, isLoading } = usePartnerMode();
+    const { partnerData } = usePartnerMode();
 
 
     useEffect(() => {
@@ -113,7 +117,7 @@ export default function AllCourses() {
                           </div>
                           <section className="flex-1 p-4 flex flex-col justify-center items-center bg-light_blue">
                                 {
-                                course.length === 0 ? (
+                             isLoading? <div className="rounded-md h-12 w-12 border-4 border-t-4 border-blue animate-spin absolute"></div>:   course.length === 0 ? (
                                     <>
                                     <div className='cursor-pointer flex flex-row justify-center items-center bg-orange px-6 py-2 text-base font-normal text-white rounded-full'>
                                         Stay tuned! We’re working on some exciting new courses. 
@@ -138,9 +142,11 @@ export default function AllCourses() {
                                       router.push(`/course`);
                                   }} className='cursor-pointer flex flex-row justify-center items-center bg-blue px-6 py-2 text-base font-normal text-white rounded-full'>Show All Courses</div>
                               } */}
-                              <div onClick={(e) => {
-                                      router.push(`/course`);
-                                  }} className='cursor-pointer mt-2 flex flex-row justify-center items-center bg-blue px-6 py-2 text-base font-normal text-white rounded-full'>Show All Courses</div>
+                             {
+                               course.length!=0&& <div onClick={(e) => {
+                                    router.push(`/course`);
+                                }} className='cursor-pointer mt-2 flex flex-row justify-center items-center bg-blue px-6 py-2 text-base font-normal text-white rounded-full'>Show All Courses</div>
+                             } 
                           </section>
                       </div>
                   </Popover.Panel>

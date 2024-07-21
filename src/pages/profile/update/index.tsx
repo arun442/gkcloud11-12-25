@@ -20,7 +20,7 @@ export default function Index() {
     const [index, setIndex] = useState(0);
     const [isLoading, setLoading] = useState(false);
     const [isPasswordLoading, setPasswordLoading] = useState(false);
-    const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
+    const phoneRegExp =  /^(?!.*\D).{10}$/;
     const formik = useFormik({
         validateOnBlur:false,
         initialValues: {

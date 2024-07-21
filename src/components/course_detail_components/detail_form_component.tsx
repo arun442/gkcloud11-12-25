@@ -14,7 +14,7 @@ export default function FormComponent({
     const [isLoading, setLoading] = useState(false);
 
     const [index, setIndex] = useState(0);
-    const phoneRegExp = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/
+    const phoneRegExp = /^(?!.*\D).{10}$/;
 
     const formik = useFormik({
         validateOnBlur:false,

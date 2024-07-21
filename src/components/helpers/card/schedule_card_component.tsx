@@ -50,7 +50,7 @@ export default function ScheduleCard({ data, type }: { data: any, type: number }
 
     <div className='flex-1 w-full'>
 
-      <h2 className="text-white text-lg font-medium h-10">{data.title}</h2>
+      <h2 className="text-white text-lg font-medium h-auto md:h-10">{data.title}</h2>
       <div className="w-full flex flex-row mt-6 items-center justify-between">
         <p className="text-text_grey_one text-[12px] font-normal">{data.courseCode}</p>
         {

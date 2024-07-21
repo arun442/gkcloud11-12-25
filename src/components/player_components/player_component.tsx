@@ -258,11 +258,20 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                                     <p className='my-6 leading-6 font-normal text-sm text-white text-justify'>{data?.CourseContent?.courseContent?.course?.courseDetails?.description?.description ?? data?.CourseContent?.courseContent?.course?.courseDetails?.description ?? ""}</p>
 
                                     {
-                                        (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) =>(e?.title ?? e??"").length==0?<></>: <div key={index} className='w-full flex flex-row gap-2 '>
-                                            <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.</p>
-                                            <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e?.title ?? e}</p>
-                                        </div>)
+                                (data?.CourseContent?.courseContent?.course?.courseDetails?.description?.descriptionList ?? []).map((e: any, index: any) =>(e?.title ?? e??"").length==0?<></>:<section key={index}> <div  className='w-full flex flex-row gap-2 mb-4'>
+                                    <p key={index} className='leading-6 font-medium text-lg text-white'>{index + 1}.</p>
+                                    <p key={index} className='leading-6 font-medium text-lg  text-white flex-1 text-justify'>{e?.title ?? e}</p>
+                                    
+                                </div>
+                                {
+                                        (e?.titleListItems??[]).map((e: any, subIndex: any) =><div key={`${index}${subIndex}`} className='ml-4 mt-4 w-full flex flex-row gap-2 '>
+                                        <p key={index} className='leading-6 font-normal text-sm text-white'>{index + 1}.{subIndex + 1}.</p>
+                                        <p key={index} className='leading-6 font-normal text-sm text-white flex-1 text-justify'>{e}</p>
+                                     
+                                    </div>)
                                     }
+                                </section>)
+                            }
                                 </section>
                                 {
                                     (data?.CourseContent?.courseContent?.course?.courseDetails?.heighlights ?? []).length != 0 ? <section className='mt-10'>

@@ -11,6 +11,7 @@ const useUserData = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+        setIsLoading(true);
         // Check if user data exists in local storage
         const storedUserData = localStorage.getItem('userData');
         if (storedUserData) {

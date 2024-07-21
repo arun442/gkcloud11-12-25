@@ -62,7 +62,7 @@ import classNames from '@/helpers/add_class'
               className={classNames("transition-width transition-all duration-1000 pl-4 outline-none focus:outline-none text-gray-900 block w-full rounded-lg bg-white py-[10px] text-gray-900 shadow-sm  placeholder:font-normal placeholder:text-text_grey_one   sm:text-sm sm:leading-6", isExpanded ? 'block w-[300px]' : 'w-0 hidden')
               }
               placeholder='Search Program'
-
+              maxLength={50}
               onFocus={expandSearch}
               onMouseOut={collapseSearch}
               onBlur={collapseSearch}

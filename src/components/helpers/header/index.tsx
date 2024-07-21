@@ -230,10 +230,10 @@ export default function Header() {
                             <MagnifyingGlassIcon  className="h-5 w-5 text-white items-center" />
                             </div> */}
                                 {
-                                    pathname=="/auth/signin" ? <></> : <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
+                                isLoading?<></>:    pathname=="/auth/signin" ? <></> : <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
 
                                         {
-                                            userData == null ? <ButtonLoginHeader /> : <Menu as="div" className="relative ml-3">
+                                         userData == null ? <ButtonLoginHeader /> : <Menu as="div" className="relative ml-3">
                                                 <div>
                                                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                                         <span className="absolute -inset-1.5" />

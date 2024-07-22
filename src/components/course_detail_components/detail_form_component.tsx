@@ -96,29 +96,29 @@ export default function FormComponent({
             }
         },
     });
-    useEffect(() => {
-        if(!userData){
-            return;
-        }
-        formik.setValues({
-            firstName: userData?.
-                first_name
-                ?? "",
-            lastName: userData?.
-                last_name
-                ?? "",
-            email: userData?.email ?? "",
-            phone: userData?.
+    // useEffect(() => {
+    //     if(!userData){
+    //         return;
+    //     }
+    //     formik.setValues({
+    //         firstName: userData?.
+    //             first_name
+    //             ?? "",
+    //         lastName: userData?.
+    //             last_name
+    //             ?? "",
+    //         email: userData?.email ?? "",
+    //         phone: userData?.
 
-                mobile_number
+    //             mobile_number
 
-                ?? "",
-            country: '',
-            city: '',
-            address: '',
-            company: '',
-        })
-    }, [userData])
+    //             ?? "",
+    //         country: '',
+    //         city: '',
+    //         address: '',
+    //         company: '',
+    //     })
+    // }, [userData])
 
     return <form  autoComplete="off"  onSubmit={formik.handleSubmit} className='mt-20  mx-auto box-border border w-full md:w-[80%] p-6 md:py-14 md:px-24 border-blue border-1 bg-dark_blue rounded-2xl'>
 
@@ -271,11 +271,12 @@ maxLength={10}
 
                 </div>
             } */}
-            <button type='submit' className="mt-8 flex w-full justify-center rounded bg-blue p-3 font-medium text-white ">
+
+         <div className='w-full flex justify-center items-center'>   <button type='submit' className="mt-8 flex w-auto justify-center rounded bg-blue py-3 px-10 font-medium text-white ">
                 {
                     isLoading ? "Loading.." : "Submit"
                 }
-            </button>
+            </button></div>
         </section>
 
     </form>

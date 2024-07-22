@@ -12,6 +12,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { axiosPublic } from '@/common/axiosPublic';
 import { toast } from 'react-toastify'
+import errorHelper from '@/common/error_helper'
 
 export default function SignUpContainer() {
     const [passwordType, setPasswordType] = useState("password");
@@ -68,7 +69,7 @@ export default function SignUpContainer() {
         } catch (error:any) {
           setLoading(false);
           console.log(error);
-          toast.error(error!.message);
+          toast.error(errorHelper(error));
         
         }
       },

@@ -12,6 +12,9 @@ const useUserData = () => {
     const fetchUserData = async () => {
       try {
         setIsLoading(true);
+        if(!localStorage.getItem("session")){
+          throw Error("User not logged In");
+        }
         // Check if user data exists in local storage
         const storedUserData = localStorage.getItem('userData');
         if (storedUserData) {
@@ -22,7 +25,7 @@ const useUserData = () => {
           // Fetch user data from API using Axios
           const response = await axiosPrivate.get('/user/user-profile'); // Assuming you have an API route for user data
           if (response.status === 200) {
-           
+               
             const userDataFromApi = response.data.user[0];
           
             setUserData(userDataFromApi);

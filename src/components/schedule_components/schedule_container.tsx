@@ -53,8 +53,7 @@ export default function ScheduleContainer() {
 
     if (partner != null || technology != null ) {
       if (partner != null) {
-        console.log("partner");
-        console.log(partner);
+     
         data =  data.filter((e:any) => {
 
           return e.partnerId == partner?.partnerId

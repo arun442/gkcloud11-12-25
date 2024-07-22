@@ -41,8 +41,7 @@ export default function NewsLetterComponent() {
           "email": values.email,
          
         });
-        console.log("news letter");
-        console.log(result.data);
+       
      
         openModal();
         resetForm();

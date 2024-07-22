@@ -53,12 +53,12 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
             setLoading(false);
             window.open(`${result.data.gateway.url}&encRequest=${result.data.gateway.encRequest}&access_code=${result.data.gateway.access_code}`,"_self");
-            console.log(result.data);
+          
 
 
         } catch (error: any) {
             setLoading(false);
-            console.log(error);
+           
             toast.error(error!.message);
 
         }
@@ -66,14 +66,14 @@ export default function CourseDetailContainer({ data }: { data: any }) {
 
     const handleDownload = async (courseId: any, courseName: any,data:any) => {
         try {
-            console.log("broucherURL",data.broucherURL);
+         
             let response;
             if(data.broucherURL){
             response = await axiosPublic.get(data.broucherURL, {
 
                  responseType: 'blob' // This tells Axios to expect a binary response
                 });
-                console.log("its from broucherURL");
+              
             }else{
         response = await axiosPublic.get('/lms/course-download', {
 

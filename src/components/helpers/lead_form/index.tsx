@@ -89,12 +89,12 @@ export default function LeadFormComponent({
                 }
                
                 closeModel(true);
-                console.log(result.data);
+               
                 resetForm();
 
             } catch (error: any) {
                 setLoading(false);
-                console.log(error);
+             
                 toast.error(error!.message);
                 closeModel();
 

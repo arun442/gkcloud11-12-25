@@ -160,8 +160,7 @@ export default function Header() {
                 return a.menuSequencePriority - b.menuSequencePriority; // Sort by ascending age
             }))
         } catch (error) {
-            console.log("what is the error");
-            console.log(error)
+           
         }
     }
     const { userData, isLoading } = useUserData();

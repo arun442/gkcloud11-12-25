@@ -9,9 +9,9 @@ export default function TechnologyDropdown({partner,data,setData}:{partner:any, 
  useEffect(() => {
 
   if(partner){
-    console.log(partner);
+  
     setItem(technologyData.filter((e)=>e.partnerId==partner.partnerId));
-    console.log(technologyData.filter((e)=>e.partnerId==partner.partnerId));
+  
   }
   if(partner==null){
     setItem(technologyData);

@@ -55,12 +55,12 @@ export default function Index() {
 
                 setLoading(false);
                 toast.success("Profile updated successfully")
-                console.log(result.data);
+              
                router.reload();
 
             } catch (error: any) {
                 setLoading(false);
-                console.log(error);
+              
                 toast.error(error!.message);
 
             }
@@ -108,12 +108,12 @@ export default function Index() {
 
                 setPasswordLoading(false);
                 toast.success("Password updated successfully")
-                console.log(result.data);
+              
                 resetForm();
 
             } catch (error: any) {
                 setPasswordLoading(false);
-                console.log(error);
+              
                 toast.error(error!.message);
 
             }

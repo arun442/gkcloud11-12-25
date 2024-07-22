@@ -36,12 +36,12 @@ export default function ScheduleCard({ data, type }: { data: any, type: number }
 
       setLoading(false);
       window.open(`${result.data.gateway.url}&encRequest=${result.data.gateway.encRequest}&access_code=${result.data.gateway.access_code}`);
-      console.log(result.data);
+    
 
 
     } catch (error: any) {
       setLoading(false);
-      console.log(error);
+    
       toast.error(error!.message);
 
     }

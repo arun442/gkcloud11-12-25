@@ -19,7 +19,6 @@ export default function UnqueOfferComponent() {
     try {
       const result = await axiosPublic.get('/lms/service');
 
-console.log("what is the service", result.data.service);
 
       setItems(result.data.service);
     } catch (error) {

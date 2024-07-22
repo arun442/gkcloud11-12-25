@@ -71,12 +71,12 @@ export default function Index() {
 
                 setLoading(false);
                 toast.success("Form submitted successfully")
-                console.log(result.data);
+              
                 resetForm();
 
             } catch (error: any) {
                 setLoading(false);
-                console.log(error);
+              
                 toast.error(error!.message);
 
             }

@@ -68,7 +68,7 @@ export default function MyAchivementCard({ data }: { data: any }) {
             const file = new File([certificateBlob], 'certificate.pdf', { type: 'application/pdf' });
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
               try {
-                console.log('Attempting to share:', file);
+           
                 await navigator.share({
                   files: [file],
                   title: 'Certificate',

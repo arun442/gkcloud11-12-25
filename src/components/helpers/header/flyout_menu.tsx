@@ -34,7 +34,7 @@ export default function AllCourses() {
             courseList.current = shuffleCourses;
             setCourse(courseList.current.filter((e: any) => e.partnerId == partnerData[0].partnerId));
             setSelectedCat( partnerData[0].partnerName);
-            console.log(courseList)
+          
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -96,11 +96,11 @@ export default function AllCourses() {
                               {[ ...partnerData].map((item) => (
                                   <div onClick={(event) => {
                                       setSelectedCat(item.partnerName);
-                                      console.log(courseList.current);
+                                     
                                       setCourse(courseList.current.filter((e: any) => e.partnerId == item.partnerId));
                                   }} key={item.partnerName} onMouseEnter={(e)=>{
                                     setSelectedCat(item.partnerName);
-                                    console.log(courseList.current);
+                                  
                                     setCourse(courseList.current.filter((e: any) => e.partnerId == item.partnerId));
                                   }} className={classNames("cursor-pointer group relative flex gap-x-6 p-4 justify-center  hover:bg-light_blue border-b border-blue",selectedCat == item.partnerName ? "bg-light_blue" : "")}>
                                       <div className='flex-1 group'>

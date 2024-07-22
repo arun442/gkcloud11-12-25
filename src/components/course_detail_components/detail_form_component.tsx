@@ -58,12 +58,7 @@ export default function FormComponent({
                     return;
                 }
                 setLoading(true);
-                console.log("params");
-                console.log({
-                    "referenceId":referenceId,
-                    "referenceCode":referenceCode,
-                    "requestDescription": requestDescription
-                })
+            
                 const result = await axiosPublic.post('/lms/add-request-form', {
                     "email": values.email,
                     "requestType": type,
@@ -85,12 +80,12 @@ export default function FormComponent({
 
                 setLoading(false);
                 toast.success("Form submitted successfully")
-                console.log(result.data);
+              
                 resetForm();
 
             } catch (error: any) {
                 setLoading(false);
-                console.log(error);
+            
                 toast.error(error!.message);
 
             }

@@ -71,8 +71,7 @@ export default function CourseContainer() {
     if (partner != null || technology != null || mode != null) {
       course = courseList;
       if (partner != null) {
-        console.log("partner");
-        console.log(partner);
+       
         course = course.filter((e) => {
           return e.partnerId == partner?.partnerId;
         });
@@ -83,8 +82,7 @@ export default function CourseContainer() {
         });
       }
       if (mode != null) {
-        console.log("mode id");
-        console.log(mode?.trainingModeId);
+      
         course = course.filter((e) => {
           return e.CourseCostPlans[0].trainingModeId == mode?.trainingModeId;
         });

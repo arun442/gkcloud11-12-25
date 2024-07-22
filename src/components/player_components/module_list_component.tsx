@@ -3,10 +3,10 @@ import ErrorBoundary from '@/helpers/error_boundary';
 import React, { useEffect, useState } from 'react';
 
 const ModuleList = ({ currentItem, moduleId, modules: data, setMouduleId, onSelectItem }: { currentItem: any, moduleId: any, modules: any, setMouduleId: any, onSelectItem: any }) => {
-    console.log("modules", moduleId, currentItem);
+  
     const [modules, setModules] = useState([]);
     useEffect(() => {
-        console.log("its rerendering or not");
+     
         setModules(data);
     }, [moduleId]);
 
@@ -31,7 +31,7 @@ const ModuleList = ({ currentItem, moduleId, modules: data, setMouduleId, onSele
 
                                 />
                                 <button className='flex-1 text-white font-normal text-xs text-start' onClick={() => {
-                                    console.log(parseInt(`${module.moduleId}${item.moduleItemId}`), parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`))
+                               
                                     if (parseInt(`${module.moduleId}${item.moduleItemId}`) < parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`)) {
                                         setMouduleId(module.moduleId);
                                         onSelectItem(item)
@@ -50,7 +50,7 @@ const ModuleList = ({ currentItem, moduleId, modules: data, setMouduleId, onSele
                                     checked={parseInt(`${module.moduleId}${item.id}`) < parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`) ? true : false}
                                 />
                                 <button className='flex-1 text-white font-normal text-xs text-start' onClick={() => {
-                                    console.log(parseInt(`${module.moduleId}${item.id}`), parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`))
+                                
                                     if (parseInt(`${module.moduleId}${item.id}`) < parseInt(`${moduleId}${currentItem?.mode ? currentItem.id : currentItem.moduleItemId}`)) {
                                         setMouduleId(module.moduleId);
                                         onSelectItem(module.details[0]);

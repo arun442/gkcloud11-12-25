@@ -18,7 +18,7 @@ const Marquee = () => {
         const result = await axiosPublic.get('/lms/scroller-message');
   
         setData(result.data.scrollerMessage);
-       console.log("scroll message", result.data.scrollerMessage);
+     
       } catch (error) {
   
       }

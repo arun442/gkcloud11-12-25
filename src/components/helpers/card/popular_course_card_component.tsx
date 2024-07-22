@@ -6,7 +6,7 @@ export default function PopularCourseCard({data}:{data:any}) {
   const router=useRouter();
     return <div onClick={(e)=>{
 
-    console.log(data);
+    
       router.push(`/course/${data.Course.slug}`)
     }} className="transform transition duration-500 hover:scale-110 cursor-pointer box-border border flex flex-col p-6 justify-start items-start border-blue border-1 bg-dark_blue rounded-2xl">
      <section className='flex-1 flex-col'>

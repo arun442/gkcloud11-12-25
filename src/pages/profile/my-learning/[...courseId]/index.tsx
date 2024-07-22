@@ -35,7 +35,7 @@ export async function getServerSideProps(context: any) {
 
     return { props: {data:result.data.courses[0], title: result.data.courses[0]?.title, modules: result.data.courses[0]?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? [], id: id } }
   } catch (error) {
-    console.log("what is the Erro", error);
+   
     return {
       redirect: {
         destination: '/',
@@ -69,7 +69,7 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
       });
 
       const userCourseProgress = (response?.data?.userCourseProgresses ?? []);
-      console.log("what is the response", userCourseProgress);
+   
       if (userCourseProgress.length == 0) {
         setModuleId(modules[0]?.moduleId);
         setSelectedItem(modules[0]?.moduleItems ? modules[0]?.moduleItems[0] : modules[0]?.details[0]);
@@ -77,13 +77,13 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
         setNotes(userCourseProgress[0].notes);
         const currentModule = modules.find((e: any) => e.moduleId == userCourseProgress[0].moduleId);
         const moduleIndex = modules.findIndex((e: any) => e.moduleId == userCourseProgress[0].moduleId);
-        console.log("moduleIndex", moduleIndex);
+      
         if (moduleIndex < 0) {
           return;
         }
-        console.log("currentModule.moduleItems", currentModule.moduleItems);
+      
         const moduleItemIndex = currentModule.moduleItems ? currentModule.moduleItems.findIndex((e: any) => e.moduleItemId == userCourseProgress[0].moduleItemId) : currentModule.details.findIndex((e: any) => e.id == userCourseProgress[0].moduleItemId);
-        console.log("moduleItemIndex", moduleItemIndex);
+      
         if (moduleItemIndex < ((currentModule.moduleItems ?? currentModule.details).length - 1)) {
           setModuleId(userCourseProgress[0].moduleId);
           setSelectedItem(currentModule.moduleItems ? currentModule.moduleItems[moduleItemIndex + 1] : currentModule.details[moduleItemIndex + 1])

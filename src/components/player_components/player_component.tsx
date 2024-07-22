@@ -17,7 +17,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
     const router = useRouter()
     const [isLoading, setLoading] = useState(true);
 
-    console.log("what is the items", item, moduleId);
+   
     const { userData, } = useUserData();
     const updateCourseItem = async (moduleId: any, itemId: any) => {
         try {
@@ -41,11 +41,11 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                 payload.userCourseProgressId = userCourseProgress[0].userCourseProgressId
 
             }
-            console.log("paylad", payload);
+        
 
             //[]
             await axiosPrivate.post("/user/upsert-user-course-progress", payload);
-            console.log("api done");
+          
 
         } catch (error) {
 
@@ -73,11 +73,9 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                 payload.userCourseProgressId = userCourseProgress[0].userCourseProgressId
 
             }
-            console.log("paylad", payload);
-
-            //[]
+          
             await axiosPrivate.post("/user/upsert-user-course-progress", payload);
-            console.log("api done");
+       
 
         } catch (error) {
 
@@ -103,11 +101,10 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                 payload.userCourseProgressId = userCourseProgress[0].userCourseProgressId
 
             }
-            console.log("paylad", payload);
-
+         
             //[]
             await axiosPrivate.post("/user/upsert-user-course-progress", payload);
-            console.log("api done");
+          
 
         } catch (error) {
 
@@ -115,10 +112,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
     }
     const updateQuiz = async (moduleId: any, itemId: any, answer: any) => {
         try {
-            console.log("what is the params");
-            console.log({
-
-            })
+          
             const response = await axiosPrivate.post("/user/upsert-course-quiz", {
                 "quizId": itemId,
                 "courseId": parseInt(params.courseId[0]),
@@ -159,11 +153,11 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                     }}
 
                         onStart={() => {
-                            console.log("On Start");
+                         
                         }}
                         onReady={() => {
                             setLoading(false);
-                            console.log("On Ready");
+                           
                         }}
                         onEnded={async () => {
                             setLoading(true);
@@ -176,7 +170,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                             const moduleItemIndex = (currentModule.moduleItems ?? currentModule.details).findIndex((e: any) => e.moduleItemId == item.moduleItemId);
 
                             if (moduleItemIndex < ((currentModule.moduleItems ?? currentModule.details).length - 1)) {
-                                console.log("First");
+                             
                                 setMouduleId(moduleId);
                                 onSelectItem((currentModule.moduleItems ?? currentModule.details)[moduleItemIndex + 1])
                             } else {
@@ -186,16 +180,12 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                                     router.refresh();
                                     return;
                                 }
-                                console.log("Second", modules[moduleIndex + 1].moduleId, modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
+                              
                                 setMouduleId(modules[moduleIndex + 1].moduleId);
                                 onSelectItem(modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
                             }
 
-                            //first need to fetch the current module using modules id 
-                            //then need to check extra moudle items there or not 
-                            //if there need to pass that moduleItem data into function params
-                            // no there need to go for the next modules with first module item
-                            console.log("its ented");
+
                         }} url={item.moduleItemDetails[0].url} width="100%" height="100%" controls />
 
                 </div> : !item?.moduleItemDetails && item.mode == "quiz" ? <div className="h-full w-full relative bg-normal_white">
@@ -211,7 +201,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                         const moduleItemIndex = (currentModule.moduleItems ?? currentModule.details).findIndex((e: any) => e.moduleItemId == item.moduleItemId);
 
                         if (moduleItemIndex < ((currentModule.moduleItems ?? currentModule.details).length - 1)) {
-                            console.log("First");
+                          
                             setMouduleId(moduleId);
                             onSelectItem((currentModule.moduleItems ?? currentModule.details)[moduleItemIndex + 1])
                         } else {
@@ -221,7 +211,7 @@ const PlayerComponent = ({ notes, setNotes, data, modules, item, moduleId, setMo
                                 router.refresh();
                                 return;
                             }
-                            console.log("Second", modules[moduleIndex + 1].moduleId, modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
+                       
                             setMouduleId(modules[moduleIndex + 1].moduleId);
                             onSelectItem(modules[moduleIndex + 1].moduleItems ? modules[moduleIndex + 1].moduleItems[0] : modules[moduleIndex + 1].details[0]);
                         }

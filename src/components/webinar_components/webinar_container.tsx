@@ -33,7 +33,7 @@ export default function WebinarContainer() {
       setData(result.data.webinar);
       setList(result.data.webinar);
       setLoading(false);
-      console.log("what is the webinar",result.data.webinar);
+   
     } catch (error) {
       setLoading(false);
     }

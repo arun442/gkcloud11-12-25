@@ -53,7 +53,7 @@ export default function OtpContainer() {
         router.push("/auth/signin");
       } catch (error: any) {
         setLoading(false);
-        console.log(error);
+      
         toast.error(error!.message);
 
       }

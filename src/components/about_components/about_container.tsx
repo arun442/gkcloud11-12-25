@@ -60,8 +60,7 @@ export default function AboutContainer() {
       const result = await axiosPublic.get("/lms/about-us");
       setData(result.data.aboutUs)
     } catch (error) {
-      console.log("what is the error");
-      console.log(error)
+   
     }
   }
   const handleDownload = async () => {

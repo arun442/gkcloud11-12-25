@@ -52,8 +52,7 @@ export default function SignInContainer() {
           "password": values.password
 
         });
-        console.log("what is the login data");
-        console.log(result.data);
+   
         localStorage.setItem("session", JSON.stringify(result.data));
 
 
@@ -66,7 +65,7 @@ export default function SignInContainer() {
         }, 2000);
       } catch (error: any) {
         setLoading(false);
-        console.log(error);
+      
         toast.error(errorHelper(error));
 
       }

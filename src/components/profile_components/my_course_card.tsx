@@ -35,7 +35,7 @@ export default function MyCourseCard({ data }: { data: any }) {
     
       }, [userData]);
     return <div onClick={(e) => {
-      console.log("what is the id", `/profile/my-learning/${data.Course.courseId}`);
+    
         router.push(`/profile/my-learning/${data.Course.courseId}`)
     }} className="cursor-pointer box-border border flex flex-col p-6 justify-start items-start border-blue border-1 bg-dark_blue rounded-2xl">
 

@@ -183,7 +183,7 @@ alt='rubee icon'
                     Enroll Now
                 </button>
             </section>
-            <section className={classNames("w-full cursor-pointer text-sm  flex flex-row flex-wrap mt-12 justify-center items-center  gap-7")}>
+            <section className={classNames("w-full cursor-pointer text-sm  flex flex-row flex-wrap mt-12 justify-start md:justify-center items-center  gap-7")}>
                 <div className={index != 0 ? "text-white font-normal" : "text-blue font-medium"} onClick={(e) => setIndex(0)}>
                     Course Description
                 </div>

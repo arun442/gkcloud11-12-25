@@ -32,7 +32,7 @@ const Marquee = () => {
     setIsOpen(true)
   }
     return (
-    data.length!=0&&  <div className=" relative overflow-hidden  bg-scroll_green font-semibold p-2 flex justify-center items-center">
+    data.length!=0&&  <div className="sticky top-0 z-20  overflow-hidden  bg-scroll_green font-semibold p-2 flex justify-center items-center">
        <LeadFormModel isFromOffer={true} data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={""} courseName={""} />
         <div className="inline-block cursor-pointer" onClick={(e)=>openModal()}>
           {

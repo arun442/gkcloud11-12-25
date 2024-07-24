@@ -5,6 +5,8 @@ import Footer from "@/components/helpers/footer";
 import CourseDetailContainer from "@/components/course_detail_components/course_detail_component";
 import { axiosPublic } from "@/common/axiosPublic";
 import Head from 'next/head';
+import Marquee from "@/components/helpers/Marquee";
+
 export async function getServerSideProps(context: any) {
 
   // Fetch data from external API
@@ -52,6 +54,8 @@ export default function CourseDetails({ data }: { data: any }) {
         <meta name="twitter:description" content={data.metaDescription} />
         <meta name="twitter:image" content={data.image} />
       </Head>
+      <div className="w-full">
+        <Marquee/>
      <main
       className={`relative w-full lg:max-w-7xl lg:mx-auto h-auto px-5 md:px-14 lg:px-20 xl:px-0 flex flex-col`}
     >
@@ -59,6 +63,7 @@ export default function CourseDetails({ data }: { data: any }) {
   <CourseDetailContainer data={data}/>
   <Footer/>
     </main>
+    </div>
     </>
 
   );

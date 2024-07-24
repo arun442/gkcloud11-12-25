@@ -14,6 +14,8 @@ import AllCourses from './flyout_menu';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { SearchComponent } from './dialog_search';
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import Marquee from '../Marquee';
+
 export default function Header() {
     const [scrolling, setScrolling] = useState(false);
 
@@ -166,14 +168,35 @@ export default function Header() {
     const { userData, isLoading } = useUserData();
     const router = useRouter();
     let [isOpen, setIsOpen] = useState(false)
+const [data, setData] = useState<any[]>([{}]);
+    const fetchOfferData = async () => {
+        try {
+          const result = await axiosPublic.get('/lms/scroller-message');
+    
+          setData(result.data.scrollerMessage);
+       
+        } catch (error) {
+    
+        }
+      }
+    useEffect(() => {
+  
+      fetchOfferData();
+  
+    }, [])
+   
+    
+   
     return (
+
         <>
             {/* <SearchDialog isOpen={isOpen} setIsOpen={setIsOpen}/> */}
-            <Disclosure as="nav" className={classNames(scrolling ? "sticky top-0 z-20 bg-primary_color" : "sticky top-0 z-20",)}>
+            <Disclosure as="nav" className={classNames(scrolling ? `sticky ${data.length==0?"top-0": pathname=="/"||pathname.startsWith("/course")||pathname.startsWith("/certificate")?"top-[40px]":"top-0"} z-20 bg-primary_color` : `sticky ${data.length==0?"top-0": pathname=="/"||pathname.startsWith("/course")||pathname.startsWith("/certificate")?"top-[40px]":"top-0"} z-20`,)}>
                 {({ open }) => (
                     <>
+                  
                         <div className="sm:py-4">
-
+                       
                             <div className="relative flex h-16 items-center justify-between">
                                 <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                                     {/* Mobile menu button*/}

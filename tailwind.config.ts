@@ -51,7 +51,7 @@ const config: Config = {
         marquee: 'marquee 60s linear infinite',
       },
       height: {
-        'home': 'calc(100vh - 96px)',
+        'home': 'calc(100vh - 150px)',
       },
       spacing: {
         '128': '32rem',

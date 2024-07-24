@@ -5,6 +5,7 @@ import Footer from "@/components/helpers/footer";
 
 import { axiosPublic } from "@/common/axiosPublic";
 import CertificateDetailContainer from "@/components/certificate_detail_components/certificate_detail_component";
+import Marquee from "@/components/helpers/Marquee";
 
 export async function getServerSideProps(context:any) {
   
@@ -39,6 +40,8 @@ export async function getServerSideProps(context:any) {
 }
 export default function CourseDetails({data}:{data:any}) {
   return (
+    <div className="w-full">
+        <Marquee/>
     <main
       className={`relative w-full lg:max-w-7xl lg:mx-auto h-auto px-5 md:px-14 lg:px-20 xl:px-0 flex flex-col`}
     >
@@ -46,5 +49,6 @@ export default function CourseDetails({data}:{data:any}) {
   < CertificateDetailContainer data={data}/>
   <Footer/>
     </main>
+    </div>
   );
 }

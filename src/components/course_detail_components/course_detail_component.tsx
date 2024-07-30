@@ -211,7 +211,7 @@ alt='rubee icon'
             </section>
             <ErrorBoundary>
            
-                <main className='mt-6 w-full'>
+                <main className='mt-6 w-full text-white'>
                     {index == 0 ? <main>
                         <h2 className='font-semibold text-2xl text-white mb-3 text-justify'>Course Description</h2>
                         <section>
@@ -309,7 +309,7 @@ alt='rubee icon'
                                     {
                                         (data?.CourseContent?.courseContent?.course?.courseDetails?.content?.modules ?? []).map((module: any, index: any) =>(module?.name??"").length==0?<></>: <div key={module.moduleId} >
                                             <h3 className='font-semibold text-lg text-white mb-3 text-start'>Module {index + 1}.{module?.name}</h3>
-                                            <p>{module.moduleDescription}</p>
+                                          {(module?.moduleDescription??"").length==0?<></>:<p className='font-normal text-sm text-white text-start'>{module.moduleDescription}</p>}  
                                             <ul>
                                                 {module.moduleItems ? module.moduleItems.map((item: any, itemIndex: any) =>(item?.moduleItemName??"").length==0?<></>: (
                                                     <li className='ml-6 flex gap-2 my-2' key={item.moduleItemId

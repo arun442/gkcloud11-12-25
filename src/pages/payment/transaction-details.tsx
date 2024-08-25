@@ -5,20 +5,23 @@ import Header from "@/components/helpers/header";
 import Footer from "@/components/helpers/footer";
 import Marquee from "@/components/helpers/Marquee";
 import CookieConsent from "@/components/helpers/cookie";
+import styles from './TransactionDetails.module.css'; 
 
 interface TransactionDetails {
   order_id: string;
   tracking_id: string;
   order_status: string;
-  currency: string;
+  payment_mode: string;
+  card_name: string;
+  status_message: string;
   amount: string;
-  trans_date: string;
-  [key: string]: string | null;
+  billing_name: string;
 }
 
 const PaymentStatus: React.FC = () => {
   const router = useRouter();
   const [transactionDetails, setTransactionDetails] = useState<TransactionDetails | null>(null);
+  const [courseUrl, setCourseUrl] = useState<string>(''); // State for the course URL
 
   useEffect(() => {
     if (router.query.data) {
@@ -27,19 +30,20 @@ const PaymentStatus: React.FC = () => {
       ).transactionDetails;
       setTransactionDetails(details);
     }
-  }, [router.query.data]);
+    if (router.query.courseUrl) {
+      setCourseUrl(decodeURIComponent(router.query.courseUrl as string)); // Get course URL from query
+    }
+  }, [router.query.data, router.query.courseUrl]);
+
+  const handleGoToCourse = () => {
+    if (courseUrl) {
+      window.location.href = courseUrl; // Redirect to course URL
+    }
+  };
 
   if (!transactionDetails) {
     return <div>Loading...</div>;
   }
-
-  const filteredDetails = Object.entries(transactionDetails).filter(
-    ([, value]) => value && value.trim() !== ""
-  );
-
-  const halfLength = Math.ceil(filteredDetails.length / 2);
-  const leftColumn = filteredDetails.slice(0, halfLength);
-  const rightColumn = filteredDetails.slice(halfLength);
 
   return (
     <>
@@ -49,34 +53,51 @@ const PaymentStatus: React.FC = () => {
       </Head>
       <Header />
       <Marquee />
-      <main style={{ padding: '20px' }}>
-        <h1>Payment Transaction Details</h1>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <table style={{ width: '48%', borderCollapse: 'collapse' }}>
+      <main className={styles.main}>
+        <h1 className={styles.title}>Payment Transaction Details</h1>
+        <div className={styles.tableContainer}>
+          <table className={styles.table}>
             <tbody>
-              {leftColumn.map(([key, value]) => (
-                <tr key={key}>
-                  <td style={{ padding: '10px', border: '1px solid #ddd', fontWeight: 'bold' }}>
-                    {key.replace(/_/g, ' ')}
-                  </td>
-                  <td style={{ padding: '10px', border: '1px solid #ddd' }}>{value}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <table style={{ width: '48%', borderCollapse: 'collapse' }}>
-            <tbody>
-              {rightColumn.map(([key, value]) => (
-                <tr key={key}>
-                  <td style={{ padding: '10px', border: '1px solid #ddd', fontWeight: 'bold' }}>
-                    {key.replace(/_/g, ' ')}
-                  </td>
-                  <td style={{ padding: '10px', border: '1px solid #ddd' }}>{value}</td>
-                </tr>
-              ))}
+              <tr>
+                <td className={styles.tableCell}>Order ID</td>
+                <td className={styles.tableCell}>{transactionDetails.order_id}</td>
+              </tr>
+              <tr>
+                <td className={styles.tableCell}>Tracking ID</td>
+                <td className={styles.tableCell}>{transactionDetails.tracking_id}</td>
+              </tr>
+              <tr>
+                <td className={styles.tableCell}>Order Status</td>
+                <td className={styles.tableCell}>{transactionDetails.order_status}</td>
+              </tr>
+              <tr>
+                <td className={styles.tableCell}>Payment Mode</td>
+                <td className={styles.tableCell}>{transactionDetails.payment_mode || '-'}</td>
+              </tr>
+              <tr>
+                <td className={styles.tableCell}>Card Name</td>
+                <td className={styles.tableCell}>{transactionDetails.card_name || '-'}</td>
+              </tr>
+              <tr>
+                <td className={styles.tableCell}>Status Message</td>
+                <td className={styles.tableCell}>{transactionDetails.status_message}</td>
+              </tr>
+              <tr>
+                <td className={styles.tableCell}>Amount</td>
+                <td className={styles.tableCell}>{transactionDetails.amount}</td>
+              </tr>
+              <tr>
+                <td className={styles.tableCell}>Billing Name</td>
+                <td className={styles.tableCell}>{transactionDetails.billing_name}</td>
+              </tr>
             </tbody>
           </table>
         </div>
+        {courseUrl && (
+          <button onClick={handleGoToCourse} className={styles.returnButton}>
+            Ok
+          </button>
+        )}
       </main>
       <Footer />
       <CookieConsent />

@@ -1,0 +1,55 @@
+/* TransactionDetails.module.css */
+.main {
+  padding: 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff; /* White text color */
+}
+
+.tableContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 30%;
+  margin: 0 auto;
+}
+
+.tableCell {
+  padding: 10px;
+  border: 1px solid #ddd;
+  color: #fff; /* White text color */
+  font-size: 16px;
+}
+
+
+
+.returnButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.returnButton:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .table {
+    width: 100%;
+  }
+}

@@ -5,7 +5,7 @@ import Header from "@/components/helpers/header";
 import Footer from "@/components/helpers/footer";
 import Marquee from "@/components/helpers/Marquee";
 import CookieConsent from "@/components/helpers/cookie";
-import styles from './TransactionDetails.module.css'; 
+import styles from '../../styles/TransactionDetails.module.css'; 
 
 interface TransactionDetails {
   order_id: string;

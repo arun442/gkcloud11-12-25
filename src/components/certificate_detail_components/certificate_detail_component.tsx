@@ -28,7 +28,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
     const [index, setIndex] = useState(0);
     const { userData, } = useUserData();
     const [isLoading, setLoading] = useState(false);
-    const params = useParams();
+   
     const entroll = async () => {
         if (userData == null) {
             return toast.info("Before enrollment Please login");
@@ -40,10 +40,10 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
             setLoading(true);
             const result = await axiosPrivate.post('/lms/add-certificate-course-enrollment', {
                 "userId": userData.userId,
-                "certificateCourseId": parseInt(params.courseId[0]),
+                "certificateCourseId": data.certificateCourseId,
 
-                "courseCostPlanId": data.CertificateCourseCostPlans[0].certificateCourseCostPlanId,
-                "enrollmentReference": "This is Test Enrollment",
+                "certificateCourseCostPlanId": data.CertificateCourseCostPlans[0].certificateCourseCostPlanId,
+                "enrollmentReference": "Certificate Course",
                 "amount": data.CertificateCourseCostPlans.length != 0 && data.CertificateCourseCostPlans[0].offerId != null   &&data.CertificateCourseCostPlans[0].offerPrice>0? data.CertificateCourseCostPlans[0].offerPrice : data.CertificateCourseCostPlans[0].planPrice
             });
 
@@ -148,7 +148,7 @@ alt='rubee icon'
 
                 </div>
             </section>
-            <FormComponent type='Certificate' referenceId={ parseInt(params.courseId[0])} referenceCode={ params.courseId[0]} requestDescription={data.title} />
+            <FormComponent type='Certificate' referenceId={ data.certificateCourseId} referenceCode={ data.certificateCourseId} requestDescription={data.title} />
 
         </main>
     )

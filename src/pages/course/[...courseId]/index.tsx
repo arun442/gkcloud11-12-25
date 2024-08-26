@@ -53,6 +53,31 @@ export default function CourseDetails({ data }: { data: any }) {
         <meta name="twitter:title" content={data.title} />
         <meta name="twitter:description" content={data.metaDescription} />
         <meta name="twitter:image" content={data.image} />
+           {/* Schema.org Markup */}
+           <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:data?.seoSchema?data.seoSchema: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "GKCloud.ai",
+              "url": "https://gkcloud.ai/",
+              "logo": "https://gkcloud.ai/logo.png",
+              "sameAs": [
+                "https://www.facebook.com/gkcloud",
+                "https://twitter.com/gkcloud"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "Customer Service",
+                "telephone": "+91 9364893718",
+                "email": "support@gkcloud.ai"
+              }
+            })
+          }}
+        />
+
+    
       </Head>
       <div className="w-full">
         <Marquee/>

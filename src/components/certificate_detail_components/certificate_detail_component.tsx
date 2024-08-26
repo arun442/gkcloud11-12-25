@@ -49,7 +49,7 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
 
 
             setLoading(false);
-            window.open(`${result.data.gateway.url}&encRequest=${result.data.gateway.encRequest}&access_code=${result.data.gateway.access_code}`);
+            window.open(`${result.data.gateway.url}&encRequest=${result.data.gateway.encRequest}&access_code=${result.data.gateway.access_code}`,"_self");
          
 
 

@@ -35,7 +35,7 @@ export default function ScheduleCard({ data, type }: { data: any, type: number }
 
 
       setLoading(false);
-      window.open(`${result.data.gateway.url}&encRequest=${result.data.gateway.encRequest}&access_code=${result.data.gateway.access_code}`);
+      window.open(`${result.data.gateway.url}&encRequest=${result.data.gateway.encRequest}&access_code=${result.data.gateway.access_code}`,"_self");
     
 
 

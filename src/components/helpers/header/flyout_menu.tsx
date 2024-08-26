@@ -57,10 +57,13 @@ export default function AllCourses() {
     const timeOutRef = useRef<any>()
   
     const handleEnter = (isOpen:any) => {
-        setCourse(courseList.current.filter((e: any) => e.partnerId == partnerData[0].partnerId));
-        setSelectedCat( partnerData[0].partnerName);
-      clearTimeout(timeOutRef.current)
-      !isOpen && triggerRef.current?.click()
+        if(partnerData.length!=0){
+            setCourse(courseList.current.filter((e: any) => e.partnerId == partnerData[0].partnerId));
+            setSelectedCat( partnerData[0].partnerName);
+          clearTimeout(timeOutRef.current)
+          !isOpen && triggerRef.current?.click()
+        }
+       
     }
   
     const handleLeave = (isOpen:any) => {

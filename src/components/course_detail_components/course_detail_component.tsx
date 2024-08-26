@@ -30,7 +30,6 @@ export default function CourseDetailContainer({ data }: { data: any }) {
     const { userData, } = useUserData();
     const { trainingData } = useTrainingMode();
     const [isLoading, setLoading] = useState(false);
- //   const params = useParams();
     const router = useRouter();
     const entroll = async () => {
         if (userData == null) {
@@ -44,7 +43,6 @@ export default function CourseDetailContainer({ data }: { data: any }) {
             const result = await axiosPrivate.post('/lms/add-course-enrollment', {
                 "userId": userData.userId,
                 "courseId": data.courseId,
-
                 "courseCostPlanId": data.CourseCostPlans[0].courseCostPlanId,
                 "enrollmentReference": "This is Test Enrollment",
                 "amount": data.CourseCostPlans.length != 0 && data.CourseCostPlans[0].offerId != null && data.CourseCostPlans[0].offerPrice > 0 ? data.CourseCostPlans[0].offerPrice : data.CourseCostPlans[0].planPrice

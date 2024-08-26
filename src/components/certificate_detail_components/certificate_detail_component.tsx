@@ -41,7 +41,6 @@ export default function CertificateDetailContainer({ data }: { data: any }) {
             const result = await axiosPrivate.post('/lms/add-certificate-course-enrollment', {
                 "userId": userData.userId,
                 "certificateCourseId": data.certificateCourseId,
-
                 "certificateCourseCostPlanId": data.CertificateCourseCostPlans[0].certificateCourseCostPlanId,
                 "enrollmentReference": "Certificate Course",
                 "amount": data.CertificateCourseCostPlans.length != 0 && data.CertificateCourseCostPlans[0].offerId != null   &&data.CertificateCourseCostPlans[0].offerPrice>0? data.CertificateCourseCostPlans[0].offerPrice : data.CertificateCourseCostPlans[0].planPrice

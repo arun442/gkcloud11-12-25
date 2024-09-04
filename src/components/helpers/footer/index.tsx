@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = (props) => {
           </h4>
           <br />
           <p className="text-[16px] text-white">
-            GK Cloud Solutions Pvt Ltd  <br />IndiQube Penta,  <br />New No. 51, Richmond Road,  <br />Bengaluru - 560025
+            GK Cloud Solutions Pvt Ltd  <br />No. 81/37,1st Floor,  <br />The Hulkul, Lavelle Road,  <br />Bangalore - 560001
           </p>
         </section>
 

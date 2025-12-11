@@ -17,10 +17,11 @@ import { Link } from 'react-alice-carousel';
 import { useSearchParams } from 'next/navigation';
 import LeadFormModel from '../helpers/LeadFromModel';
 import useUserData from '@/hooks/userData';
+import { commonbasePath } from '@/common/constants';
 
 export default function AboutContainer() {
   const searchParams = useSearchParams()
-
+  const basePath  = commonbasePath;
   const queryIndex = searchParams.get('index');
   const items = [
     {
@@ -89,7 +90,7 @@ export default function AboutContainer() {
       // Create a link element and click it to trigger the download
       const link = document.createElement('a');
       link.href = url;
-      link.download = `GK_Profile.pdf`; // Specify the filename here
+      link.download = `GKCloudSolutions.pdf`; // Specify the filename here
       document.body.appendChild(link);
       link.click();
 
@@ -139,6 +140,9 @@ export default function AboutContainer() {
   }
   const { userData, } = useUserData();
   return (
+
+    <>
+   
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
 
       <LeadFormModel isFromOffer={false}  data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={""} courseName={""} />
@@ -154,7 +158,7 @@ export default function AboutContainer() {
             <p className="cursor-pointer text-text_grey_one text-base font-medium hover:text-blue">About Us</p>
           </div>
           <h1 className='font-semibold text-2xl mt-6 text-white'>About Us</h1>
-          <p className='text-justify mt-6 leading-6 font-normal text-[16px] text-white'>GK Cloud Solutions has created a brand in the Cloud space with specialization on Cloud Trainings across multiple brands and focusing more towards AI  with evocative approach as a Solution Provider supporting enterprises to consistently succeed in the evolving world space.</p>
+          <p className='text-justify mt-6 leading-6 font-normal text-[16px] text-white'>GK Cloud Solutions was established to address key gaps in technology training, project consulting, and strategic services. We are a value-driven company dedicated to transforming careers and businesses through advanced technology solutions.</p>
 
           <h1 className='font-semibold text-2xl mt-6 text-white'></h1>
           <section className='flex flex-row items-start mt-3'>
@@ -165,9 +169,9 @@ export default function AboutContainer() {
                 openModal();
             }
             }}
-              className="cursor-pointer mx-auto box-border border flex flex-row gap-3 items-center p-3 border-blue border-1 bg-dark_blue rounded-2xl">
-              <img  className="text-blue h-6 w-6" src="/pdf_icon.svg" alt="Download Company Profile" />
-              <p className="text-white text-base font-normal">Download Company Profile</p>
+              className="cursor-pointer mx-auto box-border  flex flex-row gap-3 items-center p-3 z-0  bg-[#129DD6] rounded-2xl">
+              <img  className="text-white h-6 w-6 z-10" src={`${basePath}/pdf_img4.png`} alt="Download Company Profile"  style={{fill:"white"}} />
+              <p className="text-white text-base font-normal z-10">Download Company Profile</p>
             </div>
           </section>
         </section>
@@ -176,7 +180,7 @@ export default function AboutContainer() {
 
             className="object-contain mx-auto h-auto  md:h-72"
 alt="about"
-            src="/about.png" />
+            src={`${basePath}/about.png`} />
         </section>
       </main>
       <section className="mx-auto box-border w-full  mt-20  border-none border-blue grid grid-cols-2 md:grid-cols-4   items-center rounded-full">
@@ -192,9 +196,9 @@ alt="about"
       <main className='w-full mt-14 text-justify'>
         {
           data.length == 0 ? <></> : index == 0 ? <section>
-            <p className='leading-6 font-normal text-[16px] text-white mb-6'>GK Cloud Solutions established to fill the void in Technology Training, Services & Project Consulting.</p>
-            <p className='leading-6 font-normal text-[16px] text-white mb-6'><span className='font-semibold'>Training:</span> We are a value-driven Tech Ed Company who strives to provide unrivalled Technology continuum of training’s to enable aspiring associates to exceed their potential. We offer an end-to-end Portfolio of training services spanning multiple technologies that can be customized, built, and digitized to suit the client’s need. Pioneer in transformative technologies like AI, ML, IoT, Cloud, Data Science, Blockchain & Analytics. Reach is not a restriction to educate.</p>
-            <p className='leading-6 font-normal text-[16px] text-white'><span className='font-semibold'>Consulting:</span> We are an Agile solution provider for Projects from Development, Consultation & Infrastructure Support. Every emerging technology goes through the scrum process and build business-centric value propositions for enabling digital transformations. Our custom-built business offerings for Offshore & Onsite curtailing costs, risk & compliance management thus augmenting workforce productivity in industries across Insurance, Banking, Retails, and Manufacturing. We are aligned to bridge the visible existing gaps between the traditional technologies (Legacy systems) through digital transformation.</p>
+            <p className='leading-6 font-normal text-[16px] text-white mb-6'>Addressing Technology Gaps with Skill and Strategy – GK Cloud Solutions, a Partner in Training and Consulting.</p>
+            <p className='leading-6 font-normal text-[16px] text-white mb-6'><span className='font-semibold'>Training :</span> As a tech-ed leader, we offer an extensive portfolio of training services across multiple technologies, from AI and ML to IoT, Cloud, Data Science, Blockchain, and Analytics. Our programs are tailored to meet the unique needs of clients, delivered with a focus on accessibility and innovation. Our commitment to transformative education empowers aspiring professionals to reach and exceed their potential.</p>
+            <p className='leading-6 font-normal text-[16px] text-white'><span className='font-semibold'>Consulting :</span> Our agile consulting services span development, infrastructure support, and comprehensive project consultation. We leverage emerging technologies through structured, business-focused processes, enabling impactful digital transformations. By providing both offshore and onsite solutions, we help clients manage costs, risks, and compliance—enhancing productivity across industries including Insurance, Banking, Retail, and Manufacturing. Our mission is to bridge the gap between legacy systems and digital innovations, driving forward-thinking results.</p>
             {/* <p className='leading-6 font-normal text-[16px] text-white'>{data.filter((e) => e.generalId == 2)[0].description}</p> */}
           </section> : index == 2 ? <section className='w-full mx-auto flex flex-row justify-center gap-4'>
             {leaderShip.map((e, index) => <div key={index} className="relative cursor-pointer w-52 box-border border flex flex-col justify-start items-start border-blue border-1 bg-dark_blue">
@@ -205,7 +209,7 @@ alt="about"
                 <img
 alt='linkedIn'
                   className="text-white h-6 w-6"
-                  src="/Icon_linkedIn.svg" /></Link>
+                  src={`${basePath}/Icon_linkedIn.svg`} /></Link>
               <div className='w-full bg-dark_blue h-52'>
 
                 <img
@@ -232,5 +236,6 @@ alt='linkedIn'
 
 
     </main>
+    </>
   )
 }

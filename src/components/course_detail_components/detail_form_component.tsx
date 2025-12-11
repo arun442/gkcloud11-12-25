@@ -1,278 +1,150 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { axiosPublic } from '@/common/axiosPublic';
-import { useEffect, useState } from 'react';
+import { axiosLead, axiosPublic } from '@/common/axiosPublic';
+import { useState } from 'react';
 import classNames from '@/helpers/add_class';
-
 import { toast } from "react-toastify";
 import useUserData from '@/hooks/userData';
+import { setCookie } from 'cookies-next';
+import CryptoJS from 'crypto-js';
 
+
+const ENCRYPTION_KEY = process.env.NEXT_PUBLIC_ENCRYPTION_KEY || 'ENCRYPTION-KEY-DATA-20';
+ 
+// AES encryption function
+const encryptData = (data: object): string => {
+  try {
+    const dataString = JSON.stringify(data); // Convert object to string
+    const encrypted = CryptoJS.AES.encrypt(dataString, ENCRYPTION_KEY).toString();
+    return encrypted;
+  } catch (error) {
+    console.error("Encryption error:", error);
+    return "";
+  }
+};
+ 
+// AES decryption function (if needed for validation or retrieval)
+const decryptData = (encryptedData: string): object | null => {
+  try {
+    const decrypted = CryptoJS.AES.decrypt(encryptedData, ENCRYPTION_KEY);
+    const dataString = decrypted.toString(CryptoJS.enc.Utf8);
+    return JSON.parse(dataString); // Convert string back to object
+  } catch (error) {
+    console.error("Decryption error:", error);
+    return null;
+  }
+};
 export default function FormComponent({
-    type,referenceId,referenceCode, requestDescription
-}: { type: string,referenceId:number,referenceCode:string, requestDescription:string }) {
+    type, referenceId, referenceCode, requestDescription
+}: { type: string, referenceId: number, referenceCode: string, requestDescription: string }) {
     const { userData } = useUserData();
     const [isLoading, setLoading] = useState(false);
-
-    const [index, setIndex] = useState(0);
     const phoneRegExp = /^(?!.*\D).{10}$/;
-
+ 
     const formik = useFormik({
-        validateOnBlur:false,
+        validateOnBlur: false,
         initialValues: {
             firstName: '',
             lastName: '',
             email: "",
             phone: '',
-            country: '',
-            city: '',
-            address: '',
             company: '',
         },
         validationSchema: Yup.object({
             firstName: Yup.string()
-
                 .required('Please enter a valid first name').matches(/^[A-Za-z\s]+$/, 'Only letters are allowed'),
-
-            lastName: Yup.string() .matches(/^[A-Za-z\s]+$/, 'Only letters are allowed'),
+            lastName: Yup.string().matches(/^[A-Za-z\s]+$/, 'Only letters are allowed'),
             email: Yup.string().email('Invalid email address').required('Please enter a valid email'),
-            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid') .required('Please enter a valid phone number'),
-            country: Yup.string().matches(/^[A-Za-z\s]+$/, 'Only letters are allowed')
-
-            ,
-            city: Yup.string().matches(/^[A-Za-z\s]+$/, 'Only letters are allowed')
-
-            ,
-            address:Yup.string().matches(/^[a-zA-Z0-9 ._\-,()\[\]]+$/,'Pleaes enter a valid address')
-
-            ,
-           company: Yup.string().matches(/^[a-zA-Z0-9 ._\-,()\[\]]+$/,'Pleaes enter a valid company name')
-
-            ,
-
+            phone: Yup.string().matches(phoneRegExp, 'Phone number is not valid').required('Please enter a valid phone number'),
+            company: Yup.string().matches(/^[a-zA-Z0-9 ._\-,()\[\]]+$/, 'Please enter a valid company name'),
         }),
         onSubmit: async (values, { resetForm }) => {
-
-
             try {
                 if (isLoading) {
                     return;
                 }
                 setLoading(true);
-            
+ 
                 const result = await axiosPublic.post('/lms/add-request-form', {
-                    "email": values.email,
-                    "requestType": type,
-                    "requestedBy": index == 0 ? "Individual" : 'Corporate',
-                    "firstName": values.firstName,
-                    "lastName": values.lastName,
-                    "companyName": values.company,
-                    "mobile": values.phone,
-                    "phone": values.phone,
-                    "country": values.country,
-                    "city": values.city,
-                    "address": values.address,
-                    "message": "RequstForm",
-                    "referenceId":referenceId,
-                    "referenceCode":referenceCode,
-                    "requestDescription": requestDescription
+                    email: values.email,
+                    requestType: type,
+                    fullName: values.firstName,
+                    companyName: values.company,
+                    mobile: values.phone,
+                    phone: values.phone,
+                    message: "RequestForm",
+                    referenceId: referenceId,
+                    referenceCode: referenceCode,
+                    requestDescription: requestDescription,
+                    requestedBy:"Individual"
                 });
 
+                let payloadData={
+                    firstName : values.firstName,
+                    phNumber : values.phone,
+                    emailId : values.email,
+                    company : values.company,
+                    utmSource : 'Website-Leads',
+                    action : 'Course-Enquiry',
+                }
+ 
 
+                const res = await axiosLead.post('/gktsage/gkcs/leadCapture/store', payloadData);
+                const cookieData = {
+                    firstName: values.firstName,
+                    email: values.email,
+                    phone: values.phone,
+                  };
+         
+                  const encryptedData = encryptData(cookieData);
+         
+                  setCookie("_req", encryptedData, { maxAge: 30 * 24 * 60 * 60 });
                 setLoading(false);
-                toast.success("Form submitted successfully")
-              
+                toast.success("Form submitted successfully");
                 resetForm();
-
             } catch (error: any) {
                 setLoading(false);
-            
-                toast.error(error!.message);
-
+                toast.error(error.message);
             }
         },
     });
-    // useEffect(() => {
-    //     if(!userData){
-    //         return;
-    //     }
-    //     formik.setValues({
-    //         firstName: userData?.
-    //             first_name
-    //             ?? "",
-    //         lastName: userData?.
-    //             last_name
-    //             ?? "",
-    //         email: userData?.email ?? "",
-    //         phone: userData?.
-
-    //             mobile_number
-
-    //             ?? "",
-    //         country: '',
-    //         city: '',
-    //         address: '',
-    //         company: '',
-    //     })
-    // }, [userData])
-
-    return <form  autoComplete="off"  onSubmit={formik.handleSubmit} className='mt-20  mx-auto box-border border w-full md:w-[80%] p-6 md:py-14 md:px-24 border-blue border-1 bg-dark_blue rounded-2xl'>
-
-        <section className='flex'>
-            <div className=" mx-auto box-border border flex flex-row w-full md:w-96 items-center   border-blue border-1 bg-dark_blue rounded-lg">
-
-                <div onClick={(e) => setIndex(0)} className={classNames("cursor-pointer py-3 w-1/2 box-border border flex flex-row items-center justify-center text-white text-lg font-semibold  bg-primary_color rounded-lg", index == 1 ? "border-none" : "border-blue border-1")}>Individual</div>
-                <div onClick={(e) => setIndex(1)} className={classNames("cursor-pointer py-3 w-1/2 box-border border flex flex-row items-center justify-center text-white text-lg font-semibold  bg-primary_color rounded-lg", index == 0 ? "border-none" : "border-blue border-1")}>Corporate</div>
+ 
+    return (
+        <form autoComplete="off" onSubmit={formik.handleSubmit} className="mt-5 mx-auto w-11/12 sm:w-96 h-auto p-6 bg-black rounded-2xl shadow-md">
+            <h3 className='text-lg mt-2 text-center text-white'>Request More Information</h3>
+            <div className="mt-8 flex flex-col gap-3">
+                <input
+                    {...formik.getFieldProps('firstName')}
+                    type="text"
+                    placeholder='Name *'
+                    className={`block w-full px-3 py-2 border rounded-md shadow-sm ${formik.errors.firstName ? 'border-red-500' : 'border-gray-300'}`}
+                />
+                {formik.errors.firstName && <div className="text-red text-xs mt-1">{formik.errors.firstName}</div>}
+                <input
+                    {...formik.getFieldProps('email')}
+                    type="email"
+                    placeholder='Email *'
+                    className={`block w-full px-3 py-2 border rounded-md shadow-sm ${formik.errors.email ? 'border-red-500' : 'border-gray-300'}`}
+                />
+                {formik.errors.email && <div className="text-red text-xs mt-1">{formik.errors.email}</div>}
+                <input
+                    {...formik.getFieldProps('phone')}
+                    type="text"
+                    placeholder='Phone Number *'
+                    className={`block w-full px-3 py-2 border rounded-md shadow-sm ${formik.errors.phone ? 'border-red-500' : 'border-gray-300'}`}
+                />
+                {formik.errors.phone && <div className="text-red text-xs mt-1">{formik.errors.phone}</div>}
+                <input
+                    {...formik.getFieldProps('company')}
+                    type="text"
+                    placeholder='Company Name'
+                    className={`block w-full px-3 py-2 border rounded-md shadow-sm ${formik.errors.company ? 'border-red-500' : 'border-gray-300'}`}
+                />
+                {formik.errors.company && <div className="text-red text-xs mt-1">{formik.errors.company}</div>}
             </div>
-
-        </section>
-        <h3 className='text-lg mt-8 text-white text-center'>Request More Information</h3>
-
-        <section>
-            <div className='mt-8 flex flex-col md:flex-row gap-8'>
-                <div className='flex-1'>
-                    <input
-                        {...formik.getFieldProps('firstName')}
-                        type="text"
-
-                        maxLength={50}
-                        
-                        placeholder='First Name *'
-                    
-                        className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1  ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6 "
-                    />
-                    {formik.errors.firstName ? (
-                        <div className="text-sm text-red mt-2 ml-2">{formik.errors.firstName}</div>
-                    ) : null}
-                </div>
-                <div className='flex-1'>
-                    <input
-                        {...formik.getFieldProps('lastName')}
-                        type="text"
-
-                        maxLength={50}
-                        
-                        placeholder='Last Name'
-                    
-                        className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                    />
-                    {formik.errors.lastName ? (
-                        <div className="text-sm text-red mt-2 ml-2">{formik.errors.lastName}</div>
-                    ) : null}
-                </div>
-            </div>
-            <div className='mt-8 flex flex-col md:flex-row gap-8'>
-                <div className='flex-1'>
-                    <input
-                        {...formik.getFieldProps('email')}
-                        type="text"
-
-                        maxLength={50}
-                        
-                        placeholder='Email *'
-                       
-                        className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                    />
-                    {formik.errors.email ? (
-                        <div className="text-sm text-red mt-2 ml-2">{formik.errors.email}</div>
-                    ) : null}
-                </div>
-                <div className='flex-1'>
-                    <input
-                        {...formik.getFieldProps('phone')}
-                        type="text"
-
-maxLength={10}
-                        
-                        placeholder='Phone Number *'
-                        
-                        className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                    />
-                    {formik.errors.phone ? (
-                        <div className="text-sm text-red mt-2 ml-2">{formik.errors.phone}</div>
-                    ) : null}
-                </div>
-            </div>
-            {/* {
-                index == 0 ? <></> : <div className='mt-8 flex flex-row gap-8'>
-                    <div className='flex-1'>
-                        <input
-                            {...formik.getFieldProps('country')}
-                            type="text"
-
-
-                            
-                            placeholder='Country'
-                         
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                        />
-                        {formik.errors.country ? (
-                            <div className="text-sm text-white mt-2 ml-2">{formik.errors.country}</div>
-                        ) : null}
-                    </div>
-                    <div className='flex-1'>
-                        <input
-                            {...formik.getFieldProps('city')}
-                            type="text"
-
-
-                            
-                            placeholder='City'
-                          
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                        />
-                        {formik.errors.city ? (
-                            <div className="text-sm text-white mt-2 ml-2">{formik.errors.city}</div>
-                        ) : null}
-                    </div>
-                </div>
-            } */}
-            {
-                index == 1 ? <div className='mt-8 flex flex-col md:flex-row gap-8'>
-                    <div className='flex-1'>
-                        <input
-                            {...formik.getFieldProps('company')}
-                            type="text"
-
-                            maxLength={50}
-                            
-                            placeholder='Company Name'
-                          
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                        />
-                        {formik.errors.company ? (
-                            <div className="text-sm text-red mt-2 ml-2">{formik.errors.company}</div>
-                        ) : null}
-                    </div>
-
-                </div> : <div></div>
-            }
-            {/* {
-                index == 0 ? <></> : <div className='mt-8 flex flex-row gap-8'>
-                    <div className='flex-1'>
-                        <input
-                            {...formik.getFieldProps('address')}
-                            type="text"
-
-
-                            
-                            placeholder='Address'
-                         
-                            className="block px-4 w-full border-1  rounded-lg bg-primary_color h-14 text-white shadow-sm ring-1 ring-inset ring-blue placeholder:font-medium placeholder:text-gray-400 placeholder:pl-3  sm:text-sm sm:leading-6"
-                        />
-                        {formik.errors.address ? (
-                            <div className="text-sm text-white mt-2 ml-2">{formik.errors.address}</div>
-                        ) : null}
-                    </div>
-
-                </div>
-            } */}
-
-         <div className='w-full flex justify-center items-center'>   <button type='submit' className="mt-8 flex w-auto justify-center rounded bg-blue py-3 px-10 font-medium text-white ">
-                {
-                    isLoading ? "Loading.." : "Submit"
-                }
-            </button></div>
-        </section>
-
-    </form>
+            <button type="submit" className="mt-8 w-full py-3 bg-yellow text-black font-semibold rounded-md hover:bg-yellow-600">
+                {isLoading ? "Loading..." : "Submit"}
+            </button>
+        </form>
+    );
 }

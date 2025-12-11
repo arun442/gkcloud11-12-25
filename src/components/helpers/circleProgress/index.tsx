@@ -1,7 +1,9 @@
 // src/components/CircleProgressBar.jsx
 import React from 'react';
+import { commonbasePath } from "@/common/constants";
 
 const CircleProgressBar = ({ percentage }:{percentage:any}) => {
+  const basePath  = commonbasePath;
   const radius = 24; // Radius of the circle
   const stroke = 2; // Stroke width
   const normalizedRadius = radius - stroke / 2;
@@ -46,7 +48,7 @@ const CircleProgressBar = ({ percentage }:{percentage:any}) => {
                                               
                                             }}
                                             className="cursor-pointer"
-                                            src="/tropy.svg"
+                                            src={`${basePath}/tropy.svg`}
                                             alt="Tropy"
                                         />
 

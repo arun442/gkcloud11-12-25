@@ -8,6 +8,10 @@ import Marquee from "@/components/helpers/Marquee";
 import CookieConsent from "@/components/helpers/cookie";
 import styles from '../../styles/TransactionDetails.module.css'; 
 
+interface PaymentResponse {
+  transactionDetails: TransactionDetails;
+}
+
 interface TransactionDetails {
   order_id: string;
   tracking_id: string;
@@ -27,8 +31,11 @@ const PaymentStatus: React.FC = () => {
   useEffect(() => {
     if (router.query.data) {
       const decodedData = decodeURIComponent(router.query.data as string);
-      const details: TransactionDetails = JSON.parse(decodedData);
-      setTransactionDetails(details);
+      const paymentData: PaymentResponse = JSON.parse(decodedData);
+setTransactionDetails(paymentData.transactionDetails);
+    
+      
+      
     }
     if (router.query.courseUrl) {
       setCourseUrl(decodeURIComponent(router.query.courseUrl as string)); // Get course URL from query

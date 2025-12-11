@@ -6,9 +6,10 @@ import CourseDetailContainer from "@/components/course_detail_components/course_
 import { axiosPublic } from "@/common/axiosPublic";
 import Head from 'next/head';
 import Marquee from "@/components/helpers/Marquee";
-
+import { FaGraduationCap } from "react-icons/fa";
+import { useRouter } from 'next/router';
+import { commonbasePath } from "@/common/constants";
 export async function getServerSideProps(context: any) {
-
   // Fetch data from external API
   try {
     const id = context.params.courseId;
@@ -39,53 +40,78 @@ export async function getServerSideProps(context: any) {
   }
 }
 export default function CourseDetails({ data }: { data: any }) {
+const router = useRouter();
+
+
   return (
     <>
      <Head>
-        <title>{data.title}</title>
-        <meta name="description" content={data.metaDescription} />
-        <meta name="keywords" content={data.metaKeyword} />
+        <title>{data.seoSchema?data.seoSchema.metaTitle:data.title}</title>
+        <link rel="icon" href={`${commonbasePath}/favicon.ico`} />
+        <link rel="canonical" href={data.slug}/>
+        <meta name="robots" content="index, follow"/>
+        <meta name="description" content={data.seoSchema?data.seoSchema.metaDescription:data.metaDescription} />
+        <meta name="keywords" content={data.seoSchema?data.seoSchema.keywords:data.metaKeyword} />
         <meta property="og:title" content={data.title} />
         <meta property="og:description" content={data.metaDescription} />
-        <meta property="og:image" content={data.image} />
+        <meta property="og:image" content="https://gkcloud.ai/logo.png" />
         <meta property="og:url" content={data.url} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={data.title} />
         <meta name="twitter:description" content={data.metaDescription} />
-        <meta name="twitter:image" content={data.image} />
+        <meta name="twitter:image" content="https://gkcloud.ai/logo.png" />
            {/* Schema.org Markup */}
+
+
+           {data.seoSchema?
+           
+          data.seoSchema.schemaTags?
+           Object.keys(data.seoSchema.schemaTags).map((key) => (
+
            <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html:data?.seoSchema?data.seoSchema: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "GKCloud.ai",
-              "url": "https://gkcloud.ai/",
-              "logo": "https://gkcloud.ai/logo.png",
-              "sameAs": [
-                "https://www.facebook.com/gkcloud",
-                "https://twitter.com/gkcloud"
-              ],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "contactType": "Customer Service",
-                "telephone": "+91 9364893718",
-                "email": "support@gkcloud.ai"
-              }
-            })
+            __html:JSON.stringify(data.seoSchema.schemaTags[key])
           }}
         />
-
+      )):null:
+      <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html:JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "GKCloud.ai",
+          "url": "https://gkcloud.ai/",
+          "logo": "https://gkcloud.ai/logo.png",
+          "sameAs": [
+            "https://www.facebook.com/gkcloud",
+            "https://twitter.com/gkcloud"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Service",
+            "telephone": "+91 9364893718",
+            "email": "support@gkcloud.ai"
+          }
+        })
+      }}
+    />
+    }
     
       </Head>
       <div className="w-full">
-        <Marquee/>
+      <Marquee/>
+
+        {/* <Marquee/> */}
      <main
       className={`relative w-full lg:max-w-7xl lg:mx-auto h-auto px-5 md:px-14 lg:px-20 xl:px-0 flex flex-col`}
     >
    <Header/>
-  <CourseDetailContainer data={data}/>
+  {/* { data.seoSchema.schemaTags.map((schema: any) => {
+<div>{schema}</div>
+})} */}
+  <CourseDetailContainer data={data} popup={false}/>
   <Footer/>
     </main>
     </div>

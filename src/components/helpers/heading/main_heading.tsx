@@ -5,11 +5,13 @@ import Image from "next/image";
 
 
 export default function MainHeading({
-    text
+    text,
+    color
 }:{
     text:string
+    color:string
 }) {
     return (
-       <h2 className='w-full text-center text-white text-4xl font-semibold'>{text}</h2>
+       <h3 className={color?`w-full text-center text-${color}   text-xl md:text-4xl font-semibold`:'w-full text-center text-white   text-4xl font-semibold'} style={{color:color}}>{text}</h3>
     )
 }

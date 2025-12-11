@@ -15,9 +15,14 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { SearchComponent } from './dialog_search';
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import Marquee from '../Marquee';
+import Navbar from './Navbar';
+import BookFormComponent from '../Book-form';
+import { commonbasePath } from "@/common/constants";
+import { signOut } from '../cookie/index';
 
-export default function Header() {
+export default function Header() {  
     const [scrolling, setScrolling] = useState(false);
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -36,40 +41,46 @@ export default function Header() {
     }, []);
     const pathname = usePathname();
     const [navigation, setNavigation] = useState([
-        {
-            "menuId": 1,
-            "menuName": "About",
-            "menuUrl": "/about",
-            "imageId": null,
+        // {
+        //     "menuId": 1,
+        //     "menuName": "About",
+        //     "menuUrl": "/about",
+        //     "imageId": null,
 
-            "menuSequencePriority": 1
-        },
+        //     "menuSequencePriority": 1
+        // },
         {
             "menuId": 2,
             "menuName": "Programs",
             "menuUrl": "/course",
             "imageId": null,
 
-            "menuSequencePriority": 2
+            "menuSequencePriority": 1
         },
-        {
-            "menuId": 3,
-            "menuName": "Schedules",
-            "menuUrl": "/schedule",
-            "imageId": null,
+        // {
+        //     "menuId": 3,
+        //     "menuName": "Schedules",
+        //     "menuUrl": "/schedule",
+        //     "imageId": null,
 
-            "menuSequencePriority": 3
-        },
-        {
-            "menuId": 4,
-            "menuName": "Webinars",
-            "menuUrl": "/webinar",
-            "imageId": null,
+        //     "menuSequencePriority": 3
+        // },
+        // {
+        //     "menuId": 4,
+        //     "menuName": "Webinars",
+        //     "menuUrl": "/webinar",
+        //     "imageId": null,
 
-            "menuSequencePriority": 4
-        }
+        //     "menuSequencePriority": 4
+        // }
 
     ]);
+
+    const [PopupVisible, setPopupVisible] = useState(false);
+ 
+    const togglePopup = () => {
+      setPopupVisible(!isPopupVisible);
+    };
 
     const profileNavigation=[
         {
@@ -185,19 +196,21 @@ const [data, setData] = useState<any[]>([{}]);
   
     }, [])
    
-    
+    const basePath  = commonbasePath;
    
     return (
 
         <>
+
             {/* <SearchDialog isOpen={isOpen} setIsOpen={setIsOpen}/> */}
-            <Disclosure as="nav" className={classNames(scrolling ? `sticky ${data.length==0?"top-0": pathname=="/"||pathname.startsWith("/course")||pathname.startsWith("/certificate")?"top-[40px]":"top-0"} z-20 bg-primary_color` : `sticky ${data.length==0?"top-0": pathname=="/"||pathname.startsWith("/course")||pathname.startsWith("/certificate")?"top-[40px]":"top-0"} z-20`,)}>
+            <Disclosure as="nav" className={classNames(scrolling ? `sticky ${data.length==0?"top-0  ": pathname=="/"||pathname.startsWith("/course")||pathname.startsWith("/certificate")?"md:top-10 lg:top-[42px] xl:top-10 top-14  ":"top-0 "} z-20 bg-primary_color p-2` : `sticky ${data.length==0?"top-0  ": pathname=="/"||pathname.startsWith("/course")||pathname.startsWith("/certificate")?"top-[0px] ":"top-0  "} z-20 p-2  `,)}>
+
                 {({ open }) => (
                     <>
-                  
-                        <div className="sm:py-4">
-                       
-                            <div className="relative flex h-16 items-center justify-between">
+
+                        <div >
+
+                            <div className="relative flex h-12 items-center justify-between">
                                 <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                                     {/* Mobile menu button*/}
                                     <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md  text-white  hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -216,16 +229,16 @@ const [data, setData] = useState<any[]>([{}]);
                                             onClick={(e) => {
                                                 router.push("/")
                                             }}
-                                            className="h-14 md:h-20 w-auto cursor-pointer"
-                                            src="/logo.png"
+                                            className="h-12 md:h-14 w-auto cursor-pointer"
+                                            src={`${basePath}/logo.png`}
                                             alt="GK cloud solutions"
                                         />
 
                                     </div>
-
+                                    
                                     <div className="hidden md:ml-6 md:block ">
                                         <div className="flex justify-center items-center">
-                                            <div className='flex-1 flex items-center gap-4'>
+                                        <div className='flex-1 flex items-center gap-4'>
                                                 <SearchComponent />
                                             </div>
                                             {navigation.map((item) => item.menuName == "Programs" ? <AllCourses key={item.menuName} /> :
@@ -233,6 +246,10 @@ const [data, setData] = useState<any[]>([{}]);
                                                 <a
                                                     key={item.menuName}
                                                     href={item.menuUrl}
+                                                    onClick={(e) => {
+
+                                                        router.push(item.menuUrl);
+                                                    }}
                                                     className={classNames(
                                                         pathname.includes(item.menuUrl) ? ' text-blue font-semibold' : 'text-white hover:bg-gray-700 hover:text-blue',
                                                         'rounded-md mx-8 py-2 text-sm font-medium '
@@ -242,7 +259,25 @@ const [data, setData] = useState<any[]>([{}]);
                                                     {item.menuName}
                                                 </a>
                                             )}
+                                               <div className="flex  p-4">
+            <button
+                onClick={togglePopup}
+                className="bg-blue-500 hover:bg-blue-600 text-blue bg-white rounded-xl font-bold py-2 px-4 "
+            >
+                Book Your Trial
+            </button>
+            {PopupVisible && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                <BookFormComponent
+                            isFromOffer={false}
+                            data={null}
+                            closeModel={() => setPopupVisible(false)}
+                 />
+                </div>
+            )}
+            </div>
                                         </div>
+                                       
                                     </div>
                                 </div>
                                 {/* <div onClick={(event)=>{
@@ -255,7 +290,7 @@ const [data, setData] = useState<any[]>([{}]);
                                     pathname=="/auth/signin" ? <></> : <div className="absolute inset-y-0 right-0 flex items-center  md:static md:inset-auto md:ml-6 md:pr-0">
 
                                         {
-                                     isLoading?<div className='w-32'></div>:    userData == null ? <ButtonLoginHeader /> : <Menu as="div" className="relative ml-3">
+                                     isLoading?<div className='w-32'></div>:    userData === null ? <ButtonLoginHeader /> : <Menu as="div" className="relative ml-3">
                                                 <div>
                                                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                                         <span className="absolute -inset-1.5" />
@@ -263,7 +298,7 @@ const [data, setData] = useState<any[]>([{}]);
 
                                                         {
                                                             // pathname.includes("profile") ? 
-                                                            <div className='text-white flex justify-end items-center gap-2'>Hello <span className='text-secondary_yellow'>{userData?.firstName ?? "User"}</span><ChevronDownIcon className="text-text_grey_one h-4 w-4" /></div>
+                                                            <div className='text-white flex justify-end items-center gap-2'>Hello <span className='text-secondary_yellow'>{userData?.firstName?userData?.firstName: userData["UserCredential.username"]}</span><ChevronDownIcon className="text-text_grey_one h-4 w-4" /></div>
                                                             // : !userData?.profilePictureUrl ? <UserCircleIcon className='text-text_grey h-12 w-12' /> :
                                                             //     <Image
                                                             //         width={20}
@@ -317,6 +352,7 @@ const [data, setData] = useState<any[]>([{}]);
                                                                 <a
                                                                     onClick={(e) => {
                                                                         localStorage.clear();
+                                                                        signOut();
                                                                         router.push("/");
                                                                         router.reload()
                                                                     }}
@@ -334,6 +370,7 @@ const [data, setData] = useState<any[]>([{}]);
                                 }
                             </div>
                         </div>
+                        
 
                         <Disclosure.Panel className="md:hidden">
                             <div className="space-y-1 px-2 pb-3 pt-2">
@@ -347,6 +384,7 @@ const [data, setData] = useState<any[]>([{}]);
                                             'block rounded-md px-3 py-2 text-base font-medium'
                                         )}
                                         aria-current={userData == null ? 'page' : undefined}
+                                        
                                     >
                                         {item.menuName}
                                     </Disclosure.Button>
@@ -354,7 +392,7 @@ const [data, setData] = useState<any[]>([{}]);
                                     <Disclosure.Button
                                         key={item.menuName}
                                         as="a"
-                                        href={item.menuUrl}
+                                        href={`${commonbasePath}${item.menuUrl}`}
                                         className={classNames(
                                             userData == null ? 'bg-gray-900 text-white' : 'text-white hover:bg-gray-700 hover:text-white',
                                             'block rounded-md px-3 py-2 text-base font-medium'
@@ -363,10 +401,34 @@ const [data, setData] = useState<any[]>([{}]);
                                     >
                                         {item.menuName}
                                     </Disclosure.Button>
+                                   
                                 ))}
                             </div>
+                            <div className="flex  p-4">
+                                     <button
+                                         onClick={togglePopup}
+                                         className="bg-blue-500 hover:bg-blue-600 text-blue bg-white rounded-xl font-bold py-2 px-4 "
+                                     >
+                                         Book Your Trial
+                                     </button>
+                                     {PopupVisible && (
+                                         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                                         <BookFormComponent
+                                                     isFromOffer={false}
+                                                     data={null}
+                                                     closeModel={() => setPopupVisible(false)}
+                                          />
+                                         </div>
+                                     )}
+                                     </div>
                         </Disclosure.Panel>
+                        {/* <Marquee /> */}
+                        {/* <Navbar/> */}
+
+
                     </>
+
+                    
                 )}
 
             </Disclosure>

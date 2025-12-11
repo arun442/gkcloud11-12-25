@@ -14,3 +14,9 @@ export const axiosLead = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+export const axiosStu = axios.create({
+  headers: {
+    "Content-Type": "application/json",
+  },
+});

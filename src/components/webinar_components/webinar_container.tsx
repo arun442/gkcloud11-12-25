@@ -63,7 +63,7 @@ export default function WebinarContainer() {
 
   return (
     <main className="w-full bg-primary_color flex-1 flex flex-col justify-start items-start">
-      <MainHeading text={isLoading?"": data.length==0?"Coming Soon…":'Webinars'} />
+      <MainHeading text={isLoading ? "" : data.length == 0 ? "Coming Soon…" : 'Webinars'} color={''} />
    {
     data.length!=0&&   <div className="flex flex-row gap-1 items-center mt-14">
     <p className="cursor-pointer text-blue text-base font-medium" onClick={(e) => {

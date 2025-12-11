@@ -56,7 +56,7 @@ export default function Index() {
                 setLoading(false);
                 toast.success("Profile updated successfully")
               
-               router.reload();
+            //    router.reload();
 
             } catch (error: any) {
                 setLoading(false);
@@ -121,10 +121,13 @@ export default function Index() {
     });
 
     useEffect(() => {
+        console.log(userData);
+
         formik.setValues({
-            name: userData?.firstName ?? "",
+            name: userData == null ? "" : userData?.firstName? userData?.firstName:userData["UserCredential.username"],
             email: userData == null ? "" : userData["UserCredential.email"],
-            phone: userData?.mobile ?? "",
+            phone:  userData == null ? "" : userData?.mobile? userData?.mobile:userData["UserCredential.phoneNo"],
+
         })
 
 
@@ -152,7 +155,7 @@ export default function Index() {
             <main className="w-full h-full flex flex-col">
                 {/* <h2 className="text-xl font-medium text-normal_white">My Profile</h2> */}
 
-                <form autoComplete="off" onSubmit={formik.handleSubmit} className=" w-full flex-col">
+                <form autoComplete="off" onSubmit={formik.handleSubmit} className=" w-full flex-row">
                     <h2 className="mb-2 text-white">Details</h2>
                     <section className="ml-0 md:ml-14 mb-4">
                         <p className="text-white text-sm w-20 mb-2">Name *</p>

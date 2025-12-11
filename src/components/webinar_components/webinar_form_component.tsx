@@ -5,12 +5,14 @@ import { useState,useEffect } from 'react';
 import classNames from '@/helpers/add_class';
 import useUserData from '@/hooks/userData';
 import { toast } from 'react-toastify';
+import { commonbasePath } from "@/common/constants";
 
 export default function WebinarFormComponent({
     data, closeModel
 }: { data: any, closeModel: any }) {
     const [isLoading, setLoading] = useState(false);
     const { userData, } = useUserData();
+    const basePath  = commonbasePath;
     useEffect(() => {
         if(!userData){
             return;
@@ -99,7 +101,7 @@ export default function WebinarFormComponent({
                 closeModel()
             }}
             className="cursor-pointer absolute text-blue h-6 w-6 top-4 right-4"
-            src="/cancel.png" />
+            src={`${basePath}/cancel.png`} />
 
         <h3 className='text-lg mt-4 text-white font-medium text-center'>Webinar Registration</h3>
 

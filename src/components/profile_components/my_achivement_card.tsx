@@ -4,6 +4,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { Metamorphous } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { commonbasePath } from "@/common/constants";
 
 import {
     FacebookShareButton,
@@ -23,6 +24,7 @@ import {
 
   } from 'react-share';
 export default function MyAchivementCard({ data }: { data: any }) {
+  const basePath  = commonbasePath;
     const downloadCertificate = async (certificateId: any, courseName: any) => {
         try {
             // Make a GET request to the API endpoint that serves the file
@@ -119,7 +121,7 @@ export default function MyAchivementCard({ data }: { data: any }) {
                 }}
 alt='download icon'
                 className="h-6 w-6"
-                src="/icon_download.svg" />
+                src={`${basePath}/icon_download.svg`} />
             {/* <img
   onClick={() => {
     shareCertificate(data.userCertificateId, data.certificateTitle);

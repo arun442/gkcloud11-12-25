@@ -7,6 +7,9 @@ axios.defaults.baseURL = baseUrl;
 
 axios.interceptors.request.use(
     async (config:any) => {
+           if (config.skipAuth) {
+      return config;
+    }
         const localStorageSession:string| null=localStorage.getItem("session");
     let localSession ;
    if(localStorageSession!=null){

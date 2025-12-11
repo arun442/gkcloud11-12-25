@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import CircleProgressBar from "@/components/helpers/circleProgress";
 import ErrorBoundary from "@/helpers/error_boundary";
+import { commonbasePath } from "@/common/constants";
 
 
 export async function getServerSideProps(context: any) {
@@ -45,12 +46,13 @@ export async function getServerSideProps(context: any) {
   }
 }
 export default function Player({data, modules, id, title }: {data:any, modules: any, id: any, title: any }) {
-
+  const basePath  = commonbasePath;
   const router = useRouter();
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [moduleId, setModuleId] = useState(null);
   const { userData, } = useUserData();
   const [notes, setNotes] = useState('');
+  const [coursestatus,setcoursestatus]=useState(false);
   // useEffect(() => {
   //   // If the initial selectedItem is null, set it to the first item of the first module
   //   if (!selectedItem && modules.length > 0 && (modules[0].moduleitems??[]).length > 0) {
@@ -77,7 +79,7 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
         setNotes(userCourseProgress[0].notes);
         const currentModule = modules.find((e: any) => e.moduleId == userCourseProgress[0].moduleId);
         const moduleIndex = modules.findIndex((e: any) => e.moduleId == userCourseProgress[0].moduleId);
-      
+      setcoursestatus(userCourseProgress.length>0&&userCourseProgress[0].courseStatus=="Completed"?true:false)
         if (moduleIndex < 0) {
           return;
         }
@@ -122,7 +124,7 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
               router.push("/")
             }}
             className="h-14 md:h-20 w-auto cursor-pointer"
-            src="/logo.png"
+            src={`${basePath}/logo.png`}
             alt="GK cloud solutions"
           />
 
@@ -147,15 +149,47 @@ export default function Player({data, modules, id, title }: {data:any, modules: 
 
 
       </div>
-
+{coursestatus?
+<div className="w-full flex justify-center items-center mt-20">
+  <span className="font-semibold text-white text-4xl ">
+ Course Completed Successfully🎉
+  </span>
+  </div>:null}
       <div className="w-full flex h-full">
-        <div className="h-auto flex-1  md:w-full">
-        <PlayerComponent notes={notes} setNotes={setNotes} data={data} setMouduleId={setModuleId} onSelectItem={setSelectedItem} modules={modules} item={selectedItem} moduleId={moduleId} />
-        </div>
-        <div className="hidden md:flex w-[30%] h-[70vh]">
-          {selectedItem && <ModuleList modules={modules} setMouduleId={setModuleId} onSelectItem={setSelectedItem} currentItem={selectedItem} moduleId={moduleId} />}
-        </div>
-      </div>
+                        {modules[0]?.moduleItems[0]?.moduleItemDetails[0]?.mode=="" && (
+
+              <div className=" flex w-full justify-center items-center h-[70vh]">
+              <h1 className="text-white font-semibold text-4xl">Content unavailable for this course</h1>
+            </div>
+                          )}
+
+            <div className="h-auto flex-1 md:w-full">
+            {selectedItem && modules[0]?.moduleItems[0]?.moduleItemDetails[0]?.mode!="" && (
+                <PlayerComponent
+                  notes={notes}
+                  setNotes={setNotes}
+                  data={data}
+                  setMouduleId={setModuleId}
+                  onSelectItem={setSelectedItem}
+                  modules={modules}
+                  item={selectedItem}
+                  moduleId={moduleId}
+                />
+              )}
+            </div>
+            <div className="hidden md:flex w-[30%] h-[70vh]">
+            {selectedItem && (
+                <ModuleList
+                  modules={modules}
+                  setMouduleId={setModuleId}
+                  onSelectItem={setSelectedItem}
+                  currentItem={selectedItem}
+                  moduleId={moduleId}
+                />
+              )}
+            </div>
+          
+          </div>
       <section></section>
     </main>
      </ErrorBoundary>

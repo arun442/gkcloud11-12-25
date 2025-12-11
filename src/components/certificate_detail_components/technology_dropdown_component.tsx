@@ -1,8 +1,10 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { ArrowDownCircleIcon } from '@heroicons/react/20/solid'
+import { commonbasePath } from "@/common/constants";
 
 export default function TechnologyDropdown() {
+  const basePath  = commonbasePath;
   return (
     <div className="px-1 py-1 bg-dark_blue  box-border border-blue border-2 rounded-full">
       <Menu as="div" className="relative inline-block text-left">
@@ -13,7 +15,7 @@ export default function TechnologyDropdown() {
             alt='arrow icon'
                                    
                                    className="ml-8 h-5 w-5"
-                                   src="/Icon_arrow.svg"/>
+                                   src={`${basePath}/Icon_arrow.svg`}/>
           </Menu.Button>
         </div>
         <Transition

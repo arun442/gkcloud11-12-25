@@ -1,24 +1,39 @@
+"use client"
 import React, { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import Image from "next/image";
 import TextTransition, { presets } from 'react-text-transition';
 import { axiosPublic } from '@/common/axiosPublic';
-
+import LeadFormModel from '../helpers/LeadFromModel';
+import { cn } from "@/lib/utils";
+import { Spotlight } from "../ui/spotlight";
+import { WavyBackground } from "../ui/wavy-background";
 import { Combobox } from '@headlessui/react'
 import { useRouter } from 'next/router';
 import useScreenSize from '@/hooks/size_hook';
-
-
-
-
-
+import GradualSpacing from "@/components/ui/gradual-spacing";
+import Marquee from '../helpers/Marquee';
+import Meteors from "@/components/ui/meteors";
+import TextReveal from "@/components/ui/text-reveal";
+import Ripple from "@/components/ui/ripple";
+import { Cover } from "@/components/ui/cover";
+import { BorderBeam } from "@/components/ui/border-beam";
+import { getCookie,hasCookie ,getCookies} from 'cookies-next';
+import { HiArrowTopRightOnSquare } from "react-icons/hi2";
+import { commonbasePath } from "../../common/constants";
+import  Head from 'next/head'
+import WordPullUp from "@/components/ui/word-pull-up";
 const TEXTS = ['Artificial Intelligence', 'Multicloud', 'Cyber Security', 'Infrastructure', 'Tableau'];
 
 export default function HomePageMainContainer() {
   const router = useRouter();
   const [index, setIndex] = React.useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+const textanimation="Step into the Future of Learning with our tailored Cloud & AI Courses that drive Career Advancement and Innovation."
+
 const screenSize=useScreenSize()
+
   React.useEffect(() => {
     const intervalId = setInterval(
       () => setIndex((index) => index + 1),
@@ -31,6 +46,7 @@ const screenSize=useScreenSize()
   const [items, setItems] = useState([]);
 
 
+  const basePath  = commonbasePath;
 
   const fetch = async () => {
     try {
@@ -52,16 +68,79 @@ const screenSize=useScreenSize()
   useEffect(() => {
     fetch()
 
+console.log(getCookies());
 
   }, [query])
+  function closeModal(isDownloaded: any) {
+
+    setIsOpen(false)
+  }
+
+  function openModal() {
+    setIsOpen(true)
+  }
   return (
-    <main className="w-full h-home  flex flex-col justify-center items-center">
-      <section className='w-full flex flex-col lg:flex-row justify-center md:justify-end items-center md:items-center gap-6'>
-{
- screenSize&& screenSize.width>=976?        <div className='relative z-10 w-full lg:w-[45%] flex justify-center lg:justify-end text-[44px] md:text-5xl font-bold text-white text-start leading-[50px] lg:leading-[70px]'>Level Up<br/>Your Skills </div>:        <div className='relative z-10 w-full lg:w-[45%] flex justify-center lg:justify-end text-[44px] md:text-5xl font-bold text-white text-center leading-[50px] lg:leading-[70px]'>Level Up Your Skills </div>
-}
-        <TextTransition className='w-full lg:w-[55%] text-[44px] md:text-5xl  lg:mt-[68px]  font-bold flex flex-row justify-center lg:justify-start text-center lg:text-start leading-[50px] lg:leading-[70px] text-blue' springConfig={presets.stiff}>{TEXTS[index % TEXTS.length]}</TextTransition>
+    <>
+ <Head>
+        <title>Become an AI Expert: Top-Rated AI Training Courses Online | GK Cloud
+        </title>
+        <link rel="icon" href={`${commonbasePath}/favicon.ico`} />
+        </Head>
+    <main className="w-full  flex  flex-col md:flex-row " >
+    <LeadFormModel isFromOffer={true} data={{}} isOpen={isOpen} closeModal={closeModal} courseCode={""} courseName={""} />
+
+          {/* <Spotlight
+        className="top-40 left-0  z-10"
+        fill="red"
+
+      /> */}
+      {/* <WavyBackground className="w-full mx-auto pb-40 -z-10 sticky top-28 border-b-2"></WavyBackground> */}
+      <section className='w-12/12 md:w-7/12  z-10 flex items-center    '>
+
+         <div className=' z-10 w-full mt-5 justify-center text-[44px] md:text-5xl font-bold text-white text-start leading-[50px] lg:leading-[70px] '>
+          
+          <h1 className='text-md md:text-6xl' style={{lineHeight:"1.5"}} >
+
+          Revolutionizing<br/><span style={{background:'linear-gradient(#8d49fd ,#7f56f3, #5691f3)',WebkitTextFillColor :"transparent",WebkitBackgroundClip:"text",backgroundClip:"text",color:"transparent"}}>Education</span> With AI
+            </h1>
+
+            <div style={{fontSize:"16px",fontWeight:"lighter",lineHeight:1.5,padding:"5px"}}>
+            GK Cloud Solutions was established to bridge the gap in Technology Training, Services, and Project Consulting. We focus on delivering high-quality training and innovative solutions. Our aim is to empower businesses with the skills and expertise they need to thrive.</div>
+            <div className='row flex mt-4 flex-row  gap-2'>
+              <div className='flex justify-start items-center'>
+              <button className="btn  active:translate-y-1 w-52  ">
+  <span onClick={(e)=>{
+        router.push("/course");
+        sessionStorage.removeItem("navtab");
+
+       }}>Get started</span>
+</button>
+              </div>
+          
+<div className='flex justify-start md:justify-center items-end ml-6 gap-3 cursor-pointer' onClick={(e)=>openModal()}>
+  <span className='text-lg underline font-medium'>Join Our AI Course</span>
+
+<HiArrowTopRightOnSquare style={{fontSize:"30px"}}/>
+
+
+
+</div>
+
+            </div>
+           
+            </div>
+          
+
+         
+
       </section>
+
+      <section className=' w-12/12 md:w-5/12  flex justify-end items-start z-10 h-full p-5 sticky  '>
+    
+      <img src={`${basePath}/GKCS_Landing2.png`} ></img>
+
+      </section>
+
       {/* <section className='w-full'>
         <Combobox >
           <div className="relative w-full">
@@ -114,7 +193,16 @@ const screenSize=useScreenSize()
           </div>
         </Combobox>
       </section> */}
+
     </main>
+    <div className='mt-10'>
+<WordPullUp
+      className="text-2xl font-normal mt-14 w-10/12 gap-2 text-white dark:text-white md:text-4xl md:leading-[4rem] flex flex-wrap justify-center mx-auto py-14"
+words="Step into the Future of Learning with our tailored Cloud & AI Courses that drive Career Advancement and Innovation."   
+ />
+</div>
+  
+</>
   )
 }
 

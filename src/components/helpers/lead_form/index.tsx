@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import classNames from '@/helpers/add_class';
 import useUserData from '@/hooks/userData';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import { commonbasePath } from "@/common/constants";
 
 export default function LeadFormComponent({
     isFromOffer=false,   data, closeModel, courseCode, courseName
@@ -31,6 +33,7 @@ export default function LeadFormComponent({
     //     })
     // }, [userData])
     const phoneRegExp = /^(?!.*\D).{10}$/;
+    const router = useRouter();
 
     const formik = useFormik({
         validateOnBlur:false,
@@ -74,7 +77,9 @@ export default function LeadFormComponent({
                     "courseCode": courseCode,
                     "courseName": courseName,
                     "phNumber": values.phone,
-                    "company": values.company
+                    "company": values.company,
+                    "utmSource" : 'Website-Leads',
+                    "action" : 'Offers',
 
                 };
 
@@ -84,8 +89,11 @@ export default function LeadFormComponent({
                 setLoading(false);
                 if(isFromOffer){
                     toast.success("Thanks for your interest, one of our Sales Agent will get in touch with you shortly")
+                    router.push("/course/multi-platform-prompt-engineering")
+
                 }else{
                     toast.success("Form submitted successfully")
+                    router.push("/course/multi-platform-prompt-engineering")
                 }
                
                 closeModel(true);
@@ -101,6 +109,7 @@ export default function LeadFormComponent({
             }
         },
     });
+    const basePath  = commonbasePath;
     return <section className='relative  mx-auto box-border border  p-10 border-blue border-1 bg-dark_blue rounded-2xl'>
         <img
             onClick={(e) => {
@@ -108,7 +117,7 @@ export default function LeadFormComponent({
             }}
             alt='cancel icon'
             className="cursor-pointer absolute text-blue h-6 w-6 top-4 right-4"
-            src="/cancel.png" />
+            src={`${basePath}/cancel.png`} />
 
         <form   id='my-form' autoComplete="off" onSubmit={formik.handleSubmit}>
             <div className='mt-4 flex flex-row gap-8'>

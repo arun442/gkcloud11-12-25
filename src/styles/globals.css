@@ -25,13 +25,13 @@ html{
 }
 body{
   font-family: 'Poppins';
-  background-color: "#000520";
+  /* background-color: "#00051F"; */
 }
 
 @layer components {
-.bg_gradient{
-  background: transparent linear-gradient(180deg, #000520 0%, #5FEF5C 100%) 0% 0% no-repeat padding-box;
-}
+/* .bg_gradient{
+  background: transparent linear-gradient(180deg, #00051F 0%, #5FEF5C 100%) 0% 0% no-repeat padding-box;
+} */
 }
 @property --num0 {
   syntax: '<integer>';
@@ -88,5 +88,495 @@ body{
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+.slick-slide{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.markdown a {
+  color: blue !important;
+  text-decoration: underline !important;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* From Uiverse.io by Codecite */ 
+.btn {
+
+  --fancy-button-gradient-0: #8d49fd;
+  --fancy-button-gradient-50: #7f56f3;
+  --fancy-button-gradient-100: #5691f3;
+  --fancy-button-inner-shadow-top: rgba(233, 209, 255, 0.2);
+  --fancy-button-inner-shadow-top-lg: rgba(9, 12, 60, 0.1);
+  --fancy-button-inner-shadow-bottom: rgba(137, 222, 246, 0.3);
+  --fancy-button-shine-top: #e9d1ff;
+  --fancy-button-shine-bottom: #adfff9;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 21px;
+  text-shadow: 0px 0.5px 0.5px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  appearance: none;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 25px;
+  color: #fff;
+  background-image: linear-gradient(
+    to bottom,
+    var(--fancy-button-gradient-0) 0%,
+    var(--fancy-button-gradient-50) 50%,
+    var(--fancy-button-gradient-100) 100%
+  );
+  box-shadow:
+    0px 4px 12px rgba(9, 12, 60, 0.15),
+    0px 2px 8px rgba(9, 12, 60, 0.15),
+    0px 1px 3px var(--fancy-button-inner-shadow-top-lg),
+    inset 0px 1px 1px var(--fancy-button-inner-shadow-top),
+    inset 0px -1px 3px var(--fancy-button-inner-shadow-bottom);
+}
+
+.btn:before,
+.btn:after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  will-change: transform;
+}
+
+.btn:before {
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--fancy-button-shine-top);
+  width: 96px;
+  height: 6px;
+  top: -3px;
+  opacity: 0.6;
+  filter: blur(6px);
+  transition: opacity 0.25s;
+}
+
+.btn:after {
+  inset: 0;
+  background-size: cover;
+  z-index: 2;
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.btn span {
+  display: block;
+  padding: 12px 24px;
+  border-radius: inherit;
+  overflow: hidden;
+  position: relative;
+  background-image: linear-gradient(
+    to bottom,
+    var(--fancy-button-shine-top),
+    transparent 8px
+  );
+  background-position: 0 -6px;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.btn span:before,
+.btn span:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background-color: var(--fancy-button-shine-bottom);
+  transition:
+    opacity 0.25s,
+    transform 0.25s;
+  will-change: transform;
+}
+
+.btn span:before {
+  width: 92px;
+  height: 8px;
+  bottom: -4px;
+  opacity: 0.75;
+  filter: blur(6px);
+}
+
+.btn span:after {
+  width: 112px;
+  height: 1px;
+  bottom: 0;
+  opacity: 0.9;
+  filter: blur(1px);
+}
+
+.btn:hover span:before {
+  opacity: 0.8;
+}
+
+.btn:hover span:before {
+  transform: translateX(-50%) scale(1.25);
+}
+
+.btn:hover span:after {
+  opacity: 1;
+}
+
+/* Assistant css */
+/* width */
+
+ .input-query-container{
+    /* position: fixed; */
+    /* bottom: 1rem; */
+    /* background-color: #e3e3e3; */
+    /* border: 1px solid grey; */
+    background-color: white;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    padding: 10px 30px;
+    display: flex;
+    gap: 1rem;
+    border-radius: 30px;
+    width: 95%;
+    /* left:21% */
+  } 
+  
+p{
+  margin: 0;
+}
+  .input-query-container input{
+    /* padding : 0px 10px; */
+    outline: none;
+    border-radius: 10px;
+    width: 100%;
+    background: transparent;
+    color: black;
+  }
+
+  .text-messages{
+    /* max-width: 95%; */
+    scroll-behavior: smooth;
+  }
+.markdown pre{
+  overflow: auto;
+  scrollbar-width:thin;
+}
+  .container{
+    height:100%;
+    padding: 10px;
+    background-color: whitesmoke;
+  }
+  .infinite {
+    animation-iteration-count: infinite;
+  }
+  @keyframes typing {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+      -webkit-transform:translateY(-10px)
+    }
+    100% {
+      opacity: 0.5;
+    }
+    }
+  .typing-indicator {
+    display: inline-block;
+    text-align: end;
+    align-self: end;
+    }
+    
+    .typing-indicator span {
+    display: inline-block;
+    margin-right: 0.2em;
+    animation: typing 1s infinite;
+    }
+    
+    .typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+    }
+    
+    .typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+    }
+  .text-container{
+    height: 90%;
+    overflow-y: scroll;
+    width: 102%;
+  }
+
+  /* .input-query-container{
+    height: 10%;
+  } */
+
+  /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 20px;
+}
+ 
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+ 
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+ 
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1rem;
+  width: 1rem;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+ 
+input:checked + .slider {
+  background-color: #2196F3;
+}
+ 
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+ 
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+ 
+.slider.round:before {
+  border-radius: 50%;
+}
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45px;
+  height: 9px;
+  margin-left: -22px;
+  margin-top: -13px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 9px;
+  height: 9px;
+  background-color: #dcdcdc;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+  animation: bouncedelay 1400ms ease-in-out infinite;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
+#container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  display: -ms-flexbox;
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+  align-items: center;
+  -webkit-align-items: center;
+}
+
+#loading-bubble {
+  display: flex;
+  display: -ms-flexbox;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  width: auto;
+  height: auto;
+  min-width: 73px;
+  min-height: 40px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  position: relative;
+  background-color: #2e66bd;
+  /* -webkit-animation: message-bounce 2.5s infinite ease-in-out;
+  animation: message-bounce 2.5s ease-in-out infinite; */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+#loading-bubble.grey {
+  background-color: white;
+  
+}
+#loading-bubble.grey:before {
+  border-color: transparent white transparent transparent;
+}
+#loading-bubble:before {
+  display: block;
+  content: " ";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 8px 8px 0;
+  border-color: transparent #2e66bd transparent transparent;
+  position: absolute;
+  left: -7px;
+  top: 13px;
+}
+#loading-bubble .spinner {
+  position: static !important;
+  margin-top: -11px;
+  margin-left: 0px;
+}
+#loading-bubble .spinner div {
+  background-color: black;
+}
+
+@-webkit-keyframes message-bounce {
+  0% {
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+  }
+  100% {
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+  }
+}
+
+@keyframes message-bounce {
+  0% {
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+  }
+  100% {
+    transform: scale(0.9);
+    -webkit-transform: scale(0.9);
   }
 }

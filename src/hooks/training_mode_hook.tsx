@@ -12,13 +12,11 @@ const useTrainingMode = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        if (localStorage.getItem("training")) {
-          setTrainingData(JSON.parse(localStorage.getItem("training")!));
-        } else {
+     
           const response = await axiosPublic.get('/lms/course-training-mode'); // Assuming you have an API route for user data
           setTrainingData(response.data.trainingMode);
           localStorage.setItem("training", JSON.stringify(response.data.trainingMode));
-        }
+        
         // Check if user data exists in local storage
 
 

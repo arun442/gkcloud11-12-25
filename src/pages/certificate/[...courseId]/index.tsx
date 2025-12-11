@@ -7,6 +7,7 @@ import { axiosPublic } from "@/common/axiosPublic";
 import CertificateDetailContainer from "@/components/certificate_detail_components/certificate_detail_component";
 import Marquee from "@/components/helpers/Marquee";
 import Head from 'next/head';
+import { commonbasePath } from "@/common/constants";
 export async function getServerSideProps(context:any) {
   
   // Fetch data from external API
@@ -42,9 +43,12 @@ export default function CourseDetails({data}:{data:any}) {
   return (
     <>
       <Head>
-        <title>{data.title}</title>
-        <meta name="description" content={data.metaDescription} />
-        <meta name="keywords" content={data.metaKeyword} />
+      <title>{data.seoSchema?data.seoSchema.metaTitle:data.title}</title>
+        <link rel="icon" href={`${commonbasePath}/favicon.ico`} />
+        <link rel="canonical" href={data.slug}/>
+        <meta name="robots" content="index, follow"/>
+        <meta name="description" content={data.seoSchema?data.seoSchema.metaDescription:data.metaDescription} />
+        <meta name="keywords" content={data.seoSchema?data.seoSchema.keywords:data.metaKeyword} />
         <meta property="og:title" content={data.title} />
         <meta property="og:description" content={data.metaDescription} />
         <meta property="og:image" content={data.image} />
@@ -54,28 +58,41 @@ export default function CourseDetails({data}:{data:any}) {
         <meta name="twitter:description" content={data.metaDescription} />
         <meta name="twitter:image" content={data.image} />
            {/* Schema.org Markup */}
-           <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html:data?.seoSchema?data.seoSchema: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "GKCloud.ai",
-              "url": "https://gkcloud.ai/",
-              "logo": "https://gkcloud.ai/logo.png",
-              "sameAs": [
-                "https://www.facebook.com/gkcloud",
-                "https://twitter.com/gkcloud"
-              ],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "contactType": "Customer Service",
-                "telephone": "+91 9364893718",
-                "email": "support@gkcloud.ai"
-              }
-            })
-          }}
-        />
+           {data.seoSchema?
+           
+           data.seoSchema.schemaTags?
+            Object.keys(data.seoSchema.schemaTags).map((key) => (
+ 
+            <script
+           type="application/ld+json"
+           dangerouslySetInnerHTML={{
+             __html:JSON.stringify(data.seoSchema.schemaTags[key])
+           }}
+         />
+       )):null:
+       <script
+       type="application/ld+json"
+       dangerouslySetInnerHTML={{
+         __html:JSON.stringify({
+           "@context": "https://schema.org",
+           "@type": "Organization",
+           "name": "GKCloud.ai",
+           "url": "https://gkcloud.ai/",
+           "logo": "https://gkcloud.ai/logo.png",
+           "sameAs": [
+             "https://www.facebook.com/gkcloud",
+             "https://twitter.com/gkcloud"
+           ],
+           "contactPoint": {
+             "@type": "ContactPoint",
+             "contactType": "Customer Service",
+             "telephone": "+91 9364893718",
+             "email": "support@gkcloud.ai"
+           }
+         })
+       }}
+     />
+     }
 
     
       </Head>

@@ -34,7 +34,11 @@ export default function MyCourseCard({ data }: { data: any }) {
     
     
       }, [userData]);
-    return <div onClick={(e) => {
+      
+    return (
+      <>
+    {data.isValid?
+    <div onClick={(e) => {
     
         router.push(`/profile/my-learning/${data.Course.courseId}`)
     }} className="cursor-pointer box-border border flex flex-col p-6 justify-start items-start border-blue border-1 bg-dark_blue rounded-2xl">
@@ -61,5 +65,7 @@ export default function MyCourseCard({ data }: { data: any }) {
 }
         </section>
 
-    </div>;
+    </div>
+    :null}
+    </>)
 }

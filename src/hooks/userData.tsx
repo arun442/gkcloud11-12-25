@@ -18,8 +18,15 @@ const useUserData = () => {
         // Check if user data exists in local storage
         const storedUserData = localStorage.getItem('userData');
         if (storedUserData) {
-         
-          setUserData(JSON.parse(storedUserData));
+          
+          
+          if(storedUserData === "undefined"){
+            setUserData("undefined");
+          }
+          else{
+            setUserData(JSON.parse(storedUserData));
+          }
+      
           setIsLoading(false);
         } else {
           // Fetch user data from API using Axios

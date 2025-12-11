@@ -1,3 +1,4 @@
+import Ai_button from "@/components/helpers/ai_bot_button";
 import { Poppins } from "next/font/google";
 import Head from "next/head";
 
@@ -17,9 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`bg-primary_color  ${roboto_mono.variable}`}>
-     
-      <body>{children}</body>
+    <html lang="en" className={` ${roboto_mono.variable}`}>
+
+      <body>{children}
+
+      </body>
     </html>
   );
 }
